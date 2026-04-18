@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ahmed Tamer</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .about-wrapper { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .about-name {
+      font-family: 'Lora', serif; font-size: clamp(2rem, 5vw, 2.6rem);
+      font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.25rem;
+    }
+    .about-tagline { font-size: 0.93rem; color: var(--muted); margin-bottom: 1.6rem; }
+    .about-tagline span { color: var(--accent); font-weight: 500; }
+
+    /* Profile photo — float right exactly like bilalkabas */
+    .profile.float-right { float: right; margin: 0 0 1.2rem 2.2rem; }
+    .profile figure { margin: 0; }
+    .profile img {
+      width: 200px; height: 200px; object-fit: cover; border-radius: 50%;
+      box-shadow: 0 4px 24px rgba(26,79,138,0.18); display: block;
+    }
+
+    /* Justified bio paragraphs */
+    .clearfix { overflow: hidden; }
+    .clearfix p { font-size: 0.95rem; line-height: 1.78; color: #3a3835; margin-bottom: 0.9rem; text-align: justify; }
+    .clearfix p:last-child { margin-bottom: 0; }
+    .clearfix a { color: var(--accent); text-decoration: none; }
+    .clearfix a:hover { text-decoration: underline; }
+
+    /* Social icons row */
+    .social { margin-top: 1.6rem; clear: both; }
+    .contact-icons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .contact-icons a {
+      color: var(--muted); font-size: 1.4rem; text-decoration: none;
+      transition: color 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center;
+    }
+    .contact-icons a:hover { color: var(--accent); transform: translateY(-2px); }
+
+    /* Latest sections */
+    .latest-section { padding: 2.8rem 0; border-bottom: 1px solid var(--border); }
+    .latest-section:last-child { border-bottom: none; }
+    .latest-section h2 {
+      font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600;
+      margin-bottom: 1.4rem; letter-spacing: -0.02em;
+    }
+    .latest-section h2 a {
+      color: var(--accent); text-decoration: none; font-size: 0.85rem;
+      font-family: 'DM Sans', sans-serif; font-weight: 500; margin-left: 0.8rem;
+    }
+    .exp-preview { display: flex; flex-direction: column; gap: 0.9rem; }
+    .exp-preview-item {
+      display: flex; justify-content: space-between; align-items: start;
+      padding: 1rem 1.2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px;
+      gap: 1rem; flex-wrap: wrap; transition: border-color 0.2s;
+    }
+    .exp-preview-item:hover { border-color: #c8d8f0; }
+    .exp-preview-title { font-weight: 600; font-size: 0.92rem; }
+    .exp-preview-company { font-size: 0.84rem; color: var(--accent); font-style: italic; margin-top: 0.1rem; }
+    .exp-preview-date { font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--muted); white-space: nowrap; }
+    .project-preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+    .project-preview-card {
+      padding: 1.1rem 1.2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-preview-card:hover { border-color: #c8d8f0; transform: translateY(-1px); }
+    .project-preview-name { font-weight: 600; font-size: 0.88rem; line-height: 1.35; margin-bottom: 0.5rem; }
+    .project-preview-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+    @media (max-width: 600px) {
+      .profile.float-right { float: none; margin: 0 auto 1.5rem; display: flex; justify-content: center; }
+      .profile img { width: 150px; height: 150px; }
+      .clearfix p { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">Ahmed Tamer</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">about</a></li>
+    <li><a href="experience.html">experience</a></li>
+    <li><a href="projects.html">projects</a></li>
+    <li><a href="assets/pdf/cv.pdf" target="_blank">cv</a></li>
+  </ul>
+</nav>
+
+<main class="page fade-up">
+
+  <div class="about-wrapper">
+
+    <h1 class="about-name">Ahmed Tamer</h1>
+    <p class="about-tagline">
+      <span>Electrical &amp; Electronics Engineering</span> Student &nbsp;·&nbsp;
+      Embedded Systems &nbsp;·&nbsp; Machine Learning
+    </p>
+
+    <!-- ── PHOTO floated right — place your photo at assets/img/ahmed.jpg ── -->
+    <div class="profile float-right">
+      <figure>
+        <picture>
+          <source class="responsive-img-srcset" media="(max-width: 480px)"  srcset="assets/img/ahmed.jpg">
+          <source class="responsive-img-srcset" media="(max-width: 800px)"  srcset="assets/img/ahmed.jpg">
+          <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="assets/img/ahmed.jpg">
+          <img src="assets/img/ahmed.jpg"
+               width="200" height="200"
+               alt="Ahmed Tamer"
+               onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(el=>el.remove());">
+        </picture>
+      </figure>
+    </div>
+
+    <!-- ── BIO — justified paragraphs ── -->
+    <div class="clearfix" style="text-align: justify;">
+
+      <p>I am an <strong>Electrical &amp; Electronics Engineering student</strong> at
+        <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a>,
+        Kayseri, Turkey, with a <strong>GPA of 3.42/4.00</strong>. My work sits at the
+        intersection of <strong>embedded systems</strong>, <strong>machine learning</strong>,
+        and <strong>IoT</strong>, with a strong focus on building end-to-end technical solutions
+        that perform in real-world environments.</p>
+
+      <p><strong>As an ML engineer</strong>, I specialize in deep learning for classification
+        and signal processing. At <strong>MTM Biotech</strong>, I developed a CNN-based model
+        achieving <strong>82% accuracy</strong> in decoding hand gestures from EMG signals —
+        enabling individual finger control on a prosthetic arm. I applied wavelet transformation
+        for feature extraction and managed the complete ML pipeline from raw data collection
+        to real-time hardware inference.</p>
+
+      <p><strong>As an embedded systems engineer</strong>, I design and deploy hardware-software
+        solutions using microcontrollers and IoT platforms. At <strong>Four Mansions Hotel</strong>,
+        I built a remote gate opener using ESP32 and Blynk IoT, optimized industrial lighting
+        infrastructure, and developed a Python-based market intelligence tool for competitor
+        pricing analysis — all in a live production environment.</p>
+
+      <p><strong>Research &amp; Projects</strong>: I am currently developing <strong>AI-powered
+        smart glasses</strong> for visually impaired users, combining YOLO-based real-time object
+        detection with directional 3D audio feedback on a Raspberry Pi. My recent academic projects
+        include deep learning classification of breast cancer histopathological images (benchmarking
+        five architectures: InceptionResNetV2, ResNet152V2, InceptionV3, VGG16, and Xception),
+        heart disease prediction, and a PAM digital equalization system achieving ~22 dB SNR.</p>
+
+      <p><strong>Background</strong>: I am fluent in <strong>Arabic</strong> (native),
+        <strong>English</strong>, and <strong>Turkish</strong>. I am passionate about applying
+        engineering to problems that matter — from prosthetics to accessibility technology
+        to energy optimization.</p>
+
+    </div>
+
+    <!-- ── SOCIAL ICONS ── -->
+    <div class="social">
+      <div class="contact-icons">
+        <a href="mailto:ahmed2000tamer2@gmail.com" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://github.com/ahmettamer" title="GitHub" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ahmed-tamer" title="LinkedIn" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="assets/pdf/cv.pdf" title="CV" target="_blank">
+          <i class="fas fa-file-alt"></i>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /about-wrapper -->
+
+  <!-- ── LATEST EXPERIENCE ── -->
+  <div class="latest-section fade-up">
+    <h2>experience <a href="experience.html">view all →</a></h2>
+    <div class="exp-preview">
+      <div class="exp-preview-item">
+        <div>
+          <div class="exp-preview-title">Technical Operations Engineer</div>
+          <div class="exp-preview-company">Four Mansions Hotel, Kayseri</div>
+        </div>
+        <div class="exp-preview-date">Sep 2024 – Present</div>
+      </div>
+      <div class="exp-preview-item">
+        <div>
+          <div class="exp-preview-title">Machine Learning Intern</div>
+          <div class="exp-preview-company">MTM Biotech, Kayseri</div>
+        </div>
+        <div class="exp-preview-date">Jun – Aug 2024</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SELECTED PROJECTS ── -->
+  <div class="latest-section fade-up">
+    <h2>selected projects <a href="projects.html">view all →</a></h2>
+    <div class="project-preview-grid">
+      <div class="project-preview-card">
+        <div class="project-preview-name">3D Audio &amp; AI Obstacle Recognition Glasses</div>
+        <p class="project-preview-desc">Smart glasses for visually impaired users with YOLO-based real-time object detection and directional 3D audio feedback.</p>
+        <div style="margin-top:0.6rem;" class="tech-stack">
+          <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN</span>
+        </div>
+      </div>
+      <div class="project-preview-card">
+        <div class="project-preview-name">Breast Cancer Classification</div>
+        <p class="project-preview-desc">Benchmarked 5 deep learning architectures on multi-magnification histopathological images.</p>
+        <div style="margin-top:0.6rem;" class="tech-stack">
+          <span class="tag">Python</span><span class="tag">InceptionResNetV2</span><span class="tag">VGG16</span>
+        </div>
+      </div>
+      <div class="project-preview-card">
+        <div class="project-preview-name">EMG Prosthetic Arm Control</div>
+        <p class="project-preview-desc">82% accuracy CNN decoding hand gestures from EMG signals for individual finger control on a prosthetic arm.</p>
+        <div style="margin-top:0.6rem;" class="tech-stack">
+          <span class="tag">CNN</span><span class="tag">Wavelet Transform</span><span class="tag">Python</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 Ahmed Tamer &nbsp;·&nbsp; <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
