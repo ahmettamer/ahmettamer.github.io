@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ahmed Tamer</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+  <style>
+    #about-hero {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: start;
+      padding: 4rem 0 3rem; border-bottom: 1px solid var(--border);
+    }
+    .hero-text h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.4rem;
+    }
+    .hero-role { font-size: 0.95rem; color: var(--muted); margin-bottom: 1.2rem; }
+    .hero-role span { color: var(--accent); font-weight: 500; }
+    .hero-bio { color: #3a3835; max-width: 560px; font-size: 0.95rem; line-height: 1.75; }
+    .hero-contacts { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+    .hero-avatar {
+      width: 130px; height: 130px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, #2d6bb0 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Lora', serif; font-size: 2.5rem; color: white;
+      font-weight: 600; flex-shrink: 0;
+      box-shadow: 0 4px 20px rgba(26,79,138,0.25);
+    }
+    .latest-section { padding: 3rem 0; }
+    .latest-section h2 { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 1.4rem; letter-spacing: -0.02em; }
+    .latest-section h2 a { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-family: 'DM Sans', sans-serif; font-weight: 500; margin-left: 0.8rem; }
+    .exp-preview { display: flex; flex-direction: column; gap: 1rem; }
+    .exp-preview-item {
+      display: flex; justify-content: space-between; align-items: start;
+      padding: 1rem 1.2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    .exp-preview-title { font-weight: 600; font-size: 0.92rem; }
+    .exp-preview-company { font-size: 0.84rem; color: var(--accent); font-style: italic; margin-top: 0.1rem; }
+    .exp-preview-date { font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--muted); white-space: nowrap; }
+    .project-preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .project-preview-card {
+      padding: 1.1rem 1.2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-preview-card:hover { border-color: #c8d8f0; transform: translateY(-1px); }
+    .project-preview-name { font-weight: 600; font-size: 0.88rem; line-height: 1.35; margin-bottom: 0.5rem; }
+    .project-preview-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="index.html">Ahmed Tamer</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">about</a></li>
+    <li><a href="experience.html">experience</a></li>
+    <li><a href="projects.html">projects</a></li>
+    <li><a href="cv.html">cv</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <section id="about-hero" class="fade-up">
+    <div class="hero-text">
+      <h1>Ahmed Tamer</h1>
+      <p class="hero-role">
+        <span>Electrical &amp; Electronics Engineering</span> Student &nbsp;·&nbsp;
+        Embedded Systems &nbsp;·&nbsp; Machine Learning
+      </p>
+      <p class="hero-bio">
+        EE student at <strong>Abdullah Gül University</strong> (GPA 3.42) with hands-on experience
+        spanning embedded systems, machine learning, IoT automation, and real-world operational
+        engineering. Proven ability to design, deploy, and optimize technical solutions in both
+        research and live business environments. I enjoy creative, end-to-end problem solving —
+        from sensor hardware to trained models to production deployment.
+      </p>
+      <div class="hero-contacts">
+        <a class="contact-chip" href="mailto:ahmed2000tamer2@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Email
+        </a>
+        <a class="contact-chip" href="https://www.linkedin.com/in/ahmed-tamer" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="contact-chip" href="https://github.com/ahmettamer" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a class="contact-chip" href="cv.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          CV
+        </a>
+      </div>
+    </div>
+    <div class="hero-avatar">AT</div>
+  </section>
+
+  <!-- LATEST EXPERIENCE -->
+  <div class="latest-section fade-up">
+    <h2>experience <a href="experience.html">view all →</a></h2>
+    <div class="exp-preview">
+      <div class="exp-preview-item">
+        <div>
+          <div class="exp-preview-title">Technical Operations Engineer</div>
+          <div class="exp-preview-company">Four Mansions Hotel, Kayseri</div>
+        </div>
+        <div class="exp-preview-date">Sep 2024 – Present</div>
+      </div>
+      <div class="exp-preview-item">
+        <div>
+          <div class="exp-preview-title">Machine Learning Intern</div>
+          <div class="exp-preview-company">MTM Biotech, Kayseri</div>
+        </div>
+        <div class="exp-preview-date">Jun – Aug 2024</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SELECTED PROJECTS -->
+  <div class="latest-section fade-up">
+    <h2>selected projects <a href="projects.html">view all →</a></h2>
+    <div class="project-preview-grid">
+      <div class="project-preview-card">
+        <div class="project-preview-name">3D Audio &amp; AI Obstacle Recognition Glasses</div>
+        <p class="project-preview-desc">Smart glasses for visually impaired users with YOLO-based object detection and 3D audio feedback.</p>
+        <div style="margin-top:0.6rem;" class="tech-stack"><span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN</span></div>
+      </div>
+      <div class="project-preview-card">
+        <div class="project-preview-name">Breast Cancer Classification</div>
+        <p class="project-preview-desc">Benchmarked 5 deep learning architectures on multi-magnification histopathological images.</p>
+        <div style="margin-top:0.6rem;" class="tech-stack"><span class="tag">Python</span><span class="tag">InceptionResNetV2</span><span class="tag">VGG16</span></div>
+      </div>
+      <div class="project-preview-card">
+        <div class="project-preview-name">EMG Prosthetic Arm Control</div>
+        <p class="project-preview-desc">82% accuracy CNN model decoding hand gestures from EMG signals for individual finger movement.</p>
+        <div style="margin-top:0.6rem;" class="tech-stack"><span class="tag">CNN</span><span class="tag">Wavelet Transform</span><span class="tag">Python</span></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 Ahmed Tamer &nbsp;·&nbsp; <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a></p>
+</footer>
+</body>
+</html>
