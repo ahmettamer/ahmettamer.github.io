@@ -7,75 +7,138 @@
   <link rel="stylesheet" href="assets/style.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    .about-wrapper { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
-    .about-name {
-      font-family: 'Lora', serif; font-size: clamp(2rem, 5vw, 2.6rem);
-      font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.25rem;
+    /* ── ABOUT GRID (replaces float) ──────────────────── */
+    .about-wrapper {
+      padding: 3.5rem 0 3rem;
+      border-bottom: 1px solid var(--border);
     }
-    .about-tagline { font-size: 0.93rem; color: var(--muted); margin-bottom: 1.6rem; }
+    .about-name {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 5vw, 2.7rem);
+      font-weight: 600; letter-spacing: -0.03em; line-height: 1.12;
+      margin-bottom: 0.3rem;
+    }
+    .about-tagline {
+      font-size: 0.91rem; color: var(--muted);
+      margin-bottom: 2rem; line-height: 1.5;
+    }
     .about-tagline span { color: var(--accent); font-weight: 500; }
 
-    /* Profile photo — float right exactly like bilalkabas */
-    .profile.float-right { float: right; margin: 0 0 1.2rem 2.2rem; }
-    .profile figure { margin: 0; }
-    .profile img {
-      width: 200px; height: 200px; object-fit: cover; border-radius: 50%;
-      box-shadow: 0 4px 24px rgba(26,79,138,0.18); display: block;
+    /* CSS Grid layout: bio left, photo right */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 0 3rem;
+      align-items: start;
+    }
+    .about-bio { grid-column: 1; grid-row: 1; }
+    .about-photo-col {
+      grid-column: 2; grid-row: 1;
+      display: flex; flex-direction: column; align-items: center;
     }
 
-    /* Justified bio paragraphs */
-    .clearfix { overflow: hidden; }
-    .clearfix p { font-size: 0.95rem; line-height: 1.78; color: #3a3835; margin-bottom: 0.9rem; text-align: justify; }
-    .clearfix p:last-child { margin-bottom: 0; }
-    .clearfix a { color: var(--accent); text-decoration: none; }
-    .clearfix a:hover { text-decoration: underline; }
+    /* Photo */
+    .profile-img {
+      width: 190px; height: 190px; object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 4px 28px rgba(26,79,138,0.14);
+      display: block;
+    }
 
-    /* Social icons row */
-    .social { margin-top: 1.6rem; clear: both; }
-    .contact-icons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    /* Bio paragraphs */
+    .about-bio p {
+      font-size: 0.94rem; line-height: 1.8;
+      color: #3a3835; margin-bottom: 0.9rem;
+      text-align: justify; hyphens: auto;
+    }
+    .about-bio p:last-child { margin-bottom: 0; }
+    .about-bio a { color: var(--accent); text-decoration: none; }
+    .about-bio a:hover { text-decoration: underline; }
+
+    /* Social icons */
+    .social { margin-top: 1.8rem; }
+    .contact-icons { display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: center; }
     .contact-icons a {
-      color: var(--muted); font-size: 1.4rem; text-decoration: none;
-      transition: color 0.2s, transform 0.15s;
+      color: var(--muted); font-size: 1.3rem; text-decoration: none;
       display: inline-flex; align-items: center;
+      transition: color 0.2s, transform 0.15s;
     }
     .contact-icons a:hover { color: var(--accent); transform: translateY(-2px); }
 
-    /* Latest sections */
-    .latest-section { padding: 2.8rem 0; border-bottom: 1px solid var(--border); }
+    /* ── LATEST SECTIONS ───────────────────────────────── */
+    .latest-section {
+      padding: 2.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
     .latest-section:last-child { border-bottom: none; }
-    .latest-section h2 {
-      font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600;
-      margin-bottom: 1.4rem; letter-spacing: -0.02em;
+
+    .latest-h {
+      display: flex; align-items: baseline; gap: 0.9rem;
+      margin-bottom: 1.4rem;
     }
-    .latest-section h2 a {
-      color: var(--accent); text-decoration: none; font-size: 0.85rem;
-      font-family: 'DM Sans', sans-serif; font-weight: 500; margin-left: 0.8rem;
+    .latest-h h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem; font-weight: 600;
+      letter-spacing: -0.02em; color: var(--text);
     }
-    .exp-preview { display: flex; flex-direction: column; gap: 0.9rem; }
+    .latest-h a {
+      font-size: 0.81rem; font-family: 'DM Sans', sans-serif;
+      font-weight: 500; color: var(--accent);
+      text-decoration: none; white-space: nowrap;
+      opacity: 0.85;
+    }
+    .latest-h a:hover { opacity: 1; text-decoration: underline; }
+    /* Filler line */
+    .latest-h::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border); min-width: 1rem;
+    }
+
+    /* Experience previews */
+    .exp-preview { display: flex; flex-direction: column; gap: 0.65rem; }
     .exp-preview-item {
-      display: flex; justify-content: space-between; align-items: start;
-      padding: 1rem 1.2rem; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 8px;
-      gap: 1rem; flex-wrap: wrap; transition: border-color 0.2s;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.9rem 1.1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; gap: 1rem; flex-wrap: wrap;
+      transition: border-color 0.2s;
     }
-    .exp-preview-item:hover { border-color: #c8d8f0; }
-    .exp-preview-title { font-weight: 600; font-size: 0.92rem; }
-    .exp-preview-company { font-size: 0.84rem; color: var(--accent); font-style: italic; margin-top: 0.1rem; }
-    .exp-preview-date { font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--muted); white-space: nowrap; }
-    .project-preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+    .exp-preview-item:hover { border-color: var(--border-hover); }
+    .exp-preview-title { font-weight: 600; font-size: 0.9rem; }
+    .exp-preview-company { font-size: 0.82rem; color: var(--accent); font-style: italic; margin-top: 0.07rem; }
+    .exp-preview-date {
+      font-size: 0.75rem; font-family: 'JetBrains Mono', monospace;
+      color: var(--muted); white-space: nowrap;
+    }
+
+    /* Project previews */
+    .project-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.9rem;
+    }
     .project-preview-card {
-      padding: 1.1rem 1.2rem; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 8px;
+      padding: 1.1rem 1.2rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .project-preview-card:hover { border-color: #c8d8f0; transform: translateY(-1px); }
-    .project-preview-name { font-weight: 600; font-size: 0.88rem; line-height: 1.35; margin-bottom: 0.5rem; }
-    .project-preview-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+    .project-preview-card:hover { border-color: var(--border-hover); transform: translateY(-1px); }
+    .project-preview-name { font-weight: 600; font-size: 0.87rem; line-height: 1.35; margin-bottom: 0.45rem; }
+    .project-preview-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.55; }
 
-    @media (max-width: 600px) {
-      .profile.float-right { float: none; margin: 0 auto 1.5rem; display: flex; justify-content: center; }
-      .profile img { width: 150px; height: 150px; }
-      .clearfix p { text-align: left; }
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 620px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-photo-col {
+        grid-column: 1; grid-row: 1;
+        margin-bottom: 1.6rem;
+      }
+      .about-bio { grid-row: 2; }
+      .profile-img { width: 140px; height: 140px; }
+      .about-bio p { text-align: left; }
     }
   </style>
 </head>
@@ -101,93 +164,95 @@
       Embedded Systems &nbsp;·&nbsp; Machine Learning
     </p>
 
-    <!-- ── PHOTO floated right — place your photo at assets/img/ahmed.jpg ── -->
-    <div class="profile float-right">
-      <figure>
-        <picture>
-          <source class="responsive-img-srcset" media="(max-width: 480px)"  srcset="assets/img/ahmed.jpg">
-          <source class="responsive-img-srcset" media="(max-width: 800px)"  srcset="assets/img/ahmed.jpg">
-          <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="assets/img/ahmed.jpg">
-          <img src="assets/img/ahmed.jpg"
-               width="200" height="200"
-               alt="Ahmed Tamer"
-               onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(el=>el.remove());">
-        </picture>
-      </figure>
-    </div>
+    <div class="about-grid">
 
-    <!-- ── BIO — justified paragraphs ── -->
-    <div class="clearfix" style="text-align: justify;">
+      <!-- ── BIO ── -->
+      <div class="about-bio">
 
-      <p>I am an <strong>Electrical &amp; Electronics Engineering student</strong> at
-        <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a>,
-        Kayseri, Turkey, with a <strong>GPA of 3.42/4.00</strong>. My work sits at the
-        intersection of <strong>embedded systems</strong>, <strong>machine learning</strong>,
-        and <strong>IoT</strong>, with a strong focus on building end-to-end technical solutions
-        that perform in real-world environments.</p>
+        <p>I am an <strong>Electrical &amp; Electronics Engineering student</strong> at
+          <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a>,
+          Kayseri, Turkey, with a <strong>GPA of 3.42 / 4.00</strong>. My work sits at the
+          intersection of <strong>embedded systems</strong>, <strong>machine learning</strong>,
+          and <strong>IoT</strong>, with a focus on building end-to-end technical solutions
+          that perform in real-world environments.</p>
 
-      <p><strong>As an ML engineer</strong>, I specialize in deep learning for classification
-        and signal processing. At <strong>MTM Biotech</strong>, I developed a CNN-based model
-        achieving <strong>82% accuracy</strong> in decoding hand gestures from EMG signals —
-        enabling individual finger control on a prosthetic arm. I applied wavelet transformation
-        for feature extraction and managed the complete ML pipeline from raw data collection
-        to real-time hardware inference.</p>
+        <p><strong>As an ML engineer</strong>, I specialize in deep learning for classification
+          and signal processing. At <strong>MTM Biotech</strong>, I developed a CNN-based model
+          achieving <strong>82% accuracy</strong> in decoding hand gestures from EMG signals —
+          enabling individual finger control on a prosthetic arm. I applied wavelet transformation
+          for feature extraction and managed the full pipeline from raw data collection to
+          real-time hardware inference.</p>
 
-      <p><strong>As an embedded systems engineer</strong>, I design and deploy hardware-software
-        solutions using microcontrollers and IoT platforms. At <strong>Four Mansions Hotel</strong>,
-        I built a remote gate opener using ESP32 and Blynk IoT, optimized industrial lighting
-        infrastructure, and developed a Python-based market intelligence tool for competitor
-        pricing analysis — all in a live production environment.</p>
+        <p><strong>As an embedded systems engineer</strong>, I design and deploy hardware-software
+          solutions using microcontrollers and IoT platforms. At <strong>Four Mansions Hotel</strong>,
+          I built a remote gate opener using ESP32 and Blynk IoT, optimized industrial lighting
+          infrastructure, and developed a Python-based competitor pricing intelligence tool —
+          all in a live production environment.</p>
 
-      <p><strong>Research &amp; Projects</strong>: I am currently developing <strong>AI-powered
-        smart glasses</strong> for visually impaired users, combining YOLO-based real-time object
-        detection with directional 3D audio feedback on a Raspberry Pi. My recent academic projects
-        include deep learning classification of breast cancer histopathological images (benchmarking
-        five architectures: InceptionResNetV2, ResNet152V2, InceptionV3, VGG16, and Xception),
-        heart disease prediction, and a PAM digital equalization system achieving ~22 dB SNR.</p>
+        <p><strong>Research &amp; Projects</strong>: I am currently developing <strong>AI-powered
+          smart glasses</strong> for visually impaired users, combining YOLO-based real-time
+          object detection with directional 3D audio feedback on a Raspberry Pi. Recent academic
+          projects include deep learning classification of breast cancer histopathological images
+          (benchmarking InceptionResNetV2, ResNet152V2, InceptionV3, VGG16, and Xception),
+          heart disease prediction, and a PAM digital equalization system achieving ~22 dB SNR.</p>
 
-      <p><strong>Background</strong>: I am fluent in <strong>Arabic</strong> (native),
-        <strong>English</strong>, and <strong>Turkish</strong>. I am passionate about applying
-        engineering to problems that matter — from prosthetics to accessibility technology
-        to energy optimization.</p>
+        <p><strong>Background</strong>: Fluent in <strong>Arabic</strong> (native),
+          <strong>English</strong>, and <strong>Turkish</strong>. Passionate about applying
+          engineering to problems that matter — from prosthetics to accessibility technology
+          to energy optimization.</p>
 
-    </div>
+        <!-- Social icons sit under the bio, inside the left column -->
+        <div class="social">
+          <div class="contact-icons">
+            <a href="mailto:ahmed2000tamer2@gmail.com" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://github.com/ahmettamer" title="GitHub" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ahmed-tamer" title="LinkedIn" target="_blank" rel="noopener">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="assets/pdf/cv.pdf" title="Download CV" target="_blank">
+              <i class="fas fa-file-alt"></i>
+            </a>
+          </div>
+        </div>
 
-    <!-- ── SOCIAL ICONS ── -->
-    <div class="social">
-      <div class="contact-icons">
-        <a href="mailto:ahmed2000tamer2@gmail.com" title="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://github.com/ahmettamer" title="GitHub" target="_blank" rel="noopener">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/ahmed-tamer" title="LinkedIn" target="_blank" rel="noopener">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="assets/pdf/cv.pdf" title="CV" target="_blank">
-          <i class="fas fa-file-alt"></i>
-        </a>
+      </div><!-- /about-bio -->
+
+      <!-- ── PHOTO ── -->
+      <div class="about-photo-col">
+        <img
+          src="assets/img/ahmed.jpg"
+          width="190" height="190"
+          alt="Ahmed Tamer"
+          class="profile-img"
+          onerror="this.style.display='none'">
       </div>
-    </div>
+
+    </div><!-- /about-grid -->
 
   </div><!-- /about-wrapper -->
 
   <!-- ── LATEST EXPERIENCE ── -->
   <div class="latest-section fade-up">
-    <h2>experience <a href="experience.html">view all →</a></h2>
+    <div class="latest-h">
+      <h2>experience</h2>
+      <a href="experience.html">view all →</a>
+    </div>
     <div class="exp-preview">
       <div class="exp-preview-item">
         <div>
           <div class="exp-preview-title">Technical Operations Engineer</div>
-          <div class="exp-preview-company">Four Mansions Hotel, Kayseri</div>
+          <div class="exp-preview-company">Four Mansions Hotel · Kayseri, Turkey</div>
         </div>
         <div class="exp-preview-date">Sep 2024 – Present</div>
       </div>
       <div class="exp-preview-item">
         <div>
           <div class="exp-preview-title">Machine Learning Intern</div>
-          <div class="exp-preview-company">MTM Biotech, Kayseri</div>
+          <div class="exp-preview-company">MTM Biotech · Kayseri, Turkey</div>
         </div>
         <div class="exp-preview-date">Jun – Aug 2024</div>
       </div>
@@ -196,26 +261,29 @@
 
   <!-- ── SELECTED PROJECTS ── -->
   <div class="latest-section fade-up">
-    <h2>selected projects <a href="projects.html">view all →</a></h2>
+    <div class="latest-h">
+      <h2>selected projects</h2>
+      <a href="projects.html">view all →</a>
+    </div>
     <div class="project-preview-grid">
       <div class="project-preview-card">
         <div class="project-preview-name">3D Audio &amp; AI Obstacle Recognition Glasses</div>
-        <p class="project-preview-desc">Smart glasses for visually impaired users with YOLO-based real-time object detection and directional 3D audio feedback.</p>
-        <div style="margin-top:0.6rem;" class="tech-stack">
+        <p class="project-preview-desc">Smart glasses for visually impaired users with YOLO-based real-time object detection and directional 3D audio feedback on Raspberry Pi.</p>
+        <div style="margin-top:0.7rem;" class="tech-stack">
           <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN</span>
         </div>
       </div>
       <div class="project-preview-card">
         <div class="project-preview-name">Breast Cancer Classification</div>
-        <p class="project-preview-desc">Benchmarked 5 deep learning architectures on multi-magnification histopathological images.</p>
-        <div style="margin-top:0.6rem;" class="tech-stack">
+        <p class="project-preview-desc">Benchmarked 5 deep learning architectures on multi-magnification histopathological images for clinical diagnostic accuracy.</p>
+        <div style="margin-top:0.7rem;" class="tech-stack">
           <span class="tag">Python</span><span class="tag">InceptionResNetV2</span><span class="tag">VGG16</span>
         </div>
       </div>
       <div class="project-preview-card">
         <div class="project-preview-name">EMG Prosthetic Arm Control</div>
-        <p class="project-preview-desc">82% accuracy CNN decoding hand gestures from EMG signals for individual finger control on a prosthetic arm.</p>
-        <div style="margin-top:0.6rem;" class="tech-stack">
+        <p class="project-preview-desc">82% accuracy CNN decoding hand gestures from EMG signals, enabling individual finger-level control on a prosthetic arm.</p>
+        <div style="margin-top:0.7rem;" class="tech-stack">
           <span class="tag">CNN</span><span class="tag">Wavelet Transform</span><span class="tag">Python</span>
         </div>
       </div>
