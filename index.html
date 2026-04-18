@@ -25,7 +25,7 @@
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.8;
+      line-height: 1.85; /* Slightly more breathable line height */
       overflow-x: hidden;
     }
 
@@ -37,98 +37,111 @@
       border-bottom: 1px solid var(--border);
       height: var(--nav-h);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(1.5rem, 8vw, 6rem);
+      padding: 0 5%; /* Nav matches the page width feel */
     }
     .nav-brand {
       font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600;
       color: var(--text); text-decoration: none;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       font-size: 0.9rem; font-weight: 500; color: var(--muted);
       text-decoration: none; text-transform: lowercase; transition: 0.2s;
     }
     .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-    /* LAYOUT */
-    .page { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    /* LAYOUT - Wider container to reduce screen side-gaps */
+    .page { 
+      max-width: 1150px; 
+      margin: 0 auto; 
+      padding: 0 4rem; 
+    }
 
     /* --- WRAPPING HERO SECTION --- */
     .about-wrapper { 
       padding: 5rem 0 4rem; 
       border-bottom: 1px solid var(--border);
-      display: block; /* Removed Grid to allow wrapping */
+      display: block; 
     }
 
     .about-name {
-      font-family: 'Lora', serif; font-size: clamp(2.4rem, 5vw, 3.2rem);
-      font-weight: 600; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 0.6rem;
+      font-family: 'Lora', serif; font-size: clamp(2.6rem, 6vw, 3.5rem);
+      font-weight: 600; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 0.8rem;
     }
-    .about-tagline { font-size: 1.05rem; color: var(--muted); margin-bottom: 2.5rem; }
+    .about-tagline { 
+        font-size: 1.1rem; 
+        color: var(--muted); 
+        margin-bottom: 3rem; 
+        border-left: 3px solid var(--accent);
+        padding-left: 1rem;
+    }
 
-    /* FLOATED PROFILE IMAGE */
+    /* FLOATED PROFILE IMAGE (The "Word" Wrap) */
     .profile { 
       float: right; 
-      margin: 0 0 1.5rem 3rem; /* Spacing: Right, Bottom, Left */
-      width: 280px;
+      margin: 0.5rem 0 2rem 4rem; /* More space on the left to prevent text crowding */
+      width: 320px; /* Slightly larger image to fill the wider layout */
     }
     .profile img {
       width: 100%; aspect-ratio: 1/1; object-fit: cover;
       border-radius: 50%;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.07);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
       border: 1px solid var(--border);
     }
 
     /* BIO TEXT FORMATTING */
     .clearfix { text-align: justify; }
-    .clearfix::after { content: ""; clear: both; display: table; } /* Clear float */
-    .clearfix p { font-size: 1.05rem; margin-bottom: 1.8rem; color: #333; }
+    .clearfix::after { content: ""; clear: both; display: table; } 
+    .clearfix p { font-size: 1.08rem; margin-bottom: 2rem; color: #2d2d2d; }
     .clearfix a { color: var(--accent); text-decoration: none; transition: 0.2s; border-bottom: 1px solid transparent; }
     .clearfix a:hover { border-bottom: 1px solid var(--accent); }
 
     /* SOCIALS */
-    .contact-icons { display: flex; gap: 1.5rem; margin-top: 1rem; clear: both; }
-    .contact-icons a { color: var(--muted); font-size: 1.4rem; transition: 0.2s; }
+    .contact-icons { display: flex; gap: 2rem; margin-top: 1.5rem; clear: both; }
+    .contact-icons a { color: var(--muted); font-size: 1.5rem; transition: 0.2s; }
     .contact-icons a:hover { color: var(--accent); transform: translateY(-3px); }
 
     /* LATEST SECTIONS */
-    .latest-section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    .latest-section { padding: 4.5rem 0; border-bottom: 1px solid var(--border); }
     .latest-section:last-child { border-bottom: none; }
     .latest-section h2 {
-      font-family: 'Lora', serif; font-size: 1.4rem; margin-bottom: 2rem;
+      font-family: 'Lora', serif; font-size: 1.5rem; margin-bottom: 2.5rem; letter-spacing: -0.02em;
     }
     .latest-section h2 a {
-      font-size: 0.85rem; font-family: 'DM Sans', sans-serif; color: var(--accent);
-      text-decoration: none; margin-left: 1rem; font-weight: 400;
+      font-size: 0.9rem; font-family: 'DM Sans', sans-serif; color: var(--accent);
+      text-decoration: none; margin-left: 1.2rem; font-weight: 400;
     }
 
     /* CARDS */
-    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
-      padding: 1.5rem; border-radius: 12px; transition: 0.3s;
+      padding: 1.8rem; border-radius: 12px; transition: 0.3s;
     }
-    .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
-    .card-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem; }
-    .card-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
+    .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+    .card-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.6rem; }
+    .card-desc { font-size: 0.92rem; color: var(--muted); margin-bottom: 1.2rem; }
 
     .tag {
-      font-size: 0.7rem; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; font-family: 'JetBrains Mono', monospace;
       background: var(--tag-bg); color: var(--tag-text);
-      padding: 2px 8px; border-radius: 4px; margin-right: 4px;
+      padding: 3px 10px; border-radius: 4px; margin-right: 6px;
     }
 
     /* FOOTER */
-    footer { padding: 4rem 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    footer { padding: 5rem 0; text-align: center; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); }
 
     /* MOBILE ADJUSTMENTS */
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
+      .page { padding: 0 1.5rem; }
       .profile { 
         float: none; 
-        width: 200px; 
-        margin: 0 auto 2rem; 
+        width: 240px; 
+        margin: 0 auto 3rem; 
         display: block;
       }
+      .about-name { text-align: center; }
+      .about-tagline { text-align: center; border-left: none; padding-left: 0; }
       .contact-icons { justify-content: center; }
       .clearfix p { text-align: left; }
     }
@@ -172,9 +185,9 @@
     </div>
 
     <div class="contact-icons">
-      <a href="mailto:ahmed2000tamer2@gmail.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://github.com/ahmettamer" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/ahmed-tamer" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:ahmed2000tamer2@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/ahmettamer" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/ahmed-tamer" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
   </div>
 
@@ -183,13 +196,13 @@
     <div class="project-grid">
       <div class="card">
         <div class="card-title">3D Audio & AI Glasses</div>
-        <p class="card-desc">Real-time obstacle recognition using YOLO and 3D spatial audio.</p>
-        <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span>
+        <p class="card-desc">Real-time obstacle recognition using YOLO and 3D spatial audio feedback for visually impaired users.</p>
+        <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">OpenCV</span>
       </div>
       <div class="card">
         <div class="card-title">EMG Prosthetic Control</div>
-        <p class="card-desc">CNN decoding hand gestures from EMG signals with 82% accuracy.</p>
-        <span class="tag">CNN</span><span class="tag">Python</span>
+        <p class="card-desc">High-accuracy CNN decoding hand gestures from EMG signals for real-time prosthetic finger control.</p>
+        <span class="tag">CNN</span><span class="tag">Signal Processing</span><span class="tag">Python</span>
       </div>
     </div>
   </section>
