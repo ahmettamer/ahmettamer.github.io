@@ -6,7 +6,7 @@
   <title>Ahmed Tamer | Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
     :root {
       --bg: #ffffff;
@@ -25,7 +25,7 @@
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.85; /* Slightly more breathable line height */
+      line-height: 1.85; 
       overflow-x: hidden;
     }
 
@@ -37,7 +37,7 @@
       border-bottom: 1px solid var(--border);
       height: var(--nav-h);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; /* Nav matches the page width feel */
+      padding: 0 5%; 
     }
     .nav-brand {
       font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600;
@@ -50,9 +50,9 @@
     }
     .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-    /* LAYOUT - Wider container to reduce screen side-gaps */
+    /* LAYOUT */
     .page { 
-      max-width: 1300px; 
+      max-width: 1150px; 
       margin: 0 auto; 
       padding: 0 4rem; 
     }
@@ -65,9 +65,19 @@
     }
 
     .about-name {
-      font-family: 'Lora', serif; font-size: clamp(2.6rem, 6vw, 3.5rem);
-      font-weight: 600; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 0.8rem;
+      font-family: 'Lora', serif; 
+      font-size: clamp(2.6rem, 6vw, 3.5rem);
+      font-weight: 400; /* Base weight for Tamer */
+      letter-spacing: -0.04em; 
+      line-height: 1.1; 
+      margin-bottom: 0.8rem;
+      color: #000000;
     }
+
+    .about-name strong {
+      font-weight: 700; /* Bold weight for Ahmed */
+    }
+
     .about-tagline { 
         font-size: 1.1rem; 
         color: var(--muted); 
@@ -76,11 +86,11 @@
         padding-left: 1rem;
     }
 
-    /* FLOATED PROFILE IMAGE (The "Word" Wrap) */
+    /* FLOATED PROFILE IMAGE */
     .profile { 
       float: right; 
-      margin: -3rem 0 2rem 4rem; /* More space on the left to prevent text crowding */
-      width: 320px; /* Slightly larger image to fill the wider layout */
+      margin: -2.5rem 0 2rem 4rem; 
+      width: 320px; 
     }
     .profile img {
       width: 100%; aspect-ratio: 1/1; object-fit: cover;
@@ -105,7 +115,7 @@
     .latest-section { padding: 4.5rem 0; border-bottom: 1px solid var(--border); }
     .latest-section:last-child { border-bottom: none; }
     .latest-section h2 {
-      font-family: 'Lora', serif; font-size: 1.5rem; margin-bottom: 2.5rem; letter-spacing: -0.02em;
+      font-family: 'Lora', serif; font-size: 1.5rem; margin-bottom: 2.5rem;
     }
     .latest-section h2 a {
       font-size: 0.9rem; font-family: 'DM Sans', sans-serif; color: var(--accent);
@@ -119,8 +129,6 @@
       padding: 1.8rem; border-radius: 12px; transition: 0.3s;
     }
     .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
-    .card-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.6rem; }
-    .card-desc { font-size: 0.92rem; color: var(--muted); margin-bottom: 1.2rem; }
 
     .tag {
       font-size: 0.75rem; font-family: 'JetBrains Mono', monospace;
@@ -140,9 +148,6 @@
         margin: 0 auto 3rem; 
         display: block;
       }
-      .about-name { text-align: center; }
-      .about-tagline { text-align: center; border-left: none; padding-left: 0; }
-      .contact-icons { justify-content: center; }
       .clearfix p { text-align: left; }
     }
   </style>
@@ -161,7 +166,7 @@
 
 <main class="page">
   <div class="about-wrapper">
-    <h1 class="about-name">Ahmed Tamer</h1>
+    <h1 class="about-name"><strong>Ahmed</strong> Tamer</h1>
     <p class="about-tagline">
       Electrical & Electronics Engineering Student · Embedded Systems · Machine Learning
     </p>
@@ -185,9 +190,9 @@
     </div>
 
     <div class="contact-icons">
-      <a href="mailto:ahmed2000tamer2@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-      <a href="https://github.com/ahmettamer" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/ahmed-tamer" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:ahmed2000tamer2@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/ahmettamer" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/ahmed-tamer" target="_blank"><i class="fab fa-linkedin"></i></a>
     </div>
   </div>
 
@@ -197,12 +202,12 @@
       <div class="card">
         <div class="card-title">3D Audio & AI Glasses</div>
         <p class="card-desc">Real-time obstacle recognition using YOLO and 3D spatial audio feedback for visually impaired users.</p>
-        <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">OpenCV</span>
+        <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span>
       </div>
       <div class="card">
         <div class="card-title">EMG Prosthetic Control</div>
         <p class="card-desc">High-accuracy CNN decoding hand gestures from EMG signals for real-time prosthetic finger control.</p>
-        <span class="tag">CNN</span><span class="tag">Signal Processing</span><span class="tag">Python</span>
+        <span class="tag">CNN</span><span class="tag">Python</span>
       </div>
     </div>
   </section>
