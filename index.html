@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ahmed Tamer</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='32' fill='%231a4f8a'/><text x='32' y='44' font-family='Georgia,serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'>AT</text></svg>">
+  <link rel="icon" type="image/jpeg" href="assets/img/ahmed.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -89,14 +89,13 @@
       margin: -1rem 0 2rem 3.5rem;
       width: 200px;
     }
-    .profile-circle {
+    .profile-img {
       width: 200px; height: 200px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent) 0%, #2d6bb0 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Lora', serif; font-size: 3.2rem; color: white; font-weight: 700;
+      object-fit: cover;
       box-shadow: 0 8px 32px rgba(26,79,138,0.22);
       border: 4px solid var(--surface);
+      display: block;
     }
 
     .clearfix::after { content: ""; clear: both; display: table; }
@@ -240,7 +239,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .profile { float: none; width: 160px; margin: 0 auto 2.5rem; display: block; }
-      .profile-circle { width: 160px; height: 160px; font-size: 2.5rem; }
+      .profile-img { width: 160px; height: 160px; }
       .clearfix p { text-align: left; }
       .projects-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
@@ -272,7 +271,7 @@
 
     <div class="clearfix">
       <div class="profile">
-        <div class="profile-circle">AT</div>
+        <img src="assets/img/ahmed.jpg" alt="Ahmed Tamer" class="profile-img">
       </div>
 
       <p>I am an <strong>Electrical &amp; Electronics Engineering student</strong> at
