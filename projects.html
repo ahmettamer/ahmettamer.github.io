@@ -10,6 +10,35 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css"/>
+  <style>
+    /* Make linked project cards feel clickable */
+    .project-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-card-link:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-card-link .project-card {
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      cursor: pointer;
+    }
+    .project-card-link:hover .project-card {
+      transform: translateY(-2px);
+    }
+    .project-read-more {
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      font-family: 'JetBrains Mono', monospace;
+      opacity: 0.5;
+      transition: opacity 0.15s;
+    }
+    .project-card-link:hover .project-read-more {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body class="fixed-top-nav">
 
@@ -59,24 +88,45 @@
       <h1 class="page-h1" data-i18n="page_h1">projects</h1>
       <p class="page-subtitle" data-i18n="page_subtitle">A collection of my engineering and machine learning projects.</p>
 
-      <!-- ONGOING -->
+      <!-- ── ONGOING ── -->
       <h2 data-i18n="section_ongoing">ongoing</h2>
       <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-card-header">
-            <span class="project-name" data-i18n="proj_glasses_name">3D Audio &amp; AI-Powered Obstacle Recognition Glasses</span>
+
+        <a href="project-glasses.html" class="project-card-link">
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-name" data-i18n="proj_glasses_name">3D Audio &amp; AI-Powered Obstacle Recognition Glasses</span>
+            </div>
+            <div class="ongoing-badge" data-i18n="ongoing_badge">● ongoing</div>
+            <p class="project-desc" data-i18n="proj_glasses_desc">Developing smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback. Designing dual-camera hardware and implementing embedded systems with real-time image processing and user-centered interaction design.</p>
+            <div class="tech-stack">
+              <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN/RNN</span><span class="tag">3D Audio</span>
+            </div>
+            <div class="project-read-more" data-i18n="read_more">read more →</div>
           </div>
-          <div class="ongoing-badge" data-i18n="ongoing_badge">● ongoing</div>
-          <p class="project-desc" data-i18n="proj_glasses_desc">Developing smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback. Designing dual-camera hardware and implementing embedded systems with real-time image processing and user-centered interaction design.</p>
-          <div class="tech-stack">
-            <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN/RNN</span><span class="tag">3D Audio</span>
-          </div>
-        </div>
+        </a>
+
       </div>
 
-      <!-- MACHINE LEARNING & AI -->
+      <!-- ── MACHINE LEARNING & AI ── -->
       <h2 data-i18n="section_ml">machine learning &amp; AI</h2>
       <div class="projects-grid">
+
+        <!-- Prosthetic Arm — links to its own page -->
+        <a href="project-prosthetic.html" class="project-card-link">
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-name" data-i18n="proj_prosthetic_name">EMG-Controlled Prosthetic Arm</span>
+              <span class="project-date-tag">Jun–Aug 2024</span>
+            </div>
+            <p class="project-desc" data-i18n="proj_prosthetic_desc">A full ML pipeline that classifies hand gestures from EMG signals to control an individual-finger 3D-printed prosthetic arm in real time. Achieved 82% accuracy using CNN, wavelet transformation, and a suite of 22 time-domain and frequency-domain features. Developed at MTM Biotech.</p>
+            <div class="tech-stack">
+              <span class="tag">Python</span><span class="tag">CNN</span><span class="tag">Wavelet Transform</span>
+              <span class="tag">SVM</span><span class="tag">Arduino</span><span class="tag">EMG Signals</span>
+            </div>
+            <div class="project-read-more" data-i18n="read_more">read more →</div>
+          </div>
+        </a>
 
         <div class="project-card">
           <div class="project-card-header">
@@ -102,7 +152,7 @@
 
       </div>
 
-      <!-- EMBEDDED SYSTEMS & HARDWARE -->
+      <!-- ── EMBEDDED SYSTEMS & HARDWARE ── -->
       <h2 data-i18n="section_embedded">embedded systems &amp; hardware</h2>
       <div class="projects-grid">
 
@@ -152,7 +202,7 @@
 
       </div>
 
-      <!-- SIGNAL PROCESSING & COMMUNICATIONS -->
+      <!-- ── SIGNAL PROCESSING & COMMUNICATIONS ── -->
       <h2 data-i18n="section_signal">signal processing &amp; communications</h2>
       <div class="projects-grid">
 
@@ -195,7 +245,10 @@ const i18n = {
     proj_glasses_name: "3D Audio &amp; AI-Powered Obstacle Recognition Glasses",
     ongoing_badge: "● ongoing",
     proj_glasses_desc: "Developing smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback. Designing dual-camera hardware and implementing embedded systems with real-time image processing and user-centered interaction design.",
+    read_more: "read more →",
     section_ml: "machine learning &amp; AI",
+    proj_prosthetic_name: "EMG-Controlled Prosthetic Arm",
+    proj_prosthetic_desc: "A full ML pipeline that classifies hand gestures from EMG signals to control an individual-finger 3D-printed prosthetic arm in real time. Achieved 82% accuracy using CNN, wavelet transformation, and a suite of 22 time-domain and frequency-domain features. Developed at MTM Biotech.",
     proj_breast_name: "Classification of Breast Cancer from Histopathological Images",
     proj_breast_desc: "Combined image processing, machine learning, and deep learning to improve diagnostic accuracy across multi-magnification histopathological images. Evaluated and benchmarked five deep learning architectures to identify best-performing models for clinical image classification.",
     proj_heart_name: "Classification of Heart Disease",
@@ -224,7 +277,10 @@ const i18n = {
     proj_glasses_name: "3D Sesli ve Yapay Zeka Destekli Engel Tanıma Gözlüğü",
     ongoing_badge: "● devam ediyor",
     proj_glasses_desc: "Görme engelli kullanıcılar için gerçek zamanlı nesne tespiti ve yönlü 3D ses geribildirimiyle akıllı gözlük geliştiriyorum. Çift kameralı donanım tasarımı yapıyor, gerçek zamanlı görüntü işleme ve kullanıcı merkezli etkileşim tasarımıyla gömülü sistemler uyguluyorum.",
+    read_more: "devamını oku →",
     section_ml: "makine öğrenmesi &amp; YZ",
+    proj_prosthetic_name: "EMG Kontrollü Protez Kol",
+    proj_prosthetic_desc: "EMG sinyallerinden el hareketlerini sınıflandırarak bireysel parmak kontrolüyle 3D baskılı protez kolu gerçek zamanlı kontrol eden tam ML pipeline'ı. CNN, dalgacık dönüşümü ve 22 zaman alanı ile frekans alanı özelliğinden oluşan bir setle %82 doğruluk elde edildi. MTM Biotech'te geliştirildi.",
     proj_breast_name: "Histopatolojik Görüntülerden Meme Kanseri Sınıflandırması",
     proj_breast_desc: "Çok büyütme histopatolojik görüntülerde tanı doğruluğunu artırmak için görüntü işleme, makine öğrenmesi ve derin öğrenmeyi bir arada kullandım. Klinik görüntü sınıflandırması için en iyi performans gösteren modelleri belirlemek amacıyla beş derin öğrenme mimarisini değerlendirdim ve kıyasladım.",
     proj_heart_name: "Kalp Hastalığı Sınıflandırması",
