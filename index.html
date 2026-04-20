@@ -15,295 +15,370 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ── THEMES ── */
-    [data-theme="light"] {
-      --bg: #ffffff;
-      --surface: #ffffff;
-      --border: #eeeeee;
-      --text: #1a1917;
-      --muted: #666666;
-      --accent: #1a4f8a;
-      --tag-bg: #f1f4f8;
-      --tag-text: #1a4f8a;
-      --bio-text: #2d2d2d;
-      --nav-bg: rgba(255,255,255,0.95);
-      --card-hover-shadow: rgba(26,79,138,0.08);
+    /* ── AL-FOLIO THEME VARIABLES ── */
+    :root {
+      --global-bg-color: #fff;
+      --global-code-bg-color: rgba(255,75,75,0.05);
+      --global-text-color: #000;
+      --global-text-color-light: #828282;
+      --global-theme-color: #ff4b4b;
+      --global-hover-color: #ff4b4b;
+      --global-hover-text-color: #fff;
+      --global-footer-bg-color: #1c1c1d;
+      --global-footer-text-color: #e8e8e8;
+      --global-footer-link-color: #fff;
+      --global-divider-color: rgba(0,0,0,.1);
+      --global-card-bg-color: #fff;
+      --global-nav-bg: rgba(255,255,255,0.97);
+      --tag-bg: #f5f5f5;
+      --tag-text: #c0392b;
+      --tag-border: rgba(0,0,0,0.08);
     }
-    [data-theme="dark"] {
-      --bg: #111111;
-      --surface: #1c1c1c;
-      --border: #2e2e2e;
-      --text: #e8e6e3;
-      --muted: #888480;
-      --accent: #5b9bd5;
+
+    html[data-theme="dark"] {
+      --global-bg-color: #1c1c1d;
+      --global-code-bg-color: #2c3237;
+      --global-text-color: #e8e8e8;
+      --global-text-color-light: #e8e8e8;
+      --global-theme-color: #2698ba;
+      --global-hover-color: #2698ba;
+      --global-hover-text-color: #fff;
+      --global-footer-bg-color: #e8e8e8;
+      --global-footer-text-color: #1c1c1d;
+      --global-footer-link-color: #000;
+      --global-divider-color: #424246;
+      --global-card-bg-color: #212529;
+      --global-nav-bg: rgba(28,28,29,0.97);
       --tag-bg: #1e2a38;
       --tag-text: #7ab3e0;
-      --bio-text: #c8c5c0;
-      --nav-bg: rgba(17,17,17,0.97);
-      --card-hover-shadow: rgba(91,155,213,0.1);
+      --tag-border: rgba(255,255,255,0.08);
     }
+
+    /* moon/sun toggle visibility */
+    :root .fa-sun  { display: none; }
+    :root .fa-moon { display: inline-block; }
+    html[data-theme="dark"] .fa-moon { display: none; }
+    html[data-theme="dark"] .fa-sun  { display: inline-block; }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 15.5px;
+      background-color: var(--global-bg-color);
+      color: var(--global-text-color);
+      font-size: 1.08rem;
       line-height: 1.7;
+      padding-top: 56px;
+      padding-bottom: 70px;
       overflow-x: hidden;
-      transition: background 0.3s, color 0.3s;
-      /* Space for fixed navbar top + fixed footer bottom */
-      padding-top: 62px;
-      padding-bottom: 52px;
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    /* ── BOOTSTRAP NAV OVERRIDES — Bilal-style ── */
+    /* ── TYPOGRAPHY ── */
+    p, h1, h2, h3, h4, h5, h6, em, div, li, span, strong {
+      color: var(--global-text-color);
+    }
+    a, table.table a {
+      color: var(--global-theme-color);
+    }
+    a:hover {
+      color: var(--global-theme-color);
+      text-decoration: underline;
+    }
+    hr {
+      border-top: 1px solid var(--global-divider-color);
+    }
+
+    /* ── NAVBAR ── */
     #navbar {
-      background: var(--nav-bg) !important;
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s, border-color 0.3s;
-      font-family: 'DM Sans', sans-serif;
+      box-shadow: none;
+      border-bottom: 1px solid var(--global-divider-color);
+      background-color: var(--global-bg-color);
+      opacity: .97;
+      transition: background-color 0.3s, border-color 0.3s;
     }
-    .navbar-brand {
-      font-family: 'Lora', serif !important;
-      font-size: 1.15rem !important;
-      font-weight: 600 !important;
-      color: var(--text) !important;
-      letter-spacing: -0.01em;
-      transition: color 0.3s;
+    .navbar.navbar-light .navbar-brand {
+      color: var(--global-text-color);
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
-    .navbar-brand:hover { color: var(--accent) !important; }
-
-    .nav-link {
-      font-size: 0.88rem !important;
-      font-weight: 500 !important;
-      color: var(--muted) !important;
-      text-transform: lowercase !important;
+    .navbar.navbar-light .navbar-brand:hover { color: var(--global-hover-color); text-decoration: none; }
+    .navbar.navbar-light .navbar-nav .nav-item .nav-link {
+      color: var(--global-text-color);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-transform: lowercase;
       letter-spacing: 0.02em;
-      transition: color 0.2s !important;
-      padding: 0.5rem 0.75rem !important;
+      transition: color 0.2s;
     }
-    .nav-link:hover, .nav-item.active .nav-link { color: var(--accent) !important; }
+    .navbar.navbar-light .navbar-nav .nav-item .nav-link:hover { color: var(--global-hover-color); }
+    .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
+      font-weight: bolder;
+      color: var(--global-theme-color);
+    }
 
-    /* Hamburger lines — Bilal style */
+    /* Hamburger */
     .navbar-toggler { border: none !important; outline: none !important; box-shadow: none !important; }
-    .icon-bar {
+    .navbar-toggler .icon-bar {
       display: block; width: 22px; height: 2px;
-      background: var(--muted); border-radius: 2px; transition: background 0.3s;
+      background-color: var(--global-text-color);
+      border-radius: 1px; margin-bottom: 4px; transition: all .2s;
     }
-    .icon-bar + .icon-bar { margin-top: 5px; }
+    .navbar-toggler .top-bar    { transform: rotate(45deg);  transform-origin: 10% 10%; }
+    .navbar-toggler .middle-bar { opacity: 0; }
+    .navbar-toggler .bottom-bar { transform: rotate(-45deg); transform-origin: 10% 90%; }
+    .navbar-toggler.collapsed .top-bar    { transform: rotate(0); }
+    .navbar-toggler.collapsed .middle-bar { opacity: 1; }
+    .navbar-toggler.collapsed .bottom-bar { transform: rotate(0); }
 
-    /* Dark/light toggle button */
+    /* Theme toggle */
     #light-toggle {
-      background: none; border: none; cursor: pointer;
-      color: var(--muted); font-size: 1rem;
-      display: flex; align-items: center;
-      padding: 4px 8px; border-radius: 6px;
-      transition: color 0.2s, background 0.2s; line-height: 1;
+      padding: 0; border: 0;
+      background-color: inherit;
+      color: var(--global-text-color);
+      font-size: 1rem; cursor: pointer;
     }
-    #light-toggle:hover { color: var(--accent); background: var(--tag-bg); }
-    [data-theme="light"] #light-toggle .fa-sun  { display: none; }
-    [data-theme="light"] #light-toggle .fa-moon { display: inline; }
-    [data-theme="dark"]  #light-toggle .fa-moon { display: none; }
-    [data-theme="dark"]  #light-toggle .fa-sun  { display: inline; }
+    #light-toggle:hover { color: var(--global-hover-color); }
 
-    /* Collapse bg on mobile */
-    .navbar-collapse {
-      background: var(--nav-bg);
-      transition: background 0.3s;
+    /* ── PROGRESS BAR ── */
+    progress {
+      position: fixed; left: 0; top: 56px; z-index: 10;
+      width: 100%; height: 3px;
+      appearance: none; border: 0;
+      background-color: transparent;
+      color: var(--global-theme-color);
     }
+    progress::-webkit-progress-bar  { background-color: transparent; }
+    progress::-webkit-progress-value { background-color: var(--global-theme-color); }
+    progress::-moz-progress-bar { background-color: var(--global-theme-color); }
 
-    /* ── PAGE CONTAINER ── */
-    .page { max-width: 1150px; }
-
-    /* ── ABOUT ── */
-    .post { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
-    .post-header { margin-bottom: 1.1rem; }
+    /* ── POST / ABOUT ── */
+    .post { padding-top: 1.5rem; }
 
     .post-title {
       font-family: 'Lora', serif;
-      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: var(--text);
-      transition: color 0.3s;
+      letter-spacing: -0.02em;
+      color: var(--global-text-color);
     }
-    .post-title strong { font-weight: 700; }
+    .post-title .font-weight-bold { font-weight: 700; }
 
-    .post-desc {
-      font-size: 1rem; color: var(--muted);
-      margin-top: 0.5rem; line-height: 1.7; transition: color 0.3s;
+    .desc {
+      font-size: 1rem;
+      color: var(--global-text-color-light);
+      margin-top: 0.4rem;
+      line-height: 1.7;
     }
-    .post-desc a {
-      color: var(--accent); text-decoration: none;
-      border-bottom: 1px solid transparent; transition: border-color 0.2s;
+    .desc b { color: var(--global-text-color); }
+    .desc a {
+      color: var(--global-theme-color);
+      text-decoration: none;
     }
-    .post-desc a:hover { border-bottom-color: var(--accent); }
+    .desc a:hover { text-decoration: underline; }
 
-    /* Profile photo — Bilal's size */
+    /* Profile photo */
     .profile {
+      width: 30%;
       float: right;
-      margin: 0 0 2rem 3rem;
-      width: 320px;
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
     }
     .profile img {
-      width: 320px; height: 320px;
-      border-radius: 50%; object-fit: cover;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.13);
-      border: 1px solid var(--border);
-      display: block; transition: border-color 0.3s;
+      width: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    /* z-depth-1 shadow */
+    .z-depth-1 {
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
+                  0 3px 1px -2px rgba(0,0,0,.12),
+                  0 1px 5px 0 rgba(0,0,0,.2);
     }
 
     /* Bio text */
     .clearfix::after { content: ""; clear: both; display: table; }
     .clearfix p {
-      font-size: 1rem; margin-bottom: 1.45rem;
-      color: var(--bio-text); line-height: 1.85;
-      text-align: justify; transition: color 0.3s;
+      font-size: 1rem;
+      margin-bottom: 1.4rem;
+      color: var(--global-text-color);
+      line-height: 1.85;
+      text-align: justify;
     }
     .clearfix p:last-child { margin-bottom: 0; }
     .clearfix a {
-      color: var(--accent); text-decoration: none;
-      border-bottom: 1px solid transparent; transition: 0.2s;
+      color: var(--global-theme-color);
+      text-decoration: none;
     }
-    .clearfix a:hover { border-bottom-color: var(--accent); }
-
-    /* Social icons */
-    .contact-icons { display: flex; gap: 1.4rem; margin-top: 2rem; clear: both; }
-    .contact-icons a {
-      color: var(--muted); font-size: 1.4rem;
-      text-decoration: none; transition: color 0.2s, transform 0.2s; display: inline-block;
-    }
-    .contact-icons a:hover { color: var(--accent); transform: translateY(-3px); }
+    .clearfix a:hover { text-decoration: underline; }
 
     /* ── SECTIONS ── */
-    .latest-section { padding: 2.8rem 0; border-bottom: 1px solid var(--border); }
-    .latest-section:last-child { border-bottom: none; }
-
-    .latest-section h2 {
-      font-family: 'Lora', serif; font-size: 1.35rem;
-      font-weight: 600; letter-spacing: -0.02em;
-      color: var(--text); margin-bottom: 1.6rem;
-      transition: color 0.3s;
+    .post article h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--global-text-color);
+      margin-top: 2.5rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--global-divider-color);
     }
-    .latest-section h2::after {
-      content: ''; display: block; width: 32px; height: 3px;
-      background: var(--accent); margin-top: 0.4rem; border-radius: 2px;
+    .post article h2 a {
+      color: inherit;
+      text-decoration: none;
     }
-    .latest-section h2 a {
-      font-size: 0.85rem; font-family: 'DM Sans', sans-serif;
-      color: var(--accent); text-decoration: none;
-      font-weight: 400; margin-left: 1rem; letter-spacing: 0;
+    .post article h2 a:hover { color: var(--global-theme-color); text-decoration: none; }
+    .view-all-link {
+      font-size: 0.82rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--global-theme-color);
+      font-weight: 400;
+      margin-left: 0.9rem;
     }
-    .latest-section h2 a:hover { text-decoration: underline; }
 
     /* ── EXPERIENCE ── */
     .exp-item { margin-bottom: 2rem; }
     .exp-item:last-child { margin-bottom: 0; }
-    .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.15rem; }
-    .exp-title { font-weight: 600; font-size: 0.97rem; color: var(--text); transition: color 0.3s; }
-    .exp-date { font-size: 0.78rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
-    .exp-company { font-size: 0.87rem; color: var(--accent); font-style: italic; margin-bottom: 0.45rem; }
+    .exp-header {
+      display: flex; justify-content: space-between;
+      align-items: baseline; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.15rem;
+    }
+    .exp-title { font-weight: 600; font-size: 0.97rem; color: var(--global-text-color); }
+    .exp-date {
+      font-size: 0.78rem; color: var(--global-text-color-light);
+      font-family: 'JetBrains Mono', monospace; white-space: nowrap;
+    }
+    .exp-company { font-size: 0.87rem; color: var(--global-theme-color); font-style: italic; margin-bottom: 0.45rem; }
     .tech-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.7rem; }
     .tag {
       font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
       background: var(--tag-bg); color: var(--tag-text);
       border-radius: 4px; padding: 0.17rem 0.52rem;
-      border: 1px solid var(--border); font-weight: 500;
-      transition: background 0.3s, color 0.3s, border-color 0.3s;
+      border: 1px solid var(--tag-border); font-weight: 500;
     }
     .exp-bullets { padding-left: 1.1rem; }
-    .exp-bullets li { font-size: 0.9rem; color: var(--bio-text); margin-bottom: 0.3rem; line-height: 1.65; transition: color 0.3s; }
-    .exp-bullets li::marker { color: var(--accent); }
+    .exp-bullets li {
+      font-size: 0.9rem; color: var(--global-text-color);
+      margin-bottom: 0.3rem; line-height: 1.65;
+    }
+    .exp-bullets li::marker { color: var(--global-theme-color); }
 
     /* ── PROJECTS ── */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.1rem; }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 1.1rem;
+    }
     .project-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.3rem 1.4rem;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s, background 0.3s;
+      background: var(--global-card-bg-color);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 8px; padding: 1.3rem 1.4rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s, background-color 0.3s;
       position: relative; overflow: hidden;
     }
-    .project-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 3px; background: linear-gradient(90deg, var(--accent), #2d6bb0);
-      opacity: 0; transition: opacity 0.25s;
+    .project-card:hover {
+      border-color: var(--global-theme-color);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
     }
-    .project-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px var(--card-hover-shadow); transform: translateY(-2px); }
-    .project-card:hover::before { opacity: 1; }
-    .project-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.45rem; }
-    .project-name { font-weight: 600; font-size: 0.93rem; line-height: 1.3; color: var(--text); transition: color 0.3s; }
+    .project-card-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 0.8rem; margin-bottom: 0.45rem;
+    }
+    .project-name { font-weight: 600; font-size: 0.93rem; line-height: 1.3; color: var(--global-text-color); }
     .project-date-tag {
       font-size: 0.71rem; font-family: 'JetBrains Mono', monospace;
-      color: var(--muted); background: var(--bg); border: 1px solid var(--border);
+      color: var(--global-text-color-light); background: var(--global-bg-color);
+      border: 1px solid var(--global-divider-color);
       border-radius: 4px; padding: 0.13rem 0.43rem; white-space: nowrap; flex-shrink: 0;
-      transition: background 0.3s, border-color 0.3s;
     }
-    .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.85rem; transition: color 0.3s; }
+    .project-desc { font-size: 0.85rem; color: var(--global-text-color-light); line-height: 1.6; margin-bottom: 0.85rem; }
     .ongoing-badge {
       display: inline-block; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace;
       background: #fff3e0; color: #bf6800; border: 1px solid #ffd08a;
       border-radius: 99px; padding: 0.1rem 0.5rem; margin-bottom: 0.55rem; font-weight: 500;
     }
-    [data-theme="dark"] .ongoing-badge { background: #2a1f00; color: #f0a840; border-color: #6b4c00; }
+    html[data-theme="dark"] .ongoing-badge { background: #2a1f00; color: #f0a840; border-color: #6b4c00; }
 
     /* ── SKILLS ── */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 1.1rem; }
-    .skill-group {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.15rem 1.35rem;
-      transition: background 0.3s, border-color 0.3s;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+      gap: 1.1rem;
     }
-    .skill-group-label { font-size: 0.73rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.7rem; }
+    .skill-group {
+      background: var(--global-card-bg-color);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 8px; padding: 1.15rem 1.35rem;
+    }
+    .skill-group-label {
+      font-size: 0.73rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--global-theme-color); margin-bottom: 0.7rem;
+    }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
     /* ── EDUCATION ── */
-    .edu-block { display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 0.3rem; }
-    .edu-degree { font-weight: 600; font-size: 0.97rem; color: var(--text); transition: color 0.3s; }
-    .edu-uni { font-size: 0.88rem; color: var(--accent); font-style: italic; margin-top: 0.15rem; }
-    .edu-detail { font-size: 0.84rem; color: var(--muted); margin-top: 0.3rem; }
+    .edu-block {
+      display: flex; justify-content: space-between;
+      align-items: start; flex-wrap: wrap; gap: 0.3rem;
+    }
+    .edu-degree { font-weight: 600; font-size: 0.97rem; color: var(--global-text-color); }
+    .edu-uni { font-size: 0.88rem; color: var(--global-theme-color); font-style: italic; margin-top: 0.15rem; }
+    .edu-detail { font-size: 0.84rem; color: var(--global-text-color-light); margin-top: 0.3rem; }
     .edu-gpa {
       font-family: 'JetBrains Mono', monospace; font-size: 0.84rem;
-      color: var(--muted); background: var(--bg); border: 1px solid var(--border);
-      border-radius: 6px; padding: 0.28rem 0.65rem; text-align: center;
-      white-space: nowrap; transition: background 0.3s, border-color 0.3s;
+      color: var(--global-text-color-light); background: var(--global-bg-color);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 6px; padding: 0.28rem 0.65rem; text-align: center; white-space: nowrap;
     }
-    .edu-gpa span { display: block; font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+    .edu-gpa span { display: block; font-size: 1.1rem; font-weight: 600; color: var(--global-theme-color); }
 
-    /* ── FIXED FOOTER — Bilal style ── */
+    /* ── SOCIAL ICONS — al-folio style ── */
+    .social { text-align: center; margin-top: 2rem; clear: both; }
+    .social .contact-icons { font-size: 2.5rem; display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+    .social .contact-icons a { text-decoration: none; display: inline-block; }
+    .social .contact-icons a i::before { color: var(--global-text-color); transition: color 0.2s ease-in-out; }
+    .social .contact-icons a:hover i::before { color: var(--global-theme-color); }
+
+    /* ── FOOTER — al-folio dark style ── */
     footer.fixed-bottom {
-      background: var(--nav-bg);
-      border-top: 1px solid var(--border);
-      font-size: 0.82rem; color: var(--muted);
-      transition: background 0.3s, border-color 0.3s, color 0.3s;
-      height: 52px;
-      display: flex; align-items: center;
+      background-color: var(--global-footer-bg-color);
+      font-size: 0.75rem;
+      height: auto;
+      display: block;
     }
-    footer.fixed-bottom a { color: var(--accent); text-decoration: none; }
+    footer.fixed-bottom .container {
+      color: var(--global-footer-text-color);
+      padding-top: 9px;
+      padding-bottom: 8px;
+    }
+    footer.fixed-bottom a { color: var(--global-footer-link-color); }
+    footer.fixed-bottom a:hover { color: var(--global-theme-color); text-decoration: none; }
 
     /* ── ANIMATIONS ── */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
     .fade-up { animation: fadeUp 0.5s ease both; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .profile { float: none; width: 180px; margin: 0 auto 2rem; display: block; }
-      .profile img { width: 180px; height: 180px; }
       .clearfix p { text-align: left; }
       .projects-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body>
+<body class="fixed-top-nav">
 
-<!-- ── BOOTSTRAP NAVBAR — Bilal's structure ── -->
+<!-- ── NAVBAR ── -->
 <header>
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
-    <div class="container page">
+    <div class="container">
       <a class="navbar-brand" href="index.html">Ahmed Tamer</a>
 
       <button class="navbar-toggler collapsed ml-auto" type="button"
@@ -317,7 +392,9 @@
 
       <div class="collapse navbar-collapse text-right" id="navbarNav">
         <ul class="navbar-nav ml-auto flex-nowrap align-items-center">
-          <li class="nav-item active"><a class="nav-link" href="https://ahmettamer.github.io/">about<span class="sr-only">(current)</span></a></li>
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">about<span class="sr-only">(current)</span></a>
+          </li>
           <li class="nav-item"><a class="nav-link" href="experience.html">experience</a></li>
           <li class="nav-item"><a class="nav-link" href="projects.html">projects</a></li>
           <li class="nav-item"><a class="nav-link" href="repositories.html">repositories</a></li>
@@ -332,26 +409,30 @@
       </div>
     </div>
   </nav>
+
+  <progress id="progress" value="0">
+    <div class="progress-container"><span class="progress-bar"></span></div>
+  </progress>
 </header>
 
-<!-- ── MAIN CONTENT ── -->
-<div class="container page mt-4">
+<!-- ── MAIN ── -->
+<div class="container mt-5">
   <div class="post fade-up">
 
-    <!-- About Header -->
     <header class="post-header">
-      <h1 class="post-title"><strong>Ahmed</strong> Tamer</h1>
-      <p class="post-desc">
+      <h1 class="post-title"><span class="font-weight-bold">Ahmed</span> Tamer</h1>
+      <p class="desc">
         <b>EE Student</b> at <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a><br>
+        <b>Technical Operations Engineer</b> at <a href="https://www.fourmansionshotel.com/" target="_blank" rel="noopener">Four Mansions Hotel</a><br>
         <b>Embedded Systems</b> &nbsp;·&nbsp; <b>Machine Learning</b> &nbsp;·&nbsp; <b>IoT</b>
       </p>
     </header>
 
     <article>
-      <!-- Floated photo — Bilal's structure -->
       <div class="profile float-right">
         <figure>
-          <img src="assets/img/ahmed1.jpeg" alt="Ahmed Tamer">
+          <img src="assets/img/ahmed1.jpeg" alt="Ahmed Tamer"
+               class="img-fluid z-depth-1 rounded-circle">
         </figure>
       </div>
 
@@ -369,144 +450,138 @@
         <p><strong>Background:</strong> I am fluent in <strong>Arabic</strong> (native), <strong>English</strong>, and <strong>Turkish</strong>. I am passionate about applying engineering to problems that matter — from prosthetics to accessibility technology to energy optimization.</p>
       </div>
 
-      <div class="contact-icons">
-        <a href="mailto:ahmed2000tamer2@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://github.com/ahmettamer" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/ahmed-tamer" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="tel:+905525575085" title="Phone"><i class="fas fa-phone"></i></a>
+      <div class="social">
+        <div class="contact-icons">
+          <a href="mailto:ahmed2000tamer2@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/ahmettamer" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ahmed-tamer" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="tel:+905525575085" title="Phone"><i class="fas fa-phone"></i></a>
+        </div>
       </div>
+
+      <!-- SELECTED EXPERIENCE -->
+      <h2>selected experience <a class="view-all-link" href="experience.html">view all →</a></h2>
+
+      <div class="exp-item fade-up">
+        <div class="exp-header">
+          <span class="exp-title">Technical Operations Engineer</span>
+          <span class="exp-date">Sep 2024 – Present</span>
+        </div>
+        <div class="exp-company">Four Mansions Hotel — Kayseri, Turkey</div>
+        <div class="tech-stack">
+          <span class="tag">ESP32</span><span class="tag">Blynk IoT</span>
+          <span class="tag">Python</span><span class="tag">Industrial Contactors</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed and deployed a remote Gate Opener system using ESP32 &amp; Blynk IoT, enabling wireless access control and eliminating manual intervention.</li>
+          <li>Built a Python-based web scraping tool to automatically track competitor hotel pricing and occupancy trends.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item fade-up">
+        <div class="exp-header">
+          <span class="exp-title">Machine Learning Intern</span>
+          <span class="exp-date">Jun 2024 – Aug 2024</span>
+        </div>
+        <div class="exp-company">MTM Biotech — Kayseri, Turkey</div>
+        <div class="tech-stack">
+          <span class="tag">Python</span><span class="tag">CNN</span>
+          <span class="tag">Wavelet Transform</span><span class="tag">EMG Signal Processing</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Developed a classification model achieving <strong>82% accuracy</strong> to decode hand gestures from EMG signals, enabling individual finger control on a prosthetic arm.</li>
+          <li>Managed the full ML pipeline: data collection, preprocessing, feature engineering, model training, and real-time inference.</li>
+        </ul>
+      </div>
+
+      <!-- SELECTED PROJECTS -->
+      <h2>selected projects <a class="view-all-link" href="projects.html">view all →</a></h2>
+
+      <div class="projects-grid">
+        <div class="project-card fade-up">
+          <div class="project-card-header">
+            <span class="project-name">3D Audio &amp; AI-Powered Obstacle Recognition Glasses</span>
+          </div>
+          <div class="ongoing-badge">● ongoing</div>
+          <p class="project-desc">Smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback on Raspberry Pi.</p>
+          <div class="tech-stack">
+            <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN/RNN</span><span class="tag">3D Audio</span>
+          </div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-card-header">
+            <span class="project-name">Classification of Breast Cancer from Histopathological Images</span>
+            <span class="project-date-tag">Apr–May 2025</span>
+          </div>
+          <p class="project-desc">Benchmarked five deep learning architectures to improve diagnostic accuracy across multi-magnification histopathological images.</p>
+          <div class="tech-stack">
+            <span class="tag">Python</span><span class="tag">InceptionResNetV2</span><span class="tag">VGG16</span><span class="tag">MATLAB</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <h2>skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-label">Programming</div>
+          <div class="skill-tags">
+            <span class="tag">Python (Advanced)</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">MATLAB</span><span class="tag">VHDL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">ML / Deep Learning</div>
+          <div class="skill-tags">
+            <span class="tag">CNN</span><span class="tag">RNN</span><span class="tag">YOLO</span><span class="tag">Scikit-learn</span><span class="tag">Wavelet Transform</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Hardware</div>
+          <div class="skill-tags">
+            <span class="tag">Arduino</span><span class="tag">STM32</span><span class="tag">ESP32</span><span class="tag">Raspberry Pi</span><span class="tag">FPGA / Vivado</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">EE Tools</div>
+          <div class="skill-tags">
+            <span class="tag">LTSpice</span><span class="tag">LabVIEW</span><span class="tag">PCB Design</span><span class="tag">Proteus</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Other</div>
+          <div class="skill-tags">
+            <span class="tag">Web Scraping</span><span class="tag">Git / GitHub</span><span class="tag">PID Control</span><span class="tag">DSP</span><span class="tag">IoT</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Languages</div>
+          <div class="skill-tags">
+            <span class="tag">Arabic — Native</span><span class="tag">English — Fluent</span><span class="tag">Turkish — Fluent</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <h2>education</h2>
+      <div class="edu-block">
+        <div>
+          <div class="edu-degree">B.Sc., Electrical &amp; Electronics Engineering</div>
+          <div class="edu-uni">Abdullah Gül University, Kayseri, Turkey</div>
+          <div class="edu-detail">2021 – Present &nbsp;·&nbsp; 100% English instruction</div>
+        </div>
+        <div class="edu-gpa">GPA<span>3.42 / 4.00</span></div>
+      </div>
+
     </article>
   </div>
+</div>
 
-  <!-- SELECTED EXPERIENCE -->
-  <section class="latest-section">
-    <h2>selected experience <a href="experience.html">view all →</a></h2>
-
-    <div class="exp-item fade-up">
-      <div class="exp-header">
-        <span class="exp-title">Technical Operations Engineer</span>
-        <span class="exp-date">Sep 2024 – Present</span>
-      </div>
-      <div class="exp-company">Four Mansions Hotel — Kayseri, Turkey</div>
-      <div class="tech-stack">
-        <span class="tag">ESP32</span><span class="tag">Blynk IoT</span>
-        <span class="tag">Python</span><span class="tag">Industrial Contactors</span>
-      </div>
-      <ul class="exp-bullets">
-        <li>Designed and deployed a remote Gate Opener system using ESP32 &amp; Blynk IoT, enabling wireless access control and eliminating manual intervention.</li>
-        <li>Built a Python-based web scraping tool to automatically track competitor hotel pricing and occupancy trends.</li>
-      </ul>
-    </div>
-
-    <div class="exp-item fade-up">
-      <div class="exp-header">
-        <span class="exp-title">Machine Learning Intern</span>
-        <span class="exp-date">Jun 2024 – Aug 2024</span>
-      </div>
-      <div class="exp-company">MTM Biotech — Kayseri, Turkey</div>
-      <div class="tech-stack">
-        <span class="tag">Python</span><span class="tag">CNN</span>
-        <span class="tag">Wavelet Transform</span><span class="tag">EMG Signal Processing</span>
-      </div>
-      <ul class="exp-bullets">
-        <li>Developed a classification model achieving <strong>82% accuracy</strong> to decode hand gestures from EMG signals, enabling individual finger control on a prosthetic arm.</li>
-        <li>Managed the full ML pipeline: data collection, preprocessing, feature engineering, model training, and real-time inference.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- SELECTED PROJECTS -->
-  <section class="latest-section">
-    <h2>selected projects <a href="projects.html">view all →</a></h2>
-    <div class="projects-grid">
-
-      <div class="project-card fade-up">
-        <div class="project-card-header">
-          <span class="project-name">3D Audio &amp; AI-Powered Obstacle Recognition Glasses</span>
-        </div>
-        <div class="ongoing-badge">● ongoing</div>
-        <p class="project-desc">Smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback on Raspberry Pi.</p>
-        <div class="tech-stack">
-          <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN/RNN</span><span class="tag">3D Audio</span>
-        </div>
-      </div>
-
-      <div class="project-card fade-up">
-        <div class="project-card-header">
-          <span class="project-name">Classification of Breast Cancer from Histopathological Images</span>
-          <span class="project-date-tag">Apr–May 2025</span>
-        </div>
-        <p class="project-desc">Benchmarked five deep learning architectures to improve diagnostic accuracy across multi-magnification histopathological images.</p>
-        <div class="tech-stack">
-          <span class="tag">Python</span><span class="tag">InceptionResNetV2</span><span class="tag">VGG16</span><span class="tag">MATLAB</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="latest-section">
-    <h2>skills</h2>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <div class="skill-group-label">Programming</div>
-        <div class="skill-tags">
-          <span class="tag">Python (Advanced)</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">MATLAB</span><span class="tag">VHDL</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">ML / Deep Learning</div>
-        <div class="skill-tags">
-          <span class="tag">CNN</span><span class="tag">RNN</span><span class="tag">YOLO</span><span class="tag">Scikit-learn</span><span class="tag">Wavelet Transform</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Hardware</div>
-        <div class="skill-tags">
-          <span class="tag">Arduino</span><span class="tag">STM32</span><span class="tag">ESP32</span><span class="tag">Raspberry Pi</span><span class="tag">FPGA / Vivado</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">EE Tools</div>
-        <div class="skill-tags">
-          <span class="tag">LTSpice</span><span class="tag">LabVIEW</span><span class="tag">PCB Design</span><span class="tag">Proteus</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Other</div>
-        <div class="skill-tags">
-          <span class="tag">Web Scraping</span><span class="tag">Git / GitHub</span><span class="tag">PID Control</span><span class="tag">DSP</span><span class="tag">IoT</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Languages</div>
-        <div class="skill-tags">
-          <span class="tag">Arabic — Native</span><span class="tag">English — Fluent</span><span class="tag">Turkish — Fluent</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section class="latest-section">
-    <h2>education</h2>
-    <div class="edu-block">
-      <div>
-        <div class="edu-degree">B.Sc., Electrical &amp; Electronics Engineering</div>
-        <div class="edu-uni">Abdullah Gül University, Kayseri, Turkey</div>
-        <div class="edu-detail">2021 – Present &nbsp;·&nbsp; 100% English instruction</div>
-      </div>
-      <div class="edu-gpa">GPA<span>3.42 / 4.00</span></div>
-    </div>
-  </section>
-
-</div><!-- /container -->
-
-<!-- ── FIXED FOOTER — Bilal style ── -->
+<!-- ── FOOTER — al-folio dark style ── -->
 <footer class="fixed-bottom">
-  <div class="container page">
-    © Copyright 2026 Ahmed Tamer &nbsp;·&nbsp; <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a>
+  <div class="container mt-0">
+    © Copyright 2026 Ahmed Tamer &nbsp;·&nbsp;
+    <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a>
   </div>
 </footer>
 
@@ -515,7 +590,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
 
 <script>
-  // ── Dark / light toggle ──
+  // Dark / light toggle
   const toggle = document.getElementById('light-toggle');
   const html   = document.documentElement;
   const saved  = localStorage.getItem('theme');
@@ -526,6 +601,19 @@
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
   });
+
+  // Progress bar
+  function progressBarSetup() {
+    const progressBar = document.getElementById('progress');
+    if (!progressBar) return;
+    document.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.max = 100;
+    });
+  }
+  window.addEventListener('load', () => setTimeout(progressBarSetup, 50));
 </script>
 </body>
 </html>
