@@ -9,221 +9,397 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    /* ── AL-FOLIO THEME VARIABLES ── */
     :root {
-      --bg:#fafaf8; --surface:#f2f2ef; --border:#e2e2de;
-      --text:#1a1a18; --muted:#6b6b66; --accent:#2d6a4f;
-      --accent-light:rgba(45,106,79,.10); --tag-bg:#ebeae8;
-      --tag-text:#3a3a36; --card-bg:#ffffff;
-      --shadow:0 2px 12px rgba(0,0,0,.06);
-      --shadow-hover:0 8px 32px rgba(0,0,0,.13);
+      --global-bg-color: #fff;
+      --global-text-color: #000;
+      --global-text-color-light: #828282;
+      --global-theme-color: #ff4b4b;
+      --global-hover-color: #ff4b4b;
+      --global-footer-bg-color: #1c1c1d;
+      --global-footer-text-color: #e8e8e8;
+      --global-footer-link-color: #fff;
+      --global-divider-color: rgba(0,0,0,.1);
+      --global-card-bg-color: #fff;
+      --tag-bg: #f5f5f5;
+      --tag-text: #c0392b;
+      --tag-border: rgba(0,0,0,0.08);
     }
-    [data-theme="dark"] {
-      --bg:#111110; --surface:#1c1c1a; --border:#2e2e2a;
-      --text:#e8e8e2; --muted:#888880; --accent:#52b788;
-      --accent-light:rgba(82,183,136,.12); --tag-bg:#242420;
-      --tag-text:#c8c8c0; --card-bg:#1c1c1a;
-      --shadow:0 2px 12px rgba(0,0,0,.3);
-      --shadow-hover:0 8px 32px rgba(0,0,0,.5);
+    html[data-theme="dark"] {
+      --global-bg-color: #1c1c1d;
+      --global-text-color: #e8e8e8;
+      --global-text-color-light: #a8a8a8;
+      --global-theme-color: #2698ba;
+      --global-hover-color: #2698ba;
+      --global-footer-bg-color: #e8e8e8;
+      --global-footer-text-color: #1c1c1d;
+      --global-footer-link-color: #000;
+      --global-divider-color: #424246;
+      --global-card-bg-color: #212529;
+      --tag-bg: #1e2a38;
+      --tag-text: #7ab3e0;
+      --tag-border: rgba(255,255,255,0.08);
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;
-      font-size:15px;line-height:1.7;padding-top:56px;transition:background .3s,color .3s}
+    :root .fa-sun  { display: none; }
+    :root .fa-moon { display: inline-block; }
+    html[data-theme="dark"] .fa-moon { display: none; }
+    html[data-theme="dark"] .fa-sun  { display: inline-block; }
 
-    /* ── nav ── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 2rem;background:var(--bg);border-bottom:1px solid var(--border);
-      transition:background .3s,border-color .3s}
-    .nav-brand{font-family:'Lora',serif;font-weight:600;font-size:1rem;
-      color:var(--text);text-decoration:none}
-    .nav-links{display:flex;gap:1.4rem;align-items:center}
-    .nav-links a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s}
-    .nav-links a:hover,.nav-links a.active{color:var(--text)}
-    .nav-btn{background:none;border:1px solid var(--border);border-radius:6px;
-      padding:.25rem .6rem;color:var(--muted);cursor:pointer;font-size:.78rem;
-      font-family:'JetBrains Mono',monospace;transition:all .2s}
-    .nav-btn:hover{color:var(--text);border-color:var(--text)}
-    #progress-bar{position:fixed;top:56px;left:0;height:2px;background:var(--accent);
-      width:0%;z-index:99;transition:width .1s linear}
-
-    /* ── layout ── */
-    .container{max-width:820px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
-    .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;
-      color:var(--muted);text-decoration:none;margin-bottom:2rem;transition:color .2s}
-    .back-link:hover{color:var(--text)}
-    h1.project-title{font-family:'Lora',serif;font-size:clamp(1.7rem,4vw,2.4rem);
-      font-weight:700;line-height:1.25;margin-bottom:.75rem}
-    .project-subtitle{font-size:1rem;color:var(--muted);max-width:600px;
-      margin-bottom:1.5rem;line-height:1.6}
-
-    /* ── github link ── */
-    .github-link{display:inline-flex;align-items:center;gap:.55rem;
-      padding:.45rem 1.1rem;border-radius:8px;border:1px solid var(--border);
-      background:var(--surface);color:var(--text);text-decoration:none;
-      font-size:.84rem;font-weight:500;margin-bottom:1.75rem;transition:all .2s}
-    .github-link:hover{border-color:var(--accent);background:var(--accent-light);
-      color:var(--accent);text-decoration:none}
-    .github-link i{font-size:1.05rem}
-    .github-sep{width:1px;height:16px;background:var(--border);margin:0 .2rem}
-    .github-badge{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);
-      display:flex;align-items:center;gap:.3rem}
-
-    /* ── meta ── */
-    .meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-      gap:.75rem;margin-bottom:2rem;padding:1rem 1.25rem;
-      background:var(--surface);border-radius:10px;border:1px solid var(--border)}
-    .meta-item label{display:block;font-family:'JetBrains Mono',monospace;
-      font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;
-      color:var(--muted);margin-bottom:.2rem}
-    .meta-item span{font-size:.87rem;font-weight:500}
-    .badge-accent{display:inline-block;padding:.15rem .55rem;border-radius:4px;
-      background:var(--accent-light);color:var(--accent);font-weight:600;font-size:.87rem}
-
-    /* ── tags ── */
-    .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2.5rem}
-    .tag{padding:.25rem .7rem;border-radius:20px;background:var(--tag-bg);
-      color:var(--tag-text);font-size:.78rem;font-weight:500}
-
-    /* ── section label ── */
-    .section-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;
-      text-transform:uppercase;letter-spacing:.13em;color:var(--muted);
-      margin:2.5rem 0 .7rem;display:flex;align-items:center;gap:.6rem}
-    .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-
-    /* ── prose ── */
-    p{margin-bottom:1rem;color:var(--text)}
-    ul,ol{padding-left:1.4rem;margin-bottom:1rem}
-    li{margin-bottom:.4rem;font-size:.92rem}
-    strong{font-weight:600}
-
-    /* ══════════════════════════════════════════
-       INLINE FIGURE — full-width, below text
-    ══════════════════════════════════════════ */
-    .fig{margin:1.25rem 0 2rem;border-radius:12px;overflow:hidden;
-      border:1px solid var(--border);background:var(--card-bg);
-      box-shadow:var(--shadow);transition:box-shadow .3s}
-    .fig:hover{box-shadow:var(--shadow-hover)}
-    .fig img{width:100%;display:block;object-fit:cover}
-    .fig video{width:100%;display:block;background:#000}
-    .fig-meta{display:flex;align-items:baseline;gap:.75rem;
-      padding:.55rem .9rem;border-top:1px solid var(--border);background:var(--surface)}
-    .fig-num{font-family:'JetBrains Mono',monospace;font-size:.62rem;
-      text-transform:uppercase;letter-spacing:.1em;color:var(--accent);flex-shrink:0}
-    .fig-caption{font-size:.78rem;color:var(--muted);line-height:1.4}
-
-    /* ══════════════════════════════════════════
-       SIDE-BY-SIDE — text left, figure right
-       (used when text + media should read together)
-    ══════════════════════════════════════════ */
-    .aside-wrap{display:grid;grid-template-columns:1fr 280px;gap:1.5rem;
-      align-items:start;margin-bottom:2rem}
-    .aside-wrap.left{grid-template-columns:280px 1fr}
-    @media(max-width:660px){
-      .aside-wrap,.aside-wrap.left{grid-template-columns:1fr}
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--global-bg-color);
+      color: var(--global-text-color);
+      font-size: 1rem; line-height: 1.7;
+      padding-top: 56px; padding-bottom: 70px;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
     }
-    .aside-fig{border-radius:10px;overflow:hidden;border:1px solid var(--border);
-      background:var(--card-bg);box-shadow:var(--shadow);flex-shrink:0}
-    .aside-fig img{width:100%;display:block;object-fit:cover}
-    .aside-fig video{width:100%;display:block;background:#000}
-    .aside-fig .fig-meta{padding:.45rem .75rem}
+    p, h1, h2, h3, li, span, strong, em, div { color: var(--global-text-color); }
+    a { color: var(--global-theme-color); }
+    a:hover { color: var(--global-hover-color); text-decoration: underline; }
+    hr { border-top: 1px solid var(--global-divider-color); }
 
-    /* ══════════════════════════════════════════
-       TWO-UP — two videos / images side by side
-    ══════════════════════════════════════════ */
-    .two-up{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.25rem 0 2rem}
-    @media(max-width:560px){.two-up{grid-template-columns:1fr}}
-    .two-up .fig{margin:0}
-    .two-up .fig video,.two-up .fig img{aspect-ratio:16/9;object-fit:cover}
+    /* ── NAVBAR ── */
+    #navbar {
+      box-shadow: none;
+      border-bottom: 1px solid var(--global-divider-color);
+      background-color: var(--global-bg-color);
+      opacity: .97;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    .navbar.navbar-light .navbar-brand {
+      color: var(--global-text-color);
+      font-family: 'Lora', serif; font-weight: 600; font-size: 1.1rem;
+    }
+    .navbar.navbar-light .navbar-brand:hover { color: var(--global-hover-color); text-decoration: none; }
+    .navbar.navbar-light .navbar-nav .nav-item .nav-link {
+      color: var(--global-text-color); font-size: 0.88rem; font-weight: 500;
+      text-transform: lowercase; letter-spacing: 0.02em; transition: color 0.2s;
+    }
+    .navbar.navbar-light .navbar-nav .nav-item .nav-link:hover { color: var(--global-hover-color); }
+    .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
+      font-weight: bolder; color: var(--global-theme-color);
+    }
+    .navbar-toggler { border: none !important; outline: none !important; box-shadow: none !important; }
+    .navbar-toggler .icon-bar {
+      display: block; width: 22px; height: 2px;
+      background-color: var(--global-text-color);
+      border-radius: 1px; margin-bottom: 4px; transition: all .2s;
+    }
+    .navbar-toggler .top-bar    { transform: rotate(45deg);  transform-origin: 10% 10%; }
+    .navbar-toggler .middle-bar { opacity: 0; }
+    .navbar-toggler .bottom-bar { transform: rotate(-45deg); transform-origin: 10% 90%; }
+    .navbar-toggler.collapsed .top-bar    { transform: rotate(0); }
+    .navbar-toggler.collapsed .middle-bar { opacity: 1; }
+    .navbar-toggler.collapsed .bottom-bar { transform: rotate(0); }
+    #light-toggle {
+      padding: 0; border: 0; background-color: inherit;
+      color: var(--global-text-color); font-size: 1rem; cursor: pointer;
+    }
+    #light-toggle:hover { color: var(--global-hover-color); }
+    #lang-toggle {
+      padding: 0.1rem 0.45rem;
+      border: 1px solid var(--global-divider-color);
+      background-color: transparent; color: var(--global-text-color);
+      font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
+      font-weight: 600; cursor: pointer; border-radius: 4px;
+      letter-spacing: 0.05em; transition: color 0.2s, border-color 0.2s;
+    }
+    #lang-toggle:hover { color: var(--global-hover-color); border-color: var(--global-hover-color); }
 
-    /* ── architecture ── */
-    .arch-wrap{margin:1rem 0 2rem;background:var(--surface);border:1px solid var(--border);
-      border-radius:12px;padding:1.5rem 1rem 1rem;overflow-x:auto}
-    .arch-wrap svg{display:block;margin:0 auto;max-width:100%}
+    /* ── PROGRESS ── */
+    progress {
+      position: fixed; left: 0; top: 56px; z-index: 10;
+      width: 100%; height: 3px;
+      appearance: none; border: 0;
+      background-color: transparent; color: var(--global-theme-color);
+    }
+    progress::-webkit-progress-bar  { background-color: transparent; }
+    progress::-webkit-progress-value { background-color: var(--global-theme-color); }
+    progress::-moz-progress-bar { background-color: var(--global-theme-color); }
 
-    /* ── lightbox ── */
-    #lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.9);
-      align-items:center;justify-content:center}
-    #lightbox.open{display:flex}
-    #lightbox img{max-width:90vw;max-height:90vh;border-radius:8px;object-fit:contain}
-    #lightbox-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;
-      color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7}
-    #lightbox-close:hover{opacity:1}
+    /* ── FOOTER ── */
+    footer.fixed-bottom {
+      background-color: var(--global-footer-bg-color);
+      font-size: 0.75rem;
+    }
+    footer.fixed-bottom .container {
+      color: var(--global-footer-text-color);
+      padding-top: 9px; padding-bottom: 8px;
+    }
+    footer.fixed-bottom a { color: var(--global-footer-link-color); }
+    footer.fixed-bottom a:hover { color: var(--global-hover-color); text-decoration: none; }
 
-    /* ── results table ── */
-    .results-table{width:100%;font-size:.84rem;border-collapse:collapse;margin:1rem 0 1.5rem}
-    .results-table th{font-family:'JetBrains Mono',monospace;font-size:.65rem;text-transform:uppercase;
-      letter-spacing:.07em;padding:.5rem .75rem;border-bottom:2px solid var(--border);text-align:left;color:var(--muted)}
-    .results-table td{padding:.45rem .75rem;border-bottom:1px solid var(--border)}
-    .results-table tr:last-child td{border-bottom:none}
-    .results-table tr.best-row td{font-weight:600}
+    /* ── TAGS ── */
+    .tag {
+      font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
+      background: var(--tag-bg); color: var(--tag-text);
+      border-radius: 4px; padding: 0.17rem 0.52rem;
+      border: 1px solid var(--tag-border); font-weight: 500;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
 
-    /* ── pipeline steps ── */
-    .pipeline-steps{counter-reset:step;list-style:none;padding:0;margin:.5rem 0 1.5rem}
-    .pipeline-steps li{counter-increment:step;display:flex;align-items:flex-start;
-      gap:.9rem;margin-bottom:.75rem;font-size:.92rem}
-    .pipeline-steps li::before{content:counter(step);flex-shrink:0;width:1.6rem;height:1.6rem;
-      border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;
-      justify-content:center;font-size:.7rem;font-family:'JetBrains Mono',monospace;
-      font-weight:700;margin-top:.1rem}
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.82rem; color: var(--global-text-color-light);
+      text-decoration: none; margin-bottom: 1.75rem; transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--global-theme-color); text-decoration: none; }
 
-    /* ── challenge boxes ── */
-    .challenge-box{border-left:3px solid var(--accent);padding:.65rem 1rem;margin:.75rem 0;
-      background:var(--accent-light);border-radius:0 6px 6px 0}
-    .challenge-box p{margin:.3rem 0 0;font-size:.87rem;color:var(--muted)}
+    /* ── TITLE ── */
+    h1.project-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 700; line-height: 1.25;
+      color: var(--global-text-color); margin-bottom: 0.6rem;
+    }
+    .project-subtitle {
+      font-size: 1rem; color: var(--global-text-color-light);
+      max-width: 620px; margin-bottom: 1.5rem; line-height: 1.65;
+    }
 
-    /* ── footer ── */
-    footer{position:fixed;bottom:0;left:0;right:0;background:var(--bg);
-      border-top:1px solid var(--border);padding:.6rem 2rem;font-size:.78rem;color:var(--muted);
-      display:flex;justify-content:space-between;align-items:center;transition:background .3s}
-    footer a{color:var(--muted);text-decoration:none}
-    footer a:hover{color:var(--text)}
+    /* ── GITHUB LINK ── */
+    .github-link {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.42rem 1.05rem; border-radius: 6px;
+      border: 1px solid var(--global-divider-color);
+      background: var(--global-card-bg-color);
+      color: var(--global-text-color); text-decoration: none;
+      font-size: 0.84rem; font-weight: 500; margin-bottom: 1.75rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .github-link:hover { border-color: var(--global-theme-color); color: var(--global-theme-color); text-decoration: none; }
+    .github-link i { font-size: 1rem; }
+    .github-sep { width: 1px; height: 16px; background: var(--global-divider-color); margin: 0 0.2rem; }
+    .github-badge {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+      color: var(--global-text-color-light);
+      display: flex; align-items: center; gap: 0.3rem;
+    }
 
-    .fade-up{opacity:0;transform:translateY(18px);animation:fadeUp .55s ease forwards}
-    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+    /* ── META GRID ── */
+    .meta-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.65rem; margin-bottom: 1.75rem;
+      padding: 0.95rem 1.2rem;
+      background: var(--global-card-bg-color);
+      border-radius: 8px; border: 1px solid var(--global-divider-color);
+    }
+    .meta-item label {
+      display: block; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--global-text-color-light); margin-bottom: 0.18rem;
+    }
+    .meta-item span { font-size: 0.86rem; font-weight: 500; }
+    .badge-accent {
+      display: inline-block; padding: 0.12rem 0.5rem; border-radius: 4px;
+      background: rgba(255,75,75,0.09); color: var(--global-theme-color);
+      font-weight: 700; font-size: 0.86rem;
+    }
+    html[data-theme="dark"] .badge-accent { background: rgba(38,152,186,0.12); }
 
-    /* clickable images */
-    .fig img{cursor:zoom-in}
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.64rem; text-transform: uppercase;
+      letter-spacing: 0.13em; color: var(--global-text-color-light);
+      margin: 2.4rem 0 0.65rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--global-divider-color); }
+
+    /* ── PROSE ── */
+    .post-body p { margin-bottom: 0.95rem; }
+    .post-body ul, .post-body ol { padding-left: 1.35rem; margin-bottom: 0.95rem; }
+    .post-body li { margin-bottom: 0.35rem; font-size: 0.93rem; }
+    .post-body li::marker { color: var(--global-theme-color); }
+    .note-text { font-size: 0.82rem; color: var(--global-text-color-light); margin-top: 0.3rem; }
+
+    /* ── INLINE FIGURE ── */
+    .fig {
+      margin: 1.1rem 0 1.75rem; border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--global-divider-color);
+      background: var(--global-card-bg-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+      transition: box-shadow 0.25s;
+    }
+    .fig:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+    .fig img   { width: 100%; display: block; object-fit: cover; }
+    .fig video { width: 100%; display: block; background: #000; }
+    .fig-meta {
+      display: flex; align-items: baseline; gap: 0.7rem;
+      padding: 0.5rem 0.85rem;
+      border-top: 1px solid var(--global-divider-color);
+      background: var(--global-bg-color);
+    }
+    .fig-num {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--global-theme-color); flex-shrink: 0;
+    }
+    .fig-caption { font-size: 0.78rem; color: var(--global-text-color-light); line-height: 1.45; }
+
+    /* ── ASIDE (text + figure) ── */
+    .aside-wrap {
+      display: grid; grid-template-columns: 1fr 270px;
+      gap: 1.4rem; align-items: start; margin-bottom: 1.75rem;
+    }
+    .aside-wrap.left { grid-template-columns: 270px 1fr; }
+    @media (max-width: 660px) {
+      .aside-wrap, .aside-wrap.left { grid-template-columns: 1fr; }
+    }
+    .aside-fig {
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--global-divider-color);
+      background: var(--global-card-bg-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+      transition: box-shadow 0.25s; cursor: zoom-in;
+    }
+    .aside-fig:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+    .aside-fig img { width: 100%; display: block; object-fit: cover; }
+    .aside-fig .fig-meta { padding: 0.42rem 0.75rem; }
+
+    /* ── TWO-UP ── */
+    .two-up {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.75rem; margin: 1.1rem 0 1.75rem;
+    }
+    @media (max-width: 560px) { .two-up { grid-template-columns: 1fr; } }
+    .two-up .fig { margin: 0; }
+    .two-up .fig video, .two-up .fig img { aspect-ratio: 16/9; object-fit: cover; }
+
+    /* ── ARCHITECTURE ── */
+    .arch-wrap {
+      margin: 0.9rem 0 1.75rem;
+      background: var(--global-card-bg-color);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 8px; padding: 1.4rem 1rem 1rem; overflow-x: auto;
+    }
+    .arch-wrap svg { display: block; margin: 0 auto; max-width: 100%; }
+
+    /* ── RESULTS TABLE ── */
+    .results-table {
+      width: 100%; font-size: 0.84rem;
+      border-collapse: collapse; margin: 0.9rem 0 1.2rem;
+    }
+    .results-table th {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.64rem;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      padding: 0.48rem 0.7rem;
+      border-bottom: 2px solid var(--global-divider-color);
+      text-align: left; color: var(--global-text-color-light);
+    }
+    .results-table td { padding: 0.42rem 0.7rem; border-bottom: 1px solid var(--global-divider-color); }
+    .results-table tr:last-child td { border-bottom: none; }
+    .results-table tr.best-row td { font-weight: 600; }
+
+    /* ── PIPELINE ── */
+    .pipeline-steps { counter-reset: step; list-style: none; padding: 0; margin: 0.4rem 0 1.2rem; }
+    .pipeline-steps li {
+      counter-increment: step;
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      margin-bottom: 0.7rem; font-size: 0.93rem;
+    }
+    .pipeline-steps li::before {
+      content: counter(step); flex-shrink: 0;
+      width: 1.55rem; height: 1.55rem; border-radius: 50%;
+      background: var(--global-theme-color); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem; font-family: 'JetBrains Mono', monospace;
+      font-weight: 700; margin-top: 0.12rem;
+    }
+
+    /* ── CHALLENGE BOXES ── */
+    .challenge-box {
+      border-left: 3px solid var(--global-theme-color);
+      padding: 0.6rem 1rem; margin: 0.7rem 0;
+      background: rgba(255,75,75,0.05);
+      border-radius: 0 6px 6px 0;
+    }
+    html[data-theme="dark"] .challenge-box { background: rgba(38,152,186,0.08); }
+    .challenge-box p { margin: 0.25rem 0 0; font-size: 0.87rem; color: var(--global-text-color-light); }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.92); align-items: center; justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 6px; object-fit: contain; }
+    #lightbox-close {
+      position: absolute; top: 1.4rem; right: 1.4rem;
+      background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; opacity: 0.7;
+    }
+    #lightbox-close:hover { opacity: 1; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.5s ease both; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="index.html">Ahmed Tamer</a>
-  <div class="nav-links">
-    <a href="index.html" data-i18n="nav_about">about</a>
-    <a href="experience.html" data-i18n="nav_experience">experience</a>
-    <a href="projects.html" class="active" data-i18n="nav_projects">projects</a>
-    <a href="repositories.html" data-i18n="nav_repositories">repositories</a>
-    <a href="assets/pdf/cv.pdf" target="_blank" data-i18n="nav_cv">cv</a>
-    <button class="nav-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
-    <button class="nav-btn" id="lang-toggle">TR</button>
+<!-- NAVBAR -->
+<nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Ahmed Tamer</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false">
+      <span class="icon-bar top-bar"></span>
+      <span class="icon-bar middle-bar"></span>
+      <span class="icon-bar bottom-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_about">about</a></li>
+        <li class="nav-item"><a class="nav-link" href="experience.html" data-i18n="nav_experience">experience</a></li>
+        <li class="nav-item active"><a class="nav-link" href="projects.html" data-i18n="nav_projects">projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="repositories.html" data-i18n="nav_repositories">repositories</a></li>
+        <li class="nav-item"><a class="nav-link" href="assets/pdf/cv.pdf" target="_blank" data-i18n="nav_cv">cv</a></li>
+        <li class="nav-item d-flex align-items-center ml-2">
+          <button id="light-toggle" title="Toggle theme">
+            <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
+          </button>
+        </li>
+        <li class="nav-item d-flex align-items-center ml-2">
+          <button id="lang-toggle">TR</button>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
-<div id="progress-bar"></div>
 
+<progress id="progress" value="0" max="100"></progress>
+
+<!-- LIGHTBOX -->
 <div id="lightbox">
   <button id="lightbox-close"><i class="fas fa-times"></i></button>
   <img id="lightbox-img" src="" alt="">
 </div>
 
-<div class="container fade-up">
-<article>
+<!-- MAIN -->
+<div class="container post fade-up" style="max-width:820px;padding-top:2rem;">
+<article class="post-body">
 
-  <a href="projects.html" class="back-link"><i class="fas fa-arrow-left fa-xs"></i> <span data-i18n="back_projects">all projects</span></a>
+  <a href="projects.html" class="back-link">
+    <i class="fas fa-arrow-left fa-xs"></i>
+    <span data-i18n="back_projects">all projects</span>
+  </a>
 
   <h1 class="project-title" data-i18n="proj_title">EMG-Controlled Prosthetic Arm</h1>
   <p class="project-subtitle" data-i18n="proj_subtitle">Classifying hand gestures from electromyography signals to drive real-time individual finger control on a 3D-printed prosthetic arm.</p>
 
-  <!-- GitHub -->
   <a class="github-link" href="https://github.com/ahmettamer/EMG-Prosthetic-Hand" target="_blank" rel="noopener">
     <i class="fab fa-github"></i>
     <span>ahmettamer / EMG-Prosthetic-Hand</span>
     <div class="github-sep"></div>
-    <span class="github-badge"><i class="fas fa-external-link-alt" style="font-size:.65rem"></i> View on GitHub</span>
+    <span class="github-badge"><i class="fas fa-external-link-alt" style="font-size:.62rem"></i> View on GitHub</span>
   </a>
 
-  <!-- Meta -->
   <div class="meta-grid">
     <div class="meta-item"><label data-i18n="meta_org">Organization</label><span>MTM Biotech</span></div>
     <div class="meta-item"><label data-i18n="meta_period">Period</label><span data-i18n="meta_period_val">Jun – Aug 2024</span></div>
@@ -231,24 +407,17 @@
     <div class="meta-item"><label data-i18n="meta_result">Best Accuracy</label><span class="badge-accent">82.3 %</span></div>
   </div>
 
-  <!-- Tags -->
   <div class="tags">
     <span class="tag">Python</span><span class="tag">CNN</span><span class="tag">Wavelet Transform</span>
     <span class="tag">SVM</span><span class="tag">KNN</span><span class="tag">Random Forest</span>
     <span class="tag">MATLAB</span><span class="tag">Arduino Uno</span><span class="tag">EMG Signals</span>
   </div>
 
-  <!-- ══════════════════════════════════════
-       OVERVIEW — with hero arm photo
-  ══════════════════════════════════════ -->
+  <!-- ── OVERVIEW ── -->
   <p class="section-label" data-i18n="sec_overview">Overview</p>
-
-  <!-- Arm photo sits right beside the opening paragraph -->
   <div class="aside-wrap">
-    <div>
-      <p data-i18n="overview_text">The goal of this project was to build an artificial arm that responds to hand gestures decoded from EMG (electromyography) signals. The system captures muscle electrical activity through surface electrodes, processes and classifies the signals using machine learning and deep learning, then sends commands to servo motors that actuate each individual finger of a 3D-printed arm. The project was carried out during an internship at MTM Biotech, using their proprietary MTM chip card for EMG acquisition.</p>
-    </div>
-    <div class="aside-fig" onclick="openLightbox('assets/image11.jpg')" style="cursor:zoom-in">
+    <p data-i18n="overview_text">The goal of this project was to build an artificial arm that responds to hand gestures decoded from EMG (electromyography) signals. The system captures muscle electrical activity through surface electrodes, processes and classifies the signals using machine learning and deep learning, then sends commands to servo motors that actuate each individual finger of a 3D-printed arm. The project was carried out during an internship at MTM Biotech, using their proprietary MTM chip card for EMG acquisition.</p>
+    <div class="aside-fig" onclick="openLightbox('assets/image11.jpg')">
       <img src="assets/image11.jpg" alt="3D-printed prosthetic arm">
       <div class="fig-meta">
         <span class="fig-num">Fig 01</span>
@@ -257,9 +426,7 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       SYSTEM ARCHITECTURE
-  ══════════════════════════════════════ -->
+  <!-- ── SYSTEM ARCHITECTURE ── -->
   <p class="section-label" data-i18n="sec_arch">System Architecture</p>
   <div class="arch-wrap">
     <svg id="arch-svg" viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" width="760" height="230">
@@ -267,27 +434,24 @@
         <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
           <path d="M0,0 L8,4 L0,8 Z" fill="#9a9a94"/>
         </marker>
-        <marker id="arr-g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#2d6a4f"/>
-        </marker>
       </defs>
       <style>
         #arch-svg text{font-family:'DM Sans',sans-serif}
-        .an{fill:var(--card-bg,#fff);stroke:var(--border,#e2e2de);stroke-width:1.4}
-        .an-hl{fill:rgba(45,106,79,.08);stroke:#2d6a4f;stroke-width:1.6}
-        .gl{fill:none;stroke:var(--accent,#2d6a4f);stroke-width:1;stroke-dasharray:5 3}
-        .gt{font-size:8px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;fill:var(--accent,#2d6a4f)}
-        .nt{font-size:11px;font-weight:600;fill:var(--text,#1a1a18)}
-        .ns{font-size:8.5px;font-family:'JetBrains Mono',monospace;fill:var(--muted,#6b6b66)}
+        .an{fill:var(--global-card-bg-color,#fff);stroke:var(--global-divider-color,#e0e0e0);stroke-width:1.4}
+        .an-hl{fill:rgba(255,75,75,.06);stroke:var(--global-theme-color,#ff4b4b);stroke-width:1.6}
+        .gl{fill:none;stroke:var(--global-theme-color,#ff4b4b);stroke-width:1;stroke-dasharray:5 3}
+        .gt{font-size:8px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;fill:var(--global-theme-color,#ff4b4b)}
+        .nt{font-size:11px;font-weight:600;fill:var(--global-text-color,#000)}
+        .ns{font-size:8.5px;font-family:'JetBrains Mono',monospace;fill:var(--global-text-color-light,#828282)}
         .arr{stroke:#9a9a94;stroke-width:1.5;marker-end:url(#arr)}
-        .arr-lbl{font-size:7.5px;font-family:'JetBrains Mono',monospace;fill:var(--muted,#6b6b66)}
-        .ic{fill:var(--accent,#2d6a4f)}
+        .arr-lbl{font-size:7.5px;font-family:'JetBrains Mono',monospace;fill:var(--global-text-color-light,#828282)}
+        .ic{fill:var(--global-theme-color,#ff4b4b)}
         .it{font-size:13px;fill:#fff;font-weight:700;text-anchor:middle;dominant-baseline:central}
-        .acc-text{fill:var(--accent,#2d6a4f);font-weight:700}
+        .acc-text{fill:var(--global-theme-color,#ff4b4b);font-weight:700}
       </style>
-      <rect class="gl" x="6" y="28" width="178" height="190" rx="10"/>
+      <rect class="gl" x="6" y="28" width="178" height="190" rx="8"/>
       <text class="gt" x="14" y="22">Acquisition</text>
-      <rect class="an" x="18" y="40" width="154" height="56" rx="8"/>
+      <rect class="an" x="18" y="40" width="154" height="56" rx="7"/>
       <circle class="ic" cx="40" cy="68" r="17"/>
       <text class="it" x="40" y="68">💪</text>
       <text class="nt" x="68" y="60">Forearm Muscles</text>
@@ -295,7 +459,7 @@
       <text class="ns" x="68" y="86">skin-contact sensors</text>
       <line class="arr" x1="95" y1="98" x2="95" y2="120"/>
       <text class="arr-lbl" x="98" y="112">analog signal</text>
-      <rect class="an" x="18" y="122" width="154" height="56" rx="8"/>
+      <rect class="an" x="18" y="122" width="154" height="56" rx="7"/>
       <circle class="ic" cx="40" cy="150" r="17"/>
       <text class="it" x="40" y="150">⚡</text>
       <text class="nt" x="68" y="142">MTM Chip Card</text>
@@ -303,16 +467,16 @@
       <text class="ns" x="68" y="168">3,500 Hz · Bluetooth</text>
       <line class="arr" x1="173" y1="150" x2="206" y2="150"/>
       <text class="arr-lbl" x="175" y="145">BT</text>
-      <rect class="gl" x="204" y="28" width="286" height="190" rx="10"/>
+      <rect class="gl" x="204" y="28" width="286" height="190" rx="8"/>
       <text class="gt" x="212" y="22">PC — Processing &amp; Classification</text>
-      <rect class="an" x="216" y="40" width="120" height="54" rx="8"/>
+      <rect class="an" x="216" y="40" width="120" height="54" rx="7"/>
       <circle class="ic" cx="236" cy="67" r="15"/>
       <text class="it" x="236" y="67" style="font-size:11px">〜</text>
       <text class="nt" x="262" y="58">Filtering</text>
       <text class="ns" x="262" y="71">Band-pass 20–500 Hz</text>
       <text class="ns" x="262" y="83">Low-pass 3–50 Hz</text>
       <line class="arr" x1="338" y1="67" x2="360" y2="67"/>
-      <rect class="an" x="360" y="40" width="118" height="54" rx="8"/>
+      <rect class="an" x="360" y="40" width="118" height="54" rx="7"/>
       <circle class="ic" cx="380" cy="67" r="15"/>
       <text class="it" x="380" y="67" style="font-size:13px">∑</text>
       <text class="nt" x="406" y="58">Feature Ext.</text>
@@ -321,7 +485,7 @@
       <line class="arr" x1="276" y1="96" x2="276" y2="124"/>
       <line class="arr" x1="418" y1="96" x2="418" y2="124"/>
       <line class="arr" x1="347" y1="106" x2="347" y2="124"/>
-      <rect class="an-hl" x="216" y="126" width="262" height="70" rx="8"/>
+      <rect class="an-hl" x="216" y="126" width="262" height="70" rx="7"/>
       <circle class="ic" cx="238" cy="161" r="18"/>
       <text class="it" x="238" y="161">🧠</text>
       <text class="nt" x="268" y="144">ML Classifier</text>
@@ -331,9 +495,9 @@
       <line class="arr" x1="492" y1="161" x2="522" y2="161"/>
       <text class="arr-lbl" x="494" y="155">Serial COM9</text>
       <text class="arr-lbl" x="494" y="164">gesture label</text>
-      <rect class="gl" x="520" y="28" width="232" height="190" rx="10"/>
+      <rect class="gl" x="520" y="28" width="232" height="190" rx="8"/>
       <text class="gt" x="528" y="22">Actuation</text>
-      <rect class="an" x="532" y="40" width="130" height="56" rx="8"/>
+      <rect class="an" x="532" y="40" width="130" height="56" rx="7"/>
       <circle class="ic" cx="552" cy="68" r="17"/>
       <text class="it" x="552" y="68">⚙</text>
       <text class="nt" x="580" y="58">Arduino Uno</text>
@@ -341,49 +505,40 @@
       <text class="ns" x="580" y="84">5 output channels</text>
       <line class="arr" x1="597" y1="98" x2="597" y2="120"/>
       <text class="arr-lbl" x="600" y="112">PWM signals</text>
-      <rect class="an" x="532" y="122" width="130" height="56" rx="8"/>
+      <rect class="an" x="532" y="122" width="130" height="56" rx="7"/>
       <circle class="ic" cx="552" cy="150" r="17"/>
       <text class="it" x="552" y="150">🔩</text>
       <text class="nt" x="580" y="140">5 Servo Motors</text>
       <text class="ns" x="580" y="154">1 per finger</text>
       <text class="ns" x="580" y="167">rope-tendon drive</text>
       <line class="arr" x1="664" y1="150" x2="680" y2="150"/>
-      <rect class="an" x="680" y="122" width="62" height="72" rx="8"/>
+      <rect class="an" x="680" y="122" width="62" height="72" rx="7"/>
       <circle class="ic" cx="711" cy="144" r="18"/>
       <text class="it" x="711" y="144" style="font-size:18px">🦾</text>
       <text class="nt" x="697" y="172" style="font-size:10px;text-anchor:middle">Prosthetic</text>
       <text class="ns" x="697" y="184" style="text-anchor:middle">Arm</text>
-      <text class="arr-lbl acc-text" x="208" y="222" style="font-style:italic;font-size:8px">
-        ✦ Video 04 alternative path: laptop webcam gesture → replaces MTM chip card input
-      </text>
+      <text class="arr-lbl acc-text" x="208" y="222" style="font-style:italic;font-size:7.5px">✦ Demo 04 alternative: laptop webcam gesture → replaces MTM chip card input</text>
     </svg>
   </div>
 
-  <!-- ══════════════════════════════════════
-       HARDWARE — with hardware photo + autonomous demo
-  ══════════════════════════════════════ -->
+  <!-- ── HARDWARE ── -->
   <p class="section-label" data-i18n="sec_hardware">Hardware</p>
-
-  <!-- Hardware photo beside the spec list -->
   <div class="aside-wrap left">
-    <div class="aside-fig" onclick="openLightbox('assets/image3.jpg')" style="cursor:zoom-in">
-      <img src="assets/image3.jpg" alt="Hardware electrode setup">
+    <div class="aside-fig" onclick="openLightbox('assets/image3.jpg')">
+      <img src="assets/image3.jpg" alt="Hardware setup">
       <div class="fig-meta">
         <span class="fig-num">Fig 02</span>
         <span class="fig-caption" data-i18n="img3_cap">MTM chip card, Arduino Uno &amp; electrode placement</span>
       </div>
     </div>
-    <div>
-      <ul>
-        <li data-i18n="hw1"><strong>MTM chip card</strong> — EMG/EEG acquisition board developed by MTM Biotech, connected via Bluetooth; sampling rate ~3,500 Hz.</li>
-        <li data-i18n="hw2"><strong>Arduino Uno</strong> — Receives classified gesture labels over serial (COM9) and maps them to servo PWM signals.</li>
-        <li data-i18n="hw3"><strong>5 servo motors</strong> — One per finger, actuated by bait rope tensioned against elastic return bands.</li>
-        <li data-i18n="hw4"><strong>3D-printed arm</strong> — Custom-designed hand with rope-routed finger tendons.</li>
-      </ul>
-    </div>
+    <ul>
+      <li data-i18n="hw1"><strong>MTM chip card</strong> — EMG/EEG acquisition board developed by MTM Biotech, connected via Bluetooth; sampling rate ~3,500 Hz.</li>
+      <li data-i18n="hw2"><strong>Arduino Uno</strong> — Receives classified gesture labels over serial (COM9) and maps them to servo PWM signals.</li>
+      <li data-i18n="hw3"><strong>5 servo motors</strong> — One per finger, actuated by bait rope tensioned against elastic return bands.</li>
+      <li data-i18n="hw4"><strong>3D-printed arm</strong> — Custom-designed hand with rope-routed finger tendons.</li>
+    </ul>
   </div>
 
-  <!-- Autonomous arm demo — validates the mechanics before EMG is wired in -->
   <div class="fig">
     <video src="assets/video2.mp4" autoplay muted loop playsinline></video>
     <div class="fig-meta">
@@ -392,29 +547,24 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       DATASET
-  ══════════════════════════════════════ -->
+  <!-- ── DATASET ── -->
   <p class="section-label" data-i18n="sec_dataset">Dataset</p>
   <p data-i18n="dataset_intro">Three separate datasets were collected to train and validate the models:</p>
   <ul>
-    <li data-i18n="ds1"><strong>100-subject dataset</strong> — Each subject performed 5 individual finger movements (thumb → little finger), 5 repetitions, recorded for ~8 seconds each at 3,500 Hz. After correcting a data-accumulation bug in the acquisition software, the last 40,000 data points per CSV were extracted, yielding a matrix of 1,938 signal rows.</li>
-    <li data-i18n="ds2"><strong>Personal hand-gesture dataset</strong> — 44 signals per finger (5 classes) plus 44 noise signals = 264 signals total, captured under controlled conditions with the program restarted between recordings.</li>
+    <li data-i18n="ds1"><strong>100-subject dataset</strong> — Each subject performed 5 individual finger movements (thumb → little finger), 5 repetitions, ~8 seconds each at 3,500 Hz. After correcting a data-accumulation bug, the last 40,000 data points per CSV were extracted, yielding 1,938 signal rows.</li>
+    <li data-i18n="ds2"><strong>Personal hand-gesture dataset</strong> — 44 signals per finger (5 classes) + 44 noise signals = 264 signals total, captured under controlled conditions.</li>
     <li data-i18n="ds3"><strong>Fist + thumb-index dataset</strong> — 5 subjects performing a fist and a thumb–index pinch, 10 seconds each at 3,500 Hz. Used for secondary validation.</li>
   </ul>
 
-  <!-- ══════════════════════════════════════
-       SIGNAL PROCESSING — with MATLAB screenshot + processing demo
-  ══════════════════════════════════════ -->
+  <!-- ── SIGNAL PROCESSING ── -->
   <p class="section-label" data-i18n="sec_processing">Signal Processing Pipeline</p>
   <ol class="pipeline-steps">
-    <li><div><strong>Band-pass filtering</strong> — Multiple bands (20–100 Hz, 100–200 Hz … up to 500 Hz) applied to reject noise outside the physiological EMG range.</div></li>
-    <li><div><strong>Low-pass filtering</strong> — Additional low-pass filters at 3, 10, 20, 30, 40, and 50 Hz applied to the personal dataset for fine-grained feature comparison.</div></li>
-    <li><div><strong>Signal segmentation</strong> — A sliding FFT-energy window (3,000 points, step = 1) was used to extract the highest-energy movement epochs and discard quiet intervals.</div></li>
-    <li><div><strong>Wavelet transformation</strong> — Applied to capture joint time–frequency information; the resulting power spectra (scale 0–512, EMG basis 5–200 Hz) formed an additional feature channel.</div></li>
+    <li><div><strong>Band-pass filtering</strong> — Multiple bands (20–100 Hz up to 500 Hz) reject noise outside the physiological EMG range.</div></li>
+    <li><div><strong>Low-pass filtering</strong> — Additional filters at 3, 10, 20, 30, 40, and 50 Hz applied to the personal dataset for fine-grained feature comparison.</div></li>
+    <li><div><strong>Signal segmentation</strong> — A sliding FFT-energy window (3,000 points, step = 1) extracts the highest-energy movement epochs and discards quiet intervals.</div></li>
+    <li><div><strong>Wavelet transformation</strong> — Captures joint time–frequency information; power spectra (scale 0–512, EMG basis 5–200 Hz) form an additional feature channel.</div></li>
   </ol>
 
-  <!-- MATLAB real-time plots + processing video shown together -->
   <div class="two-up">
     <div class="fig" onclick="openLightbox('assets/image2.png')" style="cursor:zoom-in">
       <img src="assets/image2.png" alt="MATLAB signal plots" style="aspect-ratio:16/9;object-fit:cover">
@@ -432,14 +582,12 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       FEATURE EXTRACTION
-  ══════════════════════════════════════ -->
+  <!-- ── FEATURE EXTRACTION ── -->
   <p class="section-label" data-i18n="sec_features">Feature Extraction</p>
   <p data-i18n="features_intro">22 time-domain, frequency-domain, and time-frequency features were computed per signal window. The most impactful included:</p>
   <div class="row">
     <div class="col-md-6">
-      <ul style="font-size:.9rem;">
+      <ul>
         <li>MAV, RMS, VAR, SSI — amplitude &amp; energy</li>
         <li>Zero Crossing Rate (ZCR)</li>
         <li>Waveform Length (WL)</li>
@@ -448,7 +596,7 @@
       </ul>
     </div>
     <div class="col-md-6">
-      <ul style="font-size:.9rem;">
+      <ul>
         <li>IASD, IATD — derivative-based noise filters</li>
         <li>IEAV, IALV, IE — exponential/log amplification</li>
         <li>DAMV, DVARV, DASDV — difference statistics</li>
@@ -457,13 +605,10 @@
       </ul>
     </div>
   </div>
-  <p style="font-size:.88rem;color:var(--muted);" data-i18n="feature_selection_note">Automatic feature selection (highest-score 4 features) identified the SSI features of 3 Hz, 30 Hz, 40 Hz and 50 Hz bands as most discriminative, achieving 73% KNN accuracy on its own.</p>
+  <p class="note-text" data-i18n="feature_selection_note">Automatic feature selection identified SSI features of 3 Hz, 30 Hz, 40 Hz and 50 Hz bands as most discriminative, achieving 73% KNN accuracy on its own.</p>
 
-  <!-- ══════════════════════════════════════
-       RESULTS — table + confusion matrix side by side
-  ══════════════════════════════════════ -->
+  <!-- ── RESULTS ── -->
   <p class="section-label" data-i18n="sec_results">Results</p>
-
   <div class="aside-wrap">
     <div>
       <table class="results-table">
@@ -489,8 +634,7 @@
             <td>81 %</td><td>82 %</td>
           </tr>
           <tr>
-            <td>Naïve Bayes</td><td>3 Hz LP — MAV</td>
-            <td>64 %</td><td>—</td>
+            <td>Naïve Bayes</td><td>3 Hz LP — MAV</td><td>64 %</td><td>—</td>
           </tr>
           <tr>
             <td>Decision Tree</td><td data-i18n="hundred_subj">100-subject</td>
@@ -498,10 +642,9 @@
           </tr>
         </tbody>
       </table>
-      <p style="font-size:.82rem;color:var(--muted);" data-i18n="results_note">Low accuracy on the 100-subject set is attributed to FFT windowing artefacts; the personal dataset with all 33 features consistently performed best.</p>
+      <p class="note-text" data-i18n="results_note">Low accuracy on the 100-subject set is attributed to FFT windowing artefacts; the personal dataset with all 33 features consistently performed best.</p>
     </div>
-    <!-- Confusion matrix floated to the right of the table -->
-    <div class="aside-fig" onclick="openLightbox('assets/image4.png')" style="cursor:zoom-in">
+    <div class="aside-fig" onclick="openLightbox('assets/image4.png')">
       <img src="assets/image4.png" alt="Confusion matrix">
       <div class="fig-meta">
         <span class="fig-num">Fig 04</span>
@@ -510,12 +653,9 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       LIVE DEMOS — two real-time control videos
-  ══════════════════════════════════════ -->
+  <!-- ── LIVE DEMOS ── -->
   <p class="section-label" data-i18n="sec_live_demos">Live Demonstrations</p>
-  <p style="margin-bottom:1rem;">With the classifier trained, the system is connected end-to-end. The two videos below show the fully integrated pipeline: EMG-driven finger control via the MTM chip card, and a webcam-based fallback that requires no sensor at all.</p>
-
+  <p data-i18n="live_demos_intro">With the classifier trained, the system is connected end-to-end. The two videos below show the fully integrated pipeline: EMG-driven finger control via the MTM chip card, and a webcam-based fallback that requires no sensor at all.</p>
   <div class="two-up">
     <div class="fig">
       <video src="assets/video3.mp4" autoplay muted loop playsinline style="aspect-ratio:16/9"></video>
@@ -533,9 +673,7 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       CHALLENGES
-  ══════════════════════════════════════ -->
+  <!-- ── CHALLENGES ── -->
   <p class="section-label" data-i18n="sec_challenges">Challenges &amp; Solutions</p>
   <div class="challenge-box">
     <strong data-i18n="ch1_title">Data accumulation bug</strong>
@@ -550,20 +688,24 @@
     <p data-i18n="ch3_body">Initial assumption of 1,700 Hz was incorrect; confirmed 3,500 Hz by a 10-second capture test (35,000 points, verified ×3). All filters were re-applied with the corrected Nyquist frequency.</p>
   </div>
 
-  <!-- ══════════════════════════════════════
-       CONCLUSION
-  ══════════════════════════════════════ -->
+  <!-- ── CONCLUSION ── -->
   <p class="section-label" data-i18n="sec_conclusion">Conclusion</p>
   <p data-i18n="conclusion_text">The project demonstrated a full end-to-end pipeline from raw EMG acquisition to real-time servo actuation. Combining all raw and band-pass-filtered features into a single 33-feature vector fed into a Random Forest or Decision Tree classifier yielded the strongest results (~82%). The prototype confirms the viability of low-cost EMG-based prosthetic control and establishes a foundation for future improvements: larger multi-subject datasets, CNN-based raw signal classifiers, and user-adaptive calibration.</p>
 
 </article>
 </div>
 
-<footer>
-  <span data-i18n="footer_copy">© Copyright 2026 Ahmed Tamer</span>
-  <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a>
+<!-- FOOTER -->
+<footer class="fixed-bottom">
+  <div class="container">
+    <span data-i18n="footer_copy">© Copyright 2026 Ahmed Tamer</span>
+    &nbsp;·&nbsp;
+    <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a>
+  </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
 <script>
 const i18n = {
   en:{
@@ -579,6 +721,7 @@ const i18n = {
     img3_cap:"MTM chip card, Arduino Uno &amp; electrode placement",
     img4_cap:"Classifier performance — confusion matrix",
     sec_live_demos:"Live Demonstrations",
+    live_demos_intro:"With the classifier trained, the system is connected end-to-end. The two videos below show the fully integrated pipeline: EMG-driven finger control via the MTM chip card, and a webcam-based fallback that requires no sensor at all.",
     vid1_desc:"Band-pass filtering, wavelet transform, FFT windowing and feature extraction in real time.",
     vid2_desc:"Each finger actuated sequentially by Arduino servo commands — no sensor input, validating the mechanical design.",
     vid3_desc:"Each individual finger driven by classified EMG gestures from the MTM chip card via Bluetooth.",
@@ -591,12 +734,12 @@ const i18n = {
     hw3:"<strong>5 servo motors</strong> — One per finger, actuated by bait rope tensioned against elastic return bands.",
     hw4:"<strong>3D-printed arm</strong> — Custom-designed hand with rope-routed finger tendons.",
     sec_dataset:"Dataset",dataset_intro:"Three separate datasets were collected to train and validate the models:",
-    ds1:"<strong>100-subject dataset</strong> — Each subject performed 5 individual finger movements (thumb → little finger), 5 repetitions, recorded for ~8 seconds each at 3,500 Hz. After correcting a data-accumulation bug in the acquisition software, the last 40,000 data points per CSV were extracted, yielding a matrix of 1,938 signal rows.",
-    ds2:"<strong>Personal hand-gesture dataset</strong> — 44 signals per finger (5 classes) plus 44 noise signals = 264 signals total, captured under controlled conditions with the program restarted between recordings.",
+    ds1:"<strong>100-subject dataset</strong> — Each subject performed 5 individual finger movements (thumb → little finger), 5 repetitions, ~8 seconds each at 3,500 Hz. After correcting a data-accumulation bug, the last 40,000 data points per CSV were extracted, yielding 1,938 signal rows.",
+    ds2:"<strong>Personal hand-gesture dataset</strong> — 44 signals per finger (5 classes) + 44 noise signals = 264 signals total, captured under controlled conditions.",
     ds3:"<strong>Fist + thumb-index dataset</strong> — 5 subjects performing a fist and a thumb–index pinch, 10 seconds each at 3,500 Hz. Used for secondary validation.",
     sec_processing:"Signal Processing Pipeline",sec_features:"Feature Extraction",
     features_intro:"22 time-domain, frequency-domain, and time-frequency features were computed per signal window. The most impactful included:",
-    feature_selection_note:"Automatic feature selection (highest-score 4 features) identified the SSI features of 3 Hz, 30 Hz, 40 Hz and 50 Hz bands as most discriminative, achieving 73% KNN accuracy on its own.",
+    feature_selection_note:"Automatic feature selection identified SSI features of 3 Hz, 30 Hz, 40 Hz and 50 Hz bands as most discriminative, achieving 73% KNN accuracy on its own.",
     sec_results:"Results",th_model:"Model",th_data:"Data",th_acc:"Accuracy",th_f1:"F1",
     raw_plus_filtered:"Raw + All filtered",hundred_subj:"100-subject",
     results_note:"Low accuracy on the 100-subject set is attributed to FFT windowing artefacts; the personal dataset with all 33 features consistently performed best.",
@@ -620,37 +763,38 @@ const i18n = {
     meta_role:"Rol",meta_role_val:"ML Stajyeri",meta_result:"En İyi Doğruluk",
     sec_arch:"Sistem Mimarisi",
     img1_cap:"5 servo motorlu ve ip kirişli 3D baskılı kol",
-    img2_cap:"MATLAB — Gerçek zamanlı seri veri, FFT spektrumu &amp; tampon gücü",
+    img2_cap:"MATLAB — Gerçek zamanlı seri veri, FFT &amp; tampon gücü",
     img3_cap:"MTM çip kartı, Arduino Uno &amp; elektrot yerleşimi",
     img4_cap:"Sınıflandırıcı performansı — karışıklık matrisi",
     sec_live_demos:"Canlı Gösteriler",
+    live_demos_intro:"Sınıflandırıcı eğitildikten sonra sistem uçtan uca bağlanır. Aşağıdaki iki video tam entegre pipeline'ı göstermektedir.",
     vid1_desc:"Gerçek zamanlı bant geçiren filtreleme, dalgacık dönüşümü, FFT pencereleme ve özellik çıkarımı.",
-    vid2_desc:"Arduino servo komutlarıyla her parmağın sırayla tahrik edilmesi — sensör olmadan mekanik tasarım doğrulaması.",
-    vid3_desc:"MTM çip kartından Bluetooth üzerinden gelen sınıflandırılmış EMG hareketleriyle parmak kontrolü.",
-    vid4_desc:"Web kamerasından yakalanan el hareketleri protez kolu gerçek zamanlı yönlendiriyor — EMG sensörü gerekmez.",
+    vid2_desc:"Arduino servo komutlarıyla her parmağın sırayla tahrik edilmesi — mekanik tasarım doğrulaması.",
+    vid3_desc:"MTM çip kartından Bluetooth ile gelen sınıflandırılmış EMG hareketleriyle parmak kontrolü.",
+    vid4_desc:"Web kamerasından el hareketleriyle gerçek zamanlı protez kontrolü — EMG sensörü gerekmez.",
     sec_overview:"Genel Bakış",
-    overview_text:"Bu projenin amacı, EMG sinyallerinden çözümlenen el hareketlerine göre hareket eden yapay bir kol geliştirmekti. Sistem yüzey elektrotları aracılığıyla kas elektrik aktivitesini yakalar, sinyalleri ML ve derin öğrenme ile işler, ardından servo motorlara komut gönderir.",
+    overview_text:"Bu projenin amacı, EMG sinyallerinden çözümlenen el hareketlerine göre hareket eden yapay bir kol geliştirmekti. Sistem yüzey elektrotları aracılığıyla kas elektrik aktivitesini yakalar, ML ve derin öğrenme ile işler, ardından servo motorlara komut gönderir.",
     sec_hardware:"Donanım",
     hw1:"<strong>MTM çip kartı</strong> — MTM Biotech tarafından geliştirilmiş; Bluetooth, ~3.500 Hz.",
-    hw2:"<strong>Arduino Uno</strong> — Sınıflandırılmış hareket etiketlerini seri port üzerinden alır (COM9) ve servo PWM sinyallerine dönüştürür.",
-    hw3:"<strong>5 servo motor</strong> — Her parmak için bir adet; elastik bantlara karşı gerilen yem ipiyle tahrik.",
-    hw4:"<strong>3D baskılı kol</strong> — Halat yönlendirmeli parmak kirişleriyle özel tasarım el.",
-    sec_dataset:"Veri Seti",dataset_intro:"Modelleri eğitmek ve doğrulamak için üç ayrı veri seti toplandı:",
-    ds1:"<strong>100 denek veri seti</strong> — Her denek 5 parmak hareketi, 5 tekrar, ~8 saniye 3.500 Hz. 1.938 sinyal satırı.",
+    hw2:"<strong>Arduino Uno</strong> — Hareketleri alır (COM9) ve servo PWM sinyallerine dönüştürür.",
+    hw3:"<strong>5 servo motor</strong> — Her parmak için bir; elastik bantlara karşı gerilen iple tahrik.",
+    hw4:"<strong>3D baskılı kol</strong> — Halat yönlendirmeli parmak kirişleri.",
+    sec_dataset:"Veri Seti",dataset_intro:"Modelleri eğitmek için üç ayrı veri seti toplandı:",
+    ds1:"<strong>100 denek veri seti</strong> — 5 parmak, 5 tekrar, ~8 sn, 3.500 Hz. 1.938 sinyal satırı.",
     ds2:"<strong>Kişisel veri seti</strong> — Parmak başına 44 sinyal (5 sınıf) + 44 gürültü = 264 sinyal.",
-    ds3:"<strong>Yumruk + baş parmak-işaret veri seti</strong> — 5 denek, 3.500 Hz'de 10'ar saniye.",
+    ds3:"<strong>Yumruk + baş parmak-işaret veri seti</strong> — 5 denek, 10 sn, 3.500 Hz.",
     sec_processing:"Sinyal İşleme Pipeline'ı",sec_features:"Özellik Çıkarımı",
-    features_intro:"Sinyal penceresi başına 22 zaman alanı, frekans alanı ve zaman-frekans özelliği hesaplandı.",
-    feature_selection_note:"Otomatik özellik seçimi 3, 30, 40 ve 50 Hz bantlarının SSI özelliklerini en ayırt edici belirledi; tek başına %73 KNN doğruluğu.",
+    features_intro:"Pencere başına 22 zaman, frekans ve zaman-frekans özelliği hesaplandı.",
+    feature_selection_note:"Otomatik seçim 3, 30, 40 ve 50 Hz SSI özelliklerini en ayırt edici buldu; tek başına %73 KNN doğruluğu.",
     sec_results:"Sonuçlar",th_model:"Model",th_data:"Veri",th_acc:"Doğruluk",th_f1:"F1",
     raw_plus_filtered:"Ham + Tüm filtreliler",hundred_subj:"100 denek",
     results_note:"100 denek veri setindeki düşük doğruluk FFT pencereleme artefaktlarına bağlıdır.",
     sec_challenges:"Zorluklar ve Çözümler",
     ch1_title:"Veri birikim hatası",ch1_body:"Yazılım sıfırlanmadan veri ekliyordu. Son 40.000 nokta çıkarılarak çözüldü.",
-    ch2_title:"Deri etkisi gürültüsü",ch2_body:"Kalın deri bazı deneklerde sinyali düşürdü. Elektrot standardizasyonu ile azaltıldı.",
-    ch3_title:"Örnekleme hızı belirsizliği",ch3_body:"1.700 Hz varsayımı yanlıştı; 10 saniyelik test ile 3.500 Hz onaylandı.",
+    ch2_title:"Deri etkisi gürültüsü",ch2_body:"Kalın deri sinyali düşürdü. Elektrot standardizasyonu ile azaltıldı.",
+    ch3_title:"Örnekleme hızı belirsizliği",ch3_body:"1.700 Hz varsayımı yanlıştı; 10 saniyelik test ile 3.500 Hz doğrulandı.",
     sec_conclusion:"Sonuç",
-    conclusion_text:"Proje ham EMG ediniminden gerçek zamanlı servo tahrikine uçtan uca tam bir pipeline sergiledi. 33 özellikli vektör ile ~%82 doğruluk elde edildi.",
+    conclusion_text:"Proje ham EMG ediniminden servo tahrikine uçtan uca pipeline sergiledi. 33 özellik ve Random Forest/Decision Tree ile ~%82 doğruluk elde edildi.",
     footer_copy:"© Telif Hakkı 2026 Ahmed Tamer"
   }
 };
@@ -665,33 +809,27 @@ function applyLang(lang){
   document.getElementById('lang-toggle').textContent=lang==='en'?'TR':'EN';
   localStorage.setItem('lang',lang);
 }
-
 function openLightbox(src){
   document.getElementById('lightbox-img').src=src;
   document.getElementById('lightbox').classList.add('open');
 }
-document.getElementById('lightbox').addEventListener('click',()=>
-  document.getElementById('lightbox').classList.remove('open'));
-document.getElementById('lightbox-close').addEventListener('click',e=>{
-  e.stopPropagation();
-  document.getElementById('lightbox').classList.remove('open');
-});
+document.getElementById('lightbox').addEventListener('click',()=>document.getElementById('lightbox').classList.remove('open'));
+document.getElementById('lightbox-close').addEventListener('click',e=>{e.stopPropagation();document.getElementById('lightbox').classList.remove('open');});
 
 window.addEventListener('DOMContentLoaded',()=>{
-  const t=localStorage.getItem('theme')||'light';
-  document.documentElement.setAttribute('data-theme',t);
-  document.getElementById('theme-toggle').addEventListener('click',()=>{
+  const saved=localStorage.getItem('theme')||'light';
+  document.documentElement.setAttribute('data-theme',saved);
+  document.getElementById('light-toggle').addEventListener('click',()=>{
     const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
     document.documentElement.setAttribute('data-theme',next);
     localStorage.setItem('theme',next);
   });
   applyLang(localStorage.getItem('lang')||'en');
-  document.getElementById('lang-toggle').addEventListener('click',()=>{
-    applyLang((document.documentElement.getAttribute('data-lang')||'en')==='en'?'tr':'en');
-  });
+  document.getElementById('lang-toggle').addEventListener('click',()=>
+    applyLang((document.documentElement.getAttribute('data-lang')||'en')==='en'?'tr':'en'));
   document.addEventListener('scroll',()=>{
     const h=document.documentElement.scrollHeight-window.innerHeight;
-    document.getElementById('progress-bar').style.width=(h>0?window.scrollY/h*100:0)+'%';
+    document.getElementById('progress').value=h>0?(window.scrollY/h*100):0;
   });
 });
 </script>
