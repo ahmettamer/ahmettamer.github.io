@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Obstacle-Recognition Glasses | Ahmed Tamer</title>
+  <link rel="icon" type="image/jpeg" href="assets/img/ahmed1.jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css"/>
+  <style>
+    .project-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      background: var(--global-bg-color, #f8f8f8);
+      border: 1px solid var(--global-divider-color, #e0e0e0);
+    }
+    [data-theme="dark"] .project-meta-grid {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.08);
+    }
+    .project-meta-item label {
+      display: block;
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.5;
+      margin-bottom: 0.2rem;
+    }
+    .project-meta-item span {
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .project-section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.45;
+      margin: 2rem 0 0.6rem;
+    }
+    .ongoing-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: #e07b00;
+      background: rgba(224, 123, 0, 0.10);
+      border-radius: 20px;
+      padding: 0.2rem 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+    .ongoing-pill::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #e07b00;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .component-card {
+      border: 1px solid var(--global-divider-color, #e0e0e0);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    [data-theme="dark"] .component-card {
+      border-color: rgba(255,255,255,0.08);
+    }
+    .component-card h6 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .component-card p {
+      font-size: 0.86rem;
+      margin: 0;
+      opacity: 0.8;
+    }
+    .pipeline-steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1.5rem;
+    }
+    .pipeline-steps li {
+      counter-increment: step;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.92rem;
+    }
+    .pipeline-steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      background: var(--global-theme-color, #333);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      margin-top: 0.1rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      opacity: 0.6;
+      margin-bottom: 1.5rem;
+      transition: opacity 0.2s;
+    }
+    .back-link:hover { opacity: 1; text-decoration: none; }
+    .goal-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1.5rem;
+    }
+    .goal-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+    }
+    .goal-list li::before {
+      content: '→';
+      font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body class="fixed-top-nav">
+
+<!-- ── NAVBAR ── -->
+<header>
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Ahmed Tamer</a>
+      <button class="navbar-toggler collapsed ml-auto" type="button"
+        data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_about">about</a></li>
+          <li class="nav-item"><a class="nav-link" href="experience.html" data-i18n="nav_experience">experience</a></li>
+          <li class="nav-item active"><a class="nav-link" href="projects.html" data-i18n="nav_projects">projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="repositories.html" data-i18n="nav_repositories">repositories</a></li>
+          <li class="nav-item"><a class="nav-link" href="assets/pdf/cv.pdf" target="_blank" data-i18n="nav_cv">cv</a></li>
+          <li class="nav-item ml-1">
+            <button id="light-toggle" title="Change theme">
+              <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i>
+            </button>
+          </li>
+          <li class="nav-item ml-1">
+            <button id="lang-toggle" title="Change language">TR</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <progress id="progress" value="0">
+    <div class="progress-container"><span class="progress-bar"></span></div>
+  </progress>
+</header>
+
+<!-- ── MAIN ── -->
+<div class="container mt-5">
+  <div class="post fade-up">
+    <article>
+
+      <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> <span data-i18n="back_projects">all projects</span></a>
+
+      <h1 class="page-h1" data-i18n="proj_title">3D Audio &amp; AI-Powered Obstacle Recognition Glasses</h1>
+
+      <div class="ongoing-pill" data-i18n="ongoing_label">ongoing</div>
+
+      <p class="page-subtitle" data-i18n="proj_subtitle">
+        Smart glasses for visually impaired users — combining real-time YOLO object detection on a Raspberry Pi with spatial 3D audio cues that guide navigation without requiring sight.
+      </p>
+
+      <!-- Meta -->
+      <div class="project-meta-grid">
+        <div class="project-meta-item">
+          <label data-i18n="meta_type">Type</label>
+          <span data-i18n="meta_type_val">Independent Research</span>
+        </div>
+        <div class="project-meta-item">
+          <label data-i18n="meta_status">Status</label>
+          <span data-i18n="meta_status_val">In Development</span>
+        </div>
+        <div class="project-meta-item">
+          <label data-i18n="meta_platform">Platform</label>
+          <span>Raspberry Pi</span>
+        </div>
+        <div class="project-meta-item">
+          <label data-i18n="meta_target">Target Users</label>
+          <span data-i18n="meta_target_val">Visually Impaired</span>
+        </div>
+      </div>
+
+      <div class="tech-stack" style="margin-bottom:2rem;">
+        <span class="tag">YOLOv8</span><span class="tag">Raspberry Pi</span><span class="tag">Python</span>
+        <span class="tag">CNN / RNN</span><span class="tag">3D Audio (HRTF)</span><span class="tag">Dual Camera</span><span class="tag">OpenCV</span>
+      </div>
+
+      <!-- Motivation -->
+      <p class="project-section-title" data-i18n="sec_motivation">Motivation</p>
+      <p data-i18n="motivation_text">Over 2.2 billion people worldwide have some form of vision impairment. Existing assistive technologies — white canes and guide dogs — provide limited spatial information and no object identification. This project aims to build a wearable, affordable alternative that translates visual scene understanding into intuitive spatial audio, allowing users to hear where obstacles and objects are located in 3D space around them without any visual input.</p>
+
+      <!-- Goals -->
+      <p class="project-section-title" data-i18n="sec_goals">Project Goals</p>
+      <ul class="goal-list">
+        <li data-i18n="goal1">Detect and classify objects in real time using a YOLO-based model running on edge hardware.</li>
+        <li data-i18n="goal2">Convey object identity and position through directional 3D audio using Head-Related Transfer Functions (HRTF).</li>
+        <li data-i18n="goal3">Design lightweight, wearable hardware with dual cameras for depth estimation and wide field-of-view coverage.</li>
+        <li data-i18n="goal4">Achieve low-latency inference (&lt;200 ms) suitable for safe real-world navigation.</li>
+        <li data-i18n="goal5">Develop a user-centered interaction model minimising cognitive load.</li>
+      </ul>
+
+      <!-- System Architecture -->
+      <p class="project-section-title" data-i18n="sec_architecture">System Architecture</p>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="component-card">
+            <h6 data-i18n="comp1_title">Perception — Dual Camera</h6>
+            <p data-i18n="comp1_desc">Two cameras mounted on the glasses frame provide stereo vision for rough depth estimation. Each frame is streamed to the Raspberry Pi for real-time inference.</p>
+          </div>
+          <div class="component-card">
+            <h6 data-i18n="comp2_title">Detection — YOLOv8 (Edge)</h6>
+            <p data-i18n="comp2_desc">A quantised YOLOv8-nano model performs object detection at the highest frame rate achievable on the Pi's ARM core. Detected bounding boxes yield object class and screen-space position.</p>
+          </div>
+          <div class="component-card">
+            <h6 data-i18n="comp3_title">Depth Estimation — CNN/RNN</h6>
+            <p data-i18n="comp3_desc">A lightweight convolutional-recurrent model maps the stereo image pair to a per-object distance estimate, feeding into the audio spatialisation step.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="component-card">
+            <h6 data-i18n="comp4_title">Spatialisation — 3D Audio (HRTF)</h6>
+            <p data-i18n="comp4_desc">Object class and estimated azimuth/elevation are encoded as 3D binaural audio using HRTF filters. Each object class is mapped to a distinct earcon; proximity modulates volume.</p>
+          </div>
+          <div class="component-card">
+            <h6 data-i18n="comp5_title">Output — Bone-Conduction Headphones</h6>
+            <p data-i18n="comp5_desc">Bone-conduction headphones allow users to hear spatial audio feedback while remaining aware of ambient environmental sounds — a key safety requirement.</p>
+          </div>
+          <div class="component-card">
+            <h6 data-i18n="comp6_title">Processing Unit — Raspberry Pi 5</h6>
+            <p data-i18n="comp6_desc">Runs the full inference stack: camera capture, YOLO detection, depth estimation, and real-time HRTF audio rendering in a closed loop.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline -->
+      <p class="project-section-title" data-i18n="sec_pipeline">Real-Time Pipeline</p>
+      <ol class="pipeline-steps">
+        <li data-i18n="pipe1"><div><strong>Frame capture</strong> — Both cameras stream frames; one is selected for detection, the pair is used for depth.</div></li>
+        <li data-i18n="pipe2"><div><strong>Object detection</strong> — YOLOv8-nano runs inference; outputs class labels, confidence scores, and bounding box coordinates.</div></li>
+        <li data-i18n="pipe3"><div><strong>Distance estimation</strong> — Stereo disparity map or CNN model estimates metric distance to each detected object.</div></li>
+        <li data-i18n="pipe4"><div><strong>Scene prioritisation</strong> — Objects are ranked by proximity and danger level; only the most relevant 1–3 objects are sonified per cycle to avoid information overload.</div></li>
+        <li data-i18n="pipe5"><div><strong>3D audio rendering</strong> — HRTF filters spatialise a short earcon for each object at its estimated azimuth and elevation; rendered to stereo and played through bone-conduction headphones.</div></li>
+      </ol>
+
+      <!-- Current Status -->
+      <p class="project-section-title" data-i18n="sec_status">Current Status</p>
+      <ul>
+        <li data-i18n="stat1">YOLOv8-nano benchmarked on Raspberry Pi 5; real-time inference at ~8–12 FPS confirmed.</li>
+        <li data-i18n="stat2">HRTF-based 3D audio spatialisation prototype completed in Python using the <code>sounddevice</code> and <code>scipy</code> libraries.</li>
+        <li data-i18n="stat3">Dual-camera hardware design in progress; depth estimation module under development.</li>
+        <li data-i18n="stat4">User interaction model and cognitive-load evaluation planned for next phase.</li>
+      </ul>
+
+      <!-- Planned Work -->
+      <p class="project-section-title" data-i18n="sec_planned">Upcoming Work</p>
+      <ul>
+        <li data-i18n="plan1">Integrate stereo depth estimation with the detection pipeline end-to-end.</li>
+        <li data-i18n="plan2">Fine-tune YOLO on indoor obstacle classes (chairs, doors, stairs, people).</li>
+        <li data-i18n="plan3">Conduct user trials with visually impaired participants to evaluate spatial audio clarity and navigation accuracy.</li>
+        <li data-i18n="plan4">Optimise pipeline latency to sub-200 ms using model quantisation and thread parallelism.</li>
+        <li data-i18n="plan5">Design and 3D-print the final wearable glasses frame with integrated cameras and battery pack.</li>
+      </ul>
+
+    </article>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    <span data-i18n="footer_copy">© Copyright 2026 Ahmed Tamer</span>
+    &nbsp;·&nbsp; <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+<script>
+const i18n = {
+  en: {
+    page_title: "AI Obstacle-Recognition Glasses | Ahmed Tamer",
+    nav_about:"about", nav_experience:"experience", nav_projects:"projects",
+    nav_repositories:"repositories", nav_cv:"cv",
+    back_projects: "all projects",
+    proj_title: "3D Audio &amp; AI-Powered Obstacle Recognition Glasses",
+    ongoing_label: "ongoing",
+    proj_subtitle: "Smart glasses for visually impaired users — combining real-time YOLO object detection on a Raspberry Pi with spatial 3D audio cues that guide navigation without requiring sight.",
+    meta_type: "Type", meta_type_val: "Independent Research",
+    meta_status: "Status", meta_status_val: "In Development",
+    meta_platform: "Platform",
+    meta_target: "Target Users", meta_target_val: "Visually Impaired",
+    sec_motivation: "Motivation",
+    motivation_text: "Over 2.2 billion people worldwide have some form of vision impairment. Existing assistive technologies — white canes and guide dogs — provide limited spatial information and no object identification. This project aims to build a wearable, affordable alternative that translates visual scene understanding into intuitive spatial audio, allowing users to hear where obstacles and objects are located in 3D space around them without any visual input.",
+    sec_goals: "Project Goals",
+    goal1: "Detect and classify objects in real time using a YOLO-based model running on edge hardware.",
+    goal2: "Convey object identity and position through directional 3D audio using Head-Related Transfer Functions (HRTF).",
+    goal3: "Design lightweight, wearable hardware with dual cameras for depth estimation and wide field-of-view coverage.",
+    goal4: "Achieve low-latency inference (&lt;200 ms) suitable for safe real-world navigation.",
+    goal5: "Develop a user-centered interaction model minimising cognitive load.",
+    sec_architecture: "System Architecture",
+    comp1_title: "Perception — Dual Camera",
+    comp1_desc: "Two cameras mounted on the glasses frame provide stereo vision for rough depth estimation. Each frame is streamed to the Raspberry Pi for real-time inference.",
+    comp2_title: "Detection — YOLOv8 (Edge)",
+    comp2_desc: "A quantised YOLOv8-nano model performs object detection at the highest frame rate achievable on the Pi's ARM core. Detected bounding boxes yield object class and screen-space position.",
+    comp3_title: "Depth Estimation — CNN/RNN",
+    comp3_desc: "A lightweight convolutional-recurrent model maps the stereo image pair to a per-object distance estimate, feeding into the audio spatialisation step.",
+    comp4_title: "Spatialisation — 3D Audio (HRTF)",
+    comp4_desc: "Object class and estimated azimuth/elevation are encoded as 3D binaural audio using HRTF filters. Each object class is mapped to a distinct earcon; proximity modulates volume.",
+    comp5_title: "Output — Bone-Conduction Headphones",
+    comp5_desc: "Bone-conduction headphones allow users to hear spatial audio feedback while remaining aware of ambient environmental sounds — a key safety requirement.",
+    comp6_title: "Processing Unit — Raspberry Pi 5",
+    comp6_desc: "Runs the full inference stack: camera capture, YOLO detection, depth estimation, and real-time HRTF audio rendering in a closed loop.",
+    sec_pipeline: "Real-Time Pipeline",
+    pipe1: "<div><strong>Frame capture</strong> — Both cameras stream frames; one is selected for detection, the pair is used for depth.</div>",
+    pipe2: "<div><strong>Object detection</strong> — YOLOv8-nano runs inference; outputs class labels, confidence scores, and bounding box coordinates.</div>",
+    pipe3: "<div><strong>Distance estimation</strong> — Stereo disparity map or CNN model estimates metric distance to each detected object.</div>",
+    pipe4: "<div><strong>Scene prioritisation</strong> — Objects are ranked by proximity and danger level; only the most relevant 1–3 objects are sonified per cycle to avoid information overload.</div>",
+    pipe5: "<div><strong>3D audio rendering</strong> — HRTF filters spatialise a short earcon for each object at its estimated azimuth and elevation; rendered to stereo and played through bone-conduction headphones.</div>",
+    sec_status: "Current Status",
+    stat1: "YOLOv8-nano benchmarked on Raspberry Pi 5; real-time inference at ~8–12 FPS confirmed.",
+    stat2: "HRTF-based 3D audio spatialisation prototype completed in Python using the <code>sounddevice</code> and <code>scipy</code> libraries.",
+    stat3: "Dual-camera hardware design in progress; depth estimation module under development.",
+    stat4: "User interaction model and cognitive-load evaluation planned for next phase.",
+    sec_planned: "Upcoming Work",
+    plan1: "Integrate stereo depth estimation with the detection pipeline end-to-end.",
+    plan2: "Fine-tune YOLO on indoor obstacle classes (chairs, doors, stairs, people).",
+    plan3: "Conduct user trials with visually impaired participants to evaluate spatial audio clarity and navigation accuracy.",
+    plan4: "Optimise pipeline latency to sub-200 ms using model quantisation and thread parallelism.",
+    plan5: "Design and 3D-print the final wearable glasses frame with integrated cameras and battery pack.",
+    footer_copy: "© Copyright 2026 Ahmed Tamer"
+  },
+  tr: {
+    page_title: "Yapay Zeka Destekli Engel Tanıma Gözlüğü | Ahmed Tamer",
+    nav_about:"hakkımda", nav_experience:"deneyim", nav_projects:"projeler",
+    nav_repositories:"depolar", nav_cv:"özgeçmiş",
+    back_projects: "tüm projeler",
+    proj_title: "3D Sesli ve Yapay Zeka Destekli Engel Tanıma Gözlüğü",
+    ongoing_label: "devam ediyor",
+    proj_subtitle: "Görme engelli kullanıcılar için akıllı gözlük — Raspberry Pi üzerinde gerçek zamanlı YOLO nesne tespitini, görme gerektirmeden navigasyona rehberlik eden uzamsal 3D ses ipuçlarıyla birleştiriyor.",
+    meta_type: "Tür", meta_type_val: "Bağımsız Araştırma",
+    meta_status: "Durum", meta_status_val: "Geliştirme Aşamasında",
+    meta_platform: "Platform",
+    meta_target: "Hedef Kullanıcılar", meta_target_val: "Görme Engelliler",
+    sec_motivation: "Motivasyon",
+    motivation_text: "Dünya genelinde 2,2 milyardan fazla insan görme bozukluğuyla yaşamaktadır. Mevcut yardımcı teknolojiler — beyaz baston ve rehber köpekler — sınırlı mekansal bilgi sağlar ve nesne tanımlama yapamaz. Bu proje, görsel sahne anlayışını sezgisel uzamsal sese dönüştüren, giyilebilir ve uygun maliyetli bir alternatif inşa etmeyi amaçlamaktadır; kullanıcıların hiçbir görsel girdi olmadan çevrelerindeki engellerin ve nesnelerin 3 boyutlu uzaydaki konumunu 'duymasını' sağlar.",
+    sec_goals: "Proje Hedefleri",
+    goal1: "Uç donanımda çalışan YOLO tabanlı bir model kullanarak nesneleri gerçek zamanlı tespit edin ve sınıflandırın.",
+    goal2: "Kafa İlgili Transfer Fonksiyonları (HRTF) kullanan yönlü 3D ses aracılığıyla nesne kimliğini ve konumunu iletin.",
+    goal3: "Derinlik tahmini ve geniş görüş alanı kapsamı için çift kameralı hafif, giyilebilir donanım tasarlayın.",
+    goal4: "Güvenli gerçek dünya navigasyonu için uygun düşük gecikmeli çıkarım (&lt;200 ms) elde edin.",
+    goal5: "Bilişsel yükü en aza indiren kullanıcı merkezli bir etkileşim modeli geliştirin.",
+    sec_architecture: "Sistem Mimarisi",
+    comp1_title: "Algılama — Çift Kamera",
+    comp1_desc: "Gözlük çerçevesine monte edilmiş iki kamera, kaba derinlik tahmini için stereo görüş sağlar. Her kare gerçek zamanlı çıkarım için Raspberry Pi'ye aktarılır.",
+    comp2_title: "Tespit — YOLOv8 (Uç)",
+    comp2_desc: "Nicelleştirilmiş bir YOLOv8-nano modeli, Pi'nin ARM çekirdeğinde ulaşılabilir en yüksek kare hızında nesne tespiti gerçekleştirir. Tespit edilen sınır kutuları nesne sınıfını ve ekran alanı konumunu verir.",
+    comp3_title: "Derinlik Tahmini — CNN/RNN",
+    comp3_desc: "Hafif bir evrişimsel-tekrarlayan model, stereo görüntü çiftini nesne başına mesafe tahminine dönüştürür ve ses uzamsallaştırma adımına aktarır.",
+    comp4_title: "Uzamsallaştırma — 3D Ses (HRTF)",
+    comp4_desc: "Nesne sınıfı ve tahmini azimut/yükselti, HRTF filtreleri kullanılarak 3D biynoşal ses olarak kodlanır. Her nesne sınıfı farklı bir kulak ipucuyla eşleştirilir; yakınlık ses seviyesini modüle eder.",
+    comp5_title: "Çıktı — Kemik İletimli Kulaklıklar",
+    comp5_desc: "Kemik iletimli kulaklıklar, kullanıcıların çevresel sesleri duyurken uzamsal ses geri bildirimini almalarını sağlar — bu temel bir güvenlik gerekliliğidir.",
+    comp6_title: "İşlem Birimi — Raspberry Pi 5",
+    comp6_desc: "Tam çıkarım yığınını çalıştırır: kamera yakalama, YOLO tespiti, derinlik tahmini ve kapalı döngüde gerçek zamanlı HRTF ses oluşturma.",
+    sec_pipeline: "Gerçek Zamanlı Pipeline",
+    pipe1: "<div><strong>Kare yakalama</strong> — Her iki kamera kare aktarır; biri tespite, çifti derinliğe kullanılır.</div>",
+    pipe2: "<div><strong>Nesne tespiti</strong> — YOLOv8-nano çıkarım yapar; sınıf etiketleri, güven skorları ve sınır kutusu koordinatları çıktılanır.</div>",
+    pipe3: "<div><strong>Mesafe tahmini</strong> — Stereo paralaks haritası veya CNN modeli her tespit edilen nesneye metrik mesafeyi tahmin eder.</div>",
+    pipe4: "<div><strong>Sahne önceliklendirme</strong> — Nesneler yakınlık ve tehlike düzeyine göre sıralanır; bilgi aşımını önlemek için döngü başına yalnızca en alakalı 1–3 nesne seslendirilir.</div>",
+    pipe5: "<div><strong>3D ses oluşturma</strong> — HRTF filtreleri her nesne için tahmini azimut ve yükseltide kısa bir kulak ipucunu uzamsallaştırır; stereo olarak oluşturulur ve kemik iletimli kulaklıklardan çalınır.</div>",
+    sec_status: "Mevcut Durum",
+    stat1: "YOLOv8-nano, Raspberry Pi 5'te kıyaslandı; ~8–12 FPS'de gerçek zamanlı çıkarım doğrulandı.",
+    stat2: "<code>sounddevice</code> ve <code>scipy</code> kütüphaneleri kullanılarak Python'da HRTF tabanlı 3D ses uzamsallaştırma prototipi tamamlandı.",
+    stat3: "Çift kameralı donanım tasarımı devam ediyor; derinlik tahmini modülü geliştirme aşamasında.",
+    stat4: "Kullanıcı etkileşim modeli ve bilişsel yük değerlendirmesi sonraki aşama için planlandı.",
+    sec_planned: "Yaklaşan Çalışmalar",
+    plan1: "Stereo derinlik tahmimini tespit pipeline'ıyla uçtan uca entegre edin.",
+    plan2: "YOLO'yu iç mekan engel sınıflarında (sandalyeler, kapılar, merdivenler, insanlar) ince ayarlayın.",
+    plan3: "Uzamsal ses netliğini ve navigasyon doğruluğunu değerlendirmek için görme engelli katılımcılarla kullanıcı deneyleri yapın.",
+    plan4: "Model nicelleştirme ve iş parçacığı paralelizmi kullanarak pipeline gecikmesini 200 ms'nin altına optimize edin.",
+    plan5: "Entegre kameralar ve pil paketi ile son giyilebilir gözlük çerçevesini tasarlayın ve 3D yazdırın.",
+    footer_copy: "© Telif Hakkı 2026 Ahmed Tamer"
+  }
+};
+
+function applyLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'tr' ? 'tr' : 'en');
+  document.title = i18n[lang].page_title;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key] === undefined) return;
+    el.innerHTML = i18n[lang][key];
+  });
+  document.getElementById('lang-toggle').textContent = lang === 'en' ? 'TR' : 'EN';
+  localStorage.setItem('lang', lang);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+  document.getElementById('light-toggle').addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+  const savedLang = localStorage.getItem('lang') || 'en';
+  applyLang(savedLang);
+  document.getElementById('lang-toggle').addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-lang') || 'en';
+    applyLang(cur === 'en' ? 'tr' : 'en');
+  });
+  const progressBar = document.getElementById('progress');
+  if (progressBar) {
+    document.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.max = 100;
+    });
+  }
+});
+</script>
+</body>
+</html>
