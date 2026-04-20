@@ -133,27 +133,38 @@
       <h2><span data-i18n="section_sel_proj">selected projects</span> <a class="view-all-link" href="projects.html" data-i18n="view_all">view all →</a></h2>
 
       <div class="projects-grid">
-        <div class="project-card fade-up">
-          <div class="project-card-header">
-            <span class="project-name" data-i18n="proj1_name">3D Audio &amp; AI-Powered Obstacle Recognition Glasses</span>
-          </div>
-          <div class="ongoing-badge" data-i18n="ongoing_badge">● ongoing</div>
-          <p class="project-desc" data-i18n="proj1_desc">Smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback on Raspberry Pi.</p>
-          <div class="tech-stack">
-            <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN/RNN</span><span class="tag">3D Audio</span>
-          </div>
-        </div>
 
-        <div class="project-card fade-up">
-          <div class="project-card-header">
-            <span class="project-name" data-i18n="proj2_name">Classification of Breast Cancer from Histopathological Images</span>
-            <span class="project-date-tag">Apr–May 2025</span>
+        <!-- Project 1: Prosthetic Arm -->
+        <a href="project-prosthetic.html" class="project-card-link" style="text-decoration:none;color:inherit;">
+          <div class="project-card fade-up">
+            <div class="project-card-header">
+              <span class="project-name" data-i18n="proj_prosthetic_name">EMG-Controlled Prosthetic Arm</span>
+              <span class="project-date-tag">Jun–Aug 2024</span>
+            </div>
+            <p class="project-desc" data-i18n="proj_prosthetic_desc">A machine learning pipeline that classifies hand gestures from EMG signals to control an individual-finger prosthetic arm in real time, achieving 82% accuracy using CNN and wavelet transformation.</p>
+            <div class="tech-stack">
+              <span class="tag">Python</span><span class="tag">CNN</span><span class="tag">Wavelet Transform</span>
+              <span class="tag">Arduino</span><span class="tag">EMG Signals</span><span class="tag">SVM</span>
+            </div>
+            <div class="project-read-more" data-i18n="read_more">read more →</div>
           </div>
-          <p class="project-desc" data-i18n="proj2_desc">Benchmarked five deep learning architectures to improve diagnostic accuracy across multi-magnification histopathological images.</p>
-          <div class="tech-stack">
-            <span class="tag">Python</span><span class="tag">InceptionResNetV2</span><span class="tag">VGG16</span><span class="tag">MATLAB</span>
+        </a>
+
+        <!-- Project 2: AI Glasses -->
+        <a href="project-glasses.html" class="project-card-link" style="text-decoration:none;color:inherit;">
+          <div class="project-card fade-up">
+            <div class="project-card-header">
+              <span class="project-name" data-i18n="proj1_name">3D Audio &amp; AI-Powered Obstacle Recognition Glasses</span>
+            </div>
+            <div class="ongoing-badge" data-i18n="ongoing_badge">● ongoing</div>
+            <p class="project-desc" data-i18n="proj1_desc">Smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback on Raspberry Pi.</p>
+            <div class="tech-stack">
+              <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN/RNN</span><span class="tag">3D Audio</span>
+            </div>
+            <div class="project-read-more" data-i18n="read_more">read more →</div>
           </div>
-        </div>
+        </a>
+
       </div>
 
       <!-- SKILLS -->
@@ -225,7 +236,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
 <script>
-// ── TRANSLATIONS ──
 const i18n = {
   en: {
     page_title: "Ahmed Tamer",
@@ -247,11 +257,12 @@ const i18n = {
     exp2_company: "MTM Biotech — Kayseri, Turkey",
     exp2_bullets: `<li>Developed a classification model achieving <strong>82% accuracy</strong> to decode hand gestures from EMG signals, enabling individual finger control on a prosthetic arm.</li><li>Managed the full ML pipeline: data collection, preprocessing, feature engineering, model training, and real-time inference.</li>`,
     section_sel_proj: "selected projects",
+    proj_prosthetic_name: "EMG-Controlled Prosthetic Arm",
+    proj_prosthetic_desc: "A machine learning pipeline that classifies hand gestures from EMG signals to control an individual-finger prosthetic arm in real time, achieving 82% accuracy using CNN and wavelet transformation.",
     proj1_name: "3D Audio &amp; AI-Powered Obstacle Recognition Glasses",
     ongoing_badge: "● ongoing",
     proj1_desc: "Smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback on Raspberry Pi.",
-    proj2_name: "Classification of Breast Cancer from Histopathological Images",
-    proj2_desc: "Benchmarked five deep learning architectures to improve diagnostic accuracy across multi-magnification histopathological images.",
+    read_more: "read more →",
     section_skills: "skills",
     skill_prog: "Programming", skill_ml: "ML / Deep Learning", skill_hw: "Hardware",
     skill_ee: "EE Tools", skill_other: "Other", skill_lang: "Languages",
@@ -281,11 +292,12 @@ const i18n = {
     exp2_company: "MTM Biotech — Kayseri, Türkiye",
     exp2_bullets: `<li>EMG sinyallerinden el hareketlerini çözmek için <strong>%82 doğruluk</strong> elde eden sınıflandırma modeli geliştirdim; protez kolda bireysel parmak kontrolünü mümkün kıldım.</li><li>Tam ML pipeline'ını yönettim: veri toplama, ön işleme, özellik mühendisliği, model eğitimi ve gerçek zamanlı çıkarım.</li>`,
     section_sel_proj: "seçili projeler",
+    proj_prosthetic_name: "EMG Kontrollü Protez Kol",
+    proj_prosthetic_desc: "EMG sinyallerinden el hareketlerini sınıflandırarak bireysel parmak kontrolü sağlayan protez kolu gerçek zamanlı kontrol eden, CNN ve dalgacık dönüşümü kullanarak %82 doğruluk elde eden makine öğrenmesi pipeline'ı.",
     proj1_name: "3D Sesli ve Yapay Zeka Destekli Engel Tanıma Gözlüğü",
     ongoing_badge: "● devam ediyor",
     proj1_desc: "Görme engelli kullanıcılar için Raspberry Pi üzerinde gerçek zamanlı nesne tespiti ve yönlü 3D ses geribildirimiyle akıllı gözlük.",
-    proj2_name: "Histopatolojik Görüntülerden Meme Kanseri Sınıflandırması",
-    proj2_desc: "Çok büyütme histopatolojik görüntülerde tanı doğruluğunu artırmak için beş derin öğrenme mimarisini kıyasladım.",
+    read_more: "devamını oku →",
     section_skills: "beceriler",
     skill_prog: "Programlama", skill_ml: "ML / Derin Öğrenme", skill_hw: "Donanım",
     skill_ee: "EE Araçları", skill_other: "Diğer", skill_lang: "Diller",
@@ -297,7 +309,6 @@ const i18n = {
   }
 };
 
-// ── APPLY LANG ──
 function applyLang(lang) {
   document.documentElement.setAttribute('data-lang', lang);
   document.documentElement.setAttribute('lang', lang === 'tr' ? 'tr' : 'en');
@@ -305,19 +316,13 @@ function applyLang(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (i18n[lang][key] === undefined) return;
-    if (el.hasAttribute('data-i18n-html')) {
-      el.innerHTML = i18n[lang][key];
-    } else {
-      el.innerHTML = i18n[lang][key];
-    }
+    el.innerHTML = i18n[lang][key];
   });
   document.getElementById('lang-toggle').textContent = lang === 'en' ? 'TR' : 'EN';
   localStorage.setItem('lang', lang);
 }
 
-// ── INIT ──
 window.addEventListener('DOMContentLoaded', () => {
-  // Theme
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
   document.getElementById('light-toggle').addEventListener('click', () => {
@@ -326,7 +331,6 @@ window.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('theme', next);
   });
 
-  // Language
   const savedLang = localStorage.getItem('lang') || 'en';
   applyLang(savedLang);
   document.getElementById('lang-toggle').addEventListener('click', () => {
@@ -334,7 +338,6 @@ window.addEventListener('DOMContentLoaded', () => {
     applyLang(cur === 'en' ? 'tr' : 'en');
   });
 
-  // Progress bar
   const progressBar = document.getElementById('progress');
   if (progressBar) {
     document.addEventListener('scroll', () => {
