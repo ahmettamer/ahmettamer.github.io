@@ -30,7 +30,7 @@
     body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;
       font-size:15px;line-height:1.7;padding-top:56px;transition:background .3s,color .3s}
 
-    /* navbar */
+    /* ── nav ── */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
       display:flex;align-items:center;justify-content:space-between;
       padding:0 2rem;background:var(--bg);border-bottom:1px solid var(--border);
@@ -47,7 +47,7 @@
     #progress-bar{position:fixed;top:56px;left:0;height:2px;background:var(--accent);
       width:0%;z-index:99;transition:width .1s linear}
 
-    /* layout */
+    /* ── layout ── */
     .container{max-width:820px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
     .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;
       color:var(--muted);text-decoration:none;margin-bottom:2rem;transition:color .2s}
@@ -57,7 +57,7 @@
     .project-subtitle{font-size:1rem;color:var(--muted);max-width:600px;
       margin-bottom:1.5rem;line-height:1.6}
 
-    /* github link */
+    /* ── github link ── */
     .github-link{display:inline-flex;align-items:center;gap:.55rem;
       padding:.45rem 1.1rem;border-radius:8px;border:1px solid var(--border);
       background:var(--surface);color:var(--text);text-decoration:none;
@@ -69,7 +69,7 @@
     .github-badge{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);
       display:flex;align-items:center;gap:.3rem}
 
-    /* meta */
+    /* ── meta ── */
     .meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
       gap:.75rem;margin-bottom:2rem;padding:1rem 1.25rem;
       background:var(--surface);border-radius:10px;border:1px solid var(--border)}
@@ -80,53 +80,68 @@
     .badge-accent{display:inline-block;padding:.15rem .55rem;border-radius:4px;
       background:var(--accent-light);color:var(--accent);font-weight:600;font-size:.87rem}
 
-    /* tags */
+    /* ── tags ── */
     .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2.5rem}
     .tag{padding:.25rem .7rem;border-radius:20px;background:var(--tag-bg);
       color:var(--tag-text);font-size:.78rem;font-weight:500}
 
-    /* section label */
+    /* ── section label ── */
     .section-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;
       text-transform:uppercase;letter-spacing:.13em;color:var(--muted);
       margin:2.5rem 0 .7rem;display:flex;align-items:center;gap:.6rem}
     .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
-    /* body */
+    /* ── prose ── */
     p{margin-bottom:1rem;color:var(--text)}
     ul,ol{padding-left:1.4rem;margin-bottom:1rem}
     li{margin-bottom:.4rem;font-size:.92rem}
     strong{font-weight:600}
 
-    /* architecture */
+    /* ══════════════════════════════════════════
+       INLINE FIGURE — full-width, below text
+    ══════════════════════════════════════════ */
+    .fig{margin:1.25rem 0 2rem;border-radius:12px;overflow:hidden;
+      border:1px solid var(--border);background:var(--card-bg);
+      box-shadow:var(--shadow);transition:box-shadow .3s}
+    .fig:hover{box-shadow:var(--shadow-hover)}
+    .fig img{width:100%;display:block;object-fit:cover}
+    .fig video{width:100%;display:block;background:#000}
+    .fig-meta{display:flex;align-items:baseline;gap:.75rem;
+      padding:.55rem .9rem;border-top:1px solid var(--border);background:var(--surface)}
+    .fig-num{font-family:'JetBrains Mono',monospace;font-size:.62rem;
+      text-transform:uppercase;letter-spacing:.1em;color:var(--accent);flex-shrink:0}
+    .fig-caption{font-size:.78rem;color:var(--muted);line-height:1.4}
+
+    /* ══════════════════════════════════════════
+       SIDE-BY-SIDE — text left, figure right
+       (used when text + media should read together)
+    ══════════════════════════════════════════ */
+    .aside-wrap{display:grid;grid-template-columns:1fr 280px;gap:1.5rem;
+      align-items:start;margin-bottom:2rem}
+    .aside-wrap.left{grid-template-columns:280px 1fr}
+    @media(max-width:660px){
+      .aside-wrap,.aside-wrap.left{grid-template-columns:1fr}
+    }
+    .aside-fig{border-radius:10px;overflow:hidden;border:1px solid var(--border);
+      background:var(--card-bg);box-shadow:var(--shadow);flex-shrink:0}
+    .aside-fig img{width:100%;display:block;object-fit:cover}
+    .aside-fig video{width:100%;display:block;background:#000}
+    .aside-fig .fig-meta{padding:.45rem .75rem}
+
+    /* ══════════════════════════════════════════
+       TWO-UP — two videos / images side by side
+    ══════════════════════════════════════════ */
+    .two-up{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.25rem 0 2rem}
+    @media(max-width:560px){.two-up{grid-template-columns:1fr}}
+    .two-up .fig{margin:0}
+    .two-up .fig video,.two-up .fig img{aspect-ratio:16/9;object-fit:cover}
+
+    /* ── architecture ── */
     .arch-wrap{margin:1rem 0 2rem;background:var(--surface);border:1px solid var(--border);
       border-radius:12px;padding:1.5rem 1rem 1rem;overflow-x:auto}
     .arch-wrap svg{display:block;margin:0 auto;max-width:100%}
 
-    /* image grid */
-    .image-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0 2rem}
-    @media(max-width:560px){.image-grid,.video-grid{grid-template-columns:1fr}}
-    .image-card{border-radius:10px;overflow:hidden;border:1px solid var(--border);
-      background:var(--card-bg);box-shadow:var(--shadow);
-      transition:box-shadow .3s,transform .3s;cursor:zoom-in}
-    .image-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
-    .image-card img{width:100%;display:block;object-fit:cover;aspect-ratio:16/9}
-    .img-caption{padding:.5rem .75rem;font-size:.74rem;color:var(--muted);
-      font-family:'JetBrains Mono',monospace;border-top:1px solid var(--border);
-      background:var(--surface)}
-
-    /* video grid */
-    .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0 2rem}
-    .video-card{border-radius:10px;overflow:hidden;border:1px solid var(--border);
-      background:var(--card-bg);box-shadow:var(--shadow);transition:box-shadow .3s}
-    .video-card:hover{box-shadow:var(--shadow-hover)}
-    .video-card video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:#000}
-    .video-meta{padding:.6rem .85rem .75rem;border-top:1px solid var(--border);background:var(--surface)}
-    .video-num{font-family:'JetBrains Mono',monospace;font-size:.62rem;text-transform:uppercase;
-      letter-spacing:.1em;color:var(--accent);margin-bottom:.15rem}
-    .video-title{font-size:.84rem;font-weight:600;color:var(--text);margin-bottom:.1rem}
-    .video-desc{font-size:.76rem;color:var(--muted);line-height:1.4}
-
-    /* lightbox */
+    /* ── lightbox ── */
     #lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.9);
       align-items:center;justify-content:center}
     #lightbox.open{display:flex}
@@ -135,7 +150,7 @@
       color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7}
     #lightbox-close:hover{opacity:1}
 
-    /* results table */
+    /* ── results table ── */
     .results-table{width:100%;font-size:.84rem;border-collapse:collapse;margin:1rem 0 1.5rem}
     .results-table th{font-family:'JetBrains Mono',monospace;font-size:.65rem;text-transform:uppercase;
       letter-spacing:.07em;padding:.5rem .75rem;border-bottom:2px solid var(--border);text-align:left;color:var(--muted)}
@@ -143,7 +158,7 @@
     .results-table tr:last-child td{border-bottom:none}
     .results-table tr.best-row td{font-weight:600}
 
-    /* pipeline */
+    /* ── pipeline steps ── */
     .pipeline-steps{counter-reset:step;list-style:none;padding:0;margin:.5rem 0 1.5rem}
     .pipeline-steps li{counter-increment:step;display:flex;align-items:flex-start;
       gap:.9rem;margin-bottom:.75rem;font-size:.92rem}
@@ -152,12 +167,12 @@
       justify-content:center;font-size:.7rem;font-family:'JetBrains Mono',monospace;
       font-weight:700;margin-top:.1rem}
 
-    /* challenge */
+    /* ── challenge boxes ── */
     .challenge-box{border-left:3px solid var(--accent);padding:.65rem 1rem;margin:.75rem 0;
       background:var(--accent-light);border-radius:0 6px 6px 0}
     .challenge-box p{margin:.3rem 0 0;font-size:.87rem;color:var(--muted)}
 
-    /* footer */
+    /* ── footer ── */
     footer{position:fixed;bottom:0;left:0;right:0;background:var(--bg);
       border-top:1px solid var(--border);padding:.6rem 2rem;font-size:.78rem;color:var(--muted);
       display:flex;justify-content:space-between;align-items:center;transition:background .3s}
@@ -166,6 +181,9 @@
 
     .fade-up{opacity:0;transform:translateY(18px);animation:fadeUp .55s ease forwards}
     @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+    /* clickable images */
+    .fig img{cursor:zoom-in}
   </style>
 </head>
 <body>
@@ -220,13 +238,28 @@
     <span class="tag">MATLAB</span><span class="tag">Arduino Uno</span><span class="tag">EMG Signals</span>
   </div>
 
-  <!-- Overview -->
+  <!-- ══════════════════════════════════════
+       OVERVIEW — with hero arm photo
+  ══════════════════════════════════════ -->
   <p class="section-label" data-i18n="sec_overview">Overview</p>
-  <p data-i18n="overview_text">The goal of this project was to build an artificial arm that responds to hand gestures decoded from EMG (electromyography) signals. The system captures muscle electrical activity through surface electrodes, processes and classifies the signals using machine learning and deep learning, then sends commands to servo motors that actuate each individual finger of a 3D-printed arm. The project was carried out during an internship at MTM Biotech, using their proprietary MTM chip card for EMG acquisition.</p>
 
-  <!-- ════════════════════════════════════
-       SYSTEM ARCHITECTURE DIAGRAM
-  ════════════════════════════════════ -->
+  <!-- Arm photo sits right beside the opening paragraph -->
+  <div class="aside-wrap">
+    <div>
+      <p data-i18n="overview_text">The goal of this project was to build an artificial arm that responds to hand gestures decoded from EMG (electromyography) signals. The system captures muscle electrical activity through surface electrodes, processes and classifies the signals using machine learning and deep learning, then sends commands to servo motors that actuate each individual finger of a 3D-printed arm. The project was carried out during an internship at MTM Biotech, using their proprietary MTM chip card for EMG acquisition.</p>
+    </div>
+    <div class="aside-fig" onclick="openLightbox('assets/image11.jpg')" style="cursor:zoom-in">
+      <img src="assets/image11.jpg" alt="3D-printed prosthetic arm">
+      <div class="fig-meta">
+        <span class="fig-num">Fig 01</span>
+        <span class="fig-caption" data-i18n="img1_cap">3D-printed arm — 5 servo motors &amp; rope tendons</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SYSTEM ARCHITECTURE
+  ══════════════════════════════════════ -->
   <p class="section-label" data-i18n="sec_arch">System Architecture</p>
   <div class="arch-wrap">
     <svg id="arch-svg" viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" width="760" height="230">
@@ -239,77 +272,55 @@
         </marker>
       </defs>
       <style>
-        #arch-svg text { font-family: 'DM Sans', sans-serif; }
-        .an { fill: var(--card-bg, #fff); stroke: var(--border, #e2e2de); stroke-width:1.4; }
-        .an-hl { fill: rgba(45,106,79,.08); stroke: #2d6a4f; stroke-width:1.6; }
-        .gl { fill: none; stroke: var(--accent, #2d6a4f); stroke-width:1; stroke-dasharray:5 3; }
-        .gt { font-size:8px; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:.1em; fill: var(--accent, #2d6a4f); }
-        .nt { font-size:11px; font-weight:600; fill: var(--text, #1a1a18); }
-        .ns { font-size:8.5px; font-family:'JetBrains Mono',monospace; fill: var(--muted, #6b6b66); }
-        .arr { stroke:#9a9a94; stroke-width:1.5; marker-end:url(#arr); }
-        .arr-lbl { font-size:7.5px; font-family:'JetBrains Mono',monospace; fill: var(--muted,#6b6b66); }
-        .ic { fill: var(--accent,#2d6a4f); }
-        .it { font-size:13px; fill:#fff; font-weight:700; text-anchor:middle; dominant-baseline:central; }
-        .acc-text { fill: var(--accent,#2d6a4f); font-weight:700; }
+        #arch-svg text{font-family:'DM Sans',sans-serif}
+        .an{fill:var(--card-bg,#fff);stroke:var(--border,#e2e2de);stroke-width:1.4}
+        .an-hl{fill:rgba(45,106,79,.08);stroke:#2d6a4f;stroke-width:1.6}
+        .gl{fill:none;stroke:var(--accent,#2d6a4f);stroke-width:1;stroke-dasharray:5 3}
+        .gt{font-size:8px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;fill:var(--accent,#2d6a4f)}
+        .nt{font-size:11px;font-weight:600;fill:var(--text,#1a1a18)}
+        .ns{font-size:8.5px;font-family:'JetBrains Mono',monospace;fill:var(--muted,#6b6b66)}
+        .arr{stroke:#9a9a94;stroke-width:1.5;marker-end:url(#arr)}
+        .arr-lbl{font-size:7.5px;font-family:'JetBrains Mono',monospace;fill:var(--muted,#6b6b66)}
+        .ic{fill:var(--accent,#2d6a4f)}
+        .it{font-size:13px;fill:#fff;font-weight:700;text-anchor:middle;dominant-baseline:central}
+        .acc-text{fill:var(--accent,#2d6a4f);font-weight:700}
       </style>
-
-      <!-- ── GROUP: ACQUISITION ── -->
       <rect class="gl" x="6" y="28" width="178" height="190" rx="10"/>
       <text class="gt" x="14" y="22">Acquisition</text>
-
-      <!-- Muscle node -->
       <rect class="an" x="18" y="40" width="154" height="56" rx="8"/>
       <circle class="ic" cx="40" cy="68" r="17"/>
       <text class="it" x="40" y="68">💪</text>
       <text class="nt" x="68" y="60">Forearm Muscles</text>
       <text class="ns" x="68" y="74">Surface EMG electrodes</text>
       <text class="ns" x="68" y="86">skin-contact sensors</text>
-
-      <!-- Arrow down -->
       <line class="arr" x1="95" y1="98" x2="95" y2="120"/>
       <text class="arr-lbl" x="98" y="112">analog signal</text>
-
-      <!-- MTM node -->
       <rect class="an" x="18" y="122" width="154" height="56" rx="8"/>
       <circle class="ic" cx="40" cy="150" r="17"/>
       <text class="it" x="40" y="150">⚡</text>
       <text class="nt" x="68" y="142">MTM Chip Card</text>
       <text class="ns" x="68" y="156">EMG/EEG acquisition</text>
       <text class="ns" x="68" y="168">3,500 Hz · Bluetooth</text>
-
-      <!-- ── ARROW chip → PC ── -->
       <line class="arr" x1="173" y1="150" x2="206" y2="150"/>
       <text class="arr-lbl" x="175" y="145">BT</text>
-
-      <!-- ── GROUP: PC ── -->
       <rect class="gl" x="204" y="28" width="286" height="190" rx="10"/>
       <text class="gt" x="212" y="22">PC — Processing &amp; Classification</text>
-
-      <!-- Filter node -->
       <rect class="an" x="216" y="40" width="120" height="54" rx="8"/>
       <circle class="ic" cx="236" cy="67" r="15"/>
       <text class="it" x="236" y="67" style="font-size:11px">〜</text>
       <text class="nt" x="262" y="58">Filtering</text>
       <text class="ns" x="262" y="71">Band-pass 20–500 Hz</text>
       <text class="ns" x="262" y="83">Low-pass 3–50 Hz</text>
-
-      <!-- Arrow → -->
       <line class="arr" x1="338" y1="67" x2="360" y2="67"/>
-
-      <!-- Features node -->
       <rect class="an" x="360" y="40" width="118" height="54" rx="8"/>
       <circle class="ic" cx="380" cy="67" r="15"/>
       <text class="it" x="380" y="67" style="font-size:13px">∑</text>
       <text class="nt" x="406" y="58">Feature Ext.</text>
       <text class="ns" x="406" y="71">33 features total</text>
       <text class="ns" x="406" y="83">Wavelet · FFT · TD</text>
-
-      <!-- Arrows down to Classifier -->
       <line class="arr" x1="276" y1="96" x2="276" y2="124"/>
       <line class="arr" x1="418" y1="96" x2="418" y2="124"/>
       <line class="arr" x1="347" y1="106" x2="347" y2="124"/>
-
-      <!-- Classifier node (highlighted) -->
       <rect class="an-hl" x="216" y="126" width="262" height="70" rx="8"/>
       <circle class="ic" cx="238" cy="161" r="18"/>
       <text class="it" x="238" y="161">🧠</text>
@@ -317,135 +328,73 @@
       <text class="ns" x="268" y="158">Random Forest · Decision Tree</text>
       <text class="ns" x="268" y="170">KNN · SVM · CNN</text>
       <text class="ns acc-text" x="268" y="185">▶ Best accuracy: 82.3 %</text>
-
-      <!-- ── ARROW PC → Arduino ── -->
       <line class="arr" x1="492" y1="161" x2="522" y2="161"/>
       <text class="arr-lbl" x="494" y="155">Serial COM9</text>
       <text class="arr-lbl" x="494" y="164">gesture label</text>
-
-      <!-- ── GROUP: ACTUATION ── -->
       <rect class="gl" x="520" y="28" width="232" height="190" rx="10"/>
       <text class="gt" x="528" y="22">Actuation</text>
-
-      <!-- Arduino node -->
       <rect class="an" x="532" y="40" width="130" height="56" rx="8"/>
       <circle class="ic" cx="552" cy="68" r="17"/>
       <text class="it" x="552" y="68">⚙</text>
       <text class="nt" x="580" y="58">Arduino Uno</text>
       <text class="ns" x="580" y="72">PWM servo control</text>
       <text class="ns" x="580" y="84">5 output channels</text>
-
-      <!-- Arrow down -->
       <line class="arr" x1="597" y1="98" x2="597" y2="120"/>
       <text class="arr-lbl" x="600" y="112">PWM signals</text>
-
-      <!-- Servo node -->
       <rect class="an" x="532" y="122" width="130" height="56" rx="8"/>
       <circle class="ic" cx="552" cy="150" r="17"/>
       <text class="it" x="552" y="150">🔩</text>
       <text class="nt" x="580" y="140">5 Servo Motors</text>
       <text class="ns" x="580" y="154">1 per finger</text>
       <text class="ns" x="580" y="167">rope-tendon drive</text>
-
-      <!-- Arrow → arm -->
       <line class="arr" x1="664" y1="150" x2="680" y2="150"/>
-
-      <!-- Arm node -->
       <rect class="an" x="680" y="122" width="62" height="72" rx="8"/>
       <circle class="ic" cx="711" cy="144" r="18"/>
       <text class="it" x="711" y="144" style="font-size:18px">🦾</text>
       <text class="nt" x="697" y="172" style="font-size:10px;text-anchor:middle">Prosthetic</text>
       <text class="ns" x="697" y="184" style="text-anchor:middle">Arm</text>
-
-      <!-- Camera note -->
       <text class="arr-lbl acc-text" x="208" y="222" style="font-style:italic;font-size:8px">
         ✦ Video 04 alternative path: laptop webcam gesture → replaces MTM chip card input
       </text>
     </svg>
   </div>
 
-  <!-- ════════════════════════════════════
-       IMAGE GALLERY
-  ════════════════════════════════════ -->
-  <p class="section-label" data-i18n="sec_gallery">Gallery</p>
-  <div class="image-grid">
-
-    <div class="image-card" onclick="openLightbox('assets/image11.jpg')">
-      <img src="assets/image11.jpg" alt="3D-printed prosthetic arm">
-      <div class="img-caption" data-i18n="img1_cap">3D-printed arm with 5 servo motors and rope tendons</div>
-    </div>
-
-    <div class="image-card" onclick="openLightbox('assets/image2.png')">
-      <img src="assets/image2.png" alt="EMG MATLAB signal plots">
-      <div class="img-caption" data-i18n="img2_cap">MATLAB — Real-time serial data, FFT spectrum &amp; buffer power</div>
-    </div>
-
-    <div class="image-card" onclick="openLightbox('assets/image3.jpg')">
-      <img src="assets/image3.jpg" alt="Hardware electrode setup">
-      <div class="img-caption" data-i18n="img3_cap">MTM chip card, Arduino Uno &amp; electrode placement</div>
-    </div>
-
-    <div class="image-card" onclick="openLightbox('assets/image4.png')">
-      <img src="assets/image4.png" alt="Confusion matrix results">
-      <div class="img-caption" data-i18n="img4_cap">Classifier performance — confusion matrix</div>
-    </div>
-
-  </div>
-
-  <!-- ════════════════════════════════════
-       DEMO VIDEOS  (autoplay · loop · muted)
-  ════════════════════════════════════ -->
-  <p class="section-label" data-i18n="sec_videos">Demo Videos</p>
-  <div class="video-grid">
-
-    <div class="video-card">
-      <video src="assets/video1.mp4" autoplay muted loop playsinline></video>
-      <div class="video-meta">
-        <div class="video-num">Video 01</div>
-        <div class="video-title" data-i18n="vid1_title">EMG Signal Processing</div>
-        <div class="video-desc" data-i18n="vid1_desc">Band-pass filtering, wavelet transform, FFT windowing and feature extraction pipeline in real time.</div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <video src="assets/video2.mp4" autoplay muted loop playsinline></video>
-      <div class="video-meta">
-        <div class="video-num">Video 02</div>
-        <div class="video-title" data-i18n="vid2_title">Arm Working Autonomously</div>
-        <div class="video-desc" data-i18n="vid2_desc">Each finger actuated sequentially by Arduino servo commands — no sensor input, validating the mechanical design.</div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <video src="assets/video3.mp4" autoplay muted loop playsinline></video>
-      <div class="video-meta">
-        <div class="video-num">Video 03</div>
-        <div class="video-title" data-i18n="vid3_title">Real-time EMG Finger Control</div>
-        <div class="video-desc" data-i18n="vid3_desc">Each individual finger driven by classified EMG gestures from the MTM chip card via Bluetooth.</div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <video src="assets/video4.mp4" autoplay muted loop playsinline></video>
-      <div class="video-meta">
-        <div class="video-num">Video 04</div>
-        <div class="video-title" data-i18n="vid4_title">Laptop Camera Gesture Control</div>
-        <div class="video-desc" data-i18n="vid4_desc">Hand gestures captured via webcam drive the prosthetic arm in real time — no EMG sensor required.</div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Hardware -->
+  <!-- ══════════════════════════════════════
+       HARDWARE — with hardware photo + autonomous demo
+  ══════════════════════════════════════ -->
   <p class="section-label" data-i18n="sec_hardware">Hardware</p>
-  <ul>
-    <li data-i18n="hw1"><strong>MTM chip card</strong> — EMG/EEG acquisition board developed by MTM Biotech, connected via Bluetooth; sampling rate ~3,500 Hz.</li>
-    <li data-i18n="hw2"><strong>Arduino Uno</strong> — Receives classified gesture labels over serial (COM9) and maps them to servo PWM signals.</li>
-    <li data-i18n="hw3"><strong>5 servo motors</strong> — One per finger, actuated by bait rope tensioned against elastic return bands.</li>
-    <li data-i18n="hw4"><strong>3D-printed arm</strong> — Custom-designed hand with rope-routed finger tendons.</li>
-  </ul>
 
-  <!-- Dataset -->
+  <!-- Hardware photo beside the spec list -->
+  <div class="aside-wrap left">
+    <div class="aside-fig" onclick="openLightbox('assets/image3.jpg')" style="cursor:zoom-in">
+      <img src="assets/image3.jpg" alt="Hardware electrode setup">
+      <div class="fig-meta">
+        <span class="fig-num">Fig 02</span>
+        <span class="fig-caption" data-i18n="img3_cap">MTM chip card, Arduino Uno &amp; electrode placement</span>
+      </div>
+    </div>
+    <div>
+      <ul>
+        <li data-i18n="hw1"><strong>MTM chip card</strong> — EMG/EEG acquisition board developed by MTM Biotech, connected via Bluetooth; sampling rate ~3,500 Hz.</li>
+        <li data-i18n="hw2"><strong>Arduino Uno</strong> — Receives classified gesture labels over serial (COM9) and maps them to servo PWM signals.</li>
+        <li data-i18n="hw3"><strong>5 servo motors</strong> — One per finger, actuated by bait rope tensioned against elastic return bands.</li>
+        <li data-i18n="hw4"><strong>3D-printed arm</strong> — Custom-designed hand with rope-routed finger tendons.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Autonomous arm demo — validates the mechanics before EMG is wired in -->
+  <div class="fig">
+    <video src="assets/video2.mp4" autoplay muted loop playsinline></video>
+    <div class="fig-meta">
+      <span class="fig-num">Demo 01</span>
+      <span class="fig-caption" data-i18n="vid2_desc">Each finger actuated sequentially by Arduino servo commands — no sensor input, validating the mechanical design.</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DATASET
+  ══════════════════════════════════════ -->
   <p class="section-label" data-i18n="sec_dataset">Dataset</p>
   <p data-i18n="dataset_intro">Three separate datasets were collected to train and validate the models:</p>
   <ul>
@@ -454,7 +403,9 @@
     <li data-i18n="ds3"><strong>Fist + thumb-index dataset</strong> — 5 subjects performing a fist and a thumb–index pinch, 10 seconds each at 3,500 Hz. Used for secondary validation.</li>
   </ul>
 
-  <!-- Signal Processing -->
+  <!-- ══════════════════════════════════════
+       SIGNAL PROCESSING — with MATLAB screenshot + processing demo
+  ══════════════════════════════════════ -->
   <p class="section-label" data-i18n="sec_processing">Signal Processing Pipeline</p>
   <ol class="pipeline-steps">
     <li><div><strong>Band-pass filtering</strong> — Multiple bands (20–100 Hz, 100–200 Hz … up to 500 Hz) applied to reject noise outside the physiological EMG range.</div></li>
@@ -463,7 +414,27 @@
     <li><div><strong>Wavelet transformation</strong> — Applied to capture joint time–frequency information; the resulting power spectra (scale 0–512, EMG basis 5–200 Hz) formed an additional feature channel.</div></li>
   </ol>
 
-  <!-- Features -->
+  <!-- MATLAB real-time plots + processing video shown together -->
+  <div class="two-up">
+    <div class="fig" onclick="openLightbox('assets/image2.png')" style="cursor:zoom-in">
+      <img src="assets/image2.png" alt="MATLAB signal plots" style="aspect-ratio:16/9;object-fit:cover">
+      <div class="fig-meta">
+        <span class="fig-num">Fig 03</span>
+        <span class="fig-caption" data-i18n="img2_cap">MATLAB — real-time serial data, FFT &amp; buffer power</span>
+      </div>
+    </div>
+    <div class="fig">
+      <video src="assets/video1.mp4" autoplay muted loop playsinline style="aspect-ratio:16/9"></video>
+      <div class="fig-meta">
+        <span class="fig-num">Demo 02</span>
+        <span class="fig-caption" data-i18n="vid1_desc">Band-pass filtering, wavelet transform, FFT windowing and feature extraction in real time.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FEATURE EXTRACTION
+  ══════════════════════════════════════ -->
   <p class="section-label" data-i18n="sec_features">Feature Extraction</p>
   <p data-i18n="features_intro">22 time-domain, frequency-domain, and time-frequency features were computed per signal window. The most impactful included:</p>
   <div class="row">
@@ -488,44 +459,83 @@
   </div>
   <p style="font-size:.88rem;color:var(--muted);" data-i18n="feature_selection_note">Automatic feature selection (highest-score 4 features) identified the SSI features of 3 Hz, 30 Hz, 40 Hz and 50 Hz bands as most discriminative, achieving 73% KNN accuracy on its own.</p>
 
-  <!-- Results -->
+  <!-- ══════════════════════════════════════
+       RESULTS — table + confusion matrix side by side
+  ══════════════════════════════════════ -->
   <p class="section-label" data-i18n="sec_results">Results</p>
-  <table class="results-table">
-    <thead>
-      <tr>
-        <th data-i18n="th_model">Model</th>
-        <th data-i18n="th_data">Data</th>
-        <th data-i18n="th_acc">Accuracy</th>
-        <th data-i18n="th_precision">Precision</th>
-        <th data-i18n="th_f1">F1</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Decision Tree</td><td data-i18n="raw_plus_filtered">Raw + All filtered</td>
-        <td>82 %</td><td>81.5 %</td><td><span class="badge-accent">82.3 %</span></td>
-      </tr>
-      <tr class="best-row">
-        <td>Random Forest</td><td data-i18n="raw_plus_filtered">Raw + All filtered</td>
-        <td><span class="badge-accent">82.3 %</span></td><td>83.7 %</td><td>82.2 %</td>
-      </tr>
-      <tr>
-        <td>KNN</td><td data-i18n="raw_plus_filtered">Raw + All filtered</td>
-        <td>81 %</td><td>84 %</td><td>82 %</td>
-      </tr>
-      <tr>
-        <td>Naïve Bayes</td><td>3 Hz LP — MAV</td>
-        <td>64 %</td><td>—</td><td>—</td>
-      </tr>
-      <tr>
-        <td>Decision Tree</td><td data-i18n="hundred_subj">100-subject</td>
-        <td>20 %</td><td>—</td><td>—</td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="font-size:.82rem;color:var(--muted);" data-i18n="results_note">The low accuracy on the 100-subject dataset is attributed to signal-extraction artefacts from the FFT windowing code; the personal hand-gesture dataset with all 33 features consistently performed best.</p>
 
-  <!-- Challenges -->
+  <div class="aside-wrap">
+    <div>
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th data-i18n="th_model">Model</th>
+            <th data-i18n="th_data">Data</th>
+            <th data-i18n="th_acc">Accuracy</th>
+            <th data-i18n="th_f1">F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Decision Tree</td><td data-i18n="raw_plus_filtered">Raw + All filtered</td>
+            <td>82 %</td><td><span class="badge-accent">82.3 %</span></td>
+          </tr>
+          <tr class="best-row">
+            <td>Random Forest</td><td data-i18n="raw_plus_filtered">Raw + All filtered</td>
+            <td><span class="badge-accent">82.3 %</span></td><td>82.2 %</td>
+          </tr>
+          <tr>
+            <td>KNN</td><td data-i18n="raw_plus_filtered">Raw + All filtered</td>
+            <td>81 %</td><td>82 %</td>
+          </tr>
+          <tr>
+            <td>Naïve Bayes</td><td>3 Hz LP — MAV</td>
+            <td>64 %</td><td>—</td>
+          </tr>
+          <tr>
+            <td>Decision Tree</td><td data-i18n="hundred_subj">100-subject</td>
+            <td>20 %</td><td>—</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:.82rem;color:var(--muted);" data-i18n="results_note">Low accuracy on the 100-subject set is attributed to FFT windowing artefacts; the personal dataset with all 33 features consistently performed best.</p>
+    </div>
+    <!-- Confusion matrix floated to the right of the table -->
+    <div class="aside-fig" onclick="openLightbox('assets/image4.png')" style="cursor:zoom-in">
+      <img src="assets/image4.png" alt="Confusion matrix">
+      <div class="fig-meta">
+        <span class="fig-num">Fig 04</span>
+        <span class="fig-caption" data-i18n="img4_cap">Classifier performance — confusion matrix</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       LIVE DEMOS — two real-time control videos
+  ══════════════════════════════════════ -->
+  <p class="section-label" data-i18n="sec_live_demos">Live Demonstrations</p>
+  <p style="margin-bottom:1rem;">With the classifier trained, the system is connected end-to-end. The two videos below show the fully integrated pipeline: EMG-driven finger control via the MTM chip card, and a webcam-based fallback that requires no sensor at all.</p>
+
+  <div class="two-up">
+    <div class="fig">
+      <video src="assets/video3.mp4" autoplay muted loop playsinline style="aspect-ratio:16/9"></video>
+      <div class="fig-meta">
+        <span class="fig-num">Demo 03</span>
+        <span class="fig-caption" data-i18n="vid3_desc">Each individual finger driven by classified EMG gestures from the MTM chip card via Bluetooth.</span>
+      </div>
+    </div>
+    <div class="fig">
+      <video src="assets/video4.mp4" autoplay muted loop playsinline style="aspect-ratio:16/9"></video>
+      <div class="fig-meta">
+        <span class="fig-num">Demo 04</span>
+        <span class="fig-caption" data-i18n="vid4_desc">Hand gestures captured via webcam drive the prosthetic arm in real time — no EMG sensor required.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CHALLENGES
+  ══════════════════════════════════════ -->
   <p class="section-label" data-i18n="sec_challenges">Challenges &amp; Solutions</p>
   <div class="challenge-box">
     <strong data-i18n="ch1_title">Data accumulation bug</strong>
@@ -540,7 +550,9 @@
     <p data-i18n="ch3_body">Initial assumption of 1,700 Hz was incorrect; confirmed 3,500 Hz by a 10-second capture test (35,000 points, verified ×3). All filters were re-applied with the corrected Nyquist frequency.</p>
   </div>
 
-  <!-- Conclusion -->
+  <!-- ══════════════════════════════════════
+       CONCLUSION
+  ══════════════════════════════════════ -->
   <p class="section-label" data-i18n="sec_conclusion">Conclusion</p>
   <p data-i18n="conclusion_text">The project demonstrated a full end-to-end pipeline from raw EMG acquisition to real-time servo actuation. Combining all raw and band-pass-filtered features into a single 33-feature vector fed into a Random Forest or Decision Tree classifier yielded the strongest results (~82%). The prototype confirms the viability of low-cost EMG-based prosthetic control and establishes a foundation for future improvements: larger multi-subject datasets, CNN-based raw signal classifiers, and user-adaptive calibration.</p>
 
@@ -561,19 +573,15 @@ const i18n = {
     proj_subtitle:"Classifying hand gestures from electromyography signals to drive real-time individual finger control on a 3D-printed prosthetic arm.",
     meta_org:"Organization",meta_period:"Period",meta_period_val:"Jun – Aug 2024",
     meta_role:"Role",meta_role_val:"ML Intern",meta_result:"Best Accuracy",
-    sec_arch:"System Architecture",sec_gallery:"Gallery",
-    img1_cap:"3D-printed arm with 5 servo motors and rope tendons",
-    img2_cap:"MATLAB — Real-time serial data, FFT spectrum & buffer power",
-    img3_cap:"MTM chip card, Arduino Uno & electrode placement",
+    sec_arch:"System Architecture",
+    img1_cap:"3D-printed arm — 5 servo motors &amp; rope tendons",
+    img2_cap:"MATLAB — real-time serial data, FFT &amp; buffer power",
+    img3_cap:"MTM chip card, Arduino Uno &amp; electrode placement",
     img4_cap:"Classifier performance — confusion matrix",
-    sec_videos:"Demo Videos",
-    vid1_title:"EMG Signal Processing",
-    vid1_desc:"Band-pass filtering, wavelet transform, FFT windowing and feature extraction pipeline in real time.",
-    vid2_title:"Arm Working Autonomously",
+    sec_live_demos:"Live Demonstrations",
+    vid1_desc:"Band-pass filtering, wavelet transform, FFT windowing and feature extraction in real time.",
     vid2_desc:"Each finger actuated sequentially by Arduino servo commands — no sensor input, validating the mechanical design.",
-    vid3_title:"Real-time EMG Finger Control",
     vid3_desc:"Each individual finger driven by classified EMG gestures from the MTM chip card via Bluetooth.",
-    vid4_title:"Laptop Camera Gesture Control",
     vid4_desc:"Hand gestures captured via webcam drive the prosthetic arm in real time — no EMG sensor required.",
     sec_overview:"Overview",
     overview_text:"The goal of this project was to build an artificial arm that responds to hand gestures decoded from EMG (electromyography) signals. The system captures muscle electrical activity through surface electrodes, processes and classifies the signals using machine learning and deep learning, then sends commands to servo motors that actuate each individual finger of a 3D-printed arm. The project was carried out during an internship at MTM Biotech, using their proprietary MTM chip card for EMG acquisition.",
@@ -589,10 +597,10 @@ const i18n = {
     sec_processing:"Signal Processing Pipeline",sec_features:"Feature Extraction",
     features_intro:"22 time-domain, frequency-domain, and time-frequency features were computed per signal window. The most impactful included:",
     feature_selection_note:"Automatic feature selection (highest-score 4 features) identified the SSI features of 3 Hz, 30 Hz, 40 Hz and 50 Hz bands as most discriminative, achieving 73% KNN accuracy on its own.",
-    sec_results:"Results",th_model:"Model",th_data:"Data",th_acc:"Accuracy",th_precision:"Precision",th_f1:"F1",
+    sec_results:"Results",th_model:"Model",th_data:"Data",th_acc:"Accuracy",th_f1:"F1",
     raw_plus_filtered:"Raw + All filtered",hundred_subj:"100-subject",
-    results_note:"The low accuracy on the 100-subject dataset is attributed to signal-extraction artefacts from the FFT windowing code; the personal hand-gesture dataset with all 33 features consistently performed best.",
-    sec_challenges:"Challenges & Solutions",
+    results_note:"Low accuracy on the 100-subject set is attributed to FFT windowing artefacts; the personal dataset with all 33 features consistently performed best.",
+    sec_challenges:"Challenges &amp; Solutions",
     ch1_title:"Data accumulation bug",
     ch1_body:"The acquisition software appended data across sessions without resetting. Solved by assuming a fixed ~40,000 data-point budget per subject and extracting the last 40,000 points from each CSV.",
     ch2_title:"Skin-effect noise",
@@ -610,20 +618,16 @@ const i18n = {
     proj_subtitle:"Elektromiyografi sinyallerinden el hareketlerini sınıflandırarak 3D baskılı protez kolda bireysel parmak kontrolü sağlama.",
     meta_org:"Kuruluş",meta_period:"Dönem",meta_period_val:"Haz – Ağu 2024",
     meta_role:"Rol",meta_role_val:"ML Stajyeri",meta_result:"En İyi Doğruluk",
-    sec_arch:"Sistem Mimarisi",sec_gallery:"Galeri",
+    sec_arch:"Sistem Mimarisi",
     img1_cap:"5 servo motorlu ve ip kirişli 3D baskılı kol",
-    img2_cap:"MATLAB — Gerçek zamanlı seri veri, FFT spektrumu & tampon gücü",
-    img3_cap:"MTM çip kartı, Arduino Uno & elektrot yerleşimi",
+    img2_cap:"MATLAB — Gerçek zamanlı seri veri, FFT spektrumu &amp; tampon gücü",
+    img3_cap:"MTM çip kartı, Arduino Uno &amp; elektrot yerleşimi",
     img4_cap:"Sınıflandırıcı performansı — karışıklık matrisi",
-    sec_videos:"Demo Videoları",
-    vid1_title:"EMG Sinyal İşleme",
-    vid1_desc:"Gerçek zamanlı bant geçiren filtreleme, dalgacık dönüşümü, FFT pencereleme ve özellik çıkarım süreci.",
-    vid2_title:"Kolun Özerk Çalışması",
-    vid2_desc:"Arduino servo komutlarıyla her parmağın sırayla tahrik edilmesi — sensör girişi olmadan mekanik tasarımın doğrulanması.",
-    vid3_title:"Gerçek Zamanlı EMG Parmak Kontrolü",
-    vid3_desc:"MTM çip kartından Bluetooth üzerinden gelen sınıflandırılmış EMG hareketleriyle her parmağın ayrı ayrı kontrol edilmesi.",
-    vid4_title:"Laptop Kamerası ile Hareket Kontrolü",
-    vid4_desc:"Web kamerasından yakalanan el hareketleri protez kolu gerçek zamanlı olarak yönlendiriyor — EMG sensörü gerekmez.",
+    sec_live_demos:"Canlı Gösteriler",
+    vid1_desc:"Gerçek zamanlı bant geçiren filtreleme, dalgacık dönüşümü, FFT pencereleme ve özellik çıkarımı.",
+    vid2_desc:"Arduino servo komutlarıyla her parmağın sırayla tahrik edilmesi — sensör olmadan mekanik tasarım doğrulaması.",
+    vid3_desc:"MTM çip kartından Bluetooth üzerinden gelen sınıflandırılmış EMG hareketleriyle parmak kontrolü.",
+    vid4_desc:"Web kamerasından yakalanan el hareketleri protez kolu gerçek zamanlı yönlendiriyor — EMG sensörü gerekmez.",
     sec_overview:"Genel Bakış",
     overview_text:"Bu projenin amacı, EMG sinyallerinden çözümlenen el hareketlerine göre hareket eden yapay bir kol geliştirmekti. Sistem yüzey elektrotları aracılığıyla kas elektrik aktivitesini yakalar, sinyalleri ML ve derin öğrenme ile işler, ardından servo motorlara komut gönderir.",
     sec_hardware:"Donanım",
@@ -638,7 +642,7 @@ const i18n = {
     sec_processing:"Sinyal İşleme Pipeline'ı",sec_features:"Özellik Çıkarımı",
     features_intro:"Sinyal penceresi başına 22 zaman alanı, frekans alanı ve zaman-frekans özelliği hesaplandı.",
     feature_selection_note:"Otomatik özellik seçimi 3, 30, 40 ve 50 Hz bantlarının SSI özelliklerini en ayırt edici belirledi; tek başına %73 KNN doğruluğu.",
-    sec_results:"Sonuçlar",th_model:"Model",th_data:"Veri",th_acc:"Doğruluk",th_precision:"Kesinlik",th_f1:"F1",
+    sec_results:"Sonuçlar",th_model:"Model",th_data:"Veri",th_acc:"Doğruluk",th_f1:"F1",
     raw_plus_filtered:"Ham + Tüm filtreliler",hundred_subj:"100 denek",
     results_note:"100 denek veri setindeki düşük doğruluk FFT pencereleme artefaktlarına bağlıdır.",
     sec_challenges:"Zorluklar ve Çözümler",
@@ -651,43 +655,43 @@ const i18n = {
   }
 };
 
-function applyLang(lang) {
-  document.documentElement.setAttribute('data-lang', lang);
-  document.documentElement.lang = lang;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const k = el.getAttribute('data-i18n');
-    if (i18n[lang][k] !== undefined) el.innerHTML = i18n[lang][k];
+function applyLang(lang){
+  document.documentElement.setAttribute('data-lang',lang);
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(i18n[lang][k]!==undefined)el.innerHTML=i18n[lang][k];
   });
-  document.getElementById('lang-toggle').textContent = lang === 'en' ? 'TR' : 'EN';
-  localStorage.setItem('lang', lang);
+  document.getElementById('lang-toggle').textContent=lang==='en'?'TR':'EN';
+  localStorage.setItem('lang',lang);
 }
 
-function openLightbox(src) {
-  document.getElementById('lightbox-img').src = src;
+function openLightbox(src){
+  document.getElementById('lightbox-img').src=src;
   document.getElementById('lightbox').classList.add('open');
 }
-document.getElementById('lightbox').addEventListener('click', () =>
+document.getElementById('lightbox').addEventListener('click',()=>
   document.getElementById('lightbox').classList.remove('open'));
-document.getElementById('lightbox-close').addEventListener('click', e => {
+document.getElementById('lightbox-close').addEventListener('click',e=>{
   e.stopPropagation();
   document.getElementById('lightbox').classList.remove('open');
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-  const t = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', t);
-  document.getElementById('theme-toggle').addEventListener('click', () => {
-    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+window.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('theme')||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('theme-toggle').addEventListener('click',()=>{
+    const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',next);
+    localStorage.setItem('theme',next);
   });
-  applyLang(localStorage.getItem('lang') || 'en');
-  document.getElementById('lang-toggle').addEventListener('click', () => {
-    applyLang((document.documentElement.getAttribute('data-lang') || 'en') === 'en' ? 'tr' : 'en');
+  applyLang(localStorage.getItem('lang')||'en');
+  document.getElementById('lang-toggle').addEventListener('click',()=>{
+    applyLang((document.documentElement.getAttribute('data-lang')||'en')==='en'?'tr':'en');
   });
-  document.addEventListener('scroll', () => {
-    const h = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('progress-bar').style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+  document.addEventListener('scroll',()=>{
+    const h=document.documentElement.scrollHeight-window.innerHeight;
+    document.getElementById('progress-bar').style.width=(h>0?window.scrollY/h*100:0)+'%';
   });
 });
 </script>
