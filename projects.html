@@ -1,145 +1,289 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects | Ahmed Tamer</title>
+  <link rel="icon" type="image/jpeg" href="assets/img/ahmed1.jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css"/>
 </head>
-<body>
-<nav>
-  <a class="nav-brand" href="index.html">Ahmed Tamer</a>
-  <ul class="nav-links">
-    <li><a href="index.html">about</a></li>
-    <li><a href="experience.html">experience</a></li>
-    <li><a href="projects.html" class="active">projects</a></li>
-    <li><a href="assets/pdf/cv.pdf" target="_blank">cv</a></li>
-  </ul>
-</nav>
+<body class="fixed-top-nav">
 
-<main class="page">
-  <div class="page-header fade-up">
-    <h1>projects</h1>
-    <p>A collection of my engineering and machine learning projects.</p>
+<!-- ── NAVBAR ── -->
+<header>
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Ahmed Tamer</a>
+      <button class="navbar-toggler collapsed ml-auto" type="button"
+        data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_about">about</a></li>
+          <li class="nav-item"><a class="nav-link" href="experience.html" data-i18n="nav_experience">experience</a></li>
+          <li class="nav-item active"><a class="nav-link" href="projects.html" data-i18n="nav_projects">projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="repositories.html" data-i18n="nav_repositories">repositories</a></li>
+          <li class="nav-item"><a class="nav-link" href="assets/pdf/cv.pdf" target="_blank" data-i18n="nav_cv">cv</a></li>
+          <li class="nav-item ml-1">
+            <button id="light-toggle" title="Change theme">
+              <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i>
+            </button>
+          </li>
+          <li class="nav-item ml-1">
+            <button id="lang-toggle" title="Change language">TR</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <progress id="progress" value="0">
+    <div class="progress-container"><span class="progress-bar"></span></div>
+  </progress>
+</header>
+
+<!-- ── MAIN ── -->
+<div class="container mt-5">
+  <div class="post fade-up">
+    <article>
+
+      <h1 class="page-h1" data-i18n="page_h1">projects</h1>
+      <p class="page-subtitle" data-i18n="page_subtitle">A collection of my engineering and machine learning projects.</p>
+
+      <!-- ONGOING -->
+      <h2 data-i18n="section_ongoing">ongoing</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-name" data-i18n="proj_glasses_name">3D Audio &amp; AI-Powered Obstacle Recognition Glasses</span>
+          </div>
+          <div class="ongoing-badge" data-i18n="ongoing_badge">● ongoing</div>
+          <p class="project-desc" data-i18n="proj_glasses_desc">Developing smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback. Designing dual-camera hardware and implementing embedded systems with real-time image processing and user-centered interaction design.</p>
+          <div class="tech-stack">
+            <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN/RNN</span><span class="tag">3D Audio</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MACHINE LEARNING & AI -->
+      <h2 data-i18n="section_ml">machine learning &amp; AI</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-name" data-i18n="proj_breast_name">Classification of Breast Cancer from Histopathological Images</span>
+            <span class="project-date-tag">Apr–May 2025</span>
+          </div>
+          <p class="project-desc" data-i18n="proj_breast_desc">Combined image processing, machine learning, and deep learning to improve diagnostic accuracy across multi-magnification histopathological images. Evaluated and benchmarked five deep learning architectures to identify best-performing models for clinical image classification.</p>
+          <div class="tech-stack">
+            <span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">InceptionResNetV2</span><span class="tag">ResNet152V2</span><span class="tag">InceptionV3</span><span class="tag">VGG16</span><span class="tag">Xception</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-name" data-i18n="proj_heart_name">Classification of Heart Disease</span>
+            <span class="project-date-tag">May–Jun 2025</span>
+          </div>
+          <p class="project-desc" data-i18n="proj_heart_desc">Analyzed the Heart Disease Health Indicators dataset to identify key risk factors and predict heart disease presence using multiple ML classifiers. Performed end-to-end pipeline: data preprocessing, feature selection, cross-validation, and model evaluation with performance metrics.</p>
+          <div class="tech-stack">
+            <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Google Colab</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- EMBEDDED SYSTEMS & HARDWARE -->
+      <h2 data-i18n="section_embedded">embedded systems &amp; hardware</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-name" data-i18n="proj_robot_name">Line Follower Robot with PID Adaptive Cruise Control</span>
+            <span class="project-date-tag">Nov–Dec 2024</span>
+          </div>
+          <p class="project-desc" data-i18n="proj_robot_desc">Built a line-following robot using an STM32 microcontroller with PID-based motor control to minimize trajectory deviations in real time.</p>
+          <div class="tech-stack">
+            <span class="tag">C</span><span class="tag">STM32</span><span class="tag">PID</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-name" data-i18n="proj_steth_name">Digital Stethoscope Circuit</span>
+            <span class="project-date-tag">Nov 2023–Jan 2024</span>
+          </div>
+          <p class="project-desc" data-i18n="proj_steth_desc">Designed an electronic stethoscope from accessible components using both analog and digital filtering to capture heart signals with high clarity and accuracy.</p>
+          <div class="tech-stack">
+            <span class="tag">MATLAB</span><span class="tag">PCB</span><span class="tag">Arduino</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-name" data-i18n="proj_dice_name">Uneven Seven-Sided Dice Circuit</span>
+            <span class="project-date-tag">Mar–Apr 2024</span>
+          </div>
+          <p class="project-desc" data-i18n="proj_dice_desc">Designed a digital system to simulate rolling an uneven 7-sided die using a custom random data generator, mixed-level 2-bit full-adder, frequency division, and synchronized registers.</p>
+          <div class="tech-stack">
+            <span class="tag">LTSpice</span><span class="tag">PCB</span><span class="tag">Proteus</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-name" data-i18n="proj_lock_name">Digital Password Lock System Using VHDL</span>
+            <span class="project-date-tag">Dec 2023–Jan 2024</span>
+          </div>
+          <p class="project-desc" data-i18n="proj_lock_desc">Developed a 4-digit digital lock system in VHDL using a finite state machine for secure keypad password verification and access control logic on FPGA.</p>
+          <div class="tech-stack">
+            <span class="tag">VHDL</span><span class="tag">Vivado</span><span class="tag">FPGA</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SIGNAL PROCESSING & COMMUNICATIONS -->
+      <h2 data-i18n="section_signal">signal processing &amp; communications</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-name" data-i18n="proj_echo_name">Echo Reduction in Audio Transmission Using PAM &amp; Digital Equalization</span>
+            <span class="project-date-tag">Apr–May 2025</span>
+          </div>
+          <p class="project-desc" data-i18n="proj_echo_desc">Designed and implemented a PAM audio transmission system to reduce echo distortion and inter-symbol interference (ISI). Developed a digital equalizer with inverse IIR filtering in LabVIEW, achieving a signal-to-noise ratio of ~22 dB.</p>
+          <div class="tech-stack">
+            <span class="tag">LabVIEW</span><span class="tag">DSP</span><span class="tag">Antenna</span>
+          </div>
+        </div>
+
+      </div>
+
+    </article>
   </div>
+</div>
 
-  <section class="fade-up" style="border-bottom:none; padding-top:0;">
-    <h2 class="section-title">ongoing</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-card-header">
-          <span class="project-name">3D Audio &amp; AI-Powered Obstacle Recognition Glasses</span>
-        </div>
-        <div class="ongoing-badge">● ongoing</div>
-        <p class="project-desc">Developing smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback. Designing dual-camera hardware and implementing embedded systems with real-time image processing and user-centered interaction design.</p>
-        <div class="tech-stack">
-          <span class="tag">YOLO</span><span class="tag">Raspberry Pi</span><span class="tag">CNN/RNN</span><span class="tag">3D Audio</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="fade-up">
-    <h2 class="section-title">machine learning &amp; AI</h2>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-card-header">
-          <span class="project-name">Classification of Breast Cancer from Histopathological Images</span>
-          <span class="project-date-tag">Apr–May 2025</span>
-        </div>
-        <p class="project-desc">Combined image processing, machine learning, and deep learning to improve diagnostic accuracy across multi-magnification histopathological images. Evaluated and benchmarked five deep learning architectures to identify best-performing models for clinical image classification.</p>
-        <div class="tech-stack">
-          <span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">InceptionResNetV2</span><span class="tag">ResNet152V2</span><span class="tag">InceptionV3</span><span class="tag">VGG16</span><span class="tag">Xception</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-header">
-          <span class="project-name">Classification of Heart Disease</span>
-          <span class="project-date-tag">May–Jun 2025</span>
-        </div>
-        <p class="project-desc">Analyzed the Heart Disease Health Indicators dataset to identify key risk factors and predict heart disease presence using multiple ML classifiers. Performed end-to-end pipeline: data preprocessing, feature selection, cross-validation, and model evaluation with performance metrics.</p>
-        <div class="tech-stack">
-          <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Google Colab</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="fade-up">
-    <h2 class="section-title">embedded systems &amp; hardware</h2>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-card-header">
-          <span class="project-name">Line Follower Robot with PID Adaptive Cruise Control</span>
-          <span class="project-date-tag">Nov–Dec 2024</span>
-        </div>
-        <p class="project-desc">Built a line-following robot using an STM32 microcontroller with PID-based motor control to minimize trajectory deviations in real time.</p>
-        <div class="tech-stack">
-          <span class="tag">C</span><span class="tag">STM32</span><span class="tag">PID</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-header">
-          <span class="project-name">Digital Stethoscope Circuit</span>
-          <span class="project-date-tag">Nov 2023–Jan 2024</span>
-        </div>
-        <p class="project-desc">Designed an electronic stethoscope from accessible components using both analog and digital filtering to capture heart signals with high clarity and accuracy.</p>
-        <div class="tech-stack">
-          <span class="tag">MATLAB</span><span class="tag">PCB</span><span class="tag">Arduino</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-header">
-          <span class="project-name">Uneven Seven-Sided Dice Circuit</span>
-          <span class="project-date-tag">Mar–Apr 2024</span>
-        </div>
-        <p class="project-desc">Designed a digital system to simulate rolling an uneven 7-sided die using a custom random data generator, mixed-level 2-bit full-adder, frequency division, and synchronized registers.</p>
-        <div class="tech-stack">
-          <span class="tag">LTSpice</span><span class="tag">PCB</span><span class="tag">Proteus</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-header">
-          <span class="project-name">Digital Password Lock System Using VHDL</span>
-          <span class="project-date-tag">Dec 2023–Jan 2024</span>
-        </div>
-        <p class="project-desc">Developed a 4-digit digital lock system in VHDL using a finite state machine for secure keypad password verification and access control logic on FPGA.</p>
-        <div class="tech-stack">
-          <span class="tag">VHDL</span><span class="tag">Vivado</span><span class="tag">FPGA</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="fade-up">
-    <h2 class="section-title">signal processing &amp; communications</h2>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-card-header">
-          <span class="project-name">Echo Reduction in Audio Transmission Using PAM &amp; Digital Equalization</span>
-          <span class="project-date-tag">Apr–May 2025</span>
-        </div>
-        <p class="project-desc">Designed and implemented a PAM audio transmission system to reduce echo distortion and inter-symbol interference (ISI). Developed a digital equalizer with inverse IIR filtering in LabVIEW, achieving a signal-to-noise ratio of ~22 dB.</p>
-        <div class="tech-stack">
-          <span class="tag">LabVIEW</span><span class="tag">DSP</span><span class="tag">Antenna</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-</main>
-
-<footer>
-  <p>© 2025 Ahmed Tamer &nbsp;·&nbsp; <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a></p>
+<!-- ── FOOTER ── -->
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    <span data-i18n="footer_copy">© Copyright 2026 Ahmed Tamer</span>
+    &nbsp;·&nbsp; <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a>
+  </div>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+<script>
+const i18n = {
+  en: {
+    page_title: "Projects | Ahmed Tamer",
+    nav_about: "about", nav_experience: "experience", nav_projects: "projects",
+    nav_repositories: "repositories", nav_cv: "cv",
+    page_h1: "projects",
+    page_subtitle: "A collection of my engineering and machine learning projects.",
+    section_ongoing: "ongoing",
+    proj_glasses_name: "3D Audio &amp; AI-Powered Obstacle Recognition Glasses",
+    ongoing_badge: "● ongoing",
+    proj_glasses_desc: "Developing smart glasses for visually impaired users with real-time object detection and directional 3D audio feedback. Designing dual-camera hardware and implementing embedded systems with real-time image processing and user-centered interaction design.",
+    section_ml: "machine learning &amp; AI",
+    proj_breast_name: "Classification of Breast Cancer from Histopathological Images",
+    proj_breast_desc: "Combined image processing, machine learning, and deep learning to improve diagnostic accuracy across multi-magnification histopathological images. Evaluated and benchmarked five deep learning architectures to identify best-performing models for clinical image classification.",
+    proj_heart_name: "Classification of Heart Disease",
+    proj_heart_desc: "Analyzed the Heart Disease Health Indicators dataset to identify key risk factors and predict heart disease presence using multiple ML classifiers. Performed end-to-end pipeline: data preprocessing, feature selection, cross-validation, and model evaluation with performance metrics.",
+    section_embedded: "embedded systems &amp; hardware",
+    proj_robot_name: "Line Follower Robot with PID Adaptive Cruise Control",
+    proj_robot_desc: "Built a line-following robot using an STM32 microcontroller with PID-based motor control to minimize trajectory deviations in real time.",
+    proj_steth_name: "Digital Stethoscope Circuit",
+    proj_steth_desc: "Designed an electronic stethoscope from accessible components using both analog and digital filtering to capture heart signals with high clarity and accuracy.",
+    proj_dice_name: "Uneven Seven-Sided Dice Circuit",
+    proj_dice_desc: "Designed a digital system to simulate rolling an uneven 7-sided die using a custom random data generator, mixed-level 2-bit full-adder, frequency division, and synchronized registers.",
+    proj_lock_name: "Digital Password Lock System Using VHDL",
+    proj_lock_desc: "Developed a 4-digit digital lock system in VHDL using a finite state machine for secure keypad password verification and access control logic on FPGA.",
+    section_signal: "signal processing &amp; communications",
+    proj_echo_name: "Echo Reduction in Audio Transmission Using PAM &amp; Digital Equalization",
+    proj_echo_desc: "Designed and implemented a PAM audio transmission system to reduce echo distortion and inter-symbol interference (ISI). Developed a digital equalizer with inverse IIR filtering in LabVIEW, achieving a signal-to-noise ratio of ~22 dB.",
+    footer_copy: "© Copyright 2026 Ahmed Tamer"
+  },
+  tr: {
+    page_title: "Projeler | Ahmed Tamer",
+    nav_about: "hakkımda", nav_experience: "deneyim", nav_projects: "projeler",
+    nav_repositories: "depolar", nav_cv: "özgeçmiş",
+    page_h1: "projeler",
+    page_subtitle: "Mühendislik ve makine öğrenmesi projelerimin bir koleksiyonu.",
+    section_ongoing: "devam eden",
+    proj_glasses_name: "3D Sesli ve Yapay Zeka Destekli Engel Tanıma Gözlüğü",
+    ongoing_badge: "● devam ediyor",
+    proj_glasses_desc: "Görme engelli kullanıcılar için gerçek zamanlı nesne tespiti ve yönlü 3D ses geribildirimiyle akıllı gözlük geliştiriyorum. Çift kameralı donanım tasarımı yapıyor, gerçek zamanlı görüntü işleme ve kullanıcı merkezli etkileşim tasarımıyla gömülü sistemler uyguluyorum.",
+    section_ml: "makine öğrenmesi &amp; YZ",
+    proj_breast_name: "Histopatolojik Görüntülerden Meme Kanseri Sınıflandırması",
+    proj_breast_desc: "Çok büyütme histopatolojik görüntülerde tanı doğruluğunu artırmak için görüntü işleme, makine öğrenmesi ve derin öğrenmeyi bir arada kullandım. Klinik görüntü sınıflandırması için en iyi performans gösteren modelleri belirlemek amacıyla beş derin öğrenme mimarisini değerlendirdim ve kıyasladım.",
+    proj_heart_name: "Kalp Hastalığı Sınıflandırması",
+    proj_heart_desc: "Birden fazla ML sınıflandırıcısı kullanarak Kalp Hastalığı Sağlık Göstergeleri veri setini analiz ettim ve önemli risk faktörlerini belirledim. Uçtan uca pipeline uyguladım: veri ön işleme, özellik seçimi, çapraz doğrulama ve performans metrikleriyle model değerlendirme.",
+    section_embedded: "gömülü sistemler &amp; donanım",
+    proj_robot_name: "PID Adaptif Hız Kontrolüyle Çizgi Takip Robotu",
+    proj_robot_desc: "STM32 mikrodenetleyici kullanarak PID tabanlı motor kontrolü ile gerçek zamanlı yörünge sapmalarını minimize eden çizgi takip robotu kurdum.",
+    proj_steth_name: "Dijital Stetoskop Devresi",
+    proj_steth_desc: "Kalp sinyallerini yüksek netlik ve doğrulukla yakalamak için erişilebilir bileşenlerden hem analog hem dijital filtreleme kullanarak elektronik stetoskop tasarladım.",
+    proj_dice_name: "Eşit Olmayan Yedi Yüzlü Zar Devresi",
+    proj_dice_desc: "Özel rastgele veri üreteci, karma seviyeli 2-bit tam toplayıcı, frekans bölme ve senkronize yazmaçlar kullanarak eşit olmayan 7 yüzlü zar atmayı simüle eden dijital sistem tasarladım.",
+    proj_lock_name: "VHDL ile Dijital Şifreli Kilit Sistemi",
+    proj_lock_desc: "FPGA üzerinde güvenli tuş takımı şifre doğrulama ve erişim kontrol mantığı için sonlu durum makinesi kullanan VHDL'de 4 haneli dijital kilit sistemi geliştirdim.",
+    section_signal: "sinyal işleme &amp; iletişim",
+    proj_echo_name: "PAM ve Dijital Eşitleme ile Ses İletiminde Yankı Azaltma",
+    proj_echo_desc: "Yankı bozulmasını ve semboller arası girişimi (ISI) azaltmak için PAM ses iletim sistemi tasarlayıp uyguladım. LabVIEW'de ters IIR filtrelemeyle dijital eşitleyici geliştirdim; ~22 dB sinyal-gürültü oranı elde ettim.",
+    footer_copy: "© Telif Hakkı 2026 Ahmed Tamer"
+  }
+};
+
+function applyLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'tr' ? 'tr' : 'en');
+  document.title = i18n[lang].page_title;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key] === undefined) return;
+    el.innerHTML = i18n[lang][key];
+  });
+  document.getElementById('lang-toggle').textContent = lang === 'en' ? 'TR' : 'EN';
+  localStorage.setItem('lang', lang);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+  document.getElementById('light-toggle').addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  const savedLang = localStorage.getItem('lang') || 'en';
+  applyLang(savedLang);
+  document.getElementById('lang-toggle').addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-lang') || 'en';
+    applyLang(cur === 'en' ? 'tr' : 'en');
+  });
+
+  const progressBar = document.getElementById('progress');
+  if (progressBar) {
+    document.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.max = 100;
+    });
+  }
+});
+</script>
 </body>
 </html>
