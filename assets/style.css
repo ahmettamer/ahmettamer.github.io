@@ -1,362 +1,861 @@
-/* ── AL-FOLIO THEME VARIABLES ── */
+/* ============================================================
+   style.css  —  Ahmed Tamer Portfolio
+   ============================================================
+
+   TABLE OF CONTENTS
+   ─────────────────────────────────────────────────────────────
+   1.  THEMING ENGINE          (CSS custom properties / variables)
+   2.  GLOBAL RESET & BASE     (body, typography defaults)
+   3.  TEXT STRUCTURE          (headings, paragraphs, links, code)
+   4.  SPACING & PADDING       (containers, sections, rhythm)
+   5.  NAVBAR                  (top navigation bar)
+   6.  PROGRESS BAR            (reading-progress indicator)
+   7.  PROFILE IMAGE           (circular photo float)
+   8.  SOCIAL / CONTACT ICONS  (email, github, linkedin …)
+   9.  EXPERIENCE ITEMS        (exp-item, exp-header, bullets)
+  10.  PROJECT CARDS           (projects-grid, project-card)
+  11.  SKILLS GRID             (skill-group, tags)
+  12.  EDUCATION BLOCK         (edu-block, edu-gpa)
+  13.  FOOTER                  (fixed-bottom strip)
+  14.  UTILITY                 (fade-up, view-all-link, badges)
+  15.  THEME TOGGLE ICONS      (sun/moon visibility swap)
+  16.  RESPONSIVE              (≤576 px breakpoints)
+   ============================================================ */
+
+
+/* ============================================================
+   1.  THEMING ENGINE
+   All colours live here. Swap a variable in ONE place and the
+   entire page updates — both light and dark modes.
+   ============================================================ */
+
 :root {
-  --global-bg-color: #fff;
-  --global-code-bg-color: rgba(255,75,75,0.05);
-  --global-text-color: #000;
-  --global-text-color-light: #828282;
-  --global-theme-color: #ff4b4b;
-  --global-hover-color: #ff4b4b;
-  --global-hover-text-color: #fff;
-  --global-footer-bg-color: #1c1c1d;
-  --global-footer-text-color: #e8e8e8;
-  --global-footer-link-color: #fff;
-  --global-divider-color: rgba(0,0,0,.1);
-  --global-card-bg-color: #fff;
-  --global-nav-bg: rgba(255,255,255,0.97);
-  --tag-bg: #f5f5f5;
-  --tag-text: #c0392b;
-  --tag-border: rgba(0,0,0,0.08);
+  /* ── Backgrounds ── */
+  --bg:               #ffffff;
+  --card-bg:          #ffffff;
+  --footer-bg:        #1c1c1d;
+
+  /* ── Text ── */
+  --text:             #111111;
+  --text-light:       #6b6b6b;
+  --footer-text:      #e8e8e8;
+  --footer-link:      #ffffff;
+
+  /* ── Accent / brand ── */
+  --accent:           #ff4b4b;          /* primary red used for links, hover, tags */
+  --accent-hover:     #ff4b4b;
+  --accent-hover-fg:  #ffffff;
+
+  /* ── Borders & dividers ── */
+  --divider:          rgba(0, 0, 0, 0.10);
+
+  /* ── Code blocks ── */
+  --code-bg:          rgba(255, 75, 75, 0.05);
+
+  /* ── Callout blocks ── */
+  --tip-border:       #42b983;
+  --tip-bg:           #e2f5ec;
+  --tip-text:         #215d42;
+  --warning-border:   #e7c000;
+  --warning-bg:       #fff8d8;
+  --warning-text:     #6b5900;
+  --danger-border:    #cc0000;
+  --danger-bg:        #ffe0e0;
+  --danger-text:      #660000;
 }
 
+/* ── Dark mode overrides ── */
 html[data-theme="dark"] {
-  --global-bg-color: #1c1c1d;
-  --global-code-bg-color: #2c3237;
-  --global-text-color: #e8e8e8;
-  --global-text-color-light: #a8a8a8;
-  --global-theme-color: #2698ba;
-  --global-hover-color: #2698ba;
-  --global-hover-text-color: #fff;
-  --global-footer-bg-color: #e8e8e8;
-  --global-footer-text-color: #1c1c1d;
-  --global-footer-link-color: #000;
-  --global-divider-color: #424246;
-  --global-card-bg-color: #212529;
-  --global-nav-bg: rgba(28,28,29,0.97);
-  --tag-bg: #1e2a38;
-  --tag-text: #7ab3e0;
-  --tag-border: rgba(255,255,255,0.08);
+  --bg:               #1c1c1d;
+  --card-bg:          #212529;
+  --footer-bg:        #e8e8e8;
+
+  --text:             #e8e8e8;
+  --text-light:       #e8e8e8;
+  --footer-text:      #1c1c1d;
+  --footer-link:      #000000;
+
+  --accent:           #2698ba;
+  --accent-hover:     #2698ba;
+
+  --divider:          #424246;
+  --code-bg:          #2c3237;
 }
 
-/* moon/sun toggle visibility */
-:root .fa-sun  { display: none; }
-:root .fa-moon { display: inline-block; }
-html[data-theme="dark"] .fa-moon { display: none; }
-html[data-theme="dark"] .fa-sun  { display: inline-block; }
 
-html { scroll-behavior: smooth; }
+/* ============================================================
+   2.  GLOBAL RESET & BASE
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  font-family: 'DM Sans', sans-serif;
-  background-color: var(--global-bg-color);
-  color: var(--global-text-color);
-  font-size: 1.08rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 17.28px;
+  line-height: 1.85;
+  color: var(--text);
+  background-color: var(--bg);
+
+  padding-bottom: 70px;     /* room for fixed footer */
+}
+
+body.fixed-top-nav {
+  padding-top: 56px;        /* room for fixed navbar */
+}
+
+/* ── Maximum content width ── */
+.container {
+  max-width: 1100px;
+}
+
+
+/* ============================================================
+   3.  TEXT STRUCTURE & STYLING
+   ============================================================ */
+
+/* --- Headings --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: var(--text);
+  scroll-margin-top: 66px;  /* offset for sticky navbar when deep-linking */
+}
+
+/* ── Post / page title ──
+   FIX: both "Ahmed" (inside span.font-weight-bold) and "Tamer"
+   must render at exactly the same font-size.
+   The span below resets any Bootstrap utility that might
+   inadvertently scale the inline element differently. */
+.post-title {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.post-title span,
+.post-title .font-weight-bold {
+  font-size: inherit !important;  /* ← THE FIX: forces "Ahmed" == "Tamer" */
+  font-weight: 700 !important;    /* bold only; same size */
+  color: inherit;
+}
+
+/* --- Body copy --- */
+p, li, div, span, td, th {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: var(--text);
+}
+
+strong, b {
+  font-weight: 500;
+  color: var(--text);
+}
+
+em {
+  color: var(--text);
+}
+
+/* --- Links --- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* --- Horizontal rule --- */
+hr {
+  border: none;
+  border-top: 1px solid var(--divider);
+}
+
+/* --- Inline code --- */
+code {
+  font-size: 15px;
+  background-color: var(--code-bg);
+  color: var(--accent);
+  border-radius: 3px;
+  padding: 2px 5px;
+}
+
+pre {
+  font-size: 15px;
   line-height: 1.7;
-  padding-top: 56px;
-  padding-bottom: 70px;
-  overflow-x: hidden;
-  transition: background-color 0.3s, color 0.3s;
+  background-color: var(--code-bg);
+  color: var(--accent);
+  border-radius: 6px;
+  padding: 8px 14px;
 }
 
-/* ── TYPOGRAPHY ── */
-p, h1, h2, h3, h4, h5, h6, em, div, li, span, strong {
-  color: var(--global-text-color);
+pre code {
+  background: transparent;
+  padding: 0;
 }
-a, table.table a { color: var(--global-theme-color); }
-a:hover { color: var(--global-theme-color); text-decoration: underline; }
-hr { border-top: 1px solid var(--global-divider-color); }
 
-/* ── NAVBAR ── */
-#navbar {
-  box-shadow: none;
-  border-bottom: 1px solid var(--global-divider-color);
-  background-color: var(--global-bg-color);
-  opacity: .97;
-  transition: background-color 0.3s, border-color 0.3s;
+/* --- Section headings (h2 inside .post article) --- */
+.post article h2 {
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--divider);
+  color: var(--text);
 }
-.navbar.navbar-light .navbar-brand {
-  color: var(--global-text-color);
-  font-family: 'Lora', serif;
-  font-weight: 600;
+
+/* --- Descriptor line under name --- */
+.desc {
+  font-size: 17.28px;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+/* --- Bio paragraphs --- */
+.bio,
+.post article p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* --- Blockquotes --- */
+blockquote {
+  background: var(--bg);
+  border-left: 5px solid var(--accent);
+  margin: 1.5em 0;
+  padding: 1em 1.25em;
   font-size: 1.1rem;
 }
-.navbar.navbar-light .navbar-brand:hover { color: var(--global-hover-color); text-decoration: none; }
-.navbar.navbar-light .navbar-nav .nav-item .nav-link {
-  color: var(--global-text-color);
-  font-size: 0.88rem;
-  font-weight: 500;
-  text-transform: lowercase;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-}
-.navbar.navbar-light .navbar-nav .nav-item .nav-link:hover { color: var(--global-hover-color); }
-.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
-  font-weight: bolder;
-  color: var(--global-theme-color);
+
+blockquote p { margin-bottom: 0; }
+
+/* Callout variants */
+blockquote.block-tip     { border-color: var(--tip-border);     background: var(--tip-bg);     }
+blockquote.block-tip p   { color: var(--tip-text); }
+blockquote.block-warning { border-color: var(--warning-border); background: var(--warning-bg); }
+blockquote.block-warning p { color: var(--warning-text); }
+blockquote.block-danger  { border-color: var(--danger-border);  background: var(--danger-bg);  }
+blockquote.block-danger p  { color: var(--danger-text); }
+
+
+/* ============================================================
+   4.  GLOBAL PADDING & SPACING
+   Consistent rhythm throughout the page.
+   ============================================================ */
+
+/* Top-level post wrapper */
+.post {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
-/* Hamburger */
-.navbar-toggler { border: none !important; outline: none !important; box-shadow: none !important; }
-.navbar-toggler .icon-bar {
-  display: block; width: 22px; height: 2px;
-  background-color: var(--global-text-color);
-  border-radius: 1px; margin-bottom: 4px; transition: all .2s;
+/* Section headings get a top gap so sections breathe */
+.post article h2 {
+  margin-top: 2.75rem;
 }
+
+/* Paragraphs inside article */
+.post article p {
+  margin-bottom: 1.1rem;
+}
+
+/* Clearfix helper used after floated profile image */
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+
+/* ============================================================
+   5.  NAVBAR
+   ============================================================ */
+
+#navbar {
+  box-shadow: none;
+  border-bottom: 1px solid var(--divider);
+  background-color: var(--bg);
+  opacity: 0.97;
+}
+
+/* Brand / site name */
+.navbar.navbar-light .navbar-brand {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+/* Nav links */
+.navbar.navbar-light .navbar-nav .nav-item .nav-link {
+  color: var(--text);
+  font-size: 0.92rem;
+  padding: 0.35rem 0.65rem;
+  transition: color 0.2s ease;
+}
+
+.navbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+/* Active page link */
+.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
+  font-weight: 700;
+  color: var(--accent);
+  background-color: transparent;
+}
+
+/* Hamburger icon bars */
+.navbar-toggler .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--text);
+  border-radius: 1px;
+  margin-bottom: 4px;
+  transition: all 0.2s ease;
+}
+
 .navbar-toggler .top-bar    { transform: rotate(45deg);  transform-origin: 10% 10%; }
 .navbar-toggler .middle-bar { opacity: 0; }
 .navbar-toggler .bottom-bar { transform: rotate(-45deg); transform-origin: 10% 90%; }
+
 .navbar-toggler.collapsed .top-bar    { transform: rotate(0); }
 .navbar-toggler.collapsed .middle-bar { opacity: 1; }
 .navbar-toggler.collapsed .bottom-bar { transform: rotate(0); }
 
-/* Theme toggle */
-#light-toggle {
-  padding: 0; border: 0;
-  background-color: inherit;
-  color: var(--global-text-color);
-  font-size: 1rem; cursor: pointer;
-}
-#light-toggle:hover { color: var(--global-hover-color); }
-
-/* Lang toggle */
+/* Theme & language toggle buttons */
+#light-toggle,
 #lang-toggle {
-  padding: 0.1rem 0.45rem;
-  border: 1px solid var(--global-divider-color);
+  padding: 0 6px;
+  border: 0;
   background-color: transparent;
-  color: var(--global-text-color);
-  font-size: 0.72rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 600;
+  color: var(--text);
+  font-size: 0.85rem;
   cursor: pointer;
-  border-radius: 4px;
-  letter-spacing: 0.05em;
-  transition: color 0.2s, border-color 0.2s;
-}
-#lang-toggle:hover { color: var(--global-hover-color); border-color: var(--global-hover-color); }
-
-/* ── PROGRESS BAR ── */
-progress {
-  position: fixed; left: 0; top: 56px; z-index: 10;
-  width: 100%; height: 3px;
-  appearance: none; border: 0;
-  background-color: transparent;
-  color: var(--global-theme-color);
-}
-progress::-webkit-progress-bar  { background-color: transparent; }
-progress::-webkit-progress-value { background-color: var(--global-theme-color); }
-progress::-moz-progress-bar { background-color: var(--global-theme-color); }
-
-/* ── POST / ABOUT ── */
-.post { padding-top: 1.5rem; }
-
-.post-title {
-  font-family: 'Lora', serif;
-  font-size: clamp(2rem, 5vw, 2.8rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--global-text-color);
-}
-.post-title .font-weight-bold { font-weight: 700; }
-
-/* Page heading (experience / projects) */
-.page-h1 {
-  font-family: 'Lora', serif;
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--global-text-color);
-  margin-bottom: 0.3rem;
-}
-.page-subtitle {
-  font-size: 0.97rem;
-  color: var(--global-text-color-light);
-  margin-bottom: 2.2rem;
-  line-height: 1.6;
+  transition: color 0.2s ease;
 }
 
-.desc {
-  font-size: 1rem;
-  color: var(--global-text-color-light);
+#light-toggle:hover,
+#lang-toggle:hover {
+  color: var(--accent-hover);
+}
+
+
+/* ============================================================
+   6.  PROGRESS BAR
+   Thin line at top showing scroll progress.
+   ============================================================ */
+
+progress#progress {
+  position: fixed;
+  left: 0;
+  top: 56px;
+  z-index: 1000;
+  width: 100%;
+  height: 3px;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+}
+
+progress#progress::-webkit-progress-bar   { background: transparent; }
+progress#progress::-webkit-progress-value { background: var(--accent); }
+progress#progress::-moz-progress-bar      { background: var(--accent); }
+
+
+/* ============================================================
+   7.  PROFILE IMAGE
+   Circular, floated right, fixed 321 × 321 px.
+   ============================================================ */
+
+.profile {
+  float: right;
+  margin-left: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.profile figure {
+  width:  321px;
+  height: 321px;
+  margin: 0;
+  display: block;
+}
+
+.profile figure img,
+.profile img {
+  width:       321px  !important;
+  height:      321px  !important;
+  min-width:   321px  !important;
+  min-height:  321px  !important;
+  max-width:   321px  !important;
+  max-height:  321px  !important;
+  border-radius: 50%  !important;
+  object-fit: cover   !important;
+  object-position: center top !important;
+  display: block      !important;
+}
+
+
+/* ============================================================
+   8.  SOCIAL / CONTACT ICONS
+   ─────────────────────────────────────────────────────────────
+   ★  TO CHANGE ICON SIZE → edit font-size on .contact-icons
+      One number controls all icons at once.
+   ============================================================ */
+
+.social {
+  text-align: center;
+  margin: 1.75rem 0;
+}
+
+.social .contact-icons {
+  font-size: 3.2rem;       /* ← ICON SIZE — increase to make bigger */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;               /* spacing between icons */
+  flex-wrap: wrap;
+}
+
+.social .contact-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Default icon colour = body text colour */
+.social .contact-icons a i::before {
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+/* Hover = brand accent + slight lift */
+.social .contact-icons a:hover i::before {
+  color: var(--accent-hover);
+}
+
+.social .contact-icons a:hover {
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+.social .contact-note {
+  font-size: 0.8rem;
+  color: var(--text-light);
   margin-top: 0.4rem;
-  line-height: 1.7;
-}
-.desc b { color: var(--global-text-color); }
-.desc a { color: var(--global-theme-color); text-decoration: none; }
-.desc a:hover { text-decoration: underline; }
-
-/* Profile photo */
-.profile { width: 30%; float: right; margin-left: 1.5rem; margin-bottom: 1rem; }
-.profile img { width: 100%; border-radius: 50%; object-fit: cover; }
-.z-depth-1 {
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
-              0 3px 1px -2px rgba(0,0,0,.12),
-              0 1px 5px 0 rgba(0,0,0,.2);
 }
 
-/* Bio text */
-.clearfix::after { content: ""; clear: both; display: table; }
-.clearfix p {
-  font-size: 1rem; margin-bottom: 1.4rem;
-  color: var(--global-text-color); line-height: 1.85; text-align: justify;
-}
-.clearfix p:last-child { margin-bottom: 0; }
-.clearfix a { color: var(--global-theme-color); text-decoration: none; }
-.clearfix a:hover { text-decoration: underline; }
 
-/* ── SECTION HEADINGS ── */
-.post article h2, .post-article h2 {
-  font-family: 'Lora', serif;
-  font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em;
-  color: var(--global-text-color);
-  margin-top: 2.5rem; margin-bottom: 1.4rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--global-divider-color);
-}
-.post article h2 a { color: inherit; text-decoration: none; }
-.post article h2 a:hover { color: var(--global-theme-color); text-decoration: none; }
-.view-all-link {
-  font-size: 0.82rem; font-family: 'DM Sans', sans-serif;
-  color: var(--global-theme-color); font-weight: 400; margin-left: 0.9rem;
+/* ============================================================
+   9.  EXPERIENCE ITEMS
+   ============================================================ */
+
+.exp-item {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--divider);
 }
 
-/* ── EXPERIENCE ── */
-.exp-item { margin-bottom: 2rem; }
-.exp-item:last-child { margin-bottom: 0; }
-.exp-divider { padding-top: 2.5rem; margin-top: 2.5rem; border-top: 1px solid var(--global-divider-color); }
+.exp-item:last-of-type {
+  border-bottom: none;
+}
+
+/* Row: title on left, date on right */
 .exp-header {
-  display: flex; justify-content: space-between;
-  align-items: baseline; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.15rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.2rem;
 }
-.exp-title { font-weight: 600; font-size: 0.97rem; color: var(--global-text-color); }
-.exp-date {
-  font-size: 0.78rem; color: var(--global-text-color-light);
-  font-family: 'JetBrains Mono', monospace; white-space: nowrap;
-}
-.exp-company { font-size: 0.87rem; color: var(--global-theme-color); font-style: italic; margin-bottom: 0.45rem; }
-.tech-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.7rem; }
-.tag {
-  font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
-  background: var(--tag-bg); color: var(--tag-text);
-  border-radius: 4px; padding: 0.17rem 0.52rem;
-  border: 1px solid var(--tag-border); font-weight: 500;
-}
-.exp-bullets { padding-left: 1.1rem; }
-.exp-bullets li {
-  font-size: 0.9rem; color: var(--global-text-color);
-  margin-bottom: 0.3rem; line-height: 1.65;
-}
-.exp-bullets li::marker { color: var(--global-theme-color); }
 
-/* ── PROJECTS ── */
+.exp-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.exp-date {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.exp-company {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+/* Bullet list inside experience */
+.exp-bullets {
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.exp-bullets li {
+  font-size: 17.28px;
+  line-height: 1.85;
+  margin-bottom: 0.3rem;
+  color: var(--text);
+}
+
+/* Technology tag pills */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background-color: var(--code-bg);
+  color: var(--accent);
+  border: 1px solid rgba(255, 75, 75, 0.18);
+}
+
+html[data-theme="dark"] .tag {
+  border-color: rgba(38, 152, 186, 0.25);
+}
+
+
+/* ============================================================
+  10.  PROJECT CARDS
+   ============================================================ */
+
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
-.project-card {
-  background: var(--global-card-bg-color);
-  border: 1px solid var(--global-divider-color);
-  border-radius: 8px; padding: 1.3rem 1.4rem;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s, background-color 0.3s;
-  position: relative; overflow: hidden;
-}
-.project-card:hover {
-  border-color: var(--global-theme-color);
-  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
-  transform: translateY(-2px);
-}
-.project-card-header {
-  display: flex; justify-content: space-between;
-  align-items: flex-start; gap: 0.8rem; margin-bottom: 0.45rem;
-}
-.project-name { font-weight: 600; font-size: 0.93rem; line-height: 1.3; color: var(--global-text-color); }
-.project-date-tag {
-  font-size: 0.71rem; font-family: 'JetBrains Mono', monospace;
-  color: var(--global-text-color-light); background: var(--global-bg-color);
-  border: 1px solid var(--global-divider-color);
-  border-radius: 4px; padding: 0.13rem 0.43rem; white-space: nowrap; flex-shrink: 0;
-}
-.project-desc { font-size: 0.85rem; color: var(--global-text-color-light); line-height: 1.6; margin-bottom: 0.85rem; }
-.ongoing-badge {
-  display: inline-block; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace;
-  background: #fff3e0; color: #bf6800; border: 1px solid #ffd08a;
-  border-radius: 99px; padding: 0.1rem 0.5rem; margin-bottom: 0.55rem; font-weight: 500;
-}
-html[data-theme="dark"] .ongoing-badge { background: #2a1f00; color: #f0a840; border-color: #6b4c00; }
 
-/* ── SKILLS ── */
+.project-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+.project-card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.2rem;
+}
+
+.project-name {
+  font-weight: 600;
+  font-size: 0.97rem;
+  color: var(--text);
+}
+
+.project-date-tag {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+/* "● ongoing" badge */
+.ongoing-badge {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+/* Card image wrapper */
+.project-card .card {
+  background-color: var(--card-bg);
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.project-card .card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+
+/* ============================================================
+  11.  SKILLS GRID
+   ============================================================ */
+
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
 }
+
 .skill-group {
-  background: var(--global-card-bg-color);
-  border: 1px solid var(--global-divider-color);
-  border-radius: 8px; padding: 1.15rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
+
 .skill-group-label {
-  font-size: 0.73rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.08em; color: var(--global-theme-color); margin-bottom: 0.7rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
 }
-.skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
-/* ── EDUCATION ── */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+
+/* ============================================================
+  12.  EDUCATION BLOCK
+   ============================================================ */
+
 .edu-block {
-  display: flex; justify-content: space-between;
-  align-items: start; flex-wrap: wrap; gap: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  margin-bottom: 2rem;
 }
-.edu-degree { font-weight: 600; font-size: 0.97rem; color: var(--global-text-color); }
-.edu-uni { font-size: 0.88rem; color: var(--global-theme-color); font-style: italic; margin-top: 0.15rem; }
-.edu-detail { font-size: 0.84rem; color: var(--global-text-color-light); margin-top: 0.3rem; }
+
+.edu-degree {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.edu-uni {
+  font-size: 0.92rem;
+  color: var(--text-light);
+}
+
+.edu-detail {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 0.15rem;
+}
+
 .edu-gpa {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.84rem;
-  color: var(--global-text-color-light); background: var(--global-bg-color);
-  border: 1px solid var(--global-divider-color);
-  border-radius: 6px; padding: 0.28rem 0.65rem; text-align: center; white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  white-space: nowrap;
 }
-.edu-gpa span { display: block; font-size: 1.1rem; font-weight: 600; color: var(--global-theme-color); }
 
-/* ── SOCIAL ICONS ── */
-.social { text-align: center; margin-top: 2rem; clear: both; }
-.social .contact-icons { font-size: 2.5rem; display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
-.social .contact-icons a { text-decoration: none; display: inline-block; }
-.social .contact-icons a i::before { color: var(--global-text-color); transition: color 0.2s ease-in-out; }
-.social .contact-icons a:hover i::before { color: var(--global-theme-color); }
-
-/* ── REFERENCE CARD ── */
-.ref-card {
-  background: var(--global-card-bg-color);
-  border: 1px solid var(--global-divider-color);
-  border-radius: 10px; padding: 1.4rem 1.6rem;
+.edu-gpa span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0;
+  line-height: 1.2;
 }
-.ref-name { font-weight: 600; font-size: 0.95rem; }
-.ref-role { font-size: 0.88rem; color: var(--global-theme-color); font-style: italic; margin-top: 0.15rem; }
-.ref-email { font-size: 0.85rem; color: var(--global-text-color-light); text-decoration: none; display: inline-block; margin-top: 0.35rem; }
-.ref-email:hover { color: var(--global-theme-color); }
 
-/* ── FOOTER ── */
+
+/* ============================================================
+  13.  FOOTER
+   ============================================================ */
+
 footer.fixed-bottom {
-  background-color: var(--global-footer-bg-color);
-  font-size: 0.75rem; height: auto; display: block;
+  background-color: var(--footer-bg);
+  font-size: 0.78rem;
 }
+
 footer.fixed-bottom .container {
-  color: var(--global-footer-text-color);
-  padding-top: 9px; padding-bottom: 8px;
+  color: var(--footer-text);
+  padding-top: 9px;
+  padding-bottom: 8px;
 }
-footer.fixed-bottom a { color: var(--global-footer-link-color); }
-footer.fixed-bottom a:hover { color: var(--global-theme-color); text-decoration: none; }
 
-/* ── ANIMATIONS ── */
+footer.fixed-bottom a {
+  color: var(--footer-link);
+  transition: color 0.2s ease;
+}
+
+footer.fixed-bottom a:hover {
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+
+/* ============================================================
+  14.  UTILITY CLASSES
+   ============================================================ */
+
+/* Fade-up entrance animation */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
-.fade-up { animation: fadeUp 0.5s ease both; }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 640px) {
-  .profile { float: none; width: 180px; margin: 0 auto 2rem; display: block; }
-  .clearfix p { text-align: left; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .skills-grid { grid-template-columns: 1fr; }
+.fade-up {
+  animation: fadeUp 0.45s ease both;
+}
+
+/* "view all →" link next to section headings */
+.view-all-link {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-light);
+  margin-left: 0.6rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.view-all-link:hover {
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+/* Tables */
+table td, table th { font-size: 1rem; }
+table th { font-weight: bold; }
+
+/* Card generic (al-folio compat) */
+.card {
+  background-color: var(--card-bg);
+}
+
+.card .card-title { color: var(--text); }
+
+/* Figure / image max width guard */
+figure, img { max-width: 90vw; }
+
+
+/* ============================================================
+  15.  THEME TOGGLE ICONS
+   sun shown in dark mode, moon shown in light mode.
+   ============================================================ */
+
+/* Light mode: show moon, hide sun */
+:root .fa-sun  { display: none; }
+:root .fa-moon { display: block; padding-left: 4px; padding-top: 12px; }
+
+/* Dark mode: show sun, hide moon */
+html[data-theme="dark"] .fa-sun  { display: block; padding-left: 4px; padding-top: 12px; }
+html[data-theme="dark"] .fa-moon { display: none; }
+
+/* Repository image variants */
+:root .repo-img-light              { display: block; }
+:root .repo-img-dark               { display: none;  }
+html[data-theme="dark"] .repo-img-light { display: none;  }
+html[data-theme="dark"] .repo-img-dark  { display: block; }
+
+
+/* ============================================================
+  16.  RESPONSIVE  (≤ 576 px)
+   ============================================================ */
+
+@media (max-width: 576px) {
+
+  /* Stack profile image above text on mobile */
+  .profile {
+    float: none;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile figure {
+    width:  220px;
+    height: 220px;
+  }
+
+  .profile figure img,
+  .profile img {
+    width:      220px !important;
+    height:     220px !important;
+    min-width:  220px !important;
+    min-height: 220px !important;
+    max-width:  220px !important;
+    max-height: 220px !important;
+  }
+
+  /* Reduce icon size slightly on small screens */
+  .social .contact-icons {
+    font-size: 2.6rem;   /* ← MOBILE ICON SIZE */
+    gap: 0.8rem;
+  }
+
+  .post-title {
+    font-size: 1.8rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .edu-block {
+    flex-direction: column;
+  }
+
+  .edu-gpa {
+    align-items: flex-start;
+  }
+
+  .exp-header {
+    flex-direction: column;
+    gap: 0;
+  }
 }
