@@ -135,17 +135,28 @@ h1, h2, h3, h4, h5, h6 {
    must render at exactly the same font-size.
    The span below resets any Bootstrap utility that might
    inadvertently scale the inline element differently. */
+/* AFTER */
 .post-title {
-  font-size: 2.4rem;
   font-weight: 500;
   color: var(--text);
+  line-height: 1.1;
 }
-
-.post-title span,
-.post-title .font-weight-bold {
-  font-size: inherit !important;  /* ← THE FIX: forces "Ahmed" == "Tamer" */
-  font-weight: 700 !important;    /* bold only; same size */
+.post-title .font-weight-bold {   /* "Ahmed" — BIG */
+  font-size: 3.8rem !important;
+  font-weight: 700 !important;
   color: inherit;
+}
+.post-title .name-last {          /* "Tamer" — small */
+  font-size: 1.6rem !important;
+  font-weight: 300 !important;
+  color: var(--text-light);
+}
+.post-title {
+  margin-bottom: 0.1rem;   /* was ~1rem browser default — shrink this */
+}
+.desc {
+  margin-top: 0;           /* remove any top gap on the desc paragraph */
+  margin-bottom: 0.5rem;
 }
 
 /* --- Body copy --- */
@@ -423,7 +434,7 @@ progress#progress::-moz-progress-bar      { background: var(--accent); }
 }
 
 .social .contact-icons {
-  font-size: 3.2rem;       /* ← ICON SIZE — increase to make bigger */
+  font-size: 4.8rem;       /* ← ICON SIZE — increase to make bigger */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -830,7 +841,7 @@ html[data-theme="dark"] .repo-img-dark  { display: block; }
 
   /* Reduce icon size slightly on small screens */
   .social .contact-icons {
-    font-size: 2.6rem;   /* ← MOBILE ICON SIZE */
+    font-size: 3.8rem;   /* ← MOBILE ICON SIZE */
     gap: 0.8rem;
   }
 
