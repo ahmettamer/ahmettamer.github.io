@@ -8,8 +8,78 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Roboto Light (300) + Regular (400) for fallback weights -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css"/>
+
+  <style>
+    /* ── Global Roboto Light Override ── */
+    html, body,
+    p, li, div, span, a, td, th,
+    .post, .post article,
+    .exp-bullets, .exp-bullets li,
+    .project-desc,
+    .desc, .bio,
+    .skill-tags .tag,
+    .edu-block,
+    footer {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 17.28px !important;
+      line-height: 1.85 !important;   /* generous line spacing for 1070px justified layout */
+    }
+
+    /* Headings keep a slightly heavier weight so hierarchy stays clear */
+    h1, h2, h3, h4, h5, h6,
+    .post-title,
+    .exp-title,
+    .project-name,
+    .skill-group-label,
+    .edu-degree,
+    .navbar-brand {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;    /* medium — still in the Roboto family */
+    }
+
+    /* Bold/strong stays readable */
+    strong, b {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;
+    }
+
+    /* Inline code / tech tags stay legible */
+    .tag, code, pre {
+      font-size: 15px !important;
+      line-height: 1.7 !important;
+    }
+
+    /* ── Circular Profile Image  321 × 321 px ── */
+    .profile figure img,
+    .profile img {
+      width:  321px !important;
+      height: 321px !important;
+      min-width:  321px !important;
+      min-height: 321px !important;
+      max-width:  321px !important;
+      max-height: 321px !important;
+      border-radius: 50% !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      display: block !important;
+    }
+
+    /* Give the figure a fixed size so the float doesn't collapse */
+    .profile figure {
+      width:  321px !important;
+      height: 321px !important;
+      margin: 0 0 1.25rem 1.75rem !important;
+    }
+
+    .profile {
+      float: right;
+      margin-left: 2rem;
+    }
+  </style>
 </head>
 <body class="fixed-top-nav">
 
@@ -134,7 +204,6 @@
 
       <div class="projects-grid">
 
-        <!-- Project 1: AI Glasses (now first) -->
         <a href="project-glasses.html" class="project-card-link" style="text-decoration:none;color:inherit;">
           <div class="project-card fade-up">
             <div class="card hoverable" style="margin-bottom:0.75rem;border-radius:8px;overflow:hidden;box-shadow:none;border:none;">
@@ -162,7 +231,6 @@
           </div>
         </a>
 
-        <!-- Project 2: Prosthetic Arm (now second, with autoplay gif) -->
         <a href="project-prosthetic.html" class="project-card-link" style="text-decoration:none;color:inherit;">
           <div class="project-card fade-up">
             <div class="card hoverable" style="margin-bottom:0.75rem;border-radius:8px;overflow:hidden;box-shadow:none;border:none;">
