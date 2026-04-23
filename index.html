@@ -8,12 +8,78 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Roboto Light (300) + Regular (400) for fallback weights -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css"/>
-  <!-- FIX: deleted the large inline <style> block that was here.
-       It was forcing font-weight:300 !important and font-size:17.28px !important
-       on everything via !important, overriding style.css and causing the
-       "Ahmed" vs "Tamer" size difference. All rules now live in style.css. -->
+
+  <style>
+    /* ── Global Roboto Light Override ── */
+    html, body,
+    p, li, div, span, a, td, th,
+    .post, .post article,
+    .exp-bullets, .exp-bullets li,
+    .project-desc,
+    .desc, .bio,
+    .skill-tags .tag,
+    .edu-block,
+    footer {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 17.28px !important;
+      line-height: 1.85 !important;   /* generous line spacing for 1070px justified layout */
+    }
+
+    /* Headings keep a slightly heavier weight so hierarchy stays clear */
+    h1, h2, h3, h4, h5, h6,
+    .post-title,
+    .exp-title,
+    .project-name,
+    .skill-group-label,
+    .edu-degree,
+    .navbar-brand {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;    /* medium — still in the Roboto family */
+    }
+
+    /* Bold/strong stays readable */
+    strong, b {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;
+    }
+
+    /* Inline code / tech tags stay legible */
+    .tag, code, pre {
+      font-size: 15px !important;
+      line-height: 1.7 !important;
+    }
+
+    /* ── Circular Profile Image  321 × 321 px ── */
+    .profile figure img,
+    .profile img {
+      width:  321px !important;
+      height: 321px !important;
+      min-width:  321px !important;
+      min-height: 321px !important;
+      max-width:  321px !important;
+      max-height: 321px !important;
+      border-radius: 50% !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      display: block !important;
+    }
+
+    /* Give the figure a fixed size so the float doesn't collapse */
+    .profile figure {
+      width:  321px !important;
+      height: 321px !important;
+      margin: 0 0 1.25rem 1.75rem !important;
+    }
+
+    .profile {
+      float: right;
+      margin-left: 2rem;
+    }
+  </style>
 </head>
 <body class="fixed-top-nav">
 
@@ -59,26 +125,21 @@
 <div class="container mt-5">
   <div class="post fade-up">
 
-    <!-- FIX: post-header removed from here (was a separate block before article).
-         Name + desc are now INSIDE the article, AFTER the profile float,
-         so the image floats beside the name+desc+bio — exactly like Bilal's layout. -->
-
-    <article>
-
-      <!-- Profile image floated right — comes first in DOM so text wraps around it -->
-      <div class="profile float-right">
-        <figure>
-          <img src="assets/img/ahmed1.jpeg" alt="Ahmed Tamer" class="img-fluid z-depth-1 rounded-circle">
-        </figure>
-      </div>
-
-      <!-- FIX: h1 + desc now inside article so image floats beside them -->
+    <header class="post-header">
       <h1 class="post-title"><span class="font-weight-bold">Ahmed</span> Tamer</h1>
       <p class="desc">
         <b data-i18n="desc_student">EE Student</b> <span data-i18n="desc_at">at</span> <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a><br>
         <b data-i18n="desc_ops">Technical Operations Engineer</b> <span data-i18n="desc_at2">at</span> <a href="https://www.fourmansionshotel.com/" target="_blank" rel="noopener">Four Mansions Hotel</a><br>
         <b data-i18n="desc_skills">Embedded Systems</b> &nbsp;·&nbsp; <b data-i18n="desc_ml">Machine Learning</b> &nbsp;·&nbsp; <b>IoT</b>
       </p>
+    </header>
+
+    <article>
+      <div class="profile float-right">
+        <figure>
+          <img src="assets/img/ahmed1.jpeg" alt="Ahmed Tamer" class="img-fluid z-depth-1 rounded-circle">
+        </figure>
+      </div>
 
       <div class="clearfix" style="text-align:justify;">
         <p data-i18n="bio1">I am an <strong>Electrical &amp; Electronics Engineering student</strong> at
@@ -151,9 +212,11 @@
                   <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="assets/img/projects/detection-480.webp">
                   <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="assets/img/projects/detection-800.webp">
                   <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="assets/img/projects/detection-1400.webp">
-                  <img src="assets/img/projects/detection.gif" width="100%" height="auto" alt="AI glasses obstacle detection demo"
-                    style="display:block;width:100%;height:auto;border-radius:8px;"
-                    onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function(el){el.remove()});">
+                  <img src="assets/img/projects/detection.gif"
+                       width="100%" height="auto"
+                       alt="AI glasses obstacle detection demo"
+                       style="display:block;width:100%;height:auto;border-radius:8px;"
+                       onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function(el){el.remove()});">
                 </picture>
               </figure>
             </div>
@@ -176,9 +239,11 @@
                   <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="assets/img/projects/emg-demo-480.webp">
                   <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="assets/img/projects/emg-demo-800.webp">
                   <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="assets/img/projects/emg-demo-1400.webp">
-                  <img src="assets/img/projects/emg-demo.gif" width="100%" height="auto" alt="EMG prosthetic arm demo"
-                    style="display:block;width:100%;height:auto;border-radius:8px;"
-                    onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function(el){el.remove()});">
+                  <img src="assets/img/projects/emg-demo.gif"
+                       width="100%" height="auto"
+                       alt="EMG prosthetic arm demo"
+                       style="display:block;width:100%;height:auto;border-radius:8px;"
+                       onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function(el){el.remove()});">
                 </picture>
               </figure>
             </div>
@@ -308,21 +373,21 @@ const i18n = {
     desc_student: "EE Öğrencisi", desc_at: "", desc_at2: "",
     desc_ops: "Teknik Operasyon Mühendisi",
     desc_skills: "Gömülü Sistemler", desc_ml: "Makine Öğrenmesi",
-    bio1: `<a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül Üniversitesi</a>'nde, Kayseri, Türkiye'de <strong>3.42 / 4.00</strong> GPA ile <strong>Elektrik ve Elektronik Mühendisliği</strong> öğrencisiyim.`,
-    bio2: `<strong>ML mühendisi olarak</strong>, sınıflandırma ve sinyal işleme için derin öğrenme alanında uzmanlaşıyorum. <strong>MTM Biotech</strong>'te EMG sinyallerinden el hareketlerini çözmek için <strong>%82 doğruluk</strong> elde eden CNN tabanlı bir model geliştirdim.`,
-    bio3: `<strong>Gömülü sistem mühendisi olarak</strong>, mikrodenetleyiciler ve IoT platformları kullanan donanım-yazılım çözümleri tasarlıyor ve konuşlandırıyorum.`,
-    bio4: `<strong>Araştırma &amp; Projeler:</strong> Şu anda görme engelli kullanıcılar için yapay zeka destekli akıllı gözlükler geliştiriyorum.`,
-    bio5: `<strong>Dil Becerileri:</strong> <strong>Arapça</strong> (anadil), <strong>İngilizce</strong> ve <strong>Türkçe</strong> dillerinde akıcıyım.`,
+    bio1: `<a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül Üniversitesi</a>'nde, Kayseri, Türkiye'de <strong>3.42 / 4.00</strong> GPA ile <strong>Elektrik ve Elektronik Mühendisliği</strong> öğrencisiyim. Çalışmalarım <strong>gömülü sistemler</strong>, <strong>makine öğrenmesi</strong> ve <strong>IoT</strong> kesişiminde yer almakta olup gerçek dünya ortamlarında çalışan uçtan uca teknik çözümler geliştirmeye odaklanmaktadır.`,
+    bio2: `<strong>ML mühendisi olarak</strong>, sınıflandırma ve sinyal işleme için derin öğrenme alanında uzmanlaşıyorum. <strong>MTM Biotech</strong>'te EMG sinyallerinden el hareketlerini çözmek için <strong>%82 doğruluk</strong> elde eden CNN tabanlı bir model geliştirdim — protez bir kolda bireysel parmak kontrolünü mümkün kılıyor. Özellik çıkarımı için dalgacık dönüşümü uyguladım ve ham veri toplamadan gerçek zamanlı donanım çıkarımına kadar tam pipeline'ı yönettim.`,
+    bio3: `<strong>Gömülü sistem mühendisi olarak</strong>, mikrodenetleyiciler ve IoT platformları kullanan donanım-yazılım çözümleri tasarlıyor ve konuşlandırıyorum. <strong>Four Mansions Hotel</strong>'de ESP32 ve Blynk IoT kullanarak uzaktan kapı açma sistemi kurdum, endüstriyel aydınlatma altyapısını optimize ettim ve Python tabanlı rakip fiyat istihbarat aracı geliştirdim — tümü canlı üretim ortamında.`,
+    bio4: `<strong>Araştırma &amp; Projeler:</strong> Şu anda görme engelli kullanıcılar için YOLO tabanlı gerçek zamanlı nesne tespitini yönlü 3D ses geribildirimiyle Raspberry Pi üzerinde birleştiren <strong>yapay zeka destekli akıllı gözlükler</strong> geliştiriyorum. Son akademik projeler arasında meme kanseri histopatolojik görüntülerinin derin öğrenme sınıflandırması, kalp hastalığı tahmini ve ~22 dB SNR elde eden PAM dijital eşitleme sistemi yer almaktadır.`,
+    bio5: `<strong>Dil Becerileri:</strong> <strong>Arapça</strong> (anadil), <strong>İngilizce</strong> ve <strong>Türkçe</strong> dillerinde akıcıyım. Mühendisliği önemli sorunlara uygulamaya tutkuluyum — protezlerden erişilebilirlik teknolojisine, enerji optimizasyonuna kadar.`,
     section_sel_exp: "seçili deneyim", view_all: "tümünü gör →",
     exp1_title: "Teknik Operasyon Mühendisi", exp1_date: "Eyl 2024 – Günümüz",
     exp1_company: "Four Mansions Hotel — Kayseri, Türkiye",
-    exp1_bullets: `<li>ESP32 ve Blynk IoT kullanarak uzaktan Kapı Açma sistemi tasarlayıp konuşlandırdım.</li><li>Rakip otel fiyatlandırma ve doluluk trendlerini otomatik takip eden Python tabanlı web kazıma aracı geliştirdim.</li>`,
+    exp1_bullets: `<li>ESP32 ve Blynk IoT kullanarak uzaktan Kapı Açma sistemi tasarlayıp konuşlandırdım; kablosuz erişim kontrolü sağlayarak manuel müdahale ihtiyacını ortadan kaldırdım.</li><li>Rakip otel fiyatlandırma ve doluluk trendlerini otomatik takip eden Python tabanlı web kazıma aracı geliştirdim.</li>`,
     exp2_title: "Makine Öğrenmesi Stajyeri", exp2_date: "Haz 2024 – Ağu 2024",
     exp2_company: "MTM Biotech — Kayseri, Türkiye",
-    exp2_bullets: `<li>EMG sinyallerinden el hareketlerini çözmek için <strong>%82 doğruluk</strong> elde eden sınıflandırma modeli geliştirdim.</li><li>Tam ML pipeline'ını yönettim: veri toplama, ön işleme, özellik mühendisliği, model eğitimi ve gerçek zamanlı çıkarım.</li>`,
+    exp2_bullets: `<li>EMG sinyallerinden el hareketlerini çözmek için <strong>%82 doğruluk</strong> elde eden sınıflandırma modeli geliştirdim; protez kolda bireysel parmak kontrolünü mümkün kıldım.</li><li>Tam ML pipeline'ını yönettim: veri toplama, ön işleme, özellik mühendisliği, model eğitimi ve gerçek zamanlı çıkarım.</li>`,
     section_sel_proj: "seçili projeler",
     proj_prosthetic_name: "EMG Kontrollü Protez Kol",
-    proj_prosthetic_desc: "EMG sinyallerinden el hareketlerini sınıflandırarak bireysel parmak kontrolü sağlayan protez kolu gerçek zamanlı kontrol eden makine öğrenmesi pipeline'ı.",
+    proj_prosthetic_desc: "EMG sinyallerinden el hareketlerini sınıflandırarak bireysel parmak kontrolü sağlayan protez kolu gerçek zamanlı kontrol eden, CNN ve dalgacık dönüşümü kullanarak %82 doğruluk elde eden makine öğrenmesi pipeline'ı.",
     proj1_name: "3D Sesli ve Yapay Zeka Destekli Engel Tanıma Gözlüğü",
     ongoing_badge: "● devam ediyor",
     proj1_desc: "Görme engelli kullanıcılar için Raspberry Pi üzerinde gerçek zamanlı nesne tespiti ve yönlü 3D ses geribildirimiyle akıllı gözlük.",
