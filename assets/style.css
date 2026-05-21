@@ -1,97 +1,39 @@
 /* ============================================================
-   style.css  —  Ahmed Tamer Portfolio
-   ============================================================
-   
-   TABLE OF CONTENTS
-   ─────────────────────────────────────────────────────────────
-   1.  THEMING ENGINE          (CSS custom properties / variables)
-   2.  GLOBAL RESET & BASE     (body, typography defaults)
-   3.  TEXT STRUCTURE          (headings, paragraphs, links, code)
-   4.  SPACING & PADDING       (containers, sections, rhythm)
-   5.  NAVBAR                  (top navigation bar)
-   6.  PROGRESS BAR            (reading-progress indicator)
-   7.  PROFILE IMAGE           (circular photo float)
-   8.  SOCIAL / CONTACT ICONS  (email, github, linkedin …)
-   9.  EXPERIENCE ITEMS        (exp-item, exp-header, bullets)
-  10.  PROJECT CARDS           (projects-grid, project-card)
-  11.  SKILLS GRID             (skill-group, tags)
-  12.  EDUCATION BLOCK         (edu-block, edu-gpa)
-  13.  FOOTER                  (fixed-bottom strip)
-  14.  UTILITY                 (fade-up, view-all-link, badges)
-  15.  THEME TOGGLE ICONS      (sun/moon visibility swap)
-  16.  RESPONSIVE              (≤576 px breakpoints)
+   assets/style.css  —  Ahmed Tamer Portfolio
+   Shared across: index, experience, projects, repositories,
+                  project-detail pages
    ============================================================ */
 
-
-/* ============================================================
-   1.  THEMING ENGINE
-   All colours live here. Swap a variable in ONE place and the
-   entire page updates — both light and dark modes.
-   ============================================================ */
-
+/* ─── 1. CSS Variables (Light & Dark) ─────────────────────── */
 :root {
-  /* ── Backgrounds ── */
-  --bg:               #ffffff;
-  --card-bg:          #ffffff;
-  --footer-bg:        #1c1c1d;
-
-  /* ── Text ── */
-  --text:             #111111;
-  --text-light:       #6b6b6b;
-  --footer-text:      #e8e8e8;
-  --footer-link:      #ffffff;
-
-  /* ── Accent / brand ── */
-  --accent:           #ff4b4b;          /* primary red used for links, hover, tags */
-  --accent-hover:     #ff4b4b;
-  --accent-hover-fg:  #ffffff;
-
-  /* ── Borders & dividers ── */
-  --divider:          rgba(0, 0, 0, 0.10);
-
-  /* ── Code blocks ── */
-  --code-bg:          rgba(255, 75, 75, 0.05);
-
-  /* ── Callout blocks ── */
-  --tip-border:       #42b983;
-  --tip-bg:           #e2f5ec;
-  --tip-text:         #215d42;
-  --warning-border:   #e7c000;
-  --warning-bg:       #fff8d8;
-  --warning-text:     #6b5900;
-  --danger-border:    #cc0000;
-  --danger-bg:        #ffe0e0;
-  --danger-text:      #660000;
+  --global-bg-color:        #ffffff;
+  --global-surface-color:   #f5f5f5;
+  --global-text-color:      #212121;
+  --global-text-muted:      #555555;
+  --global-divider-color:   #dddddd;
+  --global-theme-color:     #212121;
+  --global-accent-color:    #1565c0;
+  --global-hover-color:     #0d47a1;
+  --global-link-color:      #1565c0;
+  --nav-height:             60px;
+  --container-max:          860px;
+  --transition:             0.2s ease;
 }
 
-/* ── Dark mode overrides ── */
-html[data-theme="dark"] {
-  --bg:               #1c1c1d;
-  --card-bg:          #212529;
-  --footer-bg:        #e8e8e8;
-
-  --text:             #e8e8e8;
-  --text-light:       #e8e8e8;
-  --footer-text:      #1c1c1d;
-  --footer-link:      #000000;
-
-  --accent:           #2698ba;
-  --accent-hover:     #2698ba;
-
-  --divider:          #424246;
-  --code-bg:          #2c3237;
+[data-theme="dark"] {
+  --global-bg-color:        #1a1a1a;
+  --global-surface-color:   #252525;
+  --global-text-color:      #e0e0e0;
+  --global-text-muted:      #9e9e9e;
+  --global-divider-color:   #333333;
+  --global-theme-color:     #e0e0e0;
+  --global-accent-color:    #90caf9;
+  --global-hover-color:     #bbdefb;
+  --global-link-color:      #90caf9;
 }
 
-
-/* ============================================================
-   2.  GLOBAL RESET & BASE
-   ============================================================ */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* ─── 2. Base Reset & Body ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
@@ -102,771 +44,867 @@ body {
   font-weight: 300;
   font-size: 17.28px;
   line-height: 1.85;
-  color: var(--text);
-  background-color: var(--bg);
-
-  padding-bottom: 70px;     /* room for fixed footer */
+  background-color: var(--global-bg-color);
+  color: var(--global-text-color);
+  transition: background-color var(--transition), color var(--transition);
+  padding-top: var(--nav-height);
+  min-height: 100vh;
 }
 
 body.fixed-top-nav {
-  padding-top: 56px;        /* room for fixed navbar */
+  padding-top: var(--nav-height);
 }
 
-/* ── Maximum content width ── */
-.container {
-  max-width: 1100px;
-}
-
-
-/* ============================================================
-   3.  TEXT STRUCTURE & STYLING
-   ============================================================ */
-
-/* --- Headings --- */
+/* ─── 3. Typography ────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  color: var(--text);
-  scroll-margin-top: 66px;  /* offset for sticky navbar when deep-linking */
+  color: var(--global-text-color);
+  line-height: 1.3;
 }
 
-/* ── Post / page title ──
-   FIX: both "Ahmed" (inside span.font-weight-bold) and "Tamer"
-   must render at exactly the same font-size.
-   The span below resets any Bootstrap utility that might
-   inadvertently scale the inline element differently. */
-/* AFTER */
-.post-title {
+h2 {
+  font-size: 1rem;
   font-weight: 500;
-  color: var(--text);
-  line-height: 1.1;
-}
-.post-title .font-weight-bold {   /* "Ahmed" — BIG */
-  font-size: 3.8rem !important;
-  font-weight: 700 !important;
-  color: inherit;
-}
-.post-title .name-last {          /* "Tamer" — small */
-  font-size: 1.6rem !important;
-  font-weight: 300 !important;
-  color: var(--text-light);
-}
-.post-title {
-  margin-bottom: 0.1rem;   /* was ~1rem browser default — shrink this */
-}
-.desc {
-  margin-top: 0;           /* remove any top gap on the desc paragraph */
-  margin-bottom: 0.5rem;
+  text-transform: lowercase;
+  letter-spacing: 0.01em;
+  margin: 2.2rem 0 0.9rem;
+  color: var(--global-text-muted);
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
 }
 
-/* --- Body copy --- */
-p, li, div, span, td, th {
+p {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  color: var(--text);
+  font-size: 17.28px;
+  line-height: 1.85;
+  margin-bottom: 1rem;
 }
 
 strong, b {
   font-weight: 500;
-  color: var(--text);
 }
 
-em {
-  color: var(--text);
-}
-
-/* --- Links --- */
 a {
-  color: var(--accent);
+  color: var(--global-link-color);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--transition);
 }
 
 a:hover {
-  color: var(--accent-hover);
-  text-decoration: underline;
-}
-
-/* --- Horizontal rule --- */
-hr {
-  border: none;
-  border-top: 1px solid var(--divider);
-}
-
-/* --- Inline code --- */
-code {
-  font-size: 15px;
-  background-color: var(--code-bg);
-  color: var(--accent);
-  border-radius: 3px;
-  padding: 2px 5px;
-}
-
-pre {
-  font-size: 15px;
-  line-height: 1.7;
-  background-color: var(--code-bg);
-  color: var(--accent);
-  border-radius: 6px;
-  padding: 8px 14px;
-}
-
-pre code {
-  background: transparent;
-  padding: 0;
-}
-
-/* --- Section headings (h2 inside .post article) --- */
-.post article h2 {
-  font-size: 1.35rem;
-  font-weight: 500;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--divider);
-  color: var(--text);
-}
-
-/* --- Descriptor line under name --- */
-.desc {
-  font-size: 17.28px;
-  line-height: 1.85;
-  color: var(--text);
-}
-
-/* --- Bio paragraphs --- */
-.bio,
-.post article p {
-  text-align: justify;
-  hyphens: auto;
-}
-
-/* --- Blockquotes --- */
-blockquote {
-  background: var(--bg);
-  border-left: 5px solid var(--accent);
-  margin: 1.5em 0;
-  padding: 1em 1.25em;
-  font-size: 1.1rem;
-}
-
-blockquote p { margin-bottom: 0; }
-
-/* Callout variants */
-blockquote.block-tip     { border-color: var(--tip-border);     background: var(--tip-bg);     }
-blockquote.block-tip p   { color: var(--tip-text); }
-blockquote.block-warning { border-color: var(--warning-border); background: var(--warning-bg); }
-blockquote.block-warning p { color: var(--warning-text); }
-blockquote.block-danger  { border-color: var(--danger-border);  background: var(--danger-bg);  }
-blockquote.block-danger p  { color: var(--danger-text); }
-
-
-/* ============================================================
-   4.  GLOBAL PADDING & SPACING
-   Consistent rhythm throughout the page.
-   ============================================================ */
-
-/* Top-level post wrapper */
-.post {
-  margin-top: 1.5rem;
-  margin-bottom: 2.5rem;
-}
-
-/* Section headings get a top gap so sections breathe */
-.post article h2 {
-  margin-top: 2.75rem;
-}
-
-/* Paragraphs inside article */
-.post article p {
-  margin-bottom: 1.1rem;
-}
-
-/* Clearfix helper used after floated profile image */
-.clearfix::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
-
-/* ============================================================
-   5.  NAVBAR
-   ============================================================ */
-
-#navbar {
-  box-shadow: none;
-  border-bottom: 1px solid var(--divider);
-  background-color: var(--bg);
-  opacity: 0.97;
-}
-
-/* Brand / site name */
-.navbar.navbar-light .navbar-brand {
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--text);
-}
-
-/* Nav links */
-.navbar.navbar-light .navbar-nav .nav-item .nav-link {
-  color: var(--text);
-  font-size: 0.92rem;
-  padding: 0.35rem 0.65rem;
-  transition: color 0.2s ease;
-}
-
-.navbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
-  color: var(--accent-hover);
+  color: var(--global-hover-color);
   text-decoration: none;
 }
 
-/* Active page link */
-.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
-  font-weight: 700;
-  color: var(--accent);
-  background-color: transparent;
+code {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.83em;
+  background: var(--global-surface-color);
+  border: 1px solid var(--global-divider-color);
+  padding: 0.1em 0.38em;
+  border-radius: 4px;
+  color: var(--global-text-color);
 }
 
-/* Hamburger icon bars */
-.navbar-toggler .icon-bar {
+ul, ol {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 17.28px;
+  line-height: 1.85;
+}
+
+/* ─── 4. Navbar ────────────────────────────────────────────── */
+#navbar {
+  background-color: var(--global-bg-color) !important;
+  border-bottom: 1px solid var(--global-divider-color);
+  height: var(--nav-height);
+  transition: background-color var(--transition), border-color var(--transition);
+  padding: 0 1rem;
+}
+
+.navbar-brand {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 1.1rem !important;
+  color: var(--global-text-color) !important;
+  letter-spacing: 0.01em;
+}
+
+.navbar-brand:hover {
+  color: var(--global-accent-color) !important;
+}
+
+.nav-item .nav-link {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--global-text-muted) !important;
+  padding: 0.3rem 0.7rem !important;
+  border-radius: 4px;
+  transition: color var(--transition), background var(--transition);
+}
+
+.nav-item .nav-link:hover,
+.nav-item.active .nav-link {
+  color: var(--global-text-color) !important;
+  background: var(--global-surface-color);
+}
+
+/* Hamburger bars */
+.icon-bar {
   display: block;
   width: 22px;
   height: 2px;
-  background-color: var(--text);
   border-radius: 1px;
-  margin-bottom: 4px;
-  transition: all 0.2s ease;
+  background: var(--global-text-color);
+  transition: background var(--transition);
+  margin: 4px 0;
 }
 
-.navbar-toggler .top-bar    { transform: rotate(45deg);  transform-origin: 10% 10%; }
-.navbar-toggler .middle-bar { opacity: 0; }
-.navbar-toggler .bottom-bar { transform: rotate(-45deg); transform-origin: 10% 90%; }
-
-.navbar-toggler.collapsed .top-bar    { transform: rotate(0); }
-.navbar-toggler.collapsed .middle-bar { opacity: 1; }
-.navbar-toggler.collapsed .bottom-bar { transform: rotate(0); }
-
-/* Theme & language toggle buttons */
+/* Theme / Lang toggle buttons */
 #light-toggle,
 #lang-toggle {
-  padding: 0 6px;
-  border: 0;
-  background-color: transparent;
-  color: var(--text);
-  font-size: 0.85rem;
+  background: none;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 5px;
+  color: var(--global-text-muted);
   cursor: pointer;
-  transition: color 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  padding: 0.28rem 0.55rem;
+  line-height: 1;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
 }
 
 #light-toggle:hover,
 #lang-toggle:hover {
-  color: var(--accent-hover);
+  color: var(--global-text-color);
+  border-color: var(--global-text-muted);
+  background: var(--global-surface-color);
 }
 
+/* Sun/moon icons */
+#light-toggle .fa-sun  { display: none; }
+[data-theme="dark"] #light-toggle .fa-moon { display: none; }
+[data-theme="dark"] #light-toggle .fa-sun  { display: inline; }
 
-/* ============================================================
-   6.  PROGRESS BAR
-   Thin line at top showing scroll progress.
-   ============================================================ */
-
-progress#progress {
+/* Scroll progress bar */
+#progress {
   position: fixed;
+  top: var(--nav-height);
   left: 0;
-  top: 56px;
-  z-index: 1000;
+  right: 0;
   width: 100%;
-  height: 3px;
+  height: 2px;
+  -webkit-appearance: none;
   appearance: none;
   border: none;
-  background: transparent;
-  color: var(--accent);
+  background: var(--global-divider-color);
+  z-index: 999;
 }
 
-progress#progress::-webkit-progress-bar   { background: transparent; }
-progress#progress::-webkit-progress-value { background: var(--accent); }
-progress#progress::-moz-progress-bar      { background: var(--accent); }
+#progress::-webkit-progress-bar   { background: transparent; }
+#progress::-webkit-progress-value { background: var(--global-accent-color); }
+#progress::-moz-progress-bar      { background: var(--global-accent-color); }
 
+/* ─── 5. Container / Layout ────────────────────────────────── */
+.container {
+  max-width: var(--container-max);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
 
-/* ============================================================
-   7.  PROFILE IMAGE
-   Circular, floated right, fixed 321 × 321 px.
-   ============================================================ */
+/* ─── 6. Post / Article wrapper ───────────────────────────── */
+.post {
+  padding: 1.5rem 0 3rem;
+}
 
-.profile {
-  float: right;
-  margin-left: 2rem;
-  margin-bottom: 1.25rem;
+.post article {
+  text-align: justify;
+}
+
+/* ─── 7. Fade-up animation ─────────────────────────────────── */
+.fade-up {
+  animation: fadeUp 0.45s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── 8. Page titles ───────────────────────────────────────── */
+.post-title,
+.page-h1 {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--global-text-color);
+  margin-bottom: 0.4rem;
+}
+
+.post-title .font-weight-bold { font-weight: 700 !important; }
+
+.page-subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.desc {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--global-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ─── 9. Profile photo ─────────────────────────────────────── */
+.profile figure img,
+.profile img {
+  width:  321px;
+  height: 321px;
+  min-width:  321px;
+  max-width:  321px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 
 .profile figure {
   width:  321px;
   height: 321px;
-  margin: 0;
-  display: block;
+  margin: 0 0 1.25rem 1.75rem;
 }
 
-.profile figure img,
-.profile img {
-  width:       321px  !important;
-  height:      321px  !important;
-  min-width:   321px  !important;
-  min-height:  321px  !important;
-  max-width:   321px  !important;
-  max-height:  321px  !important;
-  border-radius: 50%  !important;
-  object-fit: cover   !important;
-  object-position: center top !important;
-  display: block      !important;
+.profile {
+  float: right;
+  margin-left: 2rem;
 }
 
+@media (max-width: 600px) {
+  .profile, .profile figure {
+    float: none;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 1.5rem;
+  }
+  .profile figure img,
+  .profile img {
+    width: 160px;
+    height: 160px;
+    min-width: 160px;
+    max-width: 160px;
+  }
+}
 
-/* ============================================================
-   8.  SOCIAL / CONTACT ICONS
-   ─────────────────────────────────────────────────────────────
-   ★  TO CHANGE ICON SIZE → edit font-size on .contact-icons
-      One number controls all icons at once.
-   ============================================================ */
-
+/* ─── 10. Social / contact icons ───────────────────────────── */
 .social {
-  text-align: center;
-  margin: 1.75rem 0;
+  margin: 1.5rem 0;
 }
 
-.social .contact-icons {
-  font-size: 4.8rem;       /* ← ICON SIZE — increase to make bigger */
+.contact-icons {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;               /* spacing between icons */
+  gap: 0.9rem;
   flex-wrap: wrap;
 }
 
-.social .contact-icons a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, color 0.2s ease;
+.contact-icons a {
+  color: var(--global-text-muted);
+  font-size: 1.55rem;
+  line-height: 1;
+  transition: color var(--transition), transform var(--transition);
 }
 
-/* Default icon colour = body text colour */
-.social .contact-icons a i::before {
-  color: var(--text);
-  transition: color 0.2s ease;
+.contact-icons a:hover {
+  color: var(--global-accent-color);
+  transform: translateY(-2px);
 }
 
-/* Hover = brand accent + slight lift */
-.social .contact-icons a:hover i::before {
-  color: var(--accent-hover);
+/* ─── 11. Section — "view all" link ────────────────────────── */
+.view-all-link {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  transition: color var(--transition);
 }
 
-.social .contact-icons a:hover {
-  transform: translateY(-3px);
-  text-decoration: none;
+.view-all-link:hover {
+  color: var(--global-accent-color);
 }
 
-.social .contact-note {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  margin-top: 0.4rem;
-}
-
-
-/* ============================================================
-   9.  EXPERIENCE ITEMS
-   ============================================================ */
-
+/* ─── 12. Experience items ─────────────────────────────────── */
 .exp-item {
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--divider);
+  border-bottom: 1px solid var(--global-divider-color);
 }
 
 .exp-item:last-of-type {
   border-bottom: none;
 }
 
-/* Row: title on left, date on right */
 .exp-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 0.25rem;
-  margin-bottom: 0.2rem;
+  gap: 0.3rem;
+  margin-bottom: 0.1rem;
 }
 
 .exp-title {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--text);
+  font-weight: 500;
+  font-size: 0.97rem;
+  color: var(--global-text-color);
 }
 
 .exp-date {
-  font-size: 0.85rem;
-  color: var(--text-light);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
   white-space: nowrap;
 }
 
 .exp-company {
-  font-size: 0.92rem;
-  color: var(--text-light);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
   margin-bottom: 0.5rem;
 }
 
-/* Bullet list inside experience */
 .exp-bullets {
-  padding-left: 1.25rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0 0.5rem 1.1rem;
+  padding: 0;
 }
 
 .exp-bullets li {
-  font-size: 17.28px;
-  line-height: 1.85;
-  margin-bottom: 0.3rem;
-  color: var(--text);
+  font-size: 0.93rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 0.35rem;
+  color: var(--global-text-color);
 }
 
-/* Technology tag pills */
+/* ─── 13. Tech stack tags ──────────────────────────────────── */
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 0.65rem;
 }
 
 .tag {
   display: inline-block;
-  font-size: 13px !important;
-  font-weight: 400 !important;
-  line-height: 1.4 !important;
-  padding: 0.2rem 0.6rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--global-text-muted);
+  background: var(--global-surface-color);
+  border: 1px solid var(--global-divider-color);
   border-radius: 4px;
-  background-color: var(--code-bg);
-  color: var(--accent);
-  border: 1px solid rgba(255, 75, 75, 0.18);
+  padding: 0.18rem 0.55rem;
+  line-height: 1.5;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
 }
 
-html[data-theme="dark"] .tag {
-  border-color: rgba(38, 152, 186, 0.25);
+.tag:hover {
+  color: var(--global-text-color);
+  border-color: var(--global-text-muted);
 }
 
-
-/* ============================================================
-  10.  PROJECT CARDS
-   ============================================================ */
-
+/* ─── 14. Project cards grid ───────────────────────────────── */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
-.project-card {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  padding: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+@media (max-width: 620px) {
+  .projects-grid { grid-template-columns: 1fr; }
 }
 
 .project-card-link {
-  text-decoration: none !important;
-  color: inherit !important;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-card {
+  border: 1px solid var(--global-divider-color);
+  border-radius: 10px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--global-bg-color);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  height: 100%;
+}
+
+.project-card:hover {
+  border-color: var(--global-accent-color);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.project-card > .card.hoverable {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+.project-card-body {
+  padding: 0.9rem 1rem 1rem;
+}
+
+.project-card figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+.project-card figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  transition: transform 0.35s ease;
+}
+
+.project-card:hover figure img {
+  transform: scale(1.02);
 }
 
 .project-card-header {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.25rem;
-  margin-top: 0.6rem;
-  margin-bottom: 0.2rem;
+  gap: 0.3rem;
+  padding: 0.75rem 1rem 0.2rem;
 }
 
 .project-name {
-  font-weight: 600;
-  font-size: 0.97rem;
-  color: var(--text);
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--global-text-color);
+  line-height: 1.4;
 }
 
 .project-date-tag {
-  font-size: 0.8rem;
-  color: var(--text-light);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .project-desc {
-  font-size: 0.9rem;
-  color: var(--text-light);
-  line-height: 1.6;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--global-text-muted);
+  padding: 0 1rem;
+  margin: 0 0 0.5rem;
+}
+
+.ongoing-badge {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #c46a00;
+  padding: 0 1rem 0.1rem;
+  line-height: 1;
+}
+
+[data-theme="dark"] .ongoing-badge {
+  color: #e8a44a;
+}
+
+/* ─── 15. Skills grid ──────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
   margin-bottom: 0.5rem;
 }
 
-/* "● ongoing" badge */
-.ongoing-badge {
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--accent);
-  margin-bottom: 0.35rem;
-}
-
-/* Card image wrapper */
-.project-card .card {
-  background-color: var(--card-bg);
-  border: none !important;
-  box-shadow: none !important;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.project-card .card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-}
-
-
-/* ============================================================
-  11.  SKILLS GRID
-   ============================================================ */
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 2rem;
+@media (max-width: 540px) {
+  .skills-grid { grid-template-columns: 1fr; }
 }
 
 .skill-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .skill-group-label {
-  font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--global-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--accent);
+  letter-spacing: 0.07em;
+  margin-bottom: 0.45rem;
 }
 
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
+  gap: 0.35rem;
 }
 
-
-/* ============================================================
-  12.  EDUCATION BLOCK
-   ============================================================ */
-
+/* ─── 16. Education block ──────────────────────────────────── */
 .edu-block {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  background: var(--global-surface-color);
+  margin-bottom: 1rem;
   gap: 1rem;
-  padding: 1rem 0;
-  border-top: 1px solid var(--divider);
-  border-bottom: 1px solid var(--divider);
-  margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .edu-degree {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--global-text-color);
+  margin-bottom: 0.2rem;
 }
 
 .edu-uni {
-  font-size: 0.92rem;
-  color: var(--text-light);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  margin-bottom: 0.15rem;
 }
 
 .edu-detail {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-top: 0.15rem;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
 }
 
 .edu-gpa {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: 0.8rem;
+  text-align: right;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-light);
-  white-space: nowrap;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
 }
 
 .edu-gpa span {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--accent);
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--global-text-color);
   letter-spacing: 0;
-  line-height: 1.2;
 }
 
-
-/* ============================================================
-  13.  FOOTER
-   ============================================================ */
+/* ─── 17. Footer ───────────────────────────────────────────── */
+footer {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: var(--global-text-muted);
+  border-top: 1px solid var(--global-divider-color);
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  background: var(--global-bg-color);
+  transition: background var(--transition), border-color var(--transition);
+}
 
 footer.fixed-bottom {
-  background-color: var(--footer-bg);
-  font-size: 0.78rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
 }
 
-footer.fixed-bottom .container {
-  color: var(--footer-text);
-  padding-top: 9px;
-  padding-bottom: 8px;
+footer a {
+  color: var(--global-text-muted);
 }
 
-footer.fixed-bottom a {
-  color: var(--footer-link);
-  transition: color 0.2s ease;
+footer a:hover {
+  color: var(--global-accent-color);
 }
 
-footer.fixed-bottom a:hover {
-  color: var(--accent-hover);
+/* ─── 18. Project detail page extras ──────────────────────── */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.84rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  margin-bottom: 1.5rem;
+  transition: color var(--transition);
+}
+
+.back-link:hover {
+  color: var(--global-accent-color);
   text-decoration: none;
 }
 
-
-/* ============================================================
-  14.  UTILITY CLASSES
-   ============================================================ */
-
-/* Fade-up entrance animation */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0);    }
-}
-
-.fade-up {
-  animation: fadeUp 0.45s ease both;
-}
-
-/* "view all →" link next to section headings */
-.view-all-link {
-  font-size: 0.82rem;
+.ongoing-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
   font-weight: 400;
-  color: var(--text-light);
-  margin-left: 0.6rem;
+  font-family: 'Roboto', sans-serif;
+  color: #c46a00;
+  background: rgba(196, 106, 0, 0.10);
+  border-radius: 20px;
+  padding: 0.22rem 0.75rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
+}
+
+[data-theme="dark"] .ongoing-pill {
+  color: #e8a44a;
+  background: rgba(232, 164, 74, 0.12);
+}
+
+.ongoing-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.project-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0;
+  margin: 1.4rem 0 1.75rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.project-meta-item {
+  padding: 0.85rem 1rem;
+  border-right: 1px solid var(--global-divider-color);
+  background: var(--global-surface-color);
+}
+
+.project-meta-item:last-child {
+  border-right: none;
+}
+
+.project-meta-item label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--global-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.project-meta-item span {
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: var(--global-text-color);
+}
+
+.project-section-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--global-text-muted);
+  margin: 2rem 0 0.6rem;
+  opacity: 0.75;
+}
+
+.component-card {
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.65rem;
+  background: var(--global-bg-color);
+  transition: border-color var(--transition);
+}
+
+.component-card:hover {
+  border-color: var(--global-accent-color);
+}
+
+.component-card h6 {
+  font-size: 0.84rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: var(--global-text-color);
+}
+
+.component-card p {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--global-text-muted);
+}
+
+.pipeline-steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 1.5rem;
+}
+
+.pipeline-steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.92rem;
+  font-weight: 300;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  background: var(--global-bg-color);
+  transition: border-color var(--transition);
+}
+
+.pipeline-steps li:hover {
+  border-color: var(--global-accent-color);
+}
+
+.pipeline-steps li::before {
+  content: counter(step);
+  flex-shrink: 0;
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 50%;
+  background: var(--global-theme-color);
+  color: var(--global-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 500;
+  margin-top: 0.08rem;
+}
+
+.goal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 1.5rem;
+}
+
+.goal-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--global-text-color);
+}
+
+.goal-list li::before {
+  content: '→';
+  flex-shrink: 0;
+  margin-top: 0.12rem;
+  color: var(--global-accent-color);
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+/* ─── 19. Repositories page ─────────────────────────────────── */
+.repo-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  margin-bottom: 0.65rem;
+  background: var(--global-bg-color);
   text-decoration: none;
-  transition: color 0.2s ease;
+  color: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.view-all-link:hover {
-  color: var(--accent-hover);
+.repo-card:hover {
+  border-color: var(--global-accent-color);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   text-decoration: none;
+  color: inherit;
 }
 
-/* Tables */
-table td, table th { font-size: 1rem; }
-table th { font-weight: bold; }
-
-/* Card generic (al-folio compat) */
-.card {
-  background-color: var(--card-bg);
+.repo-name {
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--global-accent-color);
+  margin-bottom: 0.2rem;
 }
 
-.card .card-title { color: var(--text); }
+.repo-desc {
+  font-size: 0.86rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
+}
 
-/* Figure / image max width guard */
-figure, img { max-width: 90vw; }
+.repo-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+}
 
+.repo-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
 
-/* ============================================================
-  15.  THEME TOGGLE ICONS
-   sun shown in dark mode, moon shown in light mode.
-   ============================================================ */
+/* ─── 20. Responsive adjustments ───────────────────────────── */
+@media (max-width: 767px) {
+  body { font-size: 15.5px; }
+  p, ul, ol, li { font-size: 15.5px !important; }
+  .post-title, .page-h1 { font-size: 1.5rem; }
+  .container { padding-left: 1rem; padding-right: 1rem; }
+  .project-meta-item { border-right: none; border-bottom: 1px solid var(--global-divider-color); }
+  .project-meta-item:last-child { border-bottom: none; }
+  .edu-block { flex-direction: column; }
+  .edu-gpa { text-align: left; }
+}
 
-/* Light mode: show moon, hide sun */
-:root .fa-sun  { display: none; }
-:root .fa-moon { display: block; padding-left: 4px; padding-top: 12px; }
-
-/* Dark mode: show sun, hide moon */
-html[data-theme="dark"] .fa-sun  { display: block; padding-left: 4px; padding-top: 12px; }
-html[data-theme="dark"] .fa-moon { display: none; }
-
-/* Repository image variants */
-:root .repo-img-light              { display: block; }
-:root .repo-img-dark               { display: none;  }
-html[data-theme="dark"] .repo-img-light { display: none;  }
-html[data-theme="dark"] .repo-img-dark  { display: block; }
-
-
-/* ============================================================
-  16.  RESPONSIVE  (≤ 576 px)
-   ============================================================ */
-
-@media (max-width: 576px) {
-
-  /* Stack profile image above text on mobile */
-  .profile {
-    float: none;
-    margin: 0 auto 1.5rem auto;
-    display: flex;
-    justify-content: center;
-  }
-
-  .profile figure {
-    width:  220px;
-    height: 220px;
-  }
-
-  .profile figure img,
-  .profile img {
-    width:      220px !important;
-    height:     220px !important;
-    min-width:  220px !important;
-    min-height: 220px !important;
-    max-width:  220px !important;
-    max-height: 220px !important;
-  }
-
-  /* Reduce icon size slightly on small screens */
-  .social .contact-icons {
-    font-size: 3.8rem;   /* ← MOBILE ICON SIZE */
-    gap: 0.8rem;
-  }
-
-  .post-title {
-    font-size: 1.8rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .edu-block {
-    flex-direction: column;
-  }
-
-  .edu-gpa {
-    align-items: flex-start;
-  }
-
-  .exp-header {
-    flex-direction: column;
-    gap: 0;
-  }
+@media (max-width: 480px) {
+  .exp-header { flex-direction: column; gap: 0.1rem; }
+  .project-card-header { flex-direction: column; }
 }
