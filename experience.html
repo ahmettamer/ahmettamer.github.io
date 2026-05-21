@@ -8,12 +8,41 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css"/>
+  <style>
+    html, body,
+    p, li, div, span, a, td, th,
+    .post, .post article,
+    .exp-bullets, .exp-bullets li,
+    .project-desc,
+    .desc, .bio,
+    .skill-tags .tag,
+    .edu-block,
+    footer {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 17.28px !important;
+      line-height: 1.85 !important;
+    }
+    h1, h2, h3, h4, h5, h6,
+    .post-title, .exp-title, .project-name,
+    .skill-group-label, .edu-degree, .navbar-brand {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;
+    }
+    strong, b {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;
+    }
+    .tag, code, pre {
+      font-size: 15px !important;
+      line-height: 1.7 !important;
+    }
+  </style>
 </head>
 <body class="fixed-top-nav">
 
-<!-- ── NAVBAR ── -->
 <header>
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
     <div class="container">
@@ -35,8 +64,7 @@
           <li class="nav-item"><a class="nav-link" href="assets/pdf/cv.pdf" target="_blank" data-i18n="nav_cv">cv</a></li>
           <li class="nav-item ml-1">
             <button id="light-toggle" title="Change theme">
-              <i class="fas fa-moon"></i>
-              <i class="fas fa-sun"></i>
+              <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
             </button>
           </li>
           <li class="nav-item ml-1">
@@ -51,7 +79,6 @@
   </progress>
 </header>
 
-<!-- ── MAIN ── -->
 <div class="container mt-5">
   <div class="post fade-up">
     <article>
@@ -59,7 +86,6 @@
       <h1 class="page-h1" data-i18n="page_h1">experience</h1>
       <p class="page-subtitle" data-i18n="page_subtitle">My professional and research experience in engineering and machine learning.</p>
 
-      <!-- EXP 1 -->
       <div class="exp-item">
         <div class="exp-header">
           <span class="exp-title" data-i18n="exp1_title">Technical Operations Engineer</span>
@@ -67,11 +93,8 @@
         </div>
         <div class="exp-company" data-i18n="exp1_company">Four Mansions Hotel — Kayseri, Turkey</div>
         <div class="tech-stack">
-          <span class="tag">ESP32</span>
-          <span class="tag">Blynk IoT</span>
-          <span class="tag">Python</span>
-          <span class="tag">Industrial Contactors</span>
-          <span class="tag">Circuit Breakers</span>
+          <span class="tag">ESP32</span><span class="tag">Blynk IoT</span>
+          <span class="tag">Python</span><span class="tag">Industrial Contactors</span><span class="tag">Circuit Breakers</span>
         </div>
         <ul class="exp-bullets" data-i18n="exp1_bullets" data-i18n-html>
           <li>Designed and deployed a remote Gate Opener system using an ESP32 microcontroller and Blynk IoT platform, enabling wireless access control and eliminating manual intervention for facility staff.</li>
@@ -81,7 +104,6 @@
         </ul>
       </div>
 
-      <!-- EXP 2 -->
       <div class="exp-item exp-divider">
         <div class="exp-header">
           <span class="exp-title" data-i18n="exp2_title">Machine Learning Intern</span>
@@ -89,10 +111,8 @@
         </div>
         <div class="exp-company" data-i18n="exp2_company">MTM Biotech — Kayseri, Turkey</div>
         <div class="tech-stack">
-          <span class="tag">Python</span>
-          <span class="tag">CNN</span>
-          <span class="tag">Wavelet Transform</span>
-          <span class="tag">EMG Signal Processing</span>
+          <span class="tag">Python</span><span class="tag">CNN</span>
+          <span class="tag">Wavelet Transform</span><span class="tag">EMG Signal Processing</span>
         </div>
         <ul class="exp-bullets" data-i18n="exp2_bullets" data-i18n-html>
           <li>Developed a classification model achieving <strong>82% accuracy</strong> to decode hand gestures from EMG signals, enabling control of individual finger movements on a prosthetic arm.</li>
@@ -101,7 +121,6 @@
         </ul>
       </div>
 
-      <!-- REFERENCES -->
       <h2 data-i18n="section_references">references</h2>
       <div class="ref-card">
         <div class="ref-name">Oğuzhan Ayyıldız</div>
@@ -113,7 +132,6 @@
   </div>
 </div>
 
-<!-- ── FOOTER ── -->
 <footer class="fixed-bottom">
   <div class="container mt-0">
     <span data-i18n="footer_copy">© Copyright 2026 Ahmed Tamer</span>
@@ -131,23 +149,13 @@ const i18n = {
     nav_repositories: "repositories", nav_cv: "cv",
     page_h1: "experience",
     page_subtitle: "My professional and research experience in engineering and machine learning.",
-    exp1_title: "Technical Operations Engineer",
-    exp1_date: "Sep 2024 – Present",
+    exp1_title: "Technical Operations Engineer", exp1_date: "Sep 2024 – Present",
     exp1_company: "Four Mansions Hotel — Kayseri, Turkey",
-    exp1_bullets: `
-      <li>Designed and deployed a remote Gate Opener system using an ESP32 microcontroller and Blynk IoT platform, enabling wireless access control and eliminating manual intervention for facility staff.</li>
-      <li>Optimized the hotel's industrial lighting infrastructure by reconfiguring contactor and circuit breaker layouts, improving energy distribution reliability and reducing fault risk.</li>
-      <li>Built a Python-based web scraping and market intelligence tool to automatically track competitor hotel pricing and occupancy trends, directly supporting management's revenue strategy decisions.</li>
-      <li>Cross-trained across kitchen, front-of-house reception, and technical maintenance departments — demonstrating rapid operational adaptability and effective communication at all organizational levels.</li>`,
-    exp2_title: "Machine Learning Intern",
-    exp2_date: "Jun 2024 – Aug 2024",
+    exp1_bullets: `<li>Designed and deployed a remote Gate Opener system using an ESP32 microcontroller and Blynk IoT platform, enabling wireless access control and eliminating manual intervention for facility staff.</li><li>Optimized the hotel's industrial lighting infrastructure by reconfiguring contactor and circuit breaker layouts, improving energy distribution reliability and reducing fault risk.</li><li>Built a Python-based web scraping and market intelligence tool to automatically track competitor hotel pricing and occupancy trends, directly supporting management's revenue strategy decisions.</li><li>Cross-trained across kitchen, front-of-house reception, and technical maintenance departments — demonstrating rapid operational adaptability and effective communication at all organizational levels.</li>`,
+    exp2_title: "Machine Learning Intern", exp2_date: "Jun 2024 – Aug 2024",
     exp2_company: "MTM Biotech — Kayseri, Turkey",
-    exp2_bullets: `
-      <li>Developed a classification model achieving <strong>82% accuracy</strong> to decode hand gestures from EMG signals, enabling control of individual finger movements on a prosthetic arm.</li>
-      <li>Applied CNN deep learning and wavelet transformation for feature extraction, significantly boosting model accuracy beyond baseline approaches.</li>
-      <li>Managed the full ML pipeline: data collection, preprocessing, feature engineering, model training, and real-time inference output to hardware.</li>`,
-    section_references: "references",
-    ref_role: "COO, MTM Biotech",
+    exp2_bullets: `<li>Developed a classification model achieving <strong>82% accuracy</strong> to decode hand gestures from EMG signals, enabling control of individual finger movements on a prosthetic arm.</li><li>Applied CNN deep learning and wavelet transformation for feature extraction, significantly boosting model accuracy beyond baseline approaches.</li><li>Managed the full ML pipeline: data collection, preprocessing, feature engineering, model training, and real-time inference output to hardware.</li>`,
+    section_references: "references", ref_role: "COO, MTM Biotech",
     footer_copy: "© Copyright 2026 Ahmed Tamer"
   },
   tr: {
@@ -156,23 +164,13 @@ const i18n = {
     nav_repositories: "depolar", nav_cv: "özgeçmiş",
     page_h1: "deneyim",
     page_subtitle: "Mühendislik ve makine öğrenmesindeki mesleki ve araştırma deneyimim.",
-    exp1_title: "Teknik Operasyon Mühendisi",
-    exp1_date: "Eyl 2024 – Günümüz",
+    exp1_title: "Teknik Operasyon Mühendisi", exp1_date: "Eyl 2024 – Günümüz",
     exp1_company: "Four Mansions Hotel — Kayseri, Türkiye",
-    exp1_bullets: `
-      <li>ESP32 mikrodenetleyici ve Blynk IoT platformu kullanarak uzaktan Kapı Açma sistemi tasarlayıp konuşlandırdım; tesis personeli için kablosuz erişim kontrolü sağlayarak manuel müdahale ihtiyacını ortadan kaldırdım.</li>
-      <li>Kontaktör ve devre kesici düzenlemelerini yeniden yapılandırarak otelin endüstriyel aydınlatma altyapısını optimize ettim; enerji dağıtım güvenilirliğini artırırken arıza riskini azalttım.</li>
-      <li>Rakip otel fiyatlandırma ve doluluk trendlerini otomatik takip eden Python tabanlı web kazıma ve pazar istihbarat aracı geliştirdim; yönetimin gelir stratejisi kararlarını doğrudan destekledim.</li>
-      <li>Mutfak, resepsiyon ve teknik bakım departmanlarında çapraz eğitim aldım — hızlı operasyonel uyum yeteneği ve tüm organizasyon düzeylerinde etkili iletişim becerisi sergiledim.</li>`,
-    exp2_title: "Makine Öğrenmesi Stajyeri",
-    exp2_date: "Haz 2024 – Ağu 2024",
+    exp1_bullets: `<li>ESP32 mikrodenetleyici ve Blynk IoT platformu kullanarak uzaktan Kapı Açma sistemi tasarlayıp konuşlandırdım; tesis personeli için kablosuz erişim kontrolü sağlayarak manuel müdahale ihtiyacını ortadan kaldırdım.</li><li>Kontaktör ve devre kesici düzenlemelerini yeniden yapılandırarak otelin endüstriyel aydınlatma altyapısını optimize ettim; enerji dağıtım güvenilirliğini artırırken arıza riskini azalttım.</li><li>Rakip otel fiyatlandırma ve doluluk trendlerini otomatik takip eden Python tabanlı web kazıma ve pazar istihbarat aracı geliştirdim; yönetimin gelir stratejisi kararlarını doğrudan destekledim.</li><li>Mutfak, resepsiyon ve teknik bakım departmanlarında çapraz eğitim aldım — hızlı operasyonel uyum yeteneği ve tüm organizasyon düzeylerinde etkili iletişim becerisi sergiledim.</li>`,
+    exp2_title: "Makine Öğrenmesi Stajyeri", exp2_date: "Haz 2024 – Ağu 2024",
     exp2_company: "MTM Biotech — Kayseri, Türkiye",
-    exp2_bullets: `
-      <li>EMG sinyallerinden el hareketlerini çözmek için <strong>%82 doğruluk</strong> elde eden sınıflandırma modeli geliştirdim; protez bir kolda bireysel parmak hareketlerinin kontrolünü mümkün kıldım.</li>
-      <li>Model doğruluğunu temel yaklaşımların ötesinde önemli ölçüde artıran CNN derin öğrenme ve dalgacık dönüşümünü özellik çıkarımı için uyguladım.</li>
-      <li>Tam ML pipeline'ını yönettim: veri toplama, ön işleme, özellik mühendisliği, model eğitimi ve donanıma gerçek zamanlı çıkarım.</li>`,
-    section_references: "referanslar",
-    ref_role: "COO, MTM Biotech",
+    exp2_bullets: `<li>EMG sinyallerinden el hareketlerini çözmek için <strong>%82 doğruluk</strong> elde eden sınıflandırma modeli geliştirdim; protez bir kolda bireysel parmak hareketlerinin kontrolünü mümkün kıldım.</li><li>Model doğruluğunu temel yaklaşımların ötesinde önemli ölçüde artıran CNN derin öğrenme ve dalgacık dönüşümünü özellik çıkarımı için uyguladım.</li><li>Tam ML pipeline'ını yönettim: veri toplama, ön işleme, özellik mühendisliği, model eğitimi ve donanıma gerçek zamanlı çıkarım.</li>`,
+    section_references: "referanslar", ref_role: "COO, MTM Biotech",
     footer_copy: "© Telif Hakkı 2026 Ahmed Tamer"
   }
 };
@@ -183,8 +181,7 @@ function applyLang(lang) {
   document.title = i18n[lang].page_title;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (i18n[lang][key] === undefined) return;
-    el.innerHTML = i18n[lang][key];
+    if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
   });
   document.getElementById('lang-toggle').textContent = lang === 'en' ? 'TR' : 'EN';
   localStorage.setItem('lang', lang);
@@ -198,20 +195,16 @@ window.addEventListener('DOMContentLoaded', () => {
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
   });
-
   const savedLang = localStorage.getItem('lang') || 'en';
   applyLang(savedLang);
   document.getElementById('lang-toggle').addEventListener('click', () => {
-    const cur = document.documentElement.getAttribute('data-lang') || 'en';
-    applyLang(cur === 'en' ? 'tr' : 'en');
+    applyLang(document.documentElement.getAttribute('data-lang') === 'en' ? 'tr' : 'en');
   });
-
   const progressBar = document.getElementById('progress');
   if (progressBar) {
     document.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.value = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
       progressBar.max = 100;
     });
   }
