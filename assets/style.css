@@ -1,527 +1,910 @@
-/* ==========================================================================
-   1. GLOBAL & FONTS OVERRIDES
-   ========================================================================== */
-html, body,
-p, li, div, span, a, td, th,
-.post, .post article,
-.exp-bullets, .exp-bullets li,
-.project-desc,
-.desc, .bio,
-.skill-tags .tag,
-.edu-block,
-footer {
-  font-family: 'Roboto', sans-serif !important;
-  font-weight: 300 !important;
-  font-size: 17.28px !important;
-  line-height: 1.85 !important; /* Generous layout spacing */
+/* ============================================================
+   assets/style.css  —  Ahmed Tamer Portfolio
+   Shared across: index, experience, projects, repositories,
+                  project-detail pages
+   ============================================================ */
+
+/* ─── 1. CSS Variables (Light & Dark) ─────────────────────── */
+:root {
+  --global-bg-color:        #ffffff;
+  --global-surface-color:   #f5f5f5;
+  --global-text-color:      #212121;
+  --global-text-muted:      #555555;
+  --global-divider-color:   #dddddd;
+  --global-theme-color:     #212121;
+  --global-accent-color:    #1565c0;
+  --global-hover-color:     #0d47a1;
+  --global-link-color:      #1565c0;
+  --nav-height:             60px;
+  --container-max:          860px;
+  --transition:             0.2s ease;
 }
 
-/* Headings clear hierarchy setup */
-h1, h2, h3, h4, h5, h6,
-.post-title,
-.exp-title,
-.project-name,
-.skill-group-label,
-.edu-degree,
-.navbar-brand,
-.project-title {
-  font-family: 'Roboto', sans-serif !important;
-  font-weight: 500 !important; /* Medium weight */
+[data-theme="dark"] {
+  --global-bg-color:        #1a1a1a;
+  --global-surface-color:   #252525;
+  --global-text-color:      #e0e0e0;
+  --global-text-muted:      #9e9e9e;
+  --global-divider-color:   #333333;
+  --global-theme-color:     #e0e0e0;
+  --global-accent-color:    #90caf9;
+  --global-hover-color:     #bbdefb;
+  --global-link-color:      #90caf9;
 }
 
-strong, b {
-  font-family: 'Roboto', sans-serif !important;
-  font-weight: 500 !important;
-}
+/* ─── 2. Base Reset & Body ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
-/* Basic structure behaviors */
 html {
   scroll-behavior: smooth;
 }
+
 body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 17.28px;
+  line-height: 1.85;
   background-color: var(--global-bg-color);
   color: var(--global-text-color);
-  padding-top: 56px;
-  padding-bottom: 70px;
-  overflow-x: hidden;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color var(--transition), color var(--transition);
+  padding-top: var(--nav-height);
+  min-height: 100vh;
 }
 
-p, h1, h2, h3, li, span, strong, em, div {
-  color: var(--global-text-color);
+body.fixed-top-nav {
+  padding-top: var(--nav-height);
 }
+
+/* ─── 3. Typography ────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: var(--global-text-color);
+  line-height: 1.3;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: 0.01em;
+  margin: 2.2rem 0 0.9rem;
+  color: var(--global-text-muted);
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 17.28px;
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+strong, b {
+  font-weight: 500;
+}
+
 a {
-  color: var(--global-theme-color);
-  transition: color 0.2s;
+  color: var(--global-link-color);
+  text-decoration: none;
+  transition: color var(--transition);
 }
+
 a:hover {
-  color: var(--global-hover-color);
-  text-decoration: underline;
-}
-hr {
-  border-top: 1px solid var(--global-divider-color);
-}
-
-/* ==========================================================================
-   2. THEME VARIABLES (LIGHT / DARK MOODS)
-   ========================================================================== */
-:root {
-  --global-bg-color: #fff;
-  --global-text-color: #000;
-  --global-text-color-light: #828282;
-  --global-theme-color: #ff4b4b;
-  --global-hover-color: #ff4b4b;
-  --global-footer-bg-color: #1c1c1d;
-  --global-footer-text-color: #e8e8e8;
-  --global-footer-link-color: #fff;
-  --global-divider-color: rgba(0,0,0,.1);
-  --global-card-bg-color: #fff;
-  --tag-bg: #f5f5f5;
-  --tag-text: #c0392b;
-  --tag-border: rgba(0,0,0,0.08);
-}
-
-html[data-theme="dark"] {
-  --global-bg-color: #1c1c1d;
-  --global-text-color: #e8e8e8;
-  --global-text-color-light: #a8a8a8;
-  --global-theme-color: #2698ba;
-  --global-hover-color: #2698ba;
-  --global-footer-bg-color: #e8e8e8;
-  --global-footer-text-color: #1c1c1d;
-  --global-footer-link-color: #000;
-  --global-divider-color: #424246;
-  --global-card-bg-color: #212529;
-  --tag-bg: #1e2a38;
-  --tag-text: #7ab3e0;
-  --tag-border: rgba(255,255,255,0.08);
-}
-
-/* Theme Toggle Button Icon Rules */
-:root #light-toggle .fa-sun { display: none; }
-:root #light-toggle .fa-moon { display: inline-block; }
-html[data-theme="dark"] #light-toggle .fa-moon { display: none; }
-html[data-theme="dark"] #light-toggle .fa-sun { display: inline-block; }
-
-/* ==========================================================================
-   3. HEADERS & NAVIGATION LAYOUTS
-   ========================================================================== */
-#navbar {
-  box-shadow: none;
-  border-bottom: 1px solid var(--global-divider-color);
-  background-color: var(--global-bg-color);
-  opacity: .97;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-.navbar.navbar-light .navbar-brand {
-  color: var(--global-text-color);
-  font-size: 1.1rem !important;
-}
-.navbar.navbar-light .navbar-brand:hover {
   color: var(--global-hover-color);
   text-decoration: none;
 }
-.navbar.navbar-light .navbar-nav .nav-item .nav-link {
-  color: var(--global-text-color);
-  font-size: 0.88rem !important;
-  text-transform: lowercase;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-}
-.navbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
-  color: var(--global-hover-color);
-}
-.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
-  font-weight: 500 !important;
-  color: var(--global-theme-color);
-}
 
-.navbar-toggler { border: none !important; outline: none !important; box-shadow: none !important; }
-.navbar-toggler .icon-bar {
-  display: block; width: 22px; height: 2px;
-  background-color: var(--global-text-color);
-  border-radius: 1px; margin-bottom: 4px; transition: all .2s;
-}
-.navbar-toggler .top-bar    { transform: rotate(45deg);  transform-origin: 10% 10%; }
-.navbar-toggler .middle-bar { opacity: 0; }
-.navbar-toggler .bottom-bar { transform: rotate(-45deg); transform-origin: 10% 90%; }
-.navbar-toggler.collapsed .top-bar    { transform: rotate(0); }
-.navbar-toggler.collapsed .middle-bar { opacity: 1; }
-.navbar-toggler.collapsed .bottom-bar { transform: rotate(0); }
-
-#light-toggle, #lang-toggle {
-  padding: 0.1rem 0.45rem;
+code {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.83em;
+  background: var(--global-surface-color);
   border: 1px solid var(--global-divider-color);
-  background-color: transparent;
-  color: var(--global-text-color);
-  font-size: 0.72rem !important;
-  font-weight: 500 !important;
-  cursor: pointer;
+  padding: 0.1em 0.38em;
   border-radius: 4px;
-  letter-spacing: 0.05em;
-  transition: color 0.2s, border-color 0.2s;
-}
-#light-toggle { border: 0; background-color: inherit; font-size: 1rem !important;}
-#light-toggle:hover, #lang-toggle:hover {
-  color: var(--global-hover-color);
-  border-color: var(--global-hover-color);
+  color: var(--global-text-color);
 }
 
-/* Scroll Progress Bar indicator */
-progress {
-  position: fixed; left: 0; top: 56px; z-index: 10;
-  width: 100%; height: 3px;
-  appearance: none; border: 0;
-  background-color: transparent; color: var(--global-theme-color);
+ul, ol {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 17.28px;
+  line-height: 1.85;
 }
-progress::-webkit-progress-bar  { background-color: transparent; }
-progress::-webkit-progress-value { background-color: var(--global-theme-color); }
-progress::-moz-progress-bar { background-color: var(--global-theme-color); }
 
-/* ==========================================================================
-   4. PROFILE LAYOUT CONFIGURATION
-   ========================================================================== */
+/* ─── 4. Navbar ────────────────────────────────────────────── */
+#navbar {
+  background-color: var(--global-bg-color) !important;
+  border-bottom: 1px solid var(--global-divider-color);
+  height: var(--nav-height);
+  transition: background-color var(--transition), border-color var(--transition);
+  padding: 0 1rem;
+}
+
+.navbar-brand {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 1.1rem !important;
+  color: var(--global-text-color) !important;
+  letter-spacing: 0.01em;
+}
+
+.navbar-brand:hover {
+  color: var(--global-accent-color) !important;
+}
+
+.nav-item .nav-link {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--global-text-muted) !important;
+  padding: 0.3rem 0.7rem !important;
+  border-radius: 4px;
+  transition: color var(--transition), background var(--transition);
+}
+
+.nav-item .nav-link:hover,
+.nav-item.active .nav-link {
+  color: var(--global-text-color) !important;
+  background: var(--global-surface-color);
+}
+
+/* Hamburger bars */
+.icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--global-text-color);
+  transition: background var(--transition);
+  margin: 4px 0;
+}
+
+/* Theme / Lang toggle buttons */
+#light-toggle,
+#lang-toggle {
+  background: none;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 5px;
+  color: var(--global-text-muted);
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  padding: 0.28rem 0.55rem;
+  line-height: 1;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+#light-toggle:hover,
+#lang-toggle:hover {
+  color: var(--global-text-color);
+  border-color: var(--global-text-muted);
+  background: var(--global-surface-color);
+}
+
+/* Sun/moon icons */
+#light-toggle .fa-sun  { display: none; }
+[data-theme="dark"] #light-toggle .fa-moon { display: none; }
+[data-theme="dark"] #light-toggle .fa-sun  { display: inline; }
+
+/* Scroll progress bar */
+#progress {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: var(--global-divider-color);
+  z-index: 999;
+}
+
+#progress::-webkit-progress-bar   { background: transparent; }
+#progress::-webkit-progress-value { background: var(--global-accent-color); }
+#progress::-moz-progress-bar      { background: var(--global-accent-color); }
+
+/* ─── 5. Container / Layout ────────────────────────────────── */
+.container {
+  max-width: var(--container-max);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* ─── 6. Post / Article wrapper ───────────────────────────── */
+.post {
+  padding: 1.5rem 0 3rem;
+}
+
+.post article {
+  text-align: justify;
+}
+
+/* ─── 7. Fade-up animation ─────────────────────────────────── */
+.fade-up {
+  animation: fadeUp 0.45s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── 8. Page titles ───────────────────────────────────────── */
+.post-title,
+.page-h1 {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--global-text-color);
+  margin-bottom: 0.4rem;
+}
+
+.post-title .font-weight-bold { font-weight: 700 !important; }
+
+.page-subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.desc {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--global-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ─── 9. Profile photo ─────────────────────────────────────── */
+.profile figure img,
+.profile img {
+  width:  321px;
+  height: 321px;
+  min-width:  321px;
+  max-width:  321px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.profile figure {
+  width:  321px;
+  height: 321px;
+  margin: 0 0 1.25rem 1.75rem;
+}
+
 .profile {
   float: right;
   margin-left: 2rem;
 }
-.profile figure, .profile img {
-  width: 321px !important;
-  height: 321px !important;
-  min-width: 321px !important;
-  min-height: 321px !important;
-  max-width: 321px !important;
-  max-height: 321px !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
-  object-position: center top !important;
-  display: block !important;
-}
-.profile figure {
-  margin: 0 0 1.25rem 1.75rem !important;
+
+@media (max-width: 600px) {
+  .profile, .profile figure {
+    float: none;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 1.5rem;
+  }
+  .profile figure img,
+  .profile img {
+    width: 160px;
+    height: 160px;
+    min-width: 160px;
+    max-width: 160px;
+  }
 }
 
-/* Main Profile Social Icons Block */
-.social .contact-icons,
-.social .contact-icons a,
-.social .contact-icons a i {
-  font-size: 3.8rem !important;
-  line-height: 1 !important;
-  gap: 0.5rem;
-}
+/* ─── 10. Social / contact icons ───────────────────────────── */
 .social {
-  margin: 1.5rem 0 2.5rem 0;
-}
-.social a {
-  text-decoration: none !important;
-  color: var(--global-text-color);
-  margin-right: 1rem;
-}
-.social a:hover {
-  color: var(--global-theme-color);
+  margin: 1.5rem 0;
 }
 
-/* ==========================================================================
-   5. PORTFOLIO COMPONENTS & UTILITIES (Experience/Projects)
-   ========================================================================== */
-h2 {
-  font-size: 1.5rem !important;
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--global-divider-color);
-  padding-bottom: 0.5rem;
+.contact-icons {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-.view-all-link {
-  font-size: 0.9rem !important;
-  font-weight: 300 !important;
-  text-decoration: none !important;
+  gap: 0.9rem;
+  flex-wrap: wrap;
 }
 
-/* Experience Modules styles */
-.exp-item {
-  margin-bottom: 2rem;
+.contact-icons a {
+  color: var(--global-text-muted);
+  font-size: 1.55rem;
+  line-height: 1;
+  transition: color var(--transition), transform var(--transition);
 }
+
+.contact-icons a:hover {
+  color: var(--global-accent-color);
+  transform: translateY(-2px);
+}
+
+/* ─── 11. Section — "view all" link ────────────────────────── */
+.view-all-link {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  transition: color var(--transition);
+}
+
+.view-all-link:hover {
+  color: var(--global-accent-color);
+}
+
+/* ─── 12. Experience items ─────────────────────────────────── */
+.exp-item {
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--global-divider-color);
+}
+
+.exp-item:last-of-type {
+  border-bottom: none;
+}
+
 .exp-header {
   display: flex;
   justify-content: space-between;
-  font-weight: 500;
-}
-.exp-title {
-  font-size: 1.1rem !important;
-}
-.exp-date {
-  color: var(--global-text-color-light);
-  font-size: 0.95rem !important;
-}
-.exp-company {
-  font-style: italic;
-  color: var(--global-text-color-light);
-  margin-bottom: 0.5rem;
-}
-.exp-bullets {
-  padding-left: 1.2rem;
-}
-.exp-bullets li {
-  margin-bottom: 0.25rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.1rem;
 }
 
-/* Tech Framework Badges Base */
-.tag {
-  font-size: 15px !important;
-  line-height: 1.7 !important;
-  background: var(--tag-bg); 
-  color: var(--tag-text);
-  border-radius: 4px; 
-  padding: 0.17rem 0.52rem;
-  border: 1px solid var(--tag-border); 
-  font-weight: 300 !important;
-  display: inline-block;
+.exp-title {
+  font-weight: 500;
+  font-size: 0.97rem;
+  color: var(--global-text-color);
 }
+
+.exp-date {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  white-space: nowrap;
+}
+
+.exp-company {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.exp-bullets {
+  margin: 0.5rem 0 0.5rem 1.1rem;
+  padding: 0;
+}
+
+.exp-bullets li {
+  font-size: 0.93rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 0.35rem;
+  color: var(--global-text-color);
+}
+
+/* ─── 13. Tech stack tags ──────────────────────────────────── */
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0.5rem 0;
+  gap: 0.35rem;
+  margin: 0.5rem 0 0.65rem;
 }
 
-/* Grid Layout Structures */
-.projects-grid, .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-.skill-group {
-  background: var(--global-card-bg-color);
+.tag {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--global-text-muted);
+  background: var(--global-surface-color);
   border: 1px solid var(--global-divider-color);
-  padding: 1rem;
-  border-radius: 8px;
+  border-radius: 4px;
+  padding: 0.18rem 0.55rem;
+  line-height: 1.5;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
 }
+
+.tag:hover {
+  color: var(--global-text-color);
+  border-color: var(--global-text-muted);
+}
+
+/* ─── 14. Project cards grid ───────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 620px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
+
+.project-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-card {
+  border: 1px solid var(--global-divider-color);
+  border-radius: 10px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--global-bg-color);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  height: 100%;
+}
+
+.project-card:hover {
+  border-color: var(--global-accent-color);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.project-card > .card.hoverable {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+.project-card-body {
+  padding: 0.9rem 1rem 1rem;
+}
+
+.project-card figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+.project-card figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  transition: transform 0.35s ease;
+}
+
+.project-card:hover figure img {
+  transform: scale(1.02);
+}
+
+.project-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding: 0.75rem 1rem 0.2rem;
+}
+
+.project-name {
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--global-text-color);
+  line-height: 1.4;
+}
+
+.project-date-tag {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.project-desc {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--global-text-muted);
+  padding: 0 1rem;
+  margin: 0 0 0.5rem;
+}
+
+.ongoing-badge {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #c46a00;
+  padding: 0 1rem 0.1rem;
+  line-height: 1;
+}
+
+[data-theme="dark"] .ongoing-badge {
+  color: #e8a44a;
+}
+
+/* ─── 15. Skills grid ──────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 540px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+
+.skill-group {
+  margin-bottom: 0.5rem;
+}
+
 .skill-group-label {
-  font-size: 1.05rem !important;
-  margin-bottom: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--global-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.45rem;
 }
+
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
 }
 
-/* Project Cards behaviors */
-.project-card {
-  background: var(--global-card-bg-color);
-  border: 1px solid var(--global-divider-color);
-  padding: 1rem;
-  border-radius: 8px;
-  height: 100%;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.project-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-.project-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 0.5rem;
-}
-.project-name {
-  font-size: 1.1rem !important;
-}
-.project-date-tag {
-  font-size: 0.85rem !important;
-  color: var(--global-text-color-light);
-  white-space: nowrap;
-}
-.ongoing-badge {
-  font-size: 0.8rem !important;
-  color: #27ae60;
-  margin-bottom: 0.5rem;
-}
-
-/* Academic Blocks rules */
+/* ─── 16. Education block ──────────────────────────────────── */
 .edu-block {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: var(--global-card-bg-color);
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
   border: 1px solid var(--global-divider-color);
-  padding: 1.2rem;
   border-radius: 8px;
+  background: var(--global-surface-color);
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
+
 .edu-degree {
-  font-size: 1.1rem !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--global-text-color);
+  margin-bottom: 0.2rem;
 }
+
 .edu-uni {
-  color: var(--global-text-color-light);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  margin-bottom: 0.15rem;
 }
+
 .edu-detail {
-  font-size: 0.9rem !important;
-  color: var(--global-text-color-light);
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
 }
+
 .edu-gpa {
-  text-align: center;
-  font-size: 0.85rem !important;
-  color: var(--global-text-color-light);
+  text-align: right;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
 }
+
 .edu-gpa span {
   display: block;
-  font-size: 1.3rem !important;
-  font-weight: 500 !important;
-  color: var(--global-theme-color);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--global-text-color);
+  letter-spacing: 0;
 }
 
-/* ==========================================================================
-   6. PROJECT POST DETAILS SPECIFIC STYLES
-   ========================================================================== */
-.back-link {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-size: 0.82rem !important; color: var(--global-text-color-light);
-  text-decoration: none; margin-bottom: 1.75rem;
-}
-h1.project-title {
-  font-size: clamp(1.7rem, 4vw, 2.4rem) !important;
-  line-height: 1.25 !important; margin-bottom: 0.6rem;
-}
-.project-subtitle {
-  color: var(--global-text-color-light); max-width: 620px; margin-bottom: 1.5rem;
-}
-.github-link {
-  display: inline-flex; align-items: center; gap: 0.55rem;
-  padding: 0.42rem 1.05rem; border-radius: 6px;
-  border: 1px solid var(--global-divider-color);
-  background: var(--global-card-bg-color); text-decoration: none;
-  font-size: 0.84rem !important; margin-bottom: 1.75rem;
-}
-.github-link:hover { border-color: var(--global-theme-color); text-decoration: none; }
-.github-sep { width: 1px; height: 16px; background: var(--global-divider-color); margin: 0 0.2rem; }
-.github-badge { font-size: 0.7rem !important; color: var(--global-text-color-light); display: flex; align-items: center; gap: 0.3rem; }
-
-.meta-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 0.65rem; margin-bottom: 1.75rem; padding: 0.95rem 1.2rem;
-  background: var(--global-card-bg-color); border-radius: 8px; border: 1px solid var(--global-divider-color);
-}
-.meta-item label {
-  display: block; font-size: 0.62rem !important; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--global-text-color-light); margin-bottom: 0.18rem;
-}
-.meta-item span { font-size: 0.86rem !important; font-weight: 500 !important; }
-.badge-accent {
-  display: inline-block; padding: 0.12rem 0.5rem; border-radius: 4px;
-  background: rgba(255,75,75,0.09); color: var(--global-theme-color); font-weight: 700 !important; font-size: 0.86rem !important;
-}
-html[data-theme="dark"] .badge-accent { background: rgba(38,152,186,0.12); }
-
-.section-label {
-  font-size: 0.64rem !important; text-transform: uppercase; letter-spacing: 0.13em;
-  color: var(--global-text-color-light); margin: 2.4rem 0 0.65rem; display: flex; align-items: center; gap: 0.6rem;
-}
-.section-label::after { content: ''; flex: 1; height: 1px; background: var(--global-divider-color); }
-.note-text { font-size: 0.82rem !important; color: var(--global-text-color-light); margin-top: 0.3rem; }
-
-/* Media, Asides and Inline Media Blocks */
-.fig {
-  margin: 1.1rem 0 1.75rem; border-radius: 8px; overflow: hidden;
-  border: 1px solid var(--global-divider-color); background: var(--global-card-bg-color);
-  box-shadow: 0 2px 8px rgba(0,0,0,.05); transition: box-shadow 0.25s;
-}
-.fig:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
-.fig img { width: 100%; display: block; object-fit: cover; }
-.fig video { width: 100%; display: block; background: #000; }
-.fig-meta { display: flex; align-items: baseline; gap: 0.7rem; padding: 0.5rem 0.85rem; border-top: 1px solid var(--global-divider-color); background: var(--global-bg-color); }
-.fig-num { font-size: 0.62rem !important; text-transform: uppercase; letter-spacing: 0.1em; color: var(--global-theme-color); flex-shrink: 0; }
-.fig-caption { font-size: 0.78rem !important; color: var(--global-text-color-light); line-height: 1.45 !important; }
-
-.aside-wrap { display: grid; grid-template-columns: 1fr 270px; gap: 1.4rem; align-items: start; margin-bottom: 1.75rem; }
-.aside-wrap.left { grid-template-columns: 270px 1fr; }
-.aside-fig { border-radius: 8px; overflow: hidden; border: 1px solid var(--global-divider-color); background: var(--global-card-bg-color); box-shadow: 0 2px 8px rgba(0,0,0,.05); transition: box-shadow 0.25s; cursor: zoom-in; }
-.aside-fig:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
-.aside-fig img { width: 100%; display: block; object-fit: cover; }
-.aside-fig .fig-meta { padding: 0.42rem 0.75rem; }
-
-.two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.1rem 0 1.75rem; }
-.two-up .fig { margin: 0; }
-.two-up .fig video, .two-up .fig img { aspect-ratio: 16/9; object-fit: cover; }
-
-.arch-wrap { margin: 0.9rem 0 1.75rem; background: var(--global-card-bg-color); border: 1px solid var(--global-divider-color); border-radius: 8px; padding: 1.4rem 1rem 1rem; overflow-x: auto; }
-.arch-wrap svg { display: block; margin: 0 auto; max-width: 100%; }
-
-.results-table { width: 100%; font-size: 0.84rem !important; border-collapse: collapse; margin: 0.9rem 0 1.2rem; }
-.results-table th { font-size: 0.64rem !important; text-transform: uppercase; letter-spacing: 0.07em; padding: 0.48rem 0.7rem; border-bottom: 2px solid var(--global-divider-color); text-align: left; color: var(--global-text-color-light); }
-.results-table td { padding: 0.42rem 0.7rem; border-bottom: 1px solid var(--global-divider-color); }
-.results-table tr:last-child td { border-bottom: none; }
-.results-table tr.best-row td { font-weight: 500 !important; }
-
-.pipeline-steps { counter-reset: step; list-style: none; padding: 0; margin: 0.4rem 0 1.2rem; }
-.pipeline-steps li { counter-increment: step; display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 0.7rem; }
-.pipeline-steps li::before { content: counter(step); flex-shrink: 0; width: 1.55rem; height: 1.55rem; border-radius: 50%; background: var(--global-theme-color); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.68rem !important; font-weight: 700 !important; margin-top: 0.12rem; }
-
-.challenge-box { border-left: 3px solid var(--global-theme-color); padding: 0.6rem 1rem; margin: 0.7rem 0; background: rgba(255,75,75,0.05); border-radius: 0 6px 6px 0; }
-html[data-theme="dark"] .challenge-box { background: rgba(38,152,186,0.08); }
-.challenge-box p { margin: 0.25rem 0 0; font-size: 0.87rem !important; color: var(--global-text-color-light); }
-
-#lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,.92); align-items: center; justify-content: center; }
-#lightbox.open { display: flex; }
-#lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 6px; object-fit: contain; }
-#lightbox-close { position: absolute; top: 1.4rem; right: 1.4rem; background: none; border: none; color: #fff; font-size: 1.5rem !important; cursor: pointer; opacity: 0.7; }
-#lightbox-close:hover { opacity: 1; }
-
-/* Code tags adjustment rules */
-.tag, code, pre {
-  font-size: 15px !important;
-  line-height: 1.7 !important;
+/* ─── 17. Footer ───────────────────────────────────────────── */
+footer {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: var(--global-text-muted);
+  border-top: 1px solid var(--global-divider-color);
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  background: var(--global-bg-color);
+  transition: background var(--transition), border-color var(--transition);
 }
 
-/* ==========================================================================
-   7. FOOTER STYLES
-   ========================================================================== */
 footer.fixed-bottom {
-  background-color: var(--global-footer-bg-color);
-  font-size: 0.75rem !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
 }
-footer.fixed-bottom .container {
-  color: var(--global-footer-text-color);
-  padding-top: 9px;
-  padding-bottom: 8px;
+
+footer a {
+  color: var(--global-text-muted);
 }
-footer.fixed-bottom a {
-  color: var(--global-footer-link-color);
+
+footer a:hover {
+  color: var(--global-accent-color);
 }
-footer.fixed-bottom a:hover {
-  color: var(--global-hover-color);
+
+/* ─── 18. Project detail page extras ──────────────────────── */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.84rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  margin-bottom: 1.5rem;
+  transition: color var(--transition);
+}
+
+.back-link:hover {
+  color: var(--global-accent-color);
   text-decoration: none;
 }
 
-/* ==========================================================================
-   8. ANIMATIONS & RESPONSIVENESS OVERRIDES
-   ========================================================================== */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.fade-up {
-  animation: fadeUp 0.5s ease both;
+.ongoing-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  color: #c46a00;
+  background: rgba(196, 106, 0, 0.10);
+  border-radius: 20px;
+  padding: 0.22rem 0.75rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
 }
 
-@media (max-width: 660px) {
-  .aside-wrap, .aside-wrap.left { grid-template-columns: 1fr; }
-  .profile {
-    float: none !important;
-    margin-left: 0 !important;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.5rem !important;
-  }
-  .profile figure {
-    margin: 0 !important;
-  }
+[data-theme="dark"] .ongoing-pill {
+  color: #e8a44a;
+  background: rgba(232, 164, 74, 0.12);
 }
-@media (max-width: 560px) {
-  .two-up { grid-template-columns: 1fr; }
-  .navbar-nav { text-align: right; }
+
+.ongoing-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.project-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0;
+  margin: 1.4rem 0 1.75rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.project-meta-item {
+  padding: 0.85rem 1rem;
+  border-right: 1px solid var(--global-divider-color);
+  background: var(--global-surface-color);
+}
+
+.project-meta-item:last-child {
+  border-right: none;
+}
+
+.project-meta-item label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--global-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.project-meta-item span {
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: var(--global-text-color);
+}
+
+.project-section-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--global-text-muted);
+  margin: 2rem 0 0.6rem;
+  opacity: 0.75;
+}
+
+.component-card {
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.65rem;
+  background: var(--global-bg-color);
+  transition: border-color var(--transition);
+}
+
+.component-card:hover {
+  border-color: var(--global-accent-color);
+}
+
+.component-card h6 {
+  font-size: 0.84rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: var(--global-text-color);
+}
+
+.component-card p {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--global-text-muted);
+}
+
+.pipeline-steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 1.5rem;
+}
+
+.pipeline-steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.92rem;
+  font-weight: 300;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  background: var(--global-bg-color);
+  transition: border-color var(--transition);
+}
+
+.pipeline-steps li:hover {
+  border-color: var(--global-accent-color);
+}
+
+.pipeline-steps li::before {
+  content: counter(step);
+  flex-shrink: 0;
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 50%;
+  background: var(--global-theme-color);
+  color: var(--global-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 500;
+  margin-top: 0.08rem;
+}
+
+.goal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 1.5rem;
+}
+
+.goal-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--global-text-color);
+}
+
+.goal-list li::before {
+  content: '→';
+  flex-shrink: 0;
+  margin-top: 0.12rem;
+  color: var(--global-accent-color);
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+/* ─── 19. Repositories page ─────────────────────────────────── */
+.repo-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 8px;
+  margin-bottom: 0.65rem;
+  background: var(--global-bg-color);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.repo-card:hover {
+  border-color: var(--global-accent-color);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: inherit;
+}
+
+.repo-name {
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--global-accent-color);
+  margin-bottom: 0.2rem;
+}
+
+.repo-desc {
+  font-size: 0.86rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
+}
+
+.repo-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--global-text-muted);
+}
+
+.repo-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* ─── 20. Responsive adjustments ───────────────────────────── */
+@media (max-width: 767px) {
+  body { font-size: 15.5px; }
+  p, ul, ol, li { font-size: 15.5px !important; }
+  .post-title, .page-h1 { font-size: 1.5rem; }
+  .container { padding-left: 1rem; padding-right: 1rem; }
+  .project-meta-item { border-right: none; border-bottom: 1px solid var(--global-divider-color); }
+  .project-meta-item:last-child { border-bottom: none; }
+  .edu-block { flex-direction: column; }
+  .edu-gpa { text-align: left; }
+}
+
+@media (max-width: 480px) {
+  .exp-header { flex-direction: column; gap: 0.1rem; }
+  .project-card-header { flex-direction: column; }
 }
