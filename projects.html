@@ -8,41 +8,47 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css"/>
   <style>
-    /* Make linked project cards feel clickable */
-    .project-card-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
+    html, body,
+    p, li, div, span, a, td, th,
+    .post, .post article,
+    .exp-bullets, .exp-bullets li,
+    .project-desc,
+    .desc, .bio,
+    .skill-tags .tag,
+    .edu-block,
+    footer {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 17.28px !important;
+      line-height: 1.85 !important;
     }
-    .project-card-link:hover {
-      text-decoration: none;
-      color: inherit;
+    h1, h2, h3, h4, h5, h6,
+    .post-title, .exp-title, .project-name,
+    .skill-group-label, .edu-degree, .navbar-brand {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;
     }
-    .project-card-link .project-card {
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      cursor: pointer;
+    strong, b {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;
     }
-    .project-card-link:hover .project-card {
-      transform: translateY(-2px);
+    .tag, code, pre {
+      font-size: 15px !important;
+      line-height: 1.7 !important;
     }
-    .project-read-more {
-      margin-top: 0.75rem;
-      font-size: 0.82rem;
-      font-family: 'JetBrains Mono', monospace;
-      opacity: 0.5;
-      transition: opacity 0.15s;
-    }
-    .project-card-link:hover .project-read-more {
-      opacity: 1;
-    }
+    .project-card-link { display: block; text-decoration: none; color: inherit; }
+    .project-card-link:hover { text-decoration: none; color: inherit; }
+    .project-card-link .project-card { transition: transform 0.18s ease, box-shadow 0.18s ease; cursor: pointer; }
+    .project-card-link:hover .project-card { transform: translateY(-2px); }
+    .project-read-more { margin-top: 0.75rem; font-size: 0.82rem; font-family: 'JetBrains Mono', monospace; opacity: 0.5; transition: opacity 0.15s; }
+    .project-card-link:hover .project-read-more { opacity: 1; }
   </style>
 </head>
 <body class="fixed-top-nav">
 
-<!-- ── NAVBAR ── -->
 <header>
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
     <div class="container">
@@ -64,8 +70,7 @@
           <li class="nav-item"><a class="nav-link" href="assets/pdf/cv.pdf" target="_blank" data-i18n="nav_cv">cv</a></li>
           <li class="nav-item ml-1">
             <button id="light-toggle" title="Change theme">
-              <i class="fas fa-moon"></i>
-              <i class="fas fa-sun"></i>
+              <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
             </button>
           </li>
           <li class="nav-item ml-1">
@@ -80,7 +85,6 @@
   </progress>
 </header>
 
-<!-- ── MAIN ── -->
 <div class="container mt-5">
   <div class="post fade-up">
     <article>
@@ -88,10 +92,8 @@
       <h1 class="page-h1" data-i18n="page_h1">projects</h1>
       <p class="page-subtitle" data-i18n="page_subtitle">A collection of my engineering and machine learning projects.</p>
 
-      <!-- ── ONGOING ── -->
       <h2 data-i18n="section_ongoing">ongoing</h2>
       <div class="projects-grid">
-
         <a href="project-glasses.html" class="project-card-link">
           <div class="project-card">
             <div class="project-card-header">
@@ -105,14 +107,10 @@
             <div class="project-read-more" data-i18n="read_more">read more →</div>
           </div>
         </a>
-
       </div>
 
-      <!-- ── MACHINE LEARNING & AI ── -->
       <h2 data-i18n="section_ml">machine learning &amp; AI</h2>
       <div class="projects-grid">
-
-        <!-- Prosthetic Arm — links to its own page -->
         <a href="project-prosthetic.html" class="project-card-link">
           <div class="project-card">
             <div class="project-card-header">
@@ -127,7 +125,6 @@
             <div class="project-read-more" data-i18n="read_more">read more →</div>
           </div>
         </a>
-
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-name" data-i18n="proj_breast_name">Classification of Breast Cancer from Histopathological Images</span>
@@ -138,7 +135,6 @@
             <span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">InceptionResNetV2</span><span class="tag">ResNet152V2</span><span class="tag">InceptionV3</span><span class="tag">VGG16</span><span class="tag">Xception</span>
           </div>
         </div>
-
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-name" data-i18n="proj_heart_name">Classification of Heart Disease</span>
@@ -149,13 +145,10 @@
             <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Google Colab</span>
           </div>
         </div>
-
       </div>
 
-      <!-- ── EMBEDDED SYSTEMS & HARDWARE ── -->
       <h2 data-i18n="section_embedded">embedded systems &amp; hardware</h2>
       <div class="projects-grid">
-
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-name" data-i18n="proj_robot_name">Line Follower Robot with PID Adaptive Cruise Control</span>
@@ -166,7 +159,6 @@
             <span class="tag">C</span><span class="tag">STM32</span><span class="tag">PID</span>
           </div>
         </div>
-
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-name" data-i18n="proj_steth_name">Digital Stethoscope Circuit</span>
@@ -177,7 +169,6 @@
             <span class="tag">MATLAB</span><span class="tag">PCB</span><span class="tag">Arduino</span>
           </div>
         </div>
-
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-name" data-i18n="proj_dice_name">Uneven Seven-Sided Dice Circuit</span>
@@ -188,7 +179,6 @@
             <span class="tag">LTSpice</span><span class="tag">PCB</span><span class="tag">Proteus</span>
           </div>
         </div>
-
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-name" data-i18n="proj_lock_name">Digital Password Lock System Using VHDL</span>
@@ -199,13 +189,10 @@
             <span class="tag">VHDL</span><span class="tag">Vivado</span><span class="tag">FPGA</span>
           </div>
         </div>
-
       </div>
 
-      <!-- ── SIGNAL PROCESSING & COMMUNICATIONS ── -->
       <h2 data-i18n="section_signal">signal processing &amp; communications</h2>
       <div class="projects-grid">
-
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-name" data-i18n="proj_echo_name">Echo Reduction in Audio Transmission Using PAM &amp; Digital Equalization</span>
@@ -216,14 +203,12 @@
             <span class="tag">LabVIEW</span><span class="tag">DSP</span><span class="tag">Antenna</span>
           </div>
         </div>
-
       </div>
 
     </article>
   </div>
 </div>
 
-<!-- ── FOOTER ── -->
 <footer class="fixed-bottom">
   <div class="container mt-0">
     <span data-i18n="footer_copy">© Copyright 2026 Ahmed Tamer</span>
@@ -307,8 +292,7 @@ function applyLang(lang) {
   document.title = i18n[lang].page_title;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (i18n[lang][key] === undefined) return;
-    el.innerHTML = i18n[lang][key];
+    if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
   });
   document.getElementById('lang-toggle').textContent = lang === 'en' ? 'TR' : 'EN';
   localStorage.setItem('lang', lang);
@@ -322,20 +306,16 @@ window.addEventListener('DOMContentLoaded', () => {
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
   });
-
   const savedLang = localStorage.getItem('lang') || 'en';
   applyLang(savedLang);
   document.getElementById('lang-toggle').addEventListener('click', () => {
-    const cur = document.documentElement.getAttribute('data-lang') || 'en';
-    applyLang(cur === 'en' ? 'tr' : 'en');
+    applyLang(document.documentElement.getAttribute('data-lang') === 'en' ? 'tr' : 'en');
   });
-
   const progressBar = document.getElementById('progress');
   if (progressBar) {
     document.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.value = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
       progressBar.max = 100;
     });
   }
