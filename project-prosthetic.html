@@ -8,338 +8,81 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css"/>
   <style>
-    /* ── AL-FOLIO THEME VARIABLES ── */
-    :root {
-      --global-bg-color: #fff;
-      --global-text-color: #000;
-      --global-text-color-light: #828282;
-      --global-theme-color: #ff4b4b;
-      --global-hover-color: #ff4b4b;
-      --global-footer-bg-color: #1c1c1d;
-      --global-footer-text-color: #e8e8e8;
-      --global-footer-link-color: #fff;
-      --global-divider-color: rgba(0,0,0,.1);
-      --global-card-bg-color: #fff;
-      --tag-bg: #f5f5f5;
-      --tag-text: #c0392b;
-      --tag-border: rgba(0,0,0,0.08);
+    /* ── Global Roboto Light Override ── */
+    html, body,
+    p, li, div, span, a, td, th,
+    .post, .post article,
+    .exp-bullets, .exp-bullets li,
+    .project-desc,
+    .desc, .bio,
+    .skill-tags .tag,
+    .edu-block,
+    footer {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 17.28px !important;
+      line-height: 1.85 !important;   /* generous line spacing for 1070px justified layout */
     }
-    html[data-theme="dark"] {
-      --global-bg-color: #1c1c1d;
-      --global-text-color: #e8e8e8;
-      --global-text-color-light: #a8a8a8;
-      --global-theme-color: #2698ba;
-      --global-hover-color: #2698ba;
-      --global-footer-bg-color: #e8e8e8;
-      --global-footer-text-color: #1c1c1d;
-      --global-footer-link-color: #000;
-      --global-divider-color: #424246;
-      --global-card-bg-color: #212529;
-      --tag-bg: #1e2a38;
-      --tag-text: #7ab3e0;
-      --tag-border: rgba(255,255,255,0.08);
-    }
-    :root .fa-sun  { display: none; }
-    :root .fa-moon { display: inline-block; }
-    html[data-theme="dark"] .fa-moon { display: none; }
-    html[data-theme="dark"] .fa-sun  { display: inline-block; }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--global-bg-color);
-      color: var(--global-text-color);
-      font-size: 1rem; line-height: 1.7;
-      padding-top: 56px; padding-bottom: 70px;
-      overflow-x: hidden;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    p, h1, h2, h3, li, span, strong, em, div { color: var(--global-text-color); }
-    a { color: var(--global-theme-color); }
-    a:hover { color: var(--global-hover-color); text-decoration: underline; }
-    hr { border-top: 1px solid var(--global-divider-color); }
-
-    /* ── NAVBAR ── */
-    #navbar {
-      box-shadow: none;
-      border-bottom: 1px solid var(--global-divider-color);
-      background-color: var(--global-bg-color);
-      opacity: .97;
-      transition: background-color 0.3s, border-color 0.3s;
-    }
-    .navbar.navbar-light .navbar-brand {
-      color: var(--global-text-color);
-      font-family: 'Lora', serif; font-weight: 600; font-size: 1.1rem;
-    }
-    .navbar.navbar-light .navbar-brand:hover { color: var(--global-hover-color); text-decoration: none; }
-    .navbar.navbar-light .navbar-nav .nav-item .nav-link {
-      color: var(--global-text-color); font-size: 0.88rem; font-weight: 500;
-      text-transform: lowercase; letter-spacing: 0.02em; transition: color 0.2s;
-    }
-    .navbar.navbar-light .navbar-nav .nav-item .nav-link:hover { color: var(--global-hover-color); }
-    .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
-      font-weight: bolder; color: var(--global-theme-color);
-    }
-    .navbar-toggler { border: none !important; outline: none !important; box-shadow: none !important; }
-    .navbar-toggler .icon-bar {
-      display: block; width: 22px; height: 2px;
-      background-color: var(--global-text-color);
-      border-radius: 1px; margin-bottom: 4px; transition: all .2s;
-    }
-    .navbar-toggler .top-bar    { transform: rotate(45deg);  transform-origin: 10% 10%; }
-    .navbar-toggler .middle-bar { opacity: 0; }
-    .navbar-toggler .bottom-bar { transform: rotate(-45deg); transform-origin: 10% 90%; }
-    .navbar-toggler.collapsed .top-bar    { transform: rotate(0); }
-    .navbar-toggler.collapsed .middle-bar { opacity: 1; }
-    .navbar-toggler.collapsed .bottom-bar { transform: rotate(0); }
-    #light-toggle {
-      padding: 0; border: 0; background-color: inherit;
-      color: var(--global-text-color); font-size: 1rem; cursor: pointer;
-    }
-    #light-toggle:hover { color: var(--global-hover-color); }
-    #lang-toggle {
-      padding: 0.1rem 0.45rem;
-      border: 1px solid var(--global-divider-color);
-      background-color: transparent; color: var(--global-text-color);
-      font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
-      font-weight: 600; cursor: pointer; border-radius: 4px;
-      letter-spacing: 0.05em; transition: color 0.2s, border-color 0.2s;
-    }
-    #lang-toggle:hover { color: var(--global-hover-color); border-color: var(--global-hover-color); }
-
-    /* ── PROGRESS ── */
-    progress {
-      position: fixed; left: 0; top: 56px; z-index: 10;
-      width: 100%; height: 3px;
-      appearance: none; border: 0;
-      background-color: transparent; color: var(--global-theme-color);
-    }
-    progress::-webkit-progress-bar  { background-color: transparent; }
-    progress::-webkit-progress-value { background-color: var(--global-theme-color); }
-    progress::-moz-progress-bar { background-color: var(--global-theme-color); }
-
-    /* ── FOOTER ── */
-    footer.fixed-bottom {
-      background-color: var(--global-footer-bg-color);
-      font-size: 0.75rem;
-    }
-    footer.fixed-bottom .container {
-      color: var(--global-footer-text-color);
-      padding-top: 9px; padding-bottom: 8px;
-    }
-    footer.fixed-bottom a { color: var(--global-footer-link-color); }
-    footer.fixed-bottom a:hover { color: var(--global-hover-color); text-decoration: none; }
-
-    /* ── TAGS ── */
-    .tag {
-      font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
-      background: var(--tag-bg); color: var(--tag-text);
-      border-radius: 4px; padding: 0.17rem 0.52rem;
-      border: 1px solid var(--tag-border); font-weight: 500;
-    }
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
-
-    /* ── BACK LINK ── */
-    .back-link {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.82rem; color: var(--global-text-color-light);
-      text-decoration: none; margin-bottom: 1.75rem; transition: color 0.2s;
-    }
-    .back-link:hover { color: var(--global-theme-color); text-decoration: none; }
-
-    /* ── TITLE ── */
-    h1.project-title {
-      font-family: 'Lora', serif;
-      font-size: clamp(1.7rem, 4vw, 2.4rem);
-      font-weight: 700; line-height: 1.25;
-      color: var(--global-text-color); margin-bottom: 0.6rem;
-    }
-    .project-subtitle {
-      font-size: 1rem; color: var(--global-text-color-light);
-      max-width: 620px; margin-bottom: 1.5rem; line-height: 1.65;
+    
+    /* Headings keep a slightly heavier weight so hierarchy stays clear */
+    h1, h2, h3, h4, h5, h6,
+    .post-title,
+    .exp-title,
+    .project-name,
+    .skill-group-label,
+    .edu-degree,
+    .navbar-brand {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;    /* medium — still in the Roboto family */
     }
 
-    /* ── GITHUB LINK ── */
-    .github-link {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      padding: 0.42rem 1.05rem; border-radius: 6px;
-      border: 1px solid var(--global-divider-color);
-      background: var(--global-card-bg-color);
-      color: var(--global-text-color); text-decoration: none;
-      font-size: 0.84rem; font-weight: 500; margin-bottom: 1.75rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .github-link:hover { border-color: var(--global-theme-color); color: var(--global-theme-color); text-decoration: none; }
-    .github-link i { font-size: 1rem; }
-    .github-sep { width: 1px; height: 16px; background: var(--global-divider-color); margin: 0 0.2rem; }
-    .github-badge {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-      color: var(--global-text-color-light);
-      display: flex; align-items: center; gap: 0.3rem;
+    /* Bold/strong stays readable */
+    strong, b {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 500 !important;
     }
 
-    /* ── META GRID ── */
-    .meta-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 0.65rem; margin-bottom: 1.75rem;
-      padding: 0.95rem 1.2rem;
-      background: var(--global-card-bg-color);
-      border-radius: 8px; border: 1px solid var(--global-divider-color);
-    }
-    .meta-item label {
-      display: block; font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--global-text-color-light); margin-bottom: 0.18rem;
-    }
-    .meta-item span { font-size: 0.86rem; font-weight: 500; }
-    .badge-accent {
-      display: inline-block; padding: 0.12rem 0.5rem; border-radius: 4px;
-      background: rgba(255,75,75,0.09); color: var(--global-theme-color);
-      font-weight: 700; font-size: 0.86rem;
-    }
-    html[data-theme="dark"] .badge-accent { background: rgba(38,152,186,0.12); }
-
-    /* ── SECTION LABEL ── */
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.64rem; text-transform: uppercase;
-      letter-spacing: 0.13em; color: var(--global-text-color-light);
-      margin: 2.4rem 0 0.65rem;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--global-divider-color); }
-
-    /* ── PROSE ── */
-    .post-body p { margin-bottom: 0.95rem; }
-    .post-body ul, .post-body ol { padding-left: 1.35rem; margin-bottom: 0.95rem; }
-    .post-body li { margin-bottom: 0.35rem; font-size: 0.93rem; }
-    .post-body li::marker { color: var(--global-theme-color); }
-    .note-text { font-size: 0.82rem; color: var(--global-text-color-light); margin-top: 0.3rem; }
-
-    /* ── INLINE FIGURE ── */
-    .fig {
-      margin: 1.1rem 0 1.75rem; border-radius: 8px; overflow: hidden;
-      border: 1px solid var(--global-divider-color);
-      background: var(--global-card-bg-color);
-      box-shadow: 0 2px 8px rgba(0,0,0,.05);
-      transition: box-shadow 0.25s;
-    }
-    .fig:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
-    .fig img   { width: 100%; display: block; object-fit: cover; }
-    .fig video { width: 100%; display: block; background: #000; }
-    .fig-meta {
-      display: flex; align-items: baseline; gap: 0.7rem;
-      padding: 0.5rem 0.85rem;
-      border-top: 1px solid var(--global-divider-color);
-      background: var(--global-bg-color);
-    }
-    .fig-num {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--global-theme-color); flex-shrink: 0;
-    }
-    .fig-caption { font-size: 0.78rem; color: var(--global-text-color-light); line-height: 1.45; }
-
-    /* ── ASIDE (text + figure) ── */
-    .aside-wrap {
-      display: grid; grid-template-columns: 1fr 270px;
-      gap: 1.4rem; align-items: start; margin-bottom: 1.75rem;
-    }
-    .aside-wrap.left { grid-template-columns: 270px 1fr; }
-    @media (max-width: 660px) {
-      .aside-wrap, .aside-wrap.left { grid-template-columns: 1fr; }
-    }
-    .aside-fig {
-      border-radius: 8px; overflow: hidden;
-      border: 1px solid var(--global-divider-color);
-      background: var(--global-card-bg-color);
-      box-shadow: 0 2px 8px rgba(0,0,0,.05);
-      transition: box-shadow 0.25s; cursor: zoom-in;
-    }
-    .aside-fig:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
-    .aside-fig img { width: 100%; display: block; object-fit: cover; }
-    .aside-fig .fig-meta { padding: 0.42rem 0.75rem; }
-
-    /* ── TWO-UP ── */
-    .two-up {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0.75rem; margin: 1.1rem 0 1.75rem;
-    }
-    @media (max-width: 560px) { .two-up { grid-template-columns: 1fr; } }
-    .two-up .fig { margin: 0; }
-    .two-up .fig video, .two-up .fig img { aspect-ratio: 16/9; object-fit: cover; }
-
-    /* ── ARCHITECTURE ── */
-    .arch-wrap {
-      margin: 0.9rem 0 1.75rem;
-      background: var(--global-card-bg-color);
-      border: 1px solid var(--global-divider-color);
-      border-radius: 8px; padding: 1.4rem 1rem 1rem; overflow-x: auto;
-    }
-    .arch-wrap svg { display: block; margin: 0 auto; max-width: 100%; }
-
-    /* ── RESULTS TABLE ── */
-    .results-table {
-      width: 100%; font-size: 0.84rem;
-      border-collapse: collapse; margin: 0.9rem 0 1.2rem;
-    }
-    .results-table th {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.64rem;
-      text-transform: uppercase; letter-spacing: 0.07em;
-      padding: 0.48rem 0.7rem;
-      border-bottom: 2px solid var(--global-divider-color);
-      text-align: left; color: var(--global-text-color-light);
-    }
-    .results-table td { padding: 0.42rem 0.7rem; border-bottom: 1px solid var(--global-divider-color); }
-    .results-table tr:last-child td { border-bottom: none; }
-    .results-table tr.best-row td { font-weight: 600; }
-
-    /* ── PIPELINE ── */
-    .pipeline-steps { counter-reset: step; list-style: none; padding: 0; margin: 0.4rem 0 1.2rem; }
-    .pipeline-steps li {
-      counter-increment: step;
-      display: flex; align-items: flex-start; gap: 0.85rem;
-      margin-bottom: 0.7rem; font-size: 0.93rem;
-    }
-    .pipeline-steps li::before {
-      content: counter(step); flex-shrink: 0;
-      width: 1.55rem; height: 1.55rem; border-radius: 50%;
-      background: var(--global-theme-color); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.68rem; font-family: 'JetBrains Mono', monospace;
-      font-weight: 700; margin-top: 0.12rem;
+    /* Inline code / tech tags stay legible */
+    .tag, code, pre {
+      font-size: 15px !important;
+      line-height: 1.7 !important;
     }
 
-    /* ── CHALLENGE BOXES ── */
-    .challenge-box {
-      border-left: 3px solid var(--global-theme-color);
-      padding: 0.6rem 1rem; margin: 0.7rem 0;
-      background: rgba(255,75,75,0.05);
-      border-radius: 0 6px 6px 0;
+    /* ── Circular Profile Image  321 × 321 px ── */
+    .profile figure img,
+    .profile img {
+      width:  321px !important;
+      height: 321px !important;
+      min-width:  321px !important;
+      min-height: 321px !important;
+      max-width:  321px !important;
+      max-height: 321px !important;
+      border-radius: 50% !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      display: block !important;
     }
-    html[data-theme="dark"] .challenge-box { background: rgba(38,152,186,0.08); }
-    .challenge-box p { margin: 0.25rem 0 0; font-size: 0.87rem; color: var(--global-text-color-light); }
 
-    /* ── LIGHTBOX ── */
-    #lightbox {
-      display: none; position: fixed; inset: 0; z-index: 9999;
-      background: rgba(0,0,0,.92); align-items: center; justify-content: center;
+    /* Give the figure a fixed size so the float doesn't collapse */
+    .profile figure {
+      width:  321px !important;
+      height: 321px !important;
+      margin: 0 0 1.25rem 1.75rem !important;
     }
-    #lightbox.open { display: flex; }
-    #lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 6px; object-fit: contain; }
-    #lightbox-close {
-      position: absolute; top: 1.4rem; right: 1.4rem;
-      background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; opacity: 0.7;
-    }
-    #lightbox-close:hover { opacity: 1; }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .profile {
+      float: right;
+      margin-left: 2rem;
     }
-    .fade-up { animation: fadeUp 0.5s ease both; }
+    /* ── Icon size fix — overrides the global "a" font-size reset above ── */
+.social .contact-icons,
+.social .contact-icons a,
+.social .contact-icons a i {
+  font-size: 3.8rem !important;  /* ← change this ONE number to resize all icons */
+  line-height: 1 !important;
+}
   </style>
 </head>
 <body>
