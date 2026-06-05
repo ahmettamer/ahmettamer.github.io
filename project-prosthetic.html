@@ -4,14 +4,12 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EMG Prosthetic Arm | Ahmed Tamer</title>
-  <link rel="icon" type="image/jpeg" href="assets/img/ahmed1.jpeg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css"/>
   <style>
-    /* ── Global Roboto Light Override ── */
     html, body,
     p, li, div, span, a, td, th,
     .post, .post article,
@@ -24,66 +22,120 @@
       font-family: 'Roboto', sans-serif !important;
       font-weight: 300 !important;
       font-size: 17.28px !important;
-      line-height: 1.85 !important;   /* generous line spacing for 1070px justified layout */
+      line-height: 1.85 !important;
     }
-    
-    /* Headings keep a slightly heavier weight so hierarchy stays clear */
     h1, h2, h3, h4, h5, h6,
-    .post-title,
-    .exp-title,
-    .project-name,
-    .skill-group-label,
-    .edu-degree,
-    .navbar-brand {
+    .post-title, .exp-title, .project-name,
+    .skill-group-label, .edu-degree, .navbar-brand {
       font-family: 'Roboto', sans-serif !important;
-      font-weight: 500 !important;    /* medium — still in the Roboto family */
+      font-weight: 500 !important;
     }
-
-    /* Bold/strong stays readable */
     strong, b {
       font-family: 'Roboto', sans-serif !important;
       font-weight: 500 !important;
     }
-
-    /* Inline code / tech tags stay legible */
     .tag, code, pre {
       font-size: 15px !important;
       line-height: 1.7 !important;
     }
 
-    /* ── Circular Profile Image  321 × 321 px ── */
-    .profile figure img,
-    .profile img {
-      width:  321px !important;
-      height: 321px !important;
-      min-width:  321px !important;
-      min-height: 321px !important;
-      max-width:  321px !important;
-      max-height: 321px !important;
+    /* ── Profile image ── */
+    .profile figure img, .profile img {
+      width: 321px !important; height: 321px !important;
+      min-width: 321px !important; min-height: 321px !important;
+      max-width: 321px !important; max-height: 321px !important;
       border-radius: 50% !important;
       object-fit: cover !important;
       object-position: center top !important;
       display: block !important;
     }
+    .profile figure { width: 321px !important; height: 321px !important; margin: 0 0 1.25rem 1.75rem !important; }
+    .profile { float: right; margin-left: 2rem; }
 
-    /* Give the figure a fixed size so the float doesn't collapse */
-    .profile figure {
-      width:  321px !important;
-      height: 321px !important;
-      margin: 0 0 1.25rem 1.75rem !important;
+    /* ── Icon size ── */
+    .social .contact-icons,
+    .social .contact-icons a,
+    .social .contact-icons a i {
+      font-size: 3.8rem !important;
+      line-height: 1 !important;
     }
 
-    .profile {
-      float: right;
-      margin-left: 2rem;
+    /* ══════════════════════════════════════
+       IMAGE / FIGURE FIXES
+    ══════════════════════════════════════ */
+
+    /* Aside figures (float next to text) — fixed compact width */
+    .aside-fig {
+      width: 220px !important;
+      min-width: 220px !important;
+      max-width: 220px !important;
+      flex-shrink: 0 !important;
+      cursor: zoom-in;
     }
-    /* ── Icon size fix — overrides the global "a" font-size reset above ── */
-.social .contact-icons,
-.social .contact-icons a,
-.social .contact-icons a i {
-  font-size: 3.8rem !important;  /* ← change this ONE number to resize all icons */
-  line-height: 1 !important;
-}
+    .aside-fig img {
+      width: 100% !important;
+      height: 160px !important;
+      object-fit: cover !important;
+      display: block !important;
+      border-radius: 6px !important;
+    }
+
+    /* Aside wrap layout: text + small figure side by side */
+    .aside-wrap {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 1.25rem !important;
+    }
+    .aside-wrap.left { flex-direction: row-reverse !important; }
+    .aside-wrap > p,
+    .aside-wrap > div:not(.aside-fig),
+    .aside-wrap > ul {
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+    }
+
+    /* Two-up grid: equal columns, no overflow */
+    .two-up {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 1rem !important;
+    }
+    .two-up .fig {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+    .two-up .fig img,
+    .two-up .fig video {
+      width: 100% !important;
+      height: 180px !important;
+      object-fit: cover !important;
+      display: block !important;
+      border-radius: 6px !important;
+    }
+
+    /* Full-width single figures */
+    .fig {
+      margin: 1.25rem 0 !important;
+    }
+    .fig > img,
+    .fig > video {
+      width: 100% !important;
+      max-height: 360px !important;
+      object-fit: cover !important;
+      display: block !important;
+      border-radius: 6px !important;
+    }
+
+    /* Fig caption bar */
+    .fig-meta {
+      display: flex !important;
+      align-items: baseline !important;
+      gap: .5rem !important;
+      margin-top: .4rem !important;
+      font-size: 13px !important;
+      color: #777 !important;
+    }
+    .fig-num { font-weight: 500 !important; }
   </style>
 </head>
 <body>
@@ -311,14 +363,14 @@
 
   <div class="two-up">
     <div class="fig" onclick="openLightbox('assets/image2.png')" style="cursor:zoom-in">
-      <img src="assets/image2.png" alt="MATLAB signal plots" style="aspect-ratio:16/9;object-fit:cover">
+      <img src="assets/image2.png" alt="MATLAB signal plots">
       <div class="fig-meta">
         <span class="fig-num">Fig 03</span>
         <span class="fig-caption" data-i18n="img2_cap">MATLAB — real-time serial data, FFT &amp; buffer power</span>
       </div>
     </div>
     <div class="fig">
-      <video src="assets/video1.mp4" autoplay muted loop playsinline style="aspect-ratio:16/9"></video>
+      <video src="assets/video1.mp4" autoplay muted loop playsinline></video>
       <div class="fig-meta">
         <span class="fig-num">Demo 02</span>
         <span class="fig-caption" data-i18n="vid1_desc">Band-pass filtering, wavelet transform, FFT windowing and feature extraction in real time.</span>
@@ -402,14 +454,14 @@
   <p data-i18n="live_demos_intro">With the classifier trained, the system is connected end-to-end. The two videos below show the fully integrated pipeline: EMG-driven finger control via the MTM chip card, and a webcam-based fallback that requires no sensor at all.</p>
   <div class="two-up">
     <div class="fig">
-      <video src="assets/video3.mp4" autoplay muted loop playsinline style="aspect-ratio:16/9"></video>
+      <video src="assets/video3.mp4" autoplay muted loop playsinline></video>
       <div class="fig-meta">
         <span class="fig-num">Demo 03</span>
         <span class="fig-caption" data-i18n="vid3_desc">Each individual finger driven by classified EMG gestures from the MTM chip card via Bluetooth.</span>
       </div>
     </div>
     <div class="fig">
-      <video src="assets/video4.mp4" autoplay muted loop playsinline style="aspect-ratio:16/9"></video>
+      <video src="assets/video4.mp4" autoplay muted loop playsinline></video>
       <div class="fig-meta">
         <span class="fig-num">Demo 04</span>
         <span class="fig-caption" data-i18n="vid4_desc">Hand gestures captured via webcam drive the prosthetic arm in real time — no EMG sensor required.</span>
