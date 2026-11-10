@@ -183,3 +183,13 @@ footer.fixed-bottom a:hover{color:var(--accent-hover);text-decoration:none}
 .aside-fig{width:100%;flex-basis:auto}
 .two-up{grid-template-columns:1fr}
 }
+
+/* ---- Index parity: same text size/line-height the old inline overrides forced everywhere ---- */
+.navbar.navbar-light .navbar-brand,.navbar.navbar-light .nav-link,
+.exp-title,.exp-date,.exp-company,.exp-bullets li,
+.project-name,.project-date-tag,.project-desc,.ongoing-badge,.view-all-link,
+.skill-group-label,.edu-degree,.edu-uni,.edu-detail,.edu-gpa,
+.ref-name,.ref-role,.ref-email,.page-subtitle,.project-subtitle,
+footer.fixed-bottom{font-size:var(--fs);line-height:var(--lh)}
+.navbar.navbar-light .navbar-brand,.exp-title,.project-name,.skill-group-label,.edu-degree{font-weight:500}
+.tag{font-size:15px;line-height:1.7}
