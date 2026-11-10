@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" data-lang="en">
 <head>
+  
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EMG Prosthetic Arm | Ahmed Tamer</title>
+  <title>Ahmed Tamer</title>
+  <link rel="icon" type="image/jpeg" href="assets/img/ahmed1.jpeg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Roboto Light (300) + Regular (400) for fallback weights -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css"/>
+
   <style>
+    /* ── Global Roboto Light Override ── */
     html, body,
     p, li, div, span, a, td, th,
     .post, .post article,
@@ -22,484 +27,315 @@
       font-family: 'Roboto', sans-serif !important;
       font-weight: 300 !important;
       font-size: 17.28px !important;
-      line-height: 1.85 !important;
+      line-height: 1.85 !important;   /* generous line spacing for 1070px justified layout */
     }
+
+    /* Headings keep a slightly heavier weight so hierarchy stays clear */
     h1, h2, h3, h4, h5, h6,
-    .post-title, .exp-title, .project-name,
-    .skill-group-label, .edu-degree, .navbar-brand {
+    .post-title,
+    .exp-title,
+    .project-name,
+    .skill-group-label,
+    .edu-degree,
+    .navbar-brand {
       font-family: 'Roboto', sans-serif !important;
-      font-weight: 500 !important;
+      font-weight: 500 !important;    /* medium — still in the Roboto family */
     }
+
+    /* Bold/strong stays readable */
     strong, b {
       font-family: 'Roboto', sans-serif !important;
       font-weight: 500 !important;
     }
+
+    /* Inline code / tech tags stay legible */
     .tag, code, pre {
       font-size: 15px !important;
       line-height: 1.7 !important;
     }
 
-    /* ── Profile image ── */
-    .profile figure img, .profile img {
-      width: 321px !important; height: 321px !important;
-      min-width: 321px !important; min-height: 321px !important;
-      max-width: 321px !important; max-height: 321px !important;
+    /* ── Circular Profile Image  321 × 321 px ── */
+    .profile figure img,
+    .profile img {
+      width:  321px !important;
+      height: 321px !important;
+      min-width:  321px !important;
+      min-height: 321px !important;
+      max-width:  321px !important;
+      max-height: 321px !important;
       border-radius: 50% !important;
       object-fit: cover !important;
       object-position: center top !important;
       display: block !important;
     }
-    .profile figure { width: 321px !important; height: 321px !important; margin: 0 0 1.25rem 1.75rem !important; }
-    .profile { float: right; margin-left: 2rem; }
 
-    /* ── Icon size ── */
-    .social .contact-icons,
-    .social .contact-icons a,
-    .social .contact-icons a i {
-      font-size: 3.8rem !important;
-      line-height: 1 !important;
+    /* Give the figure a fixed size so the float doesn't collapse */
+    .profile figure {
+      width:  321px !important;
+      height: 321px !important;
+      margin: 0 0 1.25rem 1.75rem !important;
     }
 
-    /* ══════════════════════════════════════
-       IMAGE / FIGURE FIXES
-    ══════════════════════════════════════ */
-
-    /* Aside figures (float next to text) — fixed compact width */
-    .aside-fig {
-      width: 220px !important;
-      min-width: 220px !important;
-      max-width: 220px !important;
-      flex-shrink: 0 !important;
-      cursor: zoom-in;
+    .profile {
+      float: right;
+      margin-left: 2rem;
     }
-    .aside-fig img {
-      width: 100% !important;
-      height: 160px !important;
-      object-fit: cover !important;
-      display: block !important;
-      border-radius: 6px !important;
-    }
-
-    /* Aside wrap layout: text + small figure side by side */
-    .aside-wrap {
-      display: flex !important;
-      align-items: flex-start !important;
-      gap: 1.25rem !important;
-    }
-    .aside-wrap.left { flex-direction: row-reverse !important; }
-    .aside-wrap > p,
-    .aside-wrap > div:not(.aside-fig),
-    .aside-wrap > ul {
-      flex: 1 1 0 !important;
-      min-width: 0 !important;
-    }
-
-    /* Two-up grid: equal columns, no overflow */
-    .two-up {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 1rem !important;
-    }
-    .two-up .fig {
-      width: 100% !important;
-      min-width: 0 !important;
-    }
-    .two-up .fig img,
-    .two-up .fig video {
-      width: 100% !important;
-      height: 180px !important;
-      object-fit: cover !important;
-      display: block !important;
-      border-radius: 6px !important;
-    }
-
-    /* Full-width single figures */
-    .fig {
-      margin: 1.25rem 0 !important;
-    }
-    .fig > img,
-    .fig > video {
-      width: 100% !important;
-      max-height: 360px !important;
-      object-fit: cover !important;
-      display: block !important;
-      border-radius: 6px !important;
-    }
-
-    /* Fig caption bar */
-    .fig-meta {
-      display: flex !important;
-      align-items: baseline !important;
-      gap: .5rem !important;
-      margin-top: .4rem !important;
-      font-size: 13px !important;
-      color: #777 !important;
-    }
-    .fig-num { font-weight: 500 !important; }
+    /* ── Icon size fix — overrides the global "a" font-size reset above ── */
+.social .contact-icons,
+.social .contact-icons a,
+.social .contact-icons a i {
+  font-size: 3.8rem !important;  /* ← change this ONE number to resize all icons */
+  line-height: 1 !important;
+}
   </style>
 </head>
-<body>
+<body class="fixed-top-nav">
 
-<!-- NAVBAR -->
-<nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">Ahmed Tamer</a>
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false">
-      <span class="icon-bar top-bar"></span>
-      <span class="icon-bar middle-bar"></span>
-      <span class="icon-bar bottom-bar"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_about">about</a></li>
-        <li class="nav-item"><a class="nav-link" href="experience.html" data-i18n="nav_experience">experience</a></li>
-        <li class="nav-item active"><a class="nav-link" href="projects.html" data-i18n="nav_projects">projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="repositories.html" data-i18n="nav_repositories">repositories</a></li>
-        <li class="nav-item"><a class="nav-link" href="assets/pdf/cv.pdf" target="_blank" data-i18n="nav_cv">cv</a></li>
-        <li class="nav-item d-flex align-items-center ml-2">
-          <button id="light-toggle" title="Toggle theme">
-            <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
-          </button>
-        </li>
-        <li class="nav-item d-flex align-items-center ml-2">
-          <button id="lang-toggle">TR</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<progress id="progress" value="0" max="100"></progress>
-
-<!-- LIGHTBOX -->
-<div id="lightbox">
-  <button id="lightbox-close"><i class="fas fa-times"></i></button>
-  <img id="lightbox-img" src="" alt="">
-</div>
-
-<!-- MAIN -->
-<div class="container post fade-up" style="max-width:820px;padding-top:2rem;">
-<article class="post-body">
-
-  <a href="projects.html" class="back-link">
-    <i class="fas fa-arrow-left fa-xs"></i>
-    <span data-i18n="back_projects">all projects</span>
-  </a>
-
-  <h1 class="project-title" data-i18n="proj_title">EMG-Controlled Prosthetic Arm</h1>
-  <p class="project-subtitle" data-i18n="proj_subtitle">Classifying hand gestures from electromyography signals to drive real-time individual finger control on a 3D-printed prosthetic arm.</p>
-
-  <a class="github-link" href="https://github.com/ahmettamer/EMG-Prosthetic-Hand" target="_blank" rel="noopener">
-    <i class="fab fa-github"></i>
-    <span>ahmettamer / EMG-Prosthetic-Hand</span>
-    <div class="github-sep"></div>
-    <span class="github-badge"><i class="fas fa-external-link-alt" style="font-size:.62rem"></i> View on GitHub</span>
-  </a>
-
-  <div class="meta-grid">
-    <div class="meta-item"><label data-i18n="meta_org">Organization</label><span>MTM Biotech</span></div>
-    <div class="meta-item"><label data-i18n="meta_period">Period</label><span data-i18n="meta_period_val">Jun – Aug 2024</span></div>
-    <div class="meta-item"><label data-i18n="meta_role">Role</label><span data-i18n="meta_role_val">ML Intern</span></div>
-    <div class="meta-item"><label data-i18n="meta_result">Best Accuracy</label><span class="badge-accent">82.3 %</span></div>
-  </div>
-
-  <div class="tags">
-    <span class="tag">Python</span><span class="tag">CNN</span><span class="tag">Wavelet Transform</span>
-    <span class="tag">SVM</span><span class="tag">KNN</span><span class="tag">Random Forest</span>
-    <span class="tag">MATLAB</span><span class="tag">Arduino Uno</span><span class="tag">EMG Signals</span>
-  </div>
-
-  <!-- ── OVERVIEW ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_overview">Overview</p>
-  <div class="aside-wrap">
-    <p data-i18n="overview_text">The goal of this project was to build an artificial arm that responds to hand gestures decoded from EMG (electromyography) signals. The system captures muscle electrical activity through surface electrodes, processes and classifies the signals using machine learning and deep learning, then sends commands to servo motors that actuate each individual finger of a 3D-printed arm. The project was carried out during an internship at MTM Biotech, using their proprietary MTM chip card for EMG acquisition.</p>
-    <figure class="aside-fig" style="margin:0" onclick="openLightbox('assets/image11.jpg')">
-      <img src="assets/image11.jpg" alt="3D-printed prosthetic arm">
-      <figcaption class="fig-meta">
-        <span class="fig-num">Fig 01</span>
-        <span class="fig-caption" data-i18n="img1_cap">3D-printed arm — 5 servo motors &amp; rope tendons</span>
-      </figcaption>
-    </figure>
-  </div>
-
-  <!-- ── SYSTEM ARCHITECTURE ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_arch">System Architecture</p>
-  <div class="arch-wrap">
-    <svg id="arch-svg" viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" width="760" height="230">
-      <defs>
-        <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#9a9a94"/>
-        </marker>
-      </defs>
-      <style>
-        #arch-svg text{font-family:'DM Sans',sans-serif}
-        .an{fill:var(--global-card-bg-color,#fff);stroke:var(--global-divider-color,#e0e0e0);stroke-width:1.4}
-        .an-hl{fill:rgba(255,75,75,.06);stroke:var(--global-theme-color,#ff4b4b);stroke-width:1.6}
-        .gl{fill:none;stroke:var(--global-theme-color,#ff4b4b);stroke-width:1;stroke-dasharray:5 3}
-        .gt{font-size:8px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;fill:var(--global-theme-color,#ff4b4b)}
-        .nt{font-size:11px;font-weight:600;fill:var(--global-text-color,#000)}
-        .ns{font-size:8.5px;font-family:'JetBrains Mono',monospace;fill:var(--global-text-color-light,#828282)}
-        .arr{stroke:#9a9a94;stroke-width:1.5;marker-end:url(#arr)}
-        .arr-lbl{font-size:7.5px;font-family:'JetBrains Mono',monospace;fill:var(--global-text-color-light,#828282)}
-        .ic{fill:var(--global-theme-color,#ff4b4b)}
-        .it{font-size:13px;fill:#fff;font-weight:700;text-anchor:middle;dominant-baseline:central}
-        .acc-text{fill:var(--global-theme-color,#ff4b4b);font-weight:700}
-      </style>
-      <rect class="gl" x="6" y="28" width="178" height="190" rx="8"/>
-      <text class="gt" x="14" y="22">Acquisition</text>
-      <rect class="an" x="18" y="40" width="154" height="56" rx="7"/>
-      <circle class="ic" cx="40" cy="68" r="17"/>
-      <text class="it" x="40" y="68">💪</text>
-      <text class="nt" x="68" y="60">Forearm Muscles</text>
-      <text class="ns" x="68" y="74">Surface EMG electrodes</text>
-      <text class="ns" x="68" y="86">skin-contact sensors</text>
-      <line class="arr" x1="95" y1="98" x2="95" y2="120"/>
-      <text class="arr-lbl" x="98" y="112">analog signal</text>
-      <rect class="an" x="18" y="122" width="154" height="56" rx="7"/>
-      <circle class="ic" cx="40" cy="150" r="17"/>
-      <text class="it" x="40" y="150">⚡</text>
-      <text class="nt" x="68" y="142">MTM Chip Card</text>
-      <text class="ns" x="68" y="156">EMG/EEG acquisition</text>
-      <text class="ns" x="68" y="168">3,500 Hz · Bluetooth</text>
-      <line class="arr" x1="173" y1="150" x2="206" y2="150"/>
-      <text class="arr-lbl" x="175" y="145">BT</text>
-      <rect class="gl" x="204" y="28" width="286" height="190" rx="8"/>
-      <text class="gt" x="212" y="22">PC — Processing &amp; Classification</text>
-      <rect class="an" x="216" y="40" width="120" height="54" rx="7"/>
-      <circle class="ic" cx="236" cy="67" r="15"/>
-      <text class="it" x="236" y="67" style="font-size:11px">〜</text>
-      <text class="nt" x="262" y="58">Filtering</text>
-      <text class="ns" x="262" y="71">Band-pass 20–500 Hz</text>
-      <text class="ns" x="262" y="83">Low-pass 3–50 Hz</text>
-      <line class="arr" x1="338" y1="67" x2="360" y2="67"/>
-      <rect class="an" x="360" y="40" width="118" height="54" rx="7"/>
-      <circle class="ic" cx="380" cy="67" r="15"/>
-      <text class="it" x="380" y="67" style="font-size:13px">∑</text>
-      <text class="nt" x="406" y="58">Feature Ext.</text>
-      <text class="ns" x="406" y="71">33 features total</text>
-      <text class="ns" x="406" y="83">Wavelet · FFT · TD</text>
-      <line class="arr" x1="276" y1="96" x2="276" y2="124"/>
-      <line class="arr" x1="418" y1="96" x2="418" y2="124"/>
-      <line class="arr" x1="347" y1="106" x2="347" y2="124"/>
-      <rect class="an-hl" x="216" y="126" width="262" height="70" rx="7"/>
-      <circle class="ic" cx="238" cy="161" r="18"/>
-      <text class="it" x="238" y="161">🧠</text>
-      <text class="nt" x="268" y="144">ML Classifier</text>
-      <text class="ns" x="268" y="158">Random Forest · Decision Tree</text>
-      <text class="ns" x="268" y="170">KNN · SVM · CNN</text>
-      <text class="ns acc-text" x="268" y="185">▶ Best accuracy: 82.3 %</text>
-      <line class="arr" x1="492" y1="161" x2="522" y2="161"/>
-      <text class="arr-lbl" x="494" y="155">Serial COM9</text>
-      <text class="arr-lbl" x="494" y="164">gesture label</text>
-      <rect class="gl" x="520" y="28" width="232" height="190" rx="8"/>
-      <text class="gt" x="528" y="22">Actuation</text>
-      <rect class="an" x="532" y="40" width="130" height="56" rx="7"/>
-      <circle class="ic" cx="552" cy="68" r="17"/>
-      <text class="it" x="552" y="68">⚙</text>
-      <text class="nt" x="580" y="58">Arduino Uno</text>
-      <text class="ns" x="580" y="72">PWM servo control</text>
-      <text class="ns" x="580" y="84">5 output channels</text>
-      <line class="arr" x1="597" y1="98" x2="597" y2="120"/>
-      <text class="arr-lbl" x="600" y="112">PWM signals</text>
-      <rect class="an" x="532" y="122" width="130" height="56" rx="7"/>
-      <circle class="ic" cx="552" cy="150" r="17"/>
-      <text class="it" x="552" y="150">🔩</text>
-      <text class="nt" x="580" y="140">5 Servo Motors</text>
-      <text class="ns" x="580" y="154">1 per finger</text>
-      <text class="ns" x="580" y="167">rope-tendon drive</text>
-      <line class="arr" x1="664" y1="150" x2="680" y2="150"/>
-      <rect class="an" x="680" y="122" width="62" height="72" rx="7"/>
-      <circle class="ic" cx="711" cy="144" r="18"/>
-      <text class="it" x="711" y="144" style="font-size:18px">🦾</text>
-      <text class="nt" x="697" y="172" style="font-size:10px;text-anchor:middle">Prosthetic</text>
-      <text class="ns" x="697" y="184" style="text-anchor:middle">Arm</text>
-      <text class="arr-lbl acc-text" x="208" y="222" style="font-style:italic;font-size:7.5px">✦ Demo 04 alternative: laptop webcam gesture → replaces MTM chip card input</text>
-    </svg>
-  </div>
-
-  <!-- ── HARDWARE ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_hardware">Hardware</p>
-  <div class="aside-wrap left">
-    <figure class="aside-fig" style="margin:0" onclick="openLightbox('assets/image3.jpg')">
-      <img src="assets/image3.jpg" alt="Hardware setup">
-      <figcaption class="fig-meta">
-        <span class="fig-num">Fig 02</span>
-        <span class="fig-caption" data-i18n="img3_cap">MTM chip card, Arduino Uno &amp; electrode placement</span>
-      </figcaption>
-    </figure>
-    <ul>
-      <li data-i18n="hw1"><strong>MTM chip card</strong> — EMG/EEG acquisition board developed by MTM Biotech, connected via Bluetooth; sampling rate ~3,500 Hz.</li>
-      <li data-i18n="hw2"><strong>Arduino Uno</strong> — Receives classified gesture labels over serial (COM9) and maps them to servo PWM signals.</li>
-      <li data-i18n="hw3"><strong>5 servo motors</strong> — One per finger, actuated by bait rope tensioned against elastic return bands.</li>
-      <li data-i18n="hw4"><strong>3D-printed arm</strong> — Custom-designed hand with rope-routed finger tendons.</li>
-    </ul>
-  </div>
-
-  <figure class="fig">
-    <video src="assets/video2.mp4" autoplay muted loop playsinline></video>
-    <figcaption class="fig-meta">
-      <span class="fig-num">Demo 01</span>
-      <span class="fig-caption" data-i18n="vid2_desc">Each finger actuated sequentially by Arduino servo commands — no sensor input, validating the mechanical design.</span>
-    </figcaption>
-  </figure>
-
-  <!-- ── DATASET ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_dataset">Dataset</p>
-  <p data-i18n="dataset_intro">Three separate datasets were collected to train and validate the models:</p>
-  <ul>
-    <li data-i18n="ds1"><strong>100-subject dataset</strong> — Each subject performed 5 individual finger movements (thumb → little finger), 5 repetitions, ~8 seconds each at 3,500 Hz. After correcting a data-accumulation bug, the last 40,000 data points per CSV were extracted, yielding 1,938 signal rows.</li>
-    <li data-i18n="ds2"><strong>Personal hand-gesture dataset</strong> — 44 signals per finger (5 classes) + 44 noise signals = 264 signals total, captured under controlled conditions.</li>
-    <li data-i18n="ds3"><strong>Fist + thumb-index dataset</strong> — 5 subjects performing a fist and a thumb–index pinch, 10 seconds each at 3,500 Hz. Used for secondary validation.</li>
-  </ul>
-
-  <!-- ── SIGNAL PROCESSING ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_processing">Signal Processing Pipeline</p>
-  <ol class="pipeline-steps">
-    <li><div><strong>Band-pass filtering</strong> — Multiple bands (20–100 Hz up to 500 Hz) reject noise outside the physiological EMG range.</div></li>
-    <li><div><strong>Low-pass filtering</strong> — Additional filters at 3, 10, 20, 30, 40, and 50 Hz applied to the personal dataset for fine-grained feature comparison.</div></li>
-    <li><div><strong>Signal segmentation</strong> — A sliding FFT-energy window (3,000 points, step = 1) extracts the highest-energy movement epochs and discards quiet intervals.</div></li>
-    <li><div><strong>Wavelet transformation</strong> — Captures joint time–frequency information; power spectra (scale 0–512, EMG basis 5–200 Hz) form an additional feature channel.</div></li>
-  </ol>
-
-  <div class="two-up">
-    <figure class="fig" onclick="openLightbox('assets/image2.png')" style="cursor:zoom-in">
-      <img src="assets/image2.png" alt="MATLAB signal plots">
-      <figcaption class="fig-meta">
-        <span class="fig-num">Fig 03</span>
-        <span class="fig-caption" data-i18n="img2_cap">MATLAB — real-time serial data, FFT &amp; buffer power</span>
-      </figcaption>
-    </figure>
-    <figure class="fig">
-      <video src="assets/video1.mp4" autoplay muted loop playsinline></video>
-      <figcaption class="fig-meta">
-        <span class="fig-num">Demo 02</span>
-        <span class="fig-caption" data-i18n="vid1_desc">Band-pass filtering, wavelet transform, FFT windowing and feature extraction in real time.</span>
-      </figcaption>
-    </figure>
-  </div>
-
-  <!-- ── FEATURE EXTRACTION ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_features">Feature Extraction</p>
-  <p data-i18n="features_intro">22 time-domain, frequency-domain, and time-frequency features were computed per signal window. The most impactful included:</p>
-  <div class="row">
-    <div class="col-md-6">
-      <ul>
-        <li>MAV, RMS, VAR, SSI — amplitude &amp; energy</li>
-        <li>Zero Crossing Rate (ZCR)</li>
-        <li>Waveform Length (WL)</li>
-        <li>Slope Sign Change (SSC)</li>
-        <li>Williams Amplitude (WAMP)</li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <ul>
-        <li>IASD, IATD — derivative-based noise filters</li>
-        <li>IEAV, IALV, IE — exponential/log amplification</li>
-        <li>DAMV, DVARV, DASDV — difference statistics</li>
-        <li>FFT &amp; Power Spectral Density</li>
-        <li>Wavelet transform coefficients</li>
-      </ul>
-    </div>
-  </div>
-  <p class="note-text" data-i18n="feature_selection_note">Automatic feature selection identified SSI features of 3 Hz, 30 Hz, 40 Hz and 50 Hz bands as most discriminative, achieving 73% KNN accuracy on its own.</p>
-
-  <!-- ── RESULTS ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_results">Results</p>
-  <div class="aside-wrap">
-    <div>
-      <div class="table-responsive" role="region" aria-label="Model performance results" tabindex="0">
-      <table class="results-table">
-        <caption class="sr-only">Classifier model results</caption>
-        <thead>
-          <tr>
-            <th scope="col" data-i18n="th_model">Model</th>
-            <th scope="col" data-i18n="th_data">Data</th>
-            <th scope="col" data-i18n="th_acc">Accuracy</th>
-            <th scope="col" data-i18n="th_f1">F1</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td role="rowheader">Decision Tree</td><td data-i18n="raw_plus_filtered">Raw + All filtered</td>
-            <td>82 %</td><td><span class="badge-accent">82.3 %</span></td>
-          </tr>
-          <tr class="best-row">
-            <td role="rowheader">Random Forest</td><td data-i18n="raw_plus_filtered">Raw + All filtered</td>
-            <td><span class="badge-accent">82.3 %</span></td><td>82.2 %</td>
-          </tr>
-          <tr>
-            <td role="rowheader">KNN</td><td data-i18n="raw_plus_filtered">Raw + All filtered</td>
-            <td>81 %</td><td>82 %</td>
-          </tr>
-          <tr>
-            <td role="rowheader">Naïve Bayes</td><td>3 Hz LP — MAV</td><td>64 %</td><td>—</td>
-          </tr>
-          <tr>
-            <td role="rowheader">Decision Tree</td><td data-i18n="hundred_subj">100-subject</td>
-            <td>20 %</td><td>—</td>
-          </tr>
-        </tbody>
-      </table>
+<!-- ── NAVBAR ── -->
+<header>
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Ahmed Tamer</a>
+      <button class="navbar-toggler collapsed ml-auto" type="button"
+        data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap align-items-center">
+          <li class="nav-item active"><a class="nav-link" href="index.html" data-i18n="nav_about">about</a></li>
+          <li class="nav-item"><a class="nav-link" href="experience.html" data-i18n="nav_experience">experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html" data-i18n="nav_projects">projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="repositories.html" data-i18n="nav_repositories">repositories</a></li>
+          <li class="nav-item"><a class="nav-link" href="assets/pdf/cv.pdf" target="_blank" data-i18n="nav_cv">cv</a></li>
+          <li class="nav-item ml-1">
+            <button id="light-toggle" title="Change theme">
+              <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i>
+            </button>
+          </li>
+          <li class="nav-item ml-1">
+            <button id="lang-toggle" title="Change language">TR</button>
+          </li>
+        </ul>
       </div>
-      <p class="note-text" data-i18n="results_note">Low accuracy on the 100-subject set is attributed to FFT windowing artefacts; the personal dataset with all 33 features consistently performed best.</p>
     </div>
-    <figure class="aside-fig" style="margin:0" onclick="openLightbox('assets/image4.png')">
-      <img src="assets/image4.png" alt="Confusion matrix">
-      <figcaption class="fig-meta">
-        <span class="fig-num">Fig 04</span>
-        <span class="fig-caption" data-i18n="img4_cap">Classifier performance — confusion matrix</span>
-      </figcaption>
-    </figure>
-  </div>
+  </nav>
+  <progress id="progress" value="0">
+    <div class="progress-container"><span class="progress-bar"></span></div>
+  </progress>
+</header>
 
-  <!-- ── LIVE DEMOS ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_live_demos">Live Demonstrations</p>
-  <p data-i18n="live_demos_intro">With the classifier trained, the system is connected end-to-end. The two videos below show the fully integrated pipeline: EMG-driven finger control via the MTM chip card, and a webcam-based fallback that requires no sensor at all.</p>
-  <div class="two-up">
-    <figure class="fig">
-      <video src="assets/video3.mp4" autoplay muted loop playsinline></video>
-      <figcaption class="fig-meta">
-        <span class="fig-num">Demo 03</span>
-        <span class="fig-caption" data-i18n="vid3_desc">Each individual finger driven by classified EMG gestures from the MTM chip card via Bluetooth.</span>
-      </figcaption>
-    </figure>
-    <figure class="fig">
-      <video src="assets/video4.mp4" autoplay muted loop playsinline></video>
-      <figcaption class="fig-meta">
-        <span class="fig-num">Demo 04</span>
-        <span class="fig-caption" data-i18n="vid4_desc">Hand gestures captured via webcam drive the prosthetic arm in real time — no EMG sensor required.</span>
-      </figcaption>
-    </figure>
-  </div>
+<!-- ── MAIN ── -->
+<div class="container mt-5">
+  <div class="post fade-up">
 
-  <!-- ── CHALLENGES ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_challenges">Challenges &amp; Solutions</p>
-  <div class="challenge-box">
-    <strong data-i18n="ch1_title">Data accumulation bug</strong>
-    <p data-i18n="ch1_body">The acquisition software appended data across sessions without resetting. Solved by assuming a fixed ~40,000 data-point budget per subject and extracting the last 40,000 points from each CSV.</p>
-  </div>
-  <div class="challenge-box">
-    <strong data-i18n="ch2_title">Skin-effect noise</strong>
-    <p data-i18n="ch2_body">Thick skin attenuated EMG signals below noise floor for some subjects. Mitigated by standardising electrode placement, instructing subjects to press firmly, and collecting noise-only baseline windows.</p>
-  </div>
-  <div class="challenge-box">
-    <strong data-i18n="ch3_title">Sampling-rate ambiguity</strong>
-    <p data-i18n="ch3_body">Initial assumption of 1,700 Hz was incorrect; confirmed 3,500 Hz by a 10-second capture test (35,000 points, verified ×3). All filters were re-applied with the corrected Nyquist frequency.</p>
-  </div>
+    <header class="post-header">
+      <h1 class="post-title"><span class="font-weight-bold">Ahmed</span> <span class="name-last">Tamer</span></h1>
+      <p class="desc">
+        <b data-i18n="desc_title">Electrical &amp; Electronics Engineer</b><br>
+        <b data-i18n="desc_grad">B.Sc. Graduate</b> <span data-i18n="desc_at">at</span> <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a><br>
+        <b data-i18n="desc_ops">Technical Operations Engineer</b> <span data-i18n="desc_at2">at</span> <a href="https://www.fourmansionshotel.com/" target="_blank" rel="noopener">Four Mansions Hotel</a><br>
+        <b data-i18n="desc_skills">Embedded Systems</b> &nbsp;·&nbsp; <b data-i18n="desc_ml">Edge AI</b> &nbsp;·&nbsp; <b>IoT</b><br>
+        <span data-i18n="desc_loc">Kayseri, Turkey (open to relocation)</span>
+      </p>
+    </header>
 
-  <!-- ── CONCLUSION ── -->
-  <p class="section-label" role="heading" aria-level="2" data-i18n="sec_conclusion">Conclusion</p>
-  <p data-i18n="conclusion_text">The project demonstrated a full end-to-end pipeline from raw EMG acquisition to real-time servo actuation. Combining all raw and band-pass-filtered features into a single 33-feature vector fed into a Random Forest or Decision Tree classifier yielded the strongest results (~82%). The prototype confirms the viability of low-cost EMG-based prosthetic control and establishes a foundation for future improvements: larger multi-subject datasets, CNN-based raw signal classifiers, and user-adaptive calibration.</p>
+    <article>
+      <div class="profile float-right" style="margin-top: -1.5rem; transform: translateY(-20%);">
+       <figure>
+          <img src="assets/img/ahmed1.jpeg" alt="Ahmed Tamer" class="img-fluid z-depth-1 rounded-circle">
+        </figure>
+      </div>
 
-</article>
+      <div class="clearfix" style="text-align:justify;">
+        <p data-i18n="bio1">I am an <strong>Electrical &amp; Electronics Engineering graduate</strong> (B.Sc., <strong>Honor Student</strong>, GPA <strong>3.25 / 4.00</strong>) from
+          <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a>,
+          Kayseri, Turkey. My work spans <strong>embedded systems</strong> (STM32, ESP32, Raspberry Pi), <strong>FPGA design in VHDL</strong>, and <strong>machine learning</strong> for signal processing and computer vision. I am seeking an electrical, embedded or edge-AI engineering role.</p>
+
+        <p data-i18n="bio2"><strong>Machine learning:</strong> At <strong>MTM Biotech</strong>, I developed a CNN and wavelet-transform model that decodes hand gestures from EMG signals with <strong>82% accuracy</strong>, enabling individual finger control of a prosthetic arm. I owned the full pipeline, from data collection, preprocessing and feature engineering to model training and real-time hardware inference.</p>
+
+        <p data-i18n="bio3"><strong>Embedded &amp; electrical:</strong> At <strong>Four Mansions Hotel</strong>, I designed and deployed <strong>3 remote gate openers</strong> using ESP32 and Blynk IoT, serving about 300 guests per week with no reported problems. I optimized industrial lighting infrastructure, diagnosed and repaired a major electrical fault in the lighting system of a historic building, and built a Python web-scraping tool that tracks competitor hotel pricing and occupancy trends, all in a live environment.</p>
+
+        <p data-i18n="bio4"><strong>Graduation project &amp; academic work:</strong> I designed <strong>AI-powered smart glasses</strong> for visually impaired users, running YOLOv6-N detection on a Raspberry Pi 5 and conveying obstacle direction and distance through real-time 3D spatial audio. Other projects include a PID line follower robot on STM32, an FPGA digital password lock, deep learning classification of breast cancer histopathological images, heart disease prediction, and a PAM digital equalization system achieving ~22 dB SNR.</p>
+
+        <p data-i18n="bio5"><strong>Languages:</strong> <strong>Arabic</strong> (native), <strong>English</strong> (fluent) and <strong>Turkish</strong> (fluent). I am passionate about applying engineering to problems that matter, from prosthetics to accessibility technology.</p>
+      </div>
+
+      <div class="social">
+        <div class="contact-icons">
+          <a href="mailto:ahmed2000tamer2@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/ahmettamer" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ahmed-tamer-eee/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="tel:+905525575085" title="Phone"><i class="fas fa-phone"></i></a>
+        </div>
+      </div>
+
+      <!-- SELECTED EXPERIENCE -->
+      <h2><span data-i18n="section_sel_exp">selected experience</span> <a class="view-all-link" href="experience.html" data-i18n="view_all">view all →</a></h2>
+
+      <div class="exp-item fade-up">
+        <div class="exp-header">
+          <span class="exp-title" data-i18n="exp1_title">Technical Operations Engineer</span>
+          <span class="exp-date" data-i18n="exp1_date">Sep 2024 – Present</span>
+        </div>
+        <div class="exp-company" data-i18n="exp1_company">Four Mansions Hotel — Kayseri, Turkey</div>
+        <div class="tech-stack">
+          <span class="tag">ESP32</span><span class="tag">Blynk IoT</span>
+          <span class="tag">Python</span><span class="tag">Electrical Fault Diagnosis</span>
+        </div>
+        <ul class="exp-bullets" data-i18n="exp1_bullets" data-i18n-html>
+          <li>Designed and deployed <strong>3 remote gate openers</strong> using ESP32 and Blynk IoT; guests receive an access link, serving ~300 guests per week with no reported problems and removing ~10 minutes of manual handling per guest entry.</li>
+          <li>Diagnosed and repaired a major electrical fault in the lighting system of a historic building, preventing damage to ~20 m of cable and re-chasing of historic walls.</li>
+          <li>Built a Python web-scraping tool that tracks competitor hotel pricing and occupancy trends.</li>
+          <li>Responsible for repair and maintenance of equipment, furniture, plumbing and electrical systems; also worked as waiter, assistant chef and receptionist.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item fade-up">
+        <div class="exp-header">
+          <span class="exp-title" data-i18n="exp2_title">Machine Learning Intern</span>
+          <span class="exp-date" data-i18n="exp2_date">Jun 2024 – Aug 2024</span>
+        </div>
+        <div class="exp-company" data-i18n="exp2_company">MTM Biotech — Kayseri, Turkey</div>
+        <div class="tech-stack">
+          <span class="tag">Python</span><span class="tag">CNN</span>
+          <span class="tag">Wavelet Transform</span><span class="tag">EMG Signal Processing</span>
+        </div>
+        <ul class="exp-bullets" data-i18n="exp2_bullets" data-i18n-html>
+          <li>Developed a CNN and wavelet-transform model that decodes hand gestures from EMG signals with <strong>82% accuracy</strong>, enabling individual finger control of a prosthetic arm.</li>
+          <li>Owned the full pipeline: data collection, preprocessing, feature engineering, model training and real-time hardware inference.</li>
+        </ul>
+      </div>
+
+      <!-- SELECTED PROJECTS -->
+      <h2><span data-i18n="section_sel_proj">selected projects</span> <a class="view-all-link" href="projects.html" data-i18n="view_all">view all →</a></h2>
+
+      <div class="projects-grid">
+
+        <a href="project-glasses.html" class="project-card-link" style="text-decoration:none;color:inherit;">
+          <div class="project-card fade-up">
+            <div class="card hoverable" style="margin-bottom:0.75rem;border-radius:8px;overflow:hidden;box-shadow:none;border:none;">
+              <figure style="margin:0;">
+                <picture>
+                  <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="assets/img/projects/detection-480.webp">
+                  <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="assets/img/projects/detection-800.webp">
+                  <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="assets/img/projects/detection-1400.webp">
+                  <img src="assets/img/projects/detection.gif"
+                       width="100%" height="auto"
+                       alt="AI glasses obstacle detection demo"
+                       style="display:block;width:100%;height:auto;border-radius:8px;"
+                       onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function(el){el.remove()});">
+                </picture>
+              </figure>
+            </div>
+            <div class="project-card-header">
+              <span class="project-name" data-i18n="proj1_name">AI-Powered Obstacle Recognition Glasses with 3D Audio</span>
+            </div>
+            <div class="ongoing-badge" data-i18n="ongoing_badge">● graduation project</div>
+            <p class="project-desc" data-i18n="proj1_desc">Smart glasses that detect head-level and above-waist obstacles missed by white canes. Real-time YOLOv6-N detection on Raspberry Pi 5, with monocular and stereo depth fusion (50 cm–4 m range, 2.3 cm average depth error) and 3D spatial audio feedback.</p>
+            <div class="tech-stack">
+              <span class="tag">YOLOv6-N</span><span class="tag">Raspberry Pi 5</span><span class="tag">Python</span><span class="tag">CNN/RNN</span><span class="tag">3D Audio</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="project-prosthetic.html" class="project-card-link" style="text-decoration:none;color:inherit;">
+          <div class="project-card fade-up">
+            <div class="card hoverable" style="margin-bottom:0.75rem;border-radius:8px;overflow:hidden;box-shadow:none;border:none;">
+              <figure style="margin:0;">
+                <picture>
+                  <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="assets/img/projects/emg-demo-480.webp">
+                  <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="assets/img/projects/emg-demo-800.webp">
+                  <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="assets/img/projects/emg-demo-1400.webp">
+                  <img src="assets/img/projects/emg-demo.gif"
+                       width="100%" height="auto"
+                       alt="EMG prosthetic arm demo"
+                       style="display:block;width:100%;height:auto;border-radius:8px;"
+                       onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function(el){el.remove()});">
+                </picture>
+              </figure>
+            </div>
+            <div class="project-card-header">
+              <span class="project-name" data-i18n="proj_prosthetic_name">EMG-Controlled Prosthetic Arm</span>
+              <span class="project-date-tag">Jun–Aug 2024</span>
+            </div>
+            <p class="project-desc" data-i18n="proj_prosthetic_desc">A CNN and wavelet-transform pipeline that decodes hand gestures from EMG signals with 82% accuracy, enabling individual finger control of a prosthetic arm with real-time hardware inference.</p>
+            <div class="tech-stack">
+              <span class="tag">Python</span><span class="tag">CNN</span><span class="tag">Wavelet Transform</span>
+              <span class="tag">EMG Signals</span><span class="tag">SVM</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- SKILLS -->
+      <h2 data-i18n="section_skills">skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-label" data-i18n="skill_hw">Embedded &amp; Hardware</div>
+          <div class="skill-tags">
+            <span class="tag">C</span><span class="tag">C++</span><span class="tag">STM32</span><span class="tag">ESP32</span><span class="tag">Arduino</span><span class="tag">Raspberry Pi</span><span class="tag">PID Control</span><span class="tag">PCB Design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label" data-i18n="skill_digital">Digital Design</div>
+          <div class="skill-tags">
+            <span class="tag">VHDL</span><span class="tag">Vivado</span><span class="tag">FPGA</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label" data-i18n="skill_ml">ML &amp; Signal Processing</div>
+          <div class="skill-tags">
+            <span class="tag">Python (Advanced)</span><span class="tag">MATLAB</span><span class="tag">CNN</span><span class="tag">RNN</span><span class="tag">YOLO</span><span class="tag">Scikit-learn</span><span class="tag">Wavelet Transform</span><span class="tag">DSP</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label" data-i18n="skill_ee">EE Tools</div>
+          <div class="skill-tags">
+            <span class="tag">LTSpice</span><span class="tag">Proteus</span><span class="tag">LabVIEW</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label" data-i18n="skill_other">Electrical &amp; Other</div>
+          <div class="skill-tags">
+            <span class="tag" data-i18n="tag_fault">Electrical Fault Diagnosis &amp; Repair</span><span class="tag">IoT (Blynk)</span><span class="tag">Git / GitHub</span><span class="tag">Web Scraping</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label" data-i18n="skill_lang">Languages</div>
+          <div class="skill-tags">
+            <span class="tag" data-i18n="lang_arabic">Arabic — Native</span>
+            <span class="tag" data-i18n="lang_english">English — Fluent</span>
+            <span class="tag" data-i18n="lang_turkish">Turkish — Fluent</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <h2 data-i18n="section_edu">education</h2>
+      <div class="edu-block">
+        <div>
+          <div class="edu-degree" data-i18n="edu_degree">B.Sc., Electrical &amp; Electronics Engineering</div>
+          <div class="edu-uni">Abdullah Gül University, Kayseri, Turkey</div>
+          <div class="edu-detail" data-i18n="edu_detail">2022 – Jul 2026 &nbsp;·&nbsp; Honor Student &nbsp;·&nbsp; 100% English instruction</div>
+        </div>
+        <div class="edu-gpa">GPA<span>3.25 / 4.00</span></div>
+      </div>
+
+    </article>
+  </div>
 </div>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <footer class="fixed-bottom">
-  <div class="container">
+  <div class="container mt-0">
     <span data-i18n="footer_copy">© Copyright 2026 Ahmed Tamer</span>
-    &nbsp;·&nbsp;
-    <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a>
+    &nbsp;·&nbsp; <a href="mailto:ahmed2000tamer2@gmail.com">ahmed2000tamer2@gmail.com</a>
   </div>
 </footer>
 
@@ -507,129 +343,124 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
 <script>
 const i18n = {
-  en:{
-    nav_about:"about",nav_experience:"experience",nav_projects:"projects",
-    nav_repositories:"repositories",nav_cv:"cv",back_projects:"all projects",
-    proj_title:"EMG-Controlled Prosthetic Arm",
-    proj_subtitle:"Classifying hand gestures from electromyography signals to drive real-time individual finger control on a 3D-printed prosthetic arm.",
-    meta_org:"Organization",meta_period:"Period",meta_period_val:"Jun – Aug 2024",
-    meta_role:"Role",meta_role_val:"ML Intern",meta_result:"Best Accuracy",
-    sec_arch:"System Architecture",
-    img1_cap:"3D-printed arm — 5 servo motors &amp; rope tendons",
-    img2_cap:"MATLAB — real-time serial data, FFT &amp; buffer power",
-    img3_cap:"MTM chip card, Arduino Uno &amp; electrode placement",
-    img4_cap:"Classifier performance — confusion matrix",
-    sec_live_demos:"Live Demonstrations",
-    live_demos_intro:"With the classifier trained, the system is connected end-to-end. The two videos below show the fully integrated pipeline: EMG-driven finger control via the MTM chip card, and a webcam-based fallback that requires no sensor at all.",
-    vid1_desc:"Band-pass filtering, wavelet transform, FFT windowing and feature extraction in real time.",
-    vid2_desc:"Each finger actuated sequentially by Arduino servo commands — no sensor input, validating the mechanical design.",
-    vid3_desc:"Each individual finger driven by classified EMG gestures from the MTM chip card via Bluetooth.",
-    vid4_desc:"Hand gestures captured via webcam drive the prosthetic arm in real time — no EMG sensor required.",
-    sec_overview:"Overview",
-    overview_text:"The goal of this project was to build an artificial arm that responds to hand gestures decoded from EMG (electromyography) signals. The system captures muscle electrical activity through surface electrodes, processes and classifies the signals using machine learning and deep learning, then sends commands to servo motors that actuate each individual finger of a 3D-printed arm. The project was carried out during an internship at MTM Biotech, using their proprietary MTM chip card for EMG acquisition.",
-    sec_hardware:"Hardware",
-    hw1:"<strong>MTM chip card</strong> — EMG/EEG acquisition board developed by MTM Biotech, connected via Bluetooth; sampling rate ~3,500 Hz.",
-    hw2:"<strong>Arduino Uno</strong> — Receives classified gesture labels over serial (COM9) and maps them to servo PWM signals.",
-    hw3:"<strong>5 servo motors</strong> — One per finger, actuated by bait rope tensioned against elastic return bands.",
-    hw4:"<strong>3D-printed arm</strong> — Custom-designed hand with rope-routed finger tendons.",
-    sec_dataset:"Dataset",dataset_intro:"Three separate datasets were collected to train and validate the models:",
-    ds1:"<strong>100-subject dataset</strong> — Each subject performed 5 individual finger movements (thumb → little finger), 5 repetitions, ~8 seconds each at 3,500 Hz. After correcting a data-accumulation bug, the last 40,000 data points per CSV were extracted, yielding 1,938 signal rows.",
-    ds2:"<strong>Personal hand-gesture dataset</strong> — 44 signals per finger (5 classes) + 44 noise signals = 264 signals total, captured under controlled conditions.",
-    ds3:"<strong>Fist + thumb-index dataset</strong> — 5 subjects performing a fist and a thumb–index pinch, 10 seconds each at 3,500 Hz. Used for secondary validation.",
-    sec_processing:"Signal Processing Pipeline",sec_features:"Feature Extraction",
-    features_intro:"22 time-domain, frequency-domain, and time-frequency features were computed per signal window. The most impactful included:",
-    feature_selection_note:"Automatic feature selection identified SSI features of 3 Hz, 30 Hz, 40 Hz and 50 Hz bands as most discriminative, achieving 73% KNN accuracy on its own.",
-    sec_results:"Results",th_model:"Model",th_data:"Data",th_acc:"Accuracy",th_f1:"F1",
-    raw_plus_filtered:"Raw + All filtered",hundred_subj:"100-subject",
-    results_note:"Low accuracy on the 100-subject set is attributed to FFT windowing artefacts; the personal dataset with all 33 features consistently performed best.",
-    sec_challenges:"Challenges &amp; Solutions",
-    ch1_title:"Data accumulation bug",
-    ch1_body:"The acquisition software appended data across sessions without resetting. Solved by assuming a fixed ~40,000 data-point budget per subject and extracting the last 40,000 points from each CSV.",
-    ch2_title:"Skin-effect noise",
-    ch2_body:"Thick skin attenuated EMG signals below noise floor for some subjects. Mitigated by standardising electrode placement, instructing subjects to press firmly, and collecting noise-only baseline windows.",
-    ch3_title:"Sampling-rate ambiguity",
-    ch3_body:"Initial assumption of 1,700 Hz was incorrect; confirmed 3,500 Hz by a 10-second capture test (35,000 points, verified ×3). All filters were re-applied with the corrected Nyquist frequency.",
-    sec_conclusion:"Conclusion",
-    conclusion_text:"The project demonstrated a full end-to-end pipeline from raw EMG acquisition to real-time servo actuation. Combining all raw and band-pass-filtered features into a single 33-feature vector fed into a Random Forest or Decision Tree classifier yielded the strongest results (~82%). The prototype confirms the viability of low-cost EMG-based prosthetic control and establishes a foundation for future improvements: larger multi-subject datasets, CNN-based raw signal classifiers, and user-adaptive calibration.",
-    footer_copy:"© Copyright 2026 Ahmed Tamer"
+  en: {
+    page_title: "Ahmed Tamer",
+    nav_about: "about", nav_experience: "experience", nav_projects: "projects",
+    nav_repositories: "repositories", nav_cv: "cv",
+    desc_title: "Electrical &amp; Electronics Engineer",
+    desc_grad: "B.Sc. Graduate", desc_at: "at", desc_at2: "at",
+    desc_ops: "Technical Operations Engineer",
+    desc_skills: "Embedded Systems", desc_ml: "Edge AI",
+    desc_loc: "Kayseri, Turkey (open to relocation)",
+    bio1: `I am an <strong>Electrical &amp; Electronics Engineering graduate</strong> (B.Sc., <strong>Honor Student</strong>, GPA <strong>3.25 / 4.00</strong>) from <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a>, Kayseri, Turkey. My work spans <strong>embedded systems</strong> (STM32, ESP32, Raspberry Pi), <strong>FPGA design in VHDL</strong>, and <strong>machine learning</strong> for signal processing and computer vision. I am seeking an electrical, embedded or edge-AI engineering role.`,
+    bio2: `<strong>Machine learning:</strong> At <strong>MTM Biotech</strong>, I developed a CNN and wavelet-transform model that decodes hand gestures from EMG signals with <strong>82% accuracy</strong>, enabling individual finger control of a prosthetic arm. I owned the full pipeline, from data collection, preprocessing and feature engineering to model training and real-time hardware inference.`,
+    bio3: `<strong>Embedded &amp; electrical:</strong> At <strong>Four Mansions Hotel</strong>, I designed and deployed <strong>3 remote gate openers</strong> using ESP32 and Blynk IoT, serving about 300 guests per week with no reported problems. I optimized industrial lighting infrastructure, diagnosed and repaired a major electrical fault in the lighting system of a historic building, and built a Python web-scraping tool that tracks competitor hotel pricing and occupancy trends, all in a live environment.`,
+    bio4: `<strong>Graduation project &amp; academic work:</strong> I designed <strong>AI-powered smart glasses</strong> for visually impaired users, running YOLOv6-N detection on a Raspberry Pi 5 and conveying obstacle direction and distance through real-time 3D spatial audio. Other projects include a PID line follower robot on STM32, an FPGA digital password lock, deep learning classification of breast cancer histopathological images, heart disease prediction, and a PAM digital equalization system achieving ~22 dB SNR.`,
+    bio5: `<strong>Languages:</strong> <strong>Arabic</strong> (native), <strong>English</strong> (fluent) and <strong>Turkish</strong> (fluent). I am passionate about applying engineering to problems that matter, from prosthetics to accessibility technology.`,
+    section_sel_exp: "selected experience", view_all: "view all →",
+    exp1_title: "Technical Operations Engineer", exp1_date: "Sep 2024 – Present",
+    exp1_company: "Four Mansions Hotel — Kayseri, Turkey",
+    exp1_bullets: `<li>Designed and deployed <strong>3 remote gate openers</strong> using ESP32 and Blynk IoT; guests receive an access link, serving ~300 guests per week with no reported problems and removing ~10 minutes of manual handling per guest entry.</li><li>Diagnosed and repaired a major electrical fault in the lighting system of a historic building, preventing damage to ~20 m of cable and re-chasing of historic walls.</li><li>Built a Python web-scraping tool that tracks competitor hotel pricing and occupancy trends.</li><li>Responsible for repair and maintenance of equipment, furniture, plumbing and electrical systems; also worked as waiter, assistant chef and receptionist.</li>`,
+    exp2_title: "Machine Learning Intern", exp2_date: "Jun 2024 – Aug 2024",
+    exp2_company: "MTM Biotech — Kayseri, Turkey",
+    exp2_bullets: `<li>Developed a CNN and wavelet-transform model that decodes hand gestures from EMG signals with <strong>82% accuracy</strong>, enabling individual finger control of a prosthetic arm.</li><li>Owned the full pipeline: data collection, preprocessing, feature engineering, model training and real-time hardware inference.</li>`,
+    section_sel_proj: "selected projects",
+    proj_prosthetic_name: "EMG-Controlled Prosthetic Arm",
+    proj_prosthetic_desc: "A CNN and wavelet-transform pipeline that decodes hand gestures from EMG signals with 82% accuracy, enabling individual finger control of a prosthetic arm with real-time hardware inference.",
+    proj1_name: "AI-Powered Obstacle Recognition Glasses with 3D Audio",
+    ongoing_badge: "● graduation project",
+    proj1_desc: "Smart glasses that detect head-level and above-waist obstacles missed by white canes. Real-time YOLOv6-N detection on Raspberry Pi 5, with monocular and stereo depth fusion (50 cm–4 m range, 2.3 cm average depth error) and 3D spatial audio feedback.",
+    read_more: "read more →",
+    section_skills: "skills",
+    skill_hw: "Embedded &amp; Hardware", skill_digital: "Digital Design",
+    skill_ml: "ML &amp; Signal Processing",
+    skill_ee: "EE Tools", skill_other: "Electrical &amp; Other", skill_lang: "Languages",
+    tag_fault: "Electrical Fault Diagnosis &amp; Repair",
+    lang_arabic: "Arabic — Native", lang_english: "English — Fluent", lang_turkish: "Turkish — Fluent",
+    section_edu: "education",
+    edu_degree: "B.Sc., Electrical &amp; Electronics Engineering",
+    edu_detail: "2022 – Jul 2026 &nbsp;·&nbsp; Honor Student &nbsp;·&nbsp; 100% English instruction",
+    footer_copy: "© Copyright 2026 Ahmed Tamer"
   },
-  tr:{
-    nav_about:"hakkımda",nav_experience:"deneyim",nav_projects:"projeler",
-    nav_repositories:"depolar",nav_cv:"özgeçmiş",back_projects:"tüm projeler",
-    proj_title:"EMG Kontrollü Protez Kol",
-    proj_subtitle:"Elektromiyografi sinyallerinden el hareketlerini sınıflandırarak 3D baskılı protez kolda bireysel parmak kontrolü sağlama.",
-    meta_org:"Kuruluş",meta_period:"Dönem",meta_period_val:"Haz – Ağu 2024",
-    meta_role:"Rol",meta_role_val:"ML Stajyeri",meta_result:"En İyi Doğruluk",
-    sec_arch:"Sistem Mimarisi",
-    img1_cap:"5 servo motorlu ve ip kirişli 3D baskılı kol",
-    img2_cap:"MATLAB — Gerçek zamanlı seri veri, FFT &amp; tampon gücü",
-    img3_cap:"MTM çip kartı, Arduino Uno &amp; elektrot yerleşimi",
-    img4_cap:"Sınıflandırıcı performansı — karışıklık matrisi",
-    sec_live_demos:"Canlı Gösteriler",
-    live_demos_intro:"Sınıflandırıcı eğitildikten sonra sistem uçtan uca bağlanır. Aşağıdaki iki video tam entegre pipeline'ı göstermektedir.",
-    vid1_desc:"Gerçek zamanlı bant geçiren filtreleme, dalgacık dönüşümü, FFT pencereleme ve özellik çıkarımı.",
-    vid2_desc:"Arduino servo komutlarıyla her parmağın sırayla tahrik edilmesi — mekanik tasarım doğrulaması.",
-    vid3_desc:"MTM çip kartından Bluetooth ile gelen sınıflandırılmış EMG hareketleriyle parmak kontrolü.",
-    vid4_desc:"Web kamerasından el hareketleriyle gerçek zamanlı protez kontrolü — EMG sensörü gerekmez.",
-    sec_overview:"Genel Bakış",
-    overview_text:"Bu projenin amacı, EMG sinyallerinden çözümlenen el hareketlerine göre hareket eden yapay bir kol geliştirmekti. Sistem yüzey elektrotları aracılığıyla kas elektrik aktivitesini yakalar, ML ve derin öğrenme ile işler, ardından servo motorlara komut gönderir.",
-    sec_hardware:"Donanım",
-    hw1:"<strong>MTM çip kartı</strong> — MTM Biotech tarafından geliştirilmiş; Bluetooth, ~3.500 Hz.",
-    hw2:"<strong>Arduino Uno</strong> — Hareketleri alır (COM9) ve servo PWM sinyallerine dönüştürür.",
-    hw3:"<strong>5 servo motor</strong> — Her parmak için bir; elastik bantlara karşı gerilen iple tahrik.",
-    hw4:"<strong>3D baskılı kol</strong> — Halat yönlendirmeli parmak kirişleri.",
-    sec_dataset:"Veri Seti",dataset_intro:"Modelleri eğitmek için üç ayrı veri seti toplandı:",
-    ds1:"<strong>100 denek veri seti</strong> — 5 parmak, 5 tekrar, ~8 sn, 3.500 Hz. 1.938 sinyal satırı.",
-    ds2:"<strong>Kişisel veri seti</strong> — Parmak başına 44 sinyal (5 sınıf) + 44 gürültü = 264 sinyal.",
-    ds3:"<strong>Yumruk + baş parmak-işaret veri seti</strong> — 5 denek, 10 sn, 3.500 Hz.",
-    sec_processing:"Sinyal İşleme Pipeline'ı",sec_features:"Özellik Çıkarımı",
-    features_intro:"Pencere başına 22 zaman, frekans ve zaman-frekans özelliği hesaplandı.",
-    feature_selection_note:"Otomatik seçim 3, 30, 40 ve 50 Hz SSI özelliklerini en ayırt edici buldu; tek başına %73 KNN doğruluğu.",
-    sec_results:"Sonuçlar",th_model:"Model",th_data:"Veri",th_acc:"Doğruluk",th_f1:"F1",
-    raw_plus_filtered:"Ham + Tüm filtreliler",hundred_subj:"100 denek",
-    results_note:"100 denek veri setindeki düşük doğruluk FFT pencereleme artefaktlarına bağlıdır.",
-    sec_challenges:"Zorluklar ve Çözümler",
-    ch1_title:"Veri birikim hatası",ch1_body:"Yazılım sıfırlanmadan veri ekliyordu. Son 40.000 nokta çıkarılarak çözüldü.",
-    ch2_title:"Deri etkisi gürültüsü",ch2_body:"Kalın deri sinyali düşürdü. Elektrot standardizasyonu ile azaltıldı.",
-    ch3_title:"Örnekleme hızı belirsizliği",ch3_body:"1.700 Hz varsayımı yanlıştı; 10 saniyelik test ile 3.500 Hz doğrulandı.",
-    sec_conclusion:"Sonuç",
-    conclusion_text:"Proje ham EMG ediniminden servo tahrikine uçtan uca pipeline sergiledi. 33 özellik ve Random Forest/Decision Tree ile ~%82 doğruluk elde edildi.",
-    footer_copy:"© Telif Hakkı 2026 Ahmed Tamer"
+  tr: {
+    page_title: "Ahmed Tamer",
+    nav_about: "hakkımda", nav_experience: "deneyim", nav_projects: "projeler",
+    nav_repositories: "depolar", nav_cv: "özgeçmiş",
+    desc_title: "Elektrik &amp; Elektronik Mühendisi",
+    desc_grad: "Lisans Mezunu", desc_at: "", desc_at2: "",
+    desc_ops: "Teknik Operasyon Mühendisi",
+    desc_skills: "Gömülü Sistemler", desc_ml: "Uç Yapay Zeka (Edge AI)",
+    desc_loc: "Kayseri, Türkiye (taşınmaya açık)",
+    bio1: `<a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül Üniversitesi</a>, Kayseri, Türkiye <strong>Elektrik ve Elektronik Mühendisliği</strong> mezunuyum (Lisans, <strong>Onur Öğrencisi</strong>, GPA <strong>3.25 / 4.00</strong>). Çalışmalarım <strong>gömülü sistemler</strong> (STM32, ESP32, Raspberry Pi), <strong>VHDL ile FPGA tasarımı</strong> ve sinyal işleme ile bilgisayarlı görü için <strong>makine öğrenmesi</strong> alanlarını kapsıyor. Elektrik, gömülü sistemler veya edge-AI mühendisliği alanında bir pozisyon arıyorum.`,
+    bio2: `<strong>Makine öğrenmesi:</strong> <strong>MTM Biotech</strong>'te EMG sinyallerinden el hareketlerini <strong>%82 doğrulukla</strong> çözen, CNN ve dalgacık dönüşümü tabanlı bir model geliştirdim; bu model protez kolda bireysel parmak kontrolünü mümkün kılıyor. Veri toplama, ön işleme, özellik mühendisliği, model eğitimi ve gerçek zamanlı donanım çıkarımına kadar tüm süreci yönettim.`,
+    bio3: `<strong>Gömülü sistemler ve elektrik:</strong> <strong>Four Mansions Hotel</strong>'de ESP32 ve Blynk IoT kullanarak <strong>3 uzaktan kapı açma sistemi</strong> tasarlayıp devreye aldım; haftada yaklaşık 300 misafire sorunsuz hizmet veriyor. Ayrıca endüstriyel aydınlatma altyapısını optimize ettim, tarihi bir binanın aydınlatma sisteminde büyük bir elektrik arızasını tespit edip onardım ve rakip otel fiyat ile doluluk trendlerini takip eden Python tabanlı bir web kazıma aracı geliştirdim; tümü canlı bir ortamda.`,
+    bio4: `<strong>Bitirme projesi ve akademik çalışmalar:</strong> Görme engelli kullanıcılar için <strong>yapay zeka destekli akıllı gözlükler</strong> tasarladım; Raspberry Pi 5 üzerinde YOLOv6-N ile nesne tespiti yapıyor ve engelin yönünü ile mesafesini gerçek zamanlı 3D uzamsal ses ile aktarıyor. Diğer projelerim arasında STM32 üzerinde PID çizgi izleyen robot, FPGA tabanlı dijital şifre kilidi, meme kanseri histopatolojik görüntülerinin derin öğrenme ile sınıflandırması, kalp hastalığı tahmini ve ~22 dB SNR elde eden PAM dijital eşitleme sistemi yer alıyor.`,
+    bio5: `<strong>Diller:</strong> <strong>Arapça</strong> (anadil), <strong>İngilizce</strong> (akıcı) ve <strong>Türkçe</strong> (akıcı). Mühendisliği önemli sorunlara uygulamaya tutkuluyum; protezlerden erişilebilirlik teknolojisine kadar.`,
+    section_sel_exp: "seçili deneyim", view_all: "tümünü gör →",
+    exp1_title: "Teknik Operasyon Mühendisi", exp1_date: "Eyl 2024 – Günümüz",
+    exp1_company: "Four Mansions Hotel — Kayseri, Türkiye",
+    exp1_bullets: `<li>ESP32 ve Blynk IoT kullanarak <strong>3 uzaktan kapı açma sistemi</strong> tasarlayıp devreye aldım; misafirler erişim bağlantısı alıyor, haftada ~300 misafire sorunsuz hizmet veriyor ve her giriş için ~10 dakikalık manuel işlemi ortadan kaldırıyor.</li><li>Tarihi bir binanın aydınlatma sistemindeki büyük bir elektrik arızasını tespit edip onardım; ~20 m kablonun zarar görmesini ve tarihi duvarların yeniden oyulmasını önledim.</li><li>Rakip otel fiyatlandırma ve doluluk trendlerini takip eden Python tabanlı web kazıma aracı geliştirdim.</li><li>Ekipman, mobilya, tesisat ve elektrik sistemlerinin onarım ve bakımından sorumluyum; ayrıca garson, aşçı yardımcısı ve resepsiyonist olarak da çalıştım.</li>`,
+    exp2_title: "Makine Öğrenmesi Stajyeri", exp2_date: "Haz 2024 – Ağu 2024",
+    exp2_company: "MTM Biotech — Kayseri, Türkiye",
+    exp2_bullets: `<li>EMG sinyallerinden el hareketlerini <strong>%82 doğrulukla</strong> çözen, CNN ve dalgacık dönüşümü tabanlı bir model geliştirdim; protez kolda bireysel parmak kontrolünü mümkün kıldım.</li><li>Tüm süreci yönettim: veri toplama, ön işleme, özellik mühendisliği, model eğitimi ve gerçek zamanlı donanım çıkarımı.</li>`,
+    section_sel_proj: "seçili projeler",
+    proj_prosthetic_name: "EMG Kontrollü Protez Kol",
+    proj_prosthetic_desc: "EMG sinyallerinden el hareketlerini %82 doğrulukla çözen CNN ve dalgacık dönüşümü tabanlı bir pipeline; gerçek zamanlı donanım çıkarımıyla protez kolda bireysel parmak kontrolü sağlıyor.",
+    proj1_name: "3D Sesli, Yapay Zeka Destekli Engel Tanıma Gözlüğü",
+    ongoing_badge: "● bitirme projesi",
+    proj1_desc: "Beyaz bastonların kaçırdığı baş seviyesi ve bel üstü engelleri tespit eden akıllı gözlük. Raspberry Pi 5 üzerinde gerçek zamanlı YOLOv6-N tespiti, monoküler ve stereo derinlik birleştirme (50 cm–4 m aralık, 2,3 cm ortalama derinlik hatası) ve 3D uzamsal ses geribildirimi.",
+    read_more: "devamını oku →",
+    section_skills: "beceriler",
+    skill_hw: "Gömülü Sistemler &amp; Donanım", skill_digital: "Dijital Tasarım",
+    skill_ml: "ML &amp; Sinyal İşleme",
+    skill_ee: "EE Araçları", skill_other: "Elektrik &amp; Diğer", skill_lang: "Diller",
+    tag_fault: "Elektrik Arıza Tespiti &amp; Onarımı",
+    lang_arabic: "Arapça — Anadil", lang_english: "İngilizce — Akıcı", lang_turkish: "Türkçe — Akıcı",
+    section_edu: "eğitim",
+    edu_degree: "Lisans, Elektrik &amp; Elektronik Mühendisliği",
+    edu_detail: "2022 – Tem 2026 &nbsp;·&nbsp; Onur Öğrencisi &nbsp;·&nbsp; %100 İngilizce eğitim",
+    footer_copy: "© Telif Hakkı 2026 Ahmed Tamer"
   }
 };
 
-function applyLang(lang){
-  document.documentElement.setAttribute('data-lang',lang);
-  document.documentElement.lang=lang;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    if(i18n[lang][k]!==undefined)el.innerHTML=i18n[lang][k];
+function applyLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'tr' ? 'tr' : 'en');
+  document.title = i18n[lang].page_title;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key] === undefined) return;
+    el.innerHTML = i18n[lang][key];
   });
-  document.getElementById('lang-toggle').textContent=lang==='en'?'TR':'EN';
-  localStorage.setItem('lang',lang);
+  document.getElementById('lang-toggle').textContent = lang === 'en' ? 'TR' : 'EN';
+  localStorage.setItem('lang', lang);
 }
-function openLightbox(src){
-  document.getElementById('lightbox-img').src=src;
-  document.getElementById('lightbox').classList.add('open');
-}
-document.getElementById('lightbox').addEventListener('click',()=>document.getElementById('lightbox').classList.remove('open'));
-document.getElementById('lightbox-close').addEventListener('click',e=>{e.stopPropagation();document.getElementById('lightbox').classList.remove('open');});
 
-window.addEventListener('DOMContentLoaded',()=>{
-  const saved=localStorage.getItem('theme')||'light';
-  document.documentElement.setAttribute('data-theme',saved);
-  document.getElementById('light-toggle').addEventListener('click',()=>{
-    const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
-    document.documentElement.setAttribute('data-theme',next);
-    localStorage.setItem('theme',next);
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+  document.getElementById('light-toggle').addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
   });
-  applyLang(localStorage.getItem('lang')||'en');
-  document.getElementById('lang-toggle').addEventListener('click',()=>
-    applyLang((document.documentElement.getAttribute('data-lang')||'en')==='en'?'tr':'en'));
-  document.addEventListener('scroll',()=>{
-    const h=document.documentElement.scrollHeight-window.innerHeight;
-    document.getElementById('progress').value=h>0?(window.scrollY/h*100):0;
+
+  const savedLang = localStorage.getItem('lang') || 'en';
+  applyLang(savedLang);
+  document.getElementById('lang-toggle').addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-lang') || 'en';
+    applyLang(cur === 'en' ? 'tr' : 'en');
   });
+
+  const progressBar = document.getElementById('progress');
+  if (progressBar) {
+    document.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.max = 100;
+    });
+  }
 });
 </script>
 </body>
