@@ -138,7 +138,7 @@
     .fig-num { font-weight: 500 !important; }
   </style>
 </head>
-<body>
+<body class="fixed-top-nav">  
 
 <!-- NAVBAR -->
 <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
@@ -174,7 +174,7 @@
 <!-- LIGHTBOX -->
 <div id="lightbox">
   <button id="lightbox-close"><i class="fas fa-times"></i></button>
-  <img id="lightbox-img" src="" alt="">
+  <img id="lightbox-img" alt="">
 </div>
 
 <!-- MAIN -->
@@ -225,7 +225,7 @@
   <!-- ── SYSTEM ARCHITECTURE ── -->
   <p class="section-label" data-i18n="sec_arch">System Architecture</p>
   <div class="arch-wrap">
-    <svg id="arch-svg" viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" width="760" height="230">
+    <svg id="arch-svg" viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" width="100%" height="230">
       <defs>
         <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
           <path d="M0,0 L8,4 L0,8 Z" fill="#9a9a94"/>
@@ -233,17 +233,17 @@
       </defs>
       <style>
         #arch-svg text{font-family:'DM Sans',sans-serif}
-        .an{fill:var(--global-card-bg-color,#fff);stroke:var(--global-divider-color,#e0e0e0);stroke-width:1.4}
-        .an-hl{fill:rgba(255,75,75,.06);stroke:var(--global-theme-color,#ff4b4b);stroke-width:1.6}
-        .gl{fill:none;stroke:var(--global-theme-color,#ff4b4b);stroke-width:1;stroke-dasharray:5 3}
-        .gt{font-size:8px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;fill:var(--global-theme-color,#ff4b4b)}
-        .nt{font-size:11px;font-weight:600;fill:var(--global-text-color,#000)}
-        .ns{font-size:8.5px;font-family:'JetBrains Mono',monospace;fill:var(--global-text-color-light,#828282)}
+        .an{fill:var(--card-bg,#fff);stroke:var(--divider,#e0e0e0);stroke-width:1.4}
+        .an-hl{fill:rgba(255,75,75,.06);stroke:var(--accent,#ff4b4b);stroke-width:1.6}
+        .gl{fill:none;stroke:var(--text,#ff4b4b);stroke-width:1;stroke-dasharray:5 3}
+        .gt{font-size:8px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;fill:var(--accent,#ff4b4b)}
+        .nt{font-size:11px;font-weight:600;fill:var(--text,#000)}
+        .ns{font-size:8.5px;font-family:'JetBrains Mono',monospace;fill:var(--text-light,#828282)}
         .arr{stroke:#9a9a94;stroke-width:1.5;marker-end:url(#arr)}
-        .arr-lbl{font-size:7.5px;font-family:'JetBrains Mono',monospace;fill:var(--global-text-color-light,#828282)}
-        .ic{fill:var(--global-theme-color,#ff4b4b)}
+        .arr-lbl{font-size:7.5px;font-family:'JetBrains Mono',monospace;fill:var(--text-light,#828282)}
+        .ic{fill:var(--accent,#ff4b4b)}
         .it{font-size:13px;fill:#fff;font-weight:700;text-anchor:middle;dominant-baseline:central}
-        .acc-text{fill:var(--global-theme-color,#ff4b4b);font-weight:700}
+        .acc-text{fill:var(--accent,#ff4b4b);font-weight:700}
       </style>
       <rect class="gl" x="6" y="28" width="178" height="190" rx="8"/>
       <text class="gt" x="14" y="22">Acquisition</text>
