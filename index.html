@@ -54,6 +54,30 @@
       line-height: 1.7 !important;
     }
 
+    /* Keep selected project cards the same size as as.html */
+    .projects-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)) !important;
+      gap: 28px !important;
+    }
+    .project-card .card figure {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+    }
+    .project-card .card picture {
+      display: block;
+      height: 100%;
+    }
+    .project-card .card img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+    }
+    .project-card .project-name {
+      font-size: 1.25rem !important;
+      line-height: 1.4 !important;
+    }
+
     /* ── Circular Profile Image  321 × 321 px ── */
     .profile figure img,
     .profile img {
@@ -80,12 +104,80 @@
       float: right;
       margin-left: 2rem;
     }
+
+    .profile-photo-button {
+      display: block;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: zoom-in;
+    }
+
+    #photo-lightbox {
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      max-height: none;
+      padding: 3rem 1rem 1rem;
+      border: 0;
+      background: transparent;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #photo-lightbox[open] {
+      display: flex;
+    }
+
+    #photo-lightbox::backdrop {
+      background: rgba(0, 0, 0, 0.92);
+    }
+
+    #photo-lightbox img {
+      width: 96vw;
+      height: calc(100vh - 5rem);
+      object-fit: contain;
+    }
+
+    .photo-lightbox-close {
+      position: fixed;
+      top: 1rem;
+      right: 1.25rem;
+      padding: 0.25rem 0.5rem;
+      border: 0;
+      background: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
     /* ── Icon size fix — overrides the global "a" font-size reset above ── */
 .social .contact-icons,
 .social .contact-icons a,
 .social .contact-icons a i {
   font-size: 3.8rem !important;  /* ← change this ONE number to resize all icons */
   line-height: 1 !important;
+}
+
+.profile-social {
+  width: 321px;
+  margin: 10% 0 0;
+  transform: translateX(10%);
+}
+
+.profile-social .contact-icons,
+.profile-social .contact-icons a,
+.profile-social .contact-icons a i {
+  font-size: 3.42rem !important;
+  line-height: 1 !important;
+  flex-wrap: nowrap;
+  gap: 0.8rem;
+}
+
+@media (max-width: 576px) {
+  .profile-social {
+    width: 220px;
+  }
 }
   </style>
 </head>
@@ -147,8 +239,18 @@
     <article>
       <div class="profile float-right" style="margin-top: -1.5rem; transform: translateY(-20%);">
        <figure>
-          <img src="assets/img/ahmed1.jpeg" alt="Ahmed Tamer" class="img-fluid z-depth-1 rounded-circle">
+          <button type="button" class="profile-photo-button" aria-label="View full-size profile photo">
+            <img src="assets/img/ahmed1.jpeg" alt="Ahmed Tamer" class="img-fluid z-depth-1 rounded-circle">
+          </button>
         </figure>
+        <div class="social profile-social">
+          <div class="contact-icons">
+            <a href="mailto:ahmed2000tamer2@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/ahmettamer" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ahmed-tamer-eee/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="tel:+905525575085" title="Phone"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
       </div>
 
       <div class="clearfix" style="text-align:justify;">
@@ -156,22 +258,9 @@
           <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a>,
           Kayseri, Turkey. My work spans <strong>embedded systems</strong> (STM32, ESP32, Raspberry Pi), <strong>FPGA design in VHDL</strong>, and <strong>machine learning</strong> for signal processing and computer vision. I am seeking an electrical, embedded or edge-AI engineering role.</p>
 
-        <p data-i18n="bio2"><strong>Machine learning:</strong> At <strong>MTM Biotech</strong>, I developed a CNN and wavelet-transform model that decodes hand gestures from EMG signals with <strong>82% accuracy</strong>, enabling individual finger control of a prosthetic arm. I owned the full pipeline, from data collection, preprocessing and feature engineering to model training and real-time hardware inference.</p>
+        <p data-i18n="bio2"><strong>Machine learning &amp; embedded:</strong> At <strong>MTM Biotech</strong>, I developed a CNN and wavelet-transform model that decodes hand gestures from EMG signals with <strong>82% accuracy</strong>, enabling individual finger control of a prosthetic arm. At <strong>Four Mansions Hotel</strong>, I designed and deployed <strong>3 remote gate openers</strong> using ESP32 and Blynk IoT, serving about 300 guests per week with no reported problems, and repaired a major electrical fault in the lighting system of a historic building.</p>
 
-        <p data-i18n="bio3"><strong>Embedded &amp; electrical:</strong> At <strong>Four Mansions Hotel</strong>, I designed and deployed <strong>3 remote gate openers</strong> using ESP32 and Blynk IoT, serving about 300 guests per week with no reported problems. I optimized industrial lighting infrastructure, diagnosed and repaired a major electrical fault in the lighting system of a historic building, and built a Python web-scraping tool that tracks competitor hotel pricing and occupancy trends, all in a live environment.</p>
-
-        <p data-i18n="bio4"><strong>Graduation project &amp; academic work:</strong> I designed <strong>AI-powered smart glasses</strong> for visually impaired users, running YOLOv6-N detection on a Raspberry Pi 5 and conveying obstacle direction and distance through real-time 3D spatial audio. Other projects include a PID line follower robot on STM32, an FPGA digital password lock, deep learning classification of breast cancer histopathological images, heart disease prediction, and a PAM digital equalization system achieving ~22 dB SNR.</p>
-
-        <p data-i18n="bio5"><strong>Languages:</strong> <strong>Arabic</strong> (native), <strong>English</strong> (fluent) and <strong>Turkish</strong> (fluent). I am passionate about applying engineering to problems that matter, from prosthetics to accessibility technology.</p>
-      </div>
-
-      <div class="social">
-        <div class="contact-icons">
-          <a href="mailto:ahmed2000tamer2@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://github.com/ahmettamer" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/ahmed-tamer-eee/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="tel:+905525575085" title="Phone"><i class="fas fa-phone"></i></a>
-        </div>
+        <p data-i18n="bio3"><strong>Graduation project:</strong> I designed <strong>AI-powered smart glasses</strong> for visually impaired users, running YOLOv6-N detection on a Raspberry Pi 5 and conveying obstacle direction and distance through real-time 3D spatial audio. I am passionate about applying engineering to problems that matter, from prosthetics to accessibility technology.</p>
       </div>
 
       <!-- SELECTED EXPERIENCE -->
@@ -331,6 +420,11 @@
   </div>
 </div>
 
+<dialog id="photo-lightbox" aria-label="Full-size profile photo">
+  <button type="button" class="photo-lightbox-close" aria-label="Close photo"><i class="fas fa-times"></i></button>
+  <img src="assets/img/ahmed1.jpeg" alt="Ahmed Tamer">
+</dialog>
+
 <!-- ── FOOTER ── -->
 <footer class="fixed-bottom">
   <div class="container mt-0">
@@ -353,10 +447,8 @@ const i18n = {
     desc_skills: "Embedded Systems", desc_ml: "Edge AI",
     desc_loc: "Kayseri, Turkey (open to relocation)",
     bio1: `I am an <strong>Electrical &amp; Electronics Engineering graduate</strong> (B.Sc., <strong>Honor Student</strong>, GPA <strong>3.25 / 4.00</strong>) from <a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül University</a>, Kayseri, Turkey. My work spans <strong>embedded systems</strong> (STM32, ESP32, Raspberry Pi), <strong>FPGA design in VHDL</strong>, and <strong>machine learning</strong> for signal processing and computer vision. I am seeking an electrical, embedded or edge-AI engineering role.`,
-    bio2: `<strong>Machine learning:</strong> At <strong>MTM Biotech</strong>, I developed a CNN and wavelet-transform model that decodes hand gestures from EMG signals with <strong>82% accuracy</strong>, enabling individual finger control of a prosthetic arm. I owned the full pipeline, from data collection, preprocessing and feature engineering to model training and real-time hardware inference.`,
-    bio3: `<strong>Embedded &amp; electrical:</strong> At <strong>Four Mansions Hotel</strong>, I designed and deployed <strong>3 remote gate openers</strong> using ESP32 and Blynk IoT, serving about 300 guests per week with no reported problems. I optimized industrial lighting infrastructure, diagnosed and repaired a major electrical fault in the lighting system of a historic building, and built a Python web-scraping tool that tracks competitor hotel pricing and occupancy trends, all in a live environment.`,
-    bio4: `<strong>Graduation project &amp; academic work:</strong> I designed <strong>AI-powered smart glasses</strong> for visually impaired users, running YOLOv6-N detection on a Raspberry Pi 5 and conveying obstacle direction and distance through real-time 3D spatial audio. Other projects include a PID line follower robot on STM32, an FPGA digital password lock, deep learning classification of breast cancer histopathological images, heart disease prediction, and a PAM digital equalization system achieving ~22 dB SNR.`,
-    bio5: `<strong>Languages:</strong> <strong>Arabic</strong> (native), <strong>English</strong> (fluent) and <strong>Turkish</strong> (fluent). I am passionate about applying engineering to problems that matter, from prosthetics to accessibility technology.`,
+    bio2: `<strong>Machine learning &amp; embedded:</strong> At <strong>MTM Biotech</strong>, I developed a CNN and wavelet-transform model that decodes hand gestures from EMG signals with <strong>82% accuracy</strong>, enabling individual finger control of a prosthetic arm. At <strong>Four Mansions Hotel</strong>, I designed and deployed <strong>3 remote gate openers</strong> using ESP32 and Blynk IoT, serving about 300 guests per week with no reported problems, and repaired a major electrical fault in the lighting system of a historic building.`,
+    bio3: `<strong>Graduation project:</strong> I designed <strong>AI-powered smart glasses</strong> for visually impaired users, running YOLOv6-N detection on a Raspberry Pi 5 and conveying obstacle direction and distance through real-time 3D spatial audio. I am passionate about applying engineering to problems that matter, from prosthetics to accessibility technology.`,
     section_sel_exp: "selected experience", view_all: "view all →",
     exp1_title: "Technical Operations Engineer", exp1_date: "Sep 2024 – Present",
     exp1_company: "Four Mansions Hotel — Kayseri, Turkey",
@@ -392,10 +484,8 @@ const i18n = {
     desc_skills: "Gömülü Sistemler", desc_ml: "Uç Yapay Zeka (Edge AI)",
     desc_loc: "Kayseri, Türkiye (taşınmaya açık)",
     bio1: `<a href="https://w3.agu.edu.tr/" target="_blank" rel="noopener">Abdullah Gül Üniversitesi</a>, Kayseri, Türkiye <strong>Elektrik ve Elektronik Mühendisliği</strong> mezunuyum (Lisans, <strong>Onur Öğrencisi</strong>, GPA <strong>3.25 / 4.00</strong>). Çalışmalarım <strong>gömülü sistemler</strong> (STM32, ESP32, Raspberry Pi), <strong>VHDL ile FPGA tasarımı</strong> ve sinyal işleme ile bilgisayarlı görü için <strong>makine öğrenmesi</strong> alanlarını kapsıyor. Elektrik, gömülü sistemler veya edge-AI mühendisliği alanında bir pozisyon arıyorum.`,
-    bio2: `<strong>Makine öğrenmesi:</strong> <strong>MTM Biotech</strong>'te EMG sinyallerinden el hareketlerini <strong>%82 doğrulukla</strong> çözen, CNN ve dalgacık dönüşümü tabanlı bir model geliştirdim; bu model protez kolda bireysel parmak kontrolünü mümkün kılıyor. Veri toplama, ön işleme, özellik mühendisliği, model eğitimi ve gerçek zamanlı donanım çıkarımına kadar tüm süreci yönettim.`,
-    bio3: `<strong>Gömülü sistemler ve elektrik:</strong> <strong>Four Mansions Hotel</strong>'de ESP32 ve Blynk IoT kullanarak <strong>3 uzaktan kapı açma sistemi</strong> tasarlayıp devreye aldım; haftada yaklaşık 300 misafire sorunsuz hizmet veriyor. Ayrıca endüstriyel aydınlatma altyapısını optimize ettim, tarihi bir binanın aydınlatma sisteminde büyük bir elektrik arızasını tespit edip onardım ve rakip otel fiyat ile doluluk trendlerini takip eden Python tabanlı bir web kazıma aracı geliştirdim; tümü canlı bir ortamda.`,
-    bio4: `<strong>Bitirme projesi ve akademik çalışmalar:</strong> Görme engelli kullanıcılar için <strong>yapay zeka destekli akıllı gözlükler</strong> tasarladım; Raspberry Pi 5 üzerinde YOLOv6-N ile nesne tespiti yapıyor ve engelin yönünü ile mesafesini gerçek zamanlı 3D uzamsal ses ile aktarıyor. Diğer projelerim arasında STM32 üzerinde PID çizgi izleyen robot, FPGA tabanlı dijital şifre kilidi, meme kanseri histopatolojik görüntülerinin derin öğrenme ile sınıflandırması, kalp hastalığı tahmini ve ~22 dB SNR elde eden PAM dijital eşitleme sistemi yer alıyor.`,
-    bio5: `<strong>Diller:</strong> <strong>Arapça</strong> (anadil), <strong>İngilizce</strong> (akıcı) ve <strong>Türkçe</strong> (akıcı). Mühendisliği önemli sorunlara uygulamaya tutkuluyum; protezlerden erişilebilirlik teknolojisine kadar.`,
+    bio2: `<strong>Makine öğrenmesi ve gömülü sistemler:</strong> <strong>MTM Biotech</strong>'te EMG sinyallerinden el hareketlerini <strong>%82 doğrulukla</strong> çözen, CNN ve dalgacık dönüşümü tabanlı bir model geliştirdim; bu model protez kolda bireysel parmak kontrolünü mümkün kılıyor. <strong>Four Mansions Hotel</strong>'de ESP32 ve Blynk IoT ile <strong>3 uzaktan kapı açma sistemi</strong> tasarlayıp devreye aldım; haftada yaklaşık 300 misafire sorunsuz hizmet veriyor. Tarihi bir binanın aydınlatma sistemindeki büyük bir elektrik arızasını tespit edip onardım.`,
+    bio3: `<strong>Bitirme projesi:</strong> Görme engelli kullanıcılar için <strong>yapay zeka destekli akıllı gözlükler</strong> tasarladım; Raspberry Pi 5 üzerinde YOLOv6-N ile nesne tespiti yapıyor ve engelin yönünü ile mesafesini gerçek zamanlı 3D uzamsal ses ile aktarıyor. Mühendisliği önemli sorunlara uygulamaya tutkuluyum; protezlerden erişilebilirlik teknolojisine kadar.`,
     section_sel_exp: "seçili deneyim", view_all: "tümünü gör →",
     exp1_title: "Teknik Operasyon Mühendisi", exp1_date: "Eyl 2024 – Günümüz",
     exp1_company: "Four Mansions Hotel — Kayseri, Türkiye",
@@ -462,6 +552,18 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+</script>
+<script>
+  const photoLightbox = document.getElementById('photo-lightbox');
+  document.querySelector('.profile-photo-button').addEventListener('click', function () {
+    photoLightbox.showModal();
+  });
+  document.querySelector('.photo-lightbox-close').addEventListener('click', function () {
+    photoLightbox.close();
+  });
+  photoLightbox.addEventListener('click', function (event) {
+    if (event.target === photoLightbox) photoLightbox.close();
+  });
 </script>
 </body>
 </html>
